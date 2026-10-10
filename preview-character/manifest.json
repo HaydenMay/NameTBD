@@ -1,5 +1,5 @@
 {
- "version": 1791615607,
+ "version": 1791615957,
  "canvas": [
   1024,
   1536
@@ -1227,7 +1227,42 @@
    }
   }
  ],
- "beards": [],
+ "beards": [
+  {
+   "id": "trimmed",
+   "label": "Trimmed beard",
+   "ref_skull": [
+    82,
+    523
+   ],
+   "lum": [
+    10.8,
+    180.3
+   ],
+   "part": {
+    "file": "assets/beard_trimmed.png",
+    "x": 450,
+    "y": 227
+   }
+  },
+  {
+   "id": "full",
+   "label": "Full beard",
+   "ref_skull": [
+    82,
+    523
+   ],
+   "lum": [
+    12.5,
+    159.2
+   ],
+   "part": {
+    "file": "assets/beard_full.png",
+    "x": 438,
+    "y": 221
+   }
+  }
+ ],
  "hair_colours": {
   "black": [
    [

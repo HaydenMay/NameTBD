@@ -125,6 +125,8 @@ HAIRS = [  # (id, label, fits, reference image the hair was drawn on[, x nudge])
 
 # Beards: blue edits of male_base, cut with check_hair.py, drawn over the outfit collar.
 BEARDS = [  # (id, label, reference image)
+    ("trimmed", "Trimmed beard", "male_base"),
+    ("full", "Full beard", "male_base"),
 ]
 
 HAIR_COLOURS = {
