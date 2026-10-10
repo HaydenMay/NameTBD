@@ -127,6 +127,7 @@ MOUTH_OVERRIDE = {
 # Races a face is never used for (reviewed and rejected, like the hair blocklist).
 BLOCKED_RACES = {
 }
+TRANSPLANT_TUSKS = False
 TUSK_REF_MOUTH = [550, 606, 297]   # mouth of aldric_bald_limekey, where ears_ogre's tusks were drawn
 
 BLOCKED_HAIR = {
@@ -335,7 +336,9 @@ def tusk_layer(mo, head):
     if len(tusks) < 2:
         return None
     out = np.zeros_like(a)
-    for m, corner_ref, corner in ((tusks[0], TUSK_REF_MOUTH[0], mo[0]), (tusks[1], TUSK_REF_MOUTH[1], mo[1])):
+    # Near tusk only: the far tusk sits on the cheek silhouette in 3/4 view and can't be
+    # placed convincingly by moving pixels (it needs to be painted per face).
+    for m, corner_ref, corner in ((tusks[0], TUSK_REF_MOUTH[0], mo[0]),):
         dx, dy = corner - corner_ref, mo[2] - TUSK_REF_MOUTH[2]
         piece = a.copy()
         piece[~m, 3] = 0
@@ -383,7 +386,9 @@ def main():
             mo = MOUTH_OVERRIDE.get(fid) or mouth(a, top, cx)
             if mo:
                 extra["mouth"] = mo
-                tusks = tusk_layer(mo, head)
+                # Moved tusks read as stickers (reviewed 2026-10-10); tusks must be painted
+                # per face (blue-key edit, extracted like hair). Kept off until then.
+                tusks = tusk_layer(mo, head) if TRANSPLANT_TUSKS else None
                 if tusks is not None:
                     extra["tusks"] = save_part(tusks, f"tusks_{fid}")
         if fid in NO_BEARD:
