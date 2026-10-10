@@ -7,6 +7,7 @@ All generation happens in ChatGPT as **edits** of a reference image, so pose, si
 | File | Use |
 |---|---|
 | `art/template/golden_aldric.png` | Starting point for new faces/races and new outfits |
+| `art/incoming/phase0/aldric_bald_limekey.png` | Lime-skin Aldric: ears/tusks and other race layers |
 | `art/incoming/phase0/aldric_bald_01.png` | Male (`humanoid_m`) hair & beards |
 | `art/incoming/phase0/human_f_bald_01.png` | Female (`humanoid_f`) hair |
 | `art/incoming/phase0/goblin_humanlike_01.png` | Goblin-specific hair |
@@ -33,7 +34,9 @@ Keep clear seams: a belt or hem at the waist, cuffs at the wrists, boot tops at 
 
 ## Rules that keep the pipeline working
 - Always edit, never generate from scratch.
-- Hair and beards in vivid blue; everything else in final colours.
+- **Skin in bright lime green** (faces, ears, hands, arms); recoloured per race at runtime.
+- Hair, beards (and later brows) in vivid blue; everything else in final colours.
+- Race is not a face: race = ears/tusks layer + skin palette + rig size, so make faces generic (round human ears) unless a face is deliberately race-specific.
 - Flat magenta background, no shadows, no text.
 - Nothing far from the mannequin: race shape comes from the rig (scale/width/head size), not from redrawing the body.
 - Drop anything that drifts in style; it's cheaper to regenerate than to fix.
