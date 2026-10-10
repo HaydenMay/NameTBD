@@ -54,6 +54,11 @@ FACES = [
     ("mira", "mira_bluebrow", "Mira", "f", None),
 ]
 BROWS = {"aldric", "rowan", "mira", "hobb", "pip", "edric", "m1_lean_a", "m6_lean_b", "m2_weathered", "m3_gentle", "m4_stern", "m5_sunworn"}   # art/parts/brows/brows_<id>.png (blue key)
+# Bloodline-style blocklist: face/hair pairs that were reviewed and rejected.
+BLOCKED_HAIR = {
+    "m1_lean_a": ["m_wavy"],   # narrower cheek: far-side strands float off the face
+    "m6_lean_b": ["m_wavy"],
+}
 SCARS = set()  # old scars were painted on retired faces; scars come back as generic layers                     # art/parts/scars/scar_<id>.png (optional layer)
 
 # id, file, label, template
@@ -102,7 +107,7 @@ HAIRS = [  # (id, label, fits, reference image the hair was drawn on[, x nudge])
     ("m_curly", "Curly", ["m"], "male_base"),
     ("m_topknot_soft", "Top-knot", ["m"], "male_base"),
     ("m_buzz", "Buzz cut", ["m"], "male_base"),
-    # regenerating (strand over brow caused brow artifacts): ("m_midpart", "Middle part", ["m"], "male_base"),
+    ("m_midpart", "Middle part", ["m"], "male_base"),
     ("spiky02", "Spiky", ["m"], "aldric_bald_01"),
     ("slicked01", "Slicked back", ["m"], "aldric_bald_01"),
     # replaced by m_topknot_soft: ("topknot02", "Top-knot (shaved)", ["m"], "aldric_bald_limekey"),
@@ -247,6 +252,8 @@ def main():
             extra["brows"] = {**save_part(b, f"brows_{fid}"), "lum": lum_range(b)}
         if fid in SCARS:
             extra["scar"] = save_part(np.asarray(Image.open(PARTS / "scars" / f"scar_{fid}.png").convert("RGBA")).copy(), f"scar_{fid}")
+        if fid in BLOCKED_HAIR:
+            extra["blocked_hair"] = BLOCKED_HAIR[fid]
         faces.append({**extra, "id": fid, "label": label, "template": tpl, "group": tpl, "skull": skull(a), "races": races,
                       "lime": True, "part": save_part(head, f"head_{fid}", True, hue_lo=40)})
 

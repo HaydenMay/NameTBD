@@ -1,5 +1,5 @@
 {
- "version": 1791613781,
+ "version": 1791614187,
  "canvas": [
   1024,
   1536
@@ -469,6 +469,9 @@
      147.4
     ]
    },
+   "blocked_hair": [
+    "m_wavy"
+   ],
    "id": "m1_lean_a",
    "label": "Corwin",
    "template": "m",
@@ -501,6 +504,9 @@
      141.4
     ]
    },
+   "blocked_hair": [
+    "m_wavy"
+   ],
    "id": "m6_lean_b",
    "label": "Corwin (alt)",
    "template": "m",
@@ -1069,6 +1075,26 @@
     "file": "assets/hair_m_buzz.png",
     "x": 397,
     "y": 77
+   }
+  },
+  {
+   "id": "m_midpart",
+   "label": "Middle part",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    82,
+    523
+   ],
+   "lum": [
+    5.9,
+    183.7
+   ],
+   "part": {
+    "file": "assets/hair_m_midpart.png",
+    "x": 333,
+    "y": 36
    }
   },
   {
