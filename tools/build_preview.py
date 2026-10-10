@@ -86,13 +86,13 @@ SKINS = {  # mid-tone sRGB of each skin; converted to Lab for the page
 }
 
 HAIRS = [
-    ("short02", "Short", ["m"], "aldric_bald_limekey", 8),
-    ("wavy02", "Long wavy", ["m"], "aldric_bald_limekey", -4),
+    # rejected 2026-10-09, redo on clean-shaven lime Aldric: ("short02", "Short", ["m"], "aldric_bald_limekey", 8),
+    # rejected 2026-10-09, redo on clean-shaven lime Aldric: ("wavy02", "Long wavy", ["m"], "aldric_bald_limekey", -4),
     ("topknot02", "Top-knot", ["m"], "aldric_bald_limekey"),
-    ("ponytail02", "Ponytail", ["m"], "aldric_bald_01"),
+    # rejected 2026-10-09, redo on clean-shaven lime Aldric: ("ponytail02", "Ponytail", ["m"], "aldric_bald_01"),
     ("slicked01", "Slicked back", ["m"], "aldric_bald_01"),
-    ("shaggy01", "Shaggy", ["m"], "aldric_bald_01"),
-    ("curly01", "Curly", ["m"], "aldric_bald_01"),
+    # rejected 2026-10-09, redo on clean-shaven lime Aldric: ("shaggy01", "Shaggy", ["m"], "aldric_bald_01"),
+    # rejected 2026-10-09, redo on clean-shaven lime Aldric: ("curly01", "Curly", ["m"], "aldric_bald_01"),
     ("spiky02", "Spiky", ["m"], "aldric_bald_01"),
     ("bun01", "Bun", ["f"], "human_f_bald_01"),
     ("sidebraid01", "Side braid", ["f"], "human_f_bald_01"),

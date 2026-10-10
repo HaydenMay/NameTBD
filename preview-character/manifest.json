@@ -1,5 +1,5 @@
 {
- "version": 1791609796,
+ "version": 1791611077,
  "canvas": [
   1024,
   1536
@@ -709,46 +709,6 @@
  },
  "hairs": [
   {
-   "id": "short02",
-   "label": "Short",
-   "fits": [
-    "m"
-   ],
-   "ref_skull": [
-    84,
-    512
-   ],
-   "lum": [
-    12.1,
-    173.6
-   ],
-   "part": {
-    "file": "assets/hair_short02.png",
-    "x": 388,
-    "y": 65
-   }
-  },
-  {
-   "id": "wavy02",
-   "label": "Long wavy",
-   "fits": [
-    "m"
-   ],
-   "ref_skull": [
-    84,
-    524
-   ],
-   "lum": [
-    7.1,
-    182.8
-   ],
-   "part": {
-    "file": "assets/hair_wavy02.png",
-    "x": 311,
-    "y": 71
-   }
-  },
-  {
    "id": "topknot02",
    "label": "Top-knot",
    "fits": [
@@ -769,26 +729,6 @@
    }
   },
   {
-   "id": "ponytail02",
-   "label": "Ponytail",
-   "fits": [
-    "m"
-   ],
-   "ref_skull": [
-    84,
-    520
-   ],
-   "lum": [
-    7.3,
-    188.9
-   ],
-   "part": {
-    "file": "assets/hair_ponytail02.png",
-    "x": 301,
-    "y": 82
-   }
-  },
-  {
    "id": "slicked01",
    "label": "Slicked back",
    "fits": [
@@ -806,46 +746,6 @@
     "file": "assets/hair_slicked01.png",
     "x": 351,
     "y": 72
-   }
-  },
-  {
-   "id": "shaggy01",
-   "label": "Shaggy",
-   "fits": [
-    "m"
-   ],
-   "ref_skull": [
-    84,
-    520
-   ],
-   "lum": [
-    7.1,
-    200.6
-   ],
-   "part": {
-    "file": "assets/hair_shaggy01.png",
-    "x": 344,
-    "y": 49
-   }
-  },
-  {
-   "id": "curly01",
-   "label": "Curly",
-   "fits": [
-    "m"
-   ],
-   "ref_skull": [
-    84,
-    520
-   ],
-   "lum": [
-    8.1,
-    181.4
-   ],
-   "part": {
-    "file": "assets/hair_curly01.png",
-    "x": 371,
-    "y": 64
    }
   },
   {
