@@ -1,5 +1,5 @@
 {
- "version": 1791606809,
+ "version": 1791607236,
  "canvas": [
   1024,
   1536
@@ -394,9 +394,9 @@
     "y": 80,
     "skin_mask": "assets/head_garrett_skin.png",
     "key_lab": [
-     73.03,
-     -15.11,
-     66.21
+     72.99,
+     -15.1,
+     66.18
     ]
    }
   },
@@ -415,13 +415,13 @@
    "lime": true,
    "part": {
     "file": "assets/head_brug.png",
-    "x": 397,
+    "x": 396,
     "y": 92,
     "skin_mask": "assets/head_brug_skin.png",
     "key_lab": [
-     69.68,
-     -15.15,
-     62.21
+     69.67,
+     -15.14,
+     62.19
     ]
    }
   },
@@ -481,7 +481,7 @@
    "part": {
     "file": "assets/body_knight_m.png",
     "x": 162,
-    "y": 186,
+    "y": 346,
     "skin_mask": "assets/body_knight_m_skin.png",
     "key_lab": [
      30.86,
@@ -537,12 +537,12 @@
    "part": {
     "file": "assets/body_guard_m.png",
     "x": 189,
-    "y": 173,
+    "y": 177,
     "skin_mask": "assets/body_guard_m_skin.png",
     "key_lab": [
-     61.86,
-     -13.6,
-     56.83
+     61.9,
+     -13.61,
+     56.85
     ]
    },
    "back": {
@@ -587,7 +587,7 @@
    "part": {
     "file": "assets/body_knight_f.png",
     "x": 234,
-    "y": 190,
+    "y": 197,
     "skin_mask": "assets/body_knight_f_skin.png",
     "key_lab": [
      84.22,

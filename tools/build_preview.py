@@ -157,17 +157,26 @@ def lum_range(a):
     return [round(float(lo), 1), round(float(hi), 1)]
 
 
-def head_mask(a, limit=480):
-    """Whole head: the skin region from the top of the skull down to where the outfit
-    starts, plus everything it encloses (eyes, brows, lips) and its outline."""
-    skin = skin_mask(a) & (a[..., 3] > 0)
+def head_mask(a, limit=480, cut=None):
+    """Whole head: skull, face, ears and neck. Above the jaw every row is filled between
+    the outermost skin pixels and padded, so features on the silhouette edge (the far eye,
+    lashes, nose tip, brow) are kept, not just what skin fully encloses."""
+    vis = a[..., 3] > 0
+    skin = skin_mask(a) & vis
     skin[limit:] = False
     labels, n = ndimage.label(skin)
     if n:  # the head is the largest skin blob above the shoulders; drop hands/arms/specks
         sizes = ndimage.sum(skin, labels, range(1, n + 1))
         skin = labels == (1 + int(np.argmax(sizes)))
     head = ndimage.binary_fill_holes(ndimage.binary_closing(skin, iterations=6))
-    return ndimage.binary_dilation(head, iterations=5) & (a[..., 3] > 0)
+    jaw = (cut or limit) - 30
+    span = np.zeros_like(head)
+    for y in np.where(head[:jaw].any(1))[0]:
+        xs = np.where(head[y])[0]
+        span[y, xs.min():xs.max() + 1] = True
+    span = ndimage.binary_dilation(span, iterations=10)
+    span[jaw:] = False
+    return (ndimage.binary_dilation(head, iterations=5) | span) & vis
 
 
 def dwarf_beard(a, collar):
@@ -198,15 +207,15 @@ def main():
     for fid, fname, label, tpl, races in FACES:
         a = keyed(SRC / f"{fname}.png")
         head = a.copy()
-        head[~head_mask(a), 3] = 0
+        head[~head_mask(a, cut=TEMPLATES[tpl]["cut"]), 3] = 0
         faces.append({"id": fid, "label": label, "template": tpl, "group": tpl, "skull": skull(a), "races": races,
                       "lime": True, "part": save_part(head, f"head_{fid}", True)})
 
     bodies = []
     for bid, fname, label, tpl in BODIES:
         a = keyed(SRC / f"{fname}.png")
-        hm = head_mask(a)
         cut = TEMPLATES[tpl]["cut"]
+        hm = head_mask(a, cut=cut)
         # back: the donor's own neck stump, drawn behind the head to fill any gap
         back = a.copy()
         stump = hm & (skin_mask(a) | (a[..., :3].max(2) < 90))
