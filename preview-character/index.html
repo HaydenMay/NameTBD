@@ -70,6 +70,7 @@
     <label class="field" id="beardRow">Beard <select id="beard"></select></label>
     <div class="field">Hair colour<div class="swatches" id="colours"></div></div>
     <div class="check"><input type="checkbox" id="raceSize" checked><label for="raceSize">Apply race size</label></div>
+    <div class="row" style="margin-bottom:12px"><button class="btn ghost" id="walk" title="Work in progress: rig test, not final">Walk test (WIP)</button></div>
     <div class="row">
       <button class="btn" id="random">Random companion</button>
     </div>
@@ -168,13 +169,48 @@ const facesFor = race => M.faces.filter(f => !f.races || f.races.includes(race))
 const hairsFor = face => M.hairs.filter(h => h.fits.includes(face.template) && !(face.blocked_hair || []).includes(h.id));
 const bodiesFor = face => M.bodies.filter(b => b.template === face.template);
 
-function compose() {
+// ---- Walk test (dev only) ---------------------------------------------------
+// Rigid cut-out rig: each limb piece rotates about its pivot; shins hang off the
+// knee, which follows the thigh. pose = {bob, thigh_n, thigh_f, shin_n, shin_f, arm_n, arm_f} (radians).
+function walkPose(t) {
+  const p = t * 2 * Math.PI / 0.9;                // one stride per 0.9 s
+  const sw = Math.sin(p);
+  return {
+    bob: -Math.abs(Math.cos(p)) * 10 + 5,          // body rises as legs pass
+    thigh_n: -sw * 0.30, thigh_f: sw * 0.30,       // negative = forward (facing right)
+    shin_n: Math.max(0, Math.cos(p)) * 0.45,       // knee bends while the leg swings through
+    shin_f: Math.max(0, -Math.cos(p)) * 0.45,
+    arm_n: sw * 0.22, arm_f: -sw * 0.18,           // arms swing opposite their legs
+  };
+}
+
+function compose(pose = null) {
   const face = byId(M.faces, state.face), body = byId(M.bodies, state.outfit), race = M.races[state.race];
   const skin = face.lime ? state.skin : null;
   const c = document.createElement('canvas'); c.width = 1024; c.height = 1536;
   const g = c.getContext('2d');
   const put = (part, src, dx = 0, dy = 0) => g.drawImage(src, part.x + dx, part.y + dy);
   const fit = (part, src, ref) => put(part, src, face.skull[1] - ref[1], face.skull[0] - ref[0]);
+  const rig = pose && body && body.rig && M.rig[body.template];
+  const limb = (name, pivot, angle, parent) => {   // draw one rig piece, optionally chained to a parent joint
+    const part = body.rig[name]; if (!part) return;
+    g.save();
+    if (parent) { g.translate(...parent.pivot); g.rotate(parent.angle); g.translate(-parent.pivot[0], -parent.pivot[1]); }
+    g.translate(...pivot); g.rotate(angle); g.translate(-pivot[0], -pivot[1]);
+    put(part, skinned(part, state.skin));
+    g.restore();
+  };
+  if (rig) {
+    const P = rig;
+    // static hip underlay first, then far side (behind the body)
+    if (body.rig.hips) { g.save(); g.translate(0, pose.bob * 0.5); put(body.rig.hips, skinned(body.rig.hips, state.skin)); g.restore(); }
+    g.save(); g.translate(0, pose.bob); limb('arm_f', P.shoulder_f, pose.arm_f); g.restore();
+    limb('thigh_f', P.hip_f, pose.thigh_f);
+    limb('shin_f', P.knee_f, pose.shin_f, { pivot: P.hip_f, angle: pose.thigh_f });
+    limb('thigh_n', P.hip_n, pose.thigh_n);
+    limb('shin_n', P.knee_n, pose.shin_n, { pivot: P.hip_n, angle: pose.thigh_n });
+    g.save(); g.translate(0, pose.bob);             // upper body bobs; legs stay planted
+  }
   if (body && body.back) put(body.back, skinned(body.back, state.skin));
   put(face.part, skinned(face.part, skin));
   if (face.scar && state.scar) {  // multiply: scar reads as a darker, redder line on any skin
@@ -182,7 +218,8 @@ function compose() {
     put(face.scar, img[face.scar.file]); g.restore();
   }
   if (face.brows) put(face.brows, gradientPart(face.brows.file, face.brows.lum, state.hairCol));
-  if (body) put(body.part, skinned(body.part, body.lime ? state.skin : null));
+  if (rig) put(body.rig.torso, skinned(body.rig.torso, state.skin));
+  else if (body) put(body.part, skinned(body.part, body.lime ? state.skin : null));
   if (face.beard) put(face.beard, img[face.beard.file]);
   const beard = face.template === 'm' && byId(M.beards || [], state.beard);
   if (beard) fit(beard.part, gradientPart(beard.part.file, beard.lum, state.hairCol), beard.ref_skull);
@@ -192,11 +229,15 @@ function compose() {
     const e = M.ears[race.ears];
     put(e.part, skinned(e.part, skin), face.skull[1] - e.ref_skull[1], face.skull[0] - e.ref_skull[0]);
   }
+  if (rig) {
+    limb('arm_n', rig.shoulder_n, pose.arm_n);      // near arm in front of everything
+    g.restore();
+  }
   return { c, face };
 }
 
-function render() {
-  const { c, face } = compose();
+let walking = false, walkStart = 0;
+function drawBody(c) {
   const out = $('body').getContext('2d'), floor = M.floor_y;
   out.clearRect(0, 0, 1024, 1536);
   // dashed line = human head height, solid line = ground
@@ -206,6 +247,17 @@ function render() {
   out.setLineDash([]); out.beginPath(); out.moveTo(60, floor); out.lineTo(964, floor); out.stroke(); out.restore();
   const k = ($('raceSize').checked ? M.races[state.race].scale : 1) / 1.15;  // fit an ogre (1.15) in the frame
   out.drawImage(c, 512 - 512 * k, floor - floor * k, 1024 * k, 1536 * k);
+}
+
+function walkFrame(now) {
+  if (!walking) return;
+  drawBody(compose(walkPose((now - walkStart) / 1000)).c);
+  requestAnimationFrame(walkFrame);
+}
+
+function render() {
+  const { c, face } = compose();
+  if (!walking) drawBody(c);
 
   const p = $('portrait').getContext('2d'), [sy, sx] = face.skull;
   p.fillStyle = '#4a3f52'; p.fillRect(0, 0, 512, 512);
@@ -274,7 +326,7 @@ function fromHash() {
 
 (async () => {
   M = await (await fetch('manifest.json', { cache: 'no-cache' })).json();
-  const parts = [...M.faces.flatMap(f => [f.part, f.beard, f.brows, f.scar]), ...M.bodies.flatMap(b => [b.part, b.back]),
+  const parts = [...M.faces.flatMap(f => [f.part, f.beard, f.brows, f.scar]), ...M.bodies.flatMap(b => [b.part, b.back, ...Object.values(b.rig || {})]),
     ...Object.values(M.ears).map(e => e.part), ...M.hairs.map(h => h.part), ...(M.beards || []).map(b => b.part)].filter(Boolean);
   await Promise.all(parts.flatMap(p => [p.file, p.skin_mask]).filter(Boolean).map(load));
 
@@ -287,6 +339,11 @@ function fromHash() {
   $('hair').onchange = e => { state.hair = e.target.value; render(); };
   $('beard').onchange = e => { state.beard = e.target.value; render(); };
   $('raceSize').onchange = render;
+  $('walk').onclick = () => {
+    walking = !walking;
+    $('walk').textContent = walking ? 'Stop walk test' : 'Walk test (WIP)';
+    if (walking) { walkStart = performance.now(); requestAnimationFrame(walkFrame); } else render();
+  };
   $('scar').onchange = e => { state.scar = e.target.checked; render(); };
   $('colours').onclick = e => { const c = e.target.dataset.c; if (c) { state.hairCol = c; sync(); } };
   $('random').onclick = () => { const s = Math.floor(Math.random() * 1e6); $('seed').value = s; generate(mulberry32(s)); };

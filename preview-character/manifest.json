@@ -1,5 +1,5 @@
 {
- "version": 1791616450,
+ "version": 1791616844,
  "canvas": [
   1024,
   1536
@@ -327,6 +327,38 @@
     51.76,
     -11.51,
     22.7
+   ]
+  }
+ },
+ "rig": {
+  "m": {
+   "neck": [
+    512,
+    375
+   ],
+   "shoulder_n": [
+    300,
+    505
+   ],
+   "shoulder_f": [
+    690,
+    505
+   ],
+   "hip_n": [
+    430,
+    860
+   ],
+   "hip_f": [
+    610,
+    860
+   ],
+   "knee_n": [
+    425,
+    1085
+   ],
+   "knee_f": [
+    630,
+    1085
    ]
   }
  },
@@ -796,6 +828,84 @@
      -26.27,
      55.17
     ]
+   },
+   "rig": {
+    "torso": {
+     "file": "assets/body_knight_m_torso.png",
+     "x": 212,
+     "y": 325,
+     "skin_mask": "assets/body_knight_m_torso_skin.png",
+     "key_lab": [
+      30.91,
+      -3.56,
+      17.0
+     ]
+    },
+    "arm_n": {
+     "file": "assets/body_knight_m_arm_n.png",
+     "x": 163,
+     "y": 490,
+     "skin_mask": "assets/body_knight_m_arm_n_skin.png",
+     "key_lab": [
+      27.08,
+      -3.5,
+      11.24
+     ]
+    },
+    "arm_f": {
+     "file": "assets/body_knight_m_arm_f.png",
+     "x": 676,
+     "y": 490,
+     "skin_mask": "assets/body_knight_m_arm_f_skin.png",
+     "key_lab": [
+      33.82,
+      -4.58,
+      21.31
+     ]
+    },
+    "thigh_n": {
+     "file": "assets/body_knight_m_thigh_n.png",
+     "x": 330,
+     "y": 770
+    },
+    "shin_n": {
+     "file": "assets/body_knight_m_shin_n.png",
+     "x": 299,
+     "y": 1055
+    },
+    "thigh_f": {
+     "file": "assets/body_knight_m_thigh_f.png",
+     "x": 517,
+     "y": 770,
+     "skin_mask": "assets/body_knight_m_thigh_f_skin.png",
+     "key_lab": [
+      31.32,
+      -3.48,
+      15.71
+     ]
+    },
+    "shin_f": {
+     "file": "assets/body_knight_m_shin_f.png",
+     "x": 517,
+     "y": 1055,
+     "skin_mask": "assets/body_knight_m_shin_f_skin.png",
+     "key_lab": [
+      49.57,
+      -5.11,
+      24.25
+     ]
+    },
+    "hips": {
+     "file": "assets/body_knight_m_hips.png",
+     "x": 342,
+     "y": 760,
+     "skin_mask": "assets/body_knight_m_hips_skin.png",
+     "key_lab": [
+      24.99,
+      -2.77,
+      12.98
+     ]
+    }
    }
   },
   {
@@ -824,6 +934,84 @@
      -11.85,
      53.66
     ]
+   },
+   "rig": {
+    "torso": {
+     "file": "assets/body_cleric_m_torso.png",
+     "x": 229,
+     "y": 329,
+     "skin_mask": "assets/body_cleric_m_torso_skin.png",
+     "key_lab": [
+      93.24,
+      -7.84,
+      49.21
+     ]
+    },
+    "arm_n": {
+     "file": "assets/body_cleric_m_arm_n.png",
+     "x": 159,
+     "y": 490,
+     "skin_mask": "assets/body_cleric_m_arm_n_skin.png",
+     "key_lab": [
+      35.79,
+      -7.33,
+      19.06
+     ]
+    },
+    "arm_f": {
+     "file": "assets/body_cleric_m_arm_f.png",
+     "x": 676,
+     "y": 490,
+     "skin_mask": "assets/body_cleric_m_arm_f_skin.png",
+     "key_lab": [
+      84.44,
+      -7.55,
+      45.47
+     ]
+    },
+    "thigh_n": {
+     "file": "assets/body_cleric_m_thigh_n.png",
+     "x": 258,
+     "y": 770
+    },
+    "shin_n": {
+     "file": "assets/body_cleric_m_shin_n.png",
+     "x": 258,
+     "y": 1055
+    },
+    "thigh_f": {
+     "file": "assets/body_cleric_m_thigh_f.png",
+     "x": 517,
+     "y": 770,
+     "skin_mask": "assets/body_cleric_m_thigh_f_skin.png",
+     "key_lab": [
+      82.85,
+      -7.43,
+      45.63
+     ]
+    },
+    "shin_f": {
+     "file": "assets/body_cleric_m_shin_f.png",
+     "x": 517,
+     "y": 1055,
+     "skin_mask": "assets/body_cleric_m_shin_f_skin.png",
+     "key_lab": [
+      87.92,
+      -7.71,
+      69.77
+     ]
+    },
+    "hips": {
+     "file": "assets/body_cleric_m_hips.png",
+     "x": 263,
+     "y": 760,
+     "skin_mask": "assets/body_cleric_m_hips_skin.png",
+     "key_lab": [
+      82.85,
+      -7.43,
+      45.63
+     ]
+    }
    }
   },
   {
@@ -852,6 +1040,66 @@
      -14.88,
      63.53
     ]
+   },
+   "rig": {
+    "torso": {
+     "file": "assets/body_guard_m_torso.png",
+     "x": 223,
+     "y": 316,
+     "skin_mask": "assets/body_guard_m_torso_skin.png",
+     "key_lab": [
+      43.36,
+      -10.34,
+      42.66
+     ]
+    },
+    "arm_n": {
+     "file": "assets/body_guard_m_arm_n.png",
+     "x": 189,
+     "y": 490,
+     "skin_mask": "assets/body_guard_m_arm_n_skin.png",
+     "key_lab": [
+      61.6,
+      -14.36,
+      56.58
+     ]
+    },
+    "arm_f": {
+     "file": "assets/body_guard_m_arm_f.png",
+     "x": 676,
+     "y": 490,
+     "skin_mask": "assets/body_guard_m_arm_f_skin.png",
+     "key_lab": [
+      64.67,
+      -12.93,
+      59.04
+     ]
+    },
+    "thigh_n": {
+     "file": "assets/body_guard_m_thigh_n.png",
+     "x": 344,
+     "y": 770
+    },
+    "shin_n": {
+     "file": "assets/body_guard_m_shin_n.png",
+     "x": 314,
+     "y": 1055
+    },
+    "thigh_f": {
+     "file": "assets/body_guard_m_thigh_f.png",
+     "x": 517,
+     "y": 770
+    },
+    "shin_f": {
+     "file": "assets/body_guard_m_shin_f.png",
+     "x": 517,
+     "y": 1055
+    },
+    "hips": {
+     "file": "assets/body_guard_m_hips.png",
+     "x": 349,
+     "y": 760
+    }
    }
   },
   {

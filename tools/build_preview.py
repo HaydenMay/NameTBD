@@ -35,6 +35,56 @@ ASSETS = OUT / "assets"
 # so neck width and collar height always match at the cut line.
 TEMPLATES = {"m": {"cut": 345}, "f": {"cut": 332}}
 
+# Walk-test rig (male template, canvas px). "n" = near limb (image-left, drawn in front),
+# "f" = far limb (image-right, drawn behind). Measured on art/template/male_base.png.
+RIG = {
+    "m": {
+        "pivots": {"neck": [512, 375], "shoulder_n": [300, 505], "shoulder_f": [690, 505],
+                   "hip_n": [430, 860], "hip_f": [610, 860], "knee_n": [425, 1085], "knee_f": [630, 1085]},
+        "arm_n_x": 350, "arm_f_x": 675, "arm_top": 490, "arm_bottom": 975,   # arms: outside these x, below arm_top
+        "leg_top": 860, "tabard": [465, 645, 1000],        # legs start at leg_top; torso keeps tabard band to y
+        "leg_split_x": 517, "knee_y": 1085,
+    },
+}
+
+
+def split_rig(a, r):
+    """Cut a full outfit image into rig pieces (torso, arms, thighs, shins)."""
+    H, W = a.shape[:2]
+    yy, xx = np.mgrid[0:H, 0:W]
+    vis = a[..., 3] > 0
+    tx0, tx1, ty = r["tabard"]
+    arm_band = (yy >= r["arm_top"]) & (yy < r["arm_bottom"])
+    arm_n = (xx < r["arm_n_x"]) & arm_band
+    arm_f = (xx > r["arm_f_x"]) & arm_band
+    legs = (yy >= r["leg_top"]) & ~((xx > tx0) & (xx < tx1) & (yy < ty)) & ~arm_n & ~arm_f
+    torso = vis & ~legs & ~arm_n & ~arm_f
+    near = xx < r["leg_split_x"]
+    k = r["knee_y"]
+    # thighs reach up under the torso so a swinging leg never shows a gap at the hip
+    thigh_zone = (yy >= r["leg_top"] - 90) & ~arm_n & ~arm_f
+    regions = {
+        "torso": torso, "arm_n": vis & arm_n, "arm_f": vis & arm_f,
+        "thigh_n": vis & thigh_zone & near & (yy < k + 30), "shin_n": vis & legs & near & (yy >= k - 30),
+        "thigh_f": vis & thigh_zone & ~near & (yy < k + 30), "shin_f": vis & legs & ~near & (yy >= k - 30),
+        # static underlay behind everything: fills any hip/crotch gap with resting-pose pixels
+        "hips": vis & (yy >= r["leg_top"] - 100) & (yy < k - 20) & ~arm_n & ~arm_f,
+    }
+    pieces = {}
+    for name, m in regions.items():
+        p = a.copy()
+        p[~m, 3] = 0
+        pieces[name] = p
+    # hidden area: where the near arm covered the torso, smear nearby torso colour in
+    t = pieces["torso"]
+    hole = vis & arm_n & ndimage.binary_dilation(torso, iterations=40)
+    hole[:r["arm_top"]] = False
+    if hole.any():
+        idx = ndimage.distance_transform_edt(~torso, return_distances=False, return_indices=True)
+        t[hole] = a[idx[0][hole], idx[1][hole]]
+        t[hole, 3] = 255
+    return pieces
+
 # id, file, label, template, races it suits (None = any). All lime-skin edits.
 FACES = [
     ("aldric", "../../template/male_base", "Aldric", "m", None),
@@ -311,6 +361,9 @@ def main():
                  "part": save_part(front, f"body_{bid}", True)}
         if stump.any():
             entry["back"] = save_part(back, f"body_{bid}_back", True)
+        if tpl in RIG:
+            entry["rig"] = {k: save_part(v, f"body_{bid}_{k}", True)
+                            for k, v in split_rig(front, RIG[tpl]).items() if (v[..., 3] > 0).any()}
         bodies.append(entry)
 
     ears = {}
@@ -335,7 +388,7 @@ def main():
              for k, v in SKINS.items()}
 
     manifest = {"version": int(time.time()), "canvas": [1024, 1536], "floor_y": 1510, "races": RACES, "skins": skins,
-                "faces": faces, "bodies": bodies, "ears": ears, "hairs": hairs, "beards": beards, "hair_colours": HAIR_COLOURS}
+                "rig": {k: v["pivots"] for k, v in RIG.items()}, "faces": faces, "bodies": bodies, "ears": ears, "hairs": hairs, "beards": beards, "hair_colours": HAIR_COLOURS}
     (OUT / "manifest.json").write_text(json.dumps(manifest, indent=1))
     print(f"{len(faces)} faces, {len(bodies)} bodies, {len(ears)} ears, {len(hairs)} hairs, {len(skins)} skins")
 
