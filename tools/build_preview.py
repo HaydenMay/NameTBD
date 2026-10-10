@@ -134,7 +134,7 @@ def skull(a):
     return [top, int((xs.min() + xs.max()) / 2)]
 
 
-def save_part(a, name, lime=False):
+def save_part(a, name, lime=False, hue_lo=None):
     """Crop to content and save; for lime parts also save a skin mask + its mean Lab."""
     ys, xs = np.where(a[..., 3] > 0)
     x0, y0, x1, y1 = xs.min(), ys.min(), xs.max() + 1, ys.max() + 1
@@ -142,7 +142,7 @@ def save_part(a, name, lime=False):
     Image.fromarray(crop).save(ASSETS / f"{name}.png", optimize=True)
     part = {"file": f"assets/{name}.png", "x": int(x0), "y": int(y0)}
     if lime:
-        m = skin_mask(crop) & (crop[..., 3] > 0)
+        m = skin_mask(crop, hue_lo=hue_lo) & (crop[..., 3] > 0)
         if m.sum() > 50:
             Image.fromarray((m * 255).astype(np.uint8)).save(ASSETS / f"{name}_skin.png", optimize=True)
             part["skin_mask"] = f"assets/{name}_skin.png"
@@ -157,26 +157,38 @@ def lum_range(a):
     return [round(float(lo), 1), round(float(hi), 1)]
 
 
-def head_mask(a, limit=480, cut=None):
-    """Whole head: skull, face, ears and neck. Above the jaw every row is filled between
-    the outermost skin pixels and padded, so features on the silhouette edge (the far eye,
-    lashes, nose tip, brow) are kept, not just what skin fully encloses."""
+def head_mask(a, cut, limit=480):
+    """Whole head. Above the jaw line everything visible is head (bald faces: skull, both
+    eyes, brows, ears, nose tip), so nothing on the silhouette edge gets clipped. Between
+    the jaw and the shoulders, only the chin/neck skin region and its outline."""
     vis = a[..., 3] > 0
+    jaw = cut - 30
     skin = skin_mask(a) & vis
     skin[limit:] = False
     labels, n = ndimage.label(skin)
-    if n:  # the head is the largest skin blob above the shoulders; drop hands/arms/specks
+    if n:  # keep the main head/neck blob plus anything that starts above the jaw (ears)
         sizes = ndimage.sum(skin, labels, range(1, n + 1))
-        skin = labels == (1 + int(np.argmax(sizes)))
+        tops = ndimage.minimum(np.indices(skin.shape)[0], labels, range(1, n + 1))
+        keep = [i + 1 for i in range(n) if i == int(np.argmax(sizes)) or tops[i] < jaw]
+        skin = np.isin(labels, keep)
     head = ndimage.binary_fill_holes(ndimage.binary_closing(skin, iterations=6))
-    jaw = (cut or limit) - 30
-    span = np.zeros_like(head)
-    for y in np.where(head[:jaw].any(1))[0]:
-        xs = np.where(head[y])[0]
-        span[y, xs.min():xs.max() + 1] = True
-    span = ndimage.binary_dilation(span, iterations=10)
-    span[jaw:] = False
-    return (ndimage.binary_dilation(head, iterations=5) | span) & vis
+    head = ndimage.binary_dilation(head, iterations=5)
+    # Above the jaw: everything visible within the head's own width (+ padding for the
+    # far eye / nose tip), but not shoulders that rise beside the head.
+    cols = np.where(skin[:jaw].any(0))[0]
+    if len(cols):
+        head[:jaw, max(cols.min() - 30, 0):cols.max() + 31] = True
+    return head & vis
+
+
+def neck_columns(a, cut):
+    """Horizontal extent of the bare neck, measured below the chin."""
+    skin = skin_mask(a) & (a[..., 3] > 0)
+    for y in range(cut + 25, cut - 5, -5):
+        xs = np.where(skin[y, 300:760])[0] + 300
+        if len(xs):
+            return xs.min(), xs.max()
+    return None
 
 
 def dwarf_beard(a, collar):
@@ -207,19 +219,25 @@ def main():
     for fid, fname, label, tpl, races in FACES:
         a = keyed(SRC / f"{fname}.png")
         head = a.copy()
-        head[~head_mask(a, cut=TEMPLATES[tpl]["cut"]), 3] = 0
+        head[~head_mask(a, TEMPLATES[tpl]["cut"]), 3] = 0
         faces.append({"id": fid, "label": label, "template": tpl, "group": tpl, "skull": skull(a), "races": races,
-                      "lime": True, "part": save_part(head, f"head_{fid}", True)})
+                      "lime": True, "part": save_part(head, f"head_{fid}", True, hue_lo=40)})
 
     bodies = []
     for bid, fname, label, tpl in BODIES:
         a = keyed(SRC / f"{fname}.png")
         cut = TEMPLATES[tpl]["cut"]
-        hm = head_mask(a, cut=cut)
+        hm = head_mask(a, cut)
         # back: the donor's own neck stump, drawn behind the head to fill any gap
         back = a.copy()
-        stump = hm & (skin_mask(a) | (a[..., :3].max(2) < 90))
+        stump = hm & skin_mask(a)
         stump[:cut] = False
+        cols = neck_columns(a, cut)  # neck only: never the donor's chin or jaw
+        if cols:
+            stump[:, :cols[0]] = False
+            stump[:, cols[1] + 1:] = False
+        else:
+            stump[:] = False
         back[~stump, 3] = 0
         # front: everything that isn't the donor's head (collars, hoods, armour, hands)
         front = a.copy()
@@ -235,7 +253,7 @@ def main():
     ears = {}
     for e in EARS:
         a = np.asarray(Image.open(PARTS / "ears" / f"ears_{e}.png").convert("RGBA")).copy()
-        ears[e] = {"ref_skull": ref_skulls["aldric_bald_limekey"], "part": save_part(a, f"ears_{e}", True)}
+        ears[e] = {"ref_skull": ref_skulls["aldric_bald_limekey"], "part": save_part(a, f"ears_{e}", True, hue_lo=40)}
 
     hairs = []
     for hid, label, fits, ref in HAIRS:
