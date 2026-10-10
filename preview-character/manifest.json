@@ -1,5 +1,5 @@
 {
- "version": 1791656671,
+ "version": 1791657389,
  "canvas": [
   1024,
   1536
@@ -475,8 +475,8 @@
     "lean": 0.006,
     "leg_swing": 0.12,
     "knee_bend": 0.18,
-    "arm_swing": 0.07,
-    "far_arm_swing": 0.06,
+    "arm_swing": 0.0,
+    "far_arm_swing": 0.0,
     "skirt_sway": 0.025
    },
    "subtle_walk": {

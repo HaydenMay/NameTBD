@@ -34,7 +34,7 @@
     "cleric_walk": {
       "label": "Robe (sway)", "mode": "robe", "period": 1.0,
       "bob": 6, "head_bob": 1.5, "lean": 0.006,
-      "leg_swing": 0.12, "knee_bend": 0.18, "arm_swing": 0.07, "far_arm_swing": 0.06,
+      "leg_swing": 0.12, "knee_bend": 0.18, "arm_swing": 0.0, "far_arm_swing": 0.0,
       "skirt_sway": 0.025
     },
     "subtle_walk": {
