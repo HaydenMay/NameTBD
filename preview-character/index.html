@@ -28,7 +28,7 @@
   main { max-width: 1180px; margin: 0 auto; padding: 12px 16px 32px;
     display: grid; grid-template-columns: 300px 1fr 280px; gap: 16px; align-items: start; }
   .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 14px; }
-  label.field { display: block; margin-bottom: 12px; font-size: 13px; color: var(--muted); }
+  label.field, div.field { display: block; margin-bottom: 12px; font-size: 13px; color: var(--muted); }
   select, input[type=text], input[type=number] { width: 100%; margin-top: 4px; padding: 7px 8px;
     font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; }
   .swatches { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 6px; }
@@ -61,11 +61,13 @@
 </header>
 <main>
   <section class="panel" aria-label="Appearance">
-    <label class="field">Race &amp; face <select id="head"></select></label>
+    <label class="field">Race <select id="race"></select></label>
+    <label class="field">Face <select id="face"></select></label>
+    <div class="field">Skin <span id="skinNote"></span><div class="swatches" id="skins"></div></div>
     <label class="field">Outfit <select id="outfit"></select></label>
     <label class="field">Hairstyle <select id="hair"></select></label>
     <div class="check"><input type="checkbox" id="allHair"><label for="allHair">Show every hairstyle (ignore groups)</label></div>
-    <div class="field" style="margin-bottom:12px">Hair colour<div class="swatches" id="colours"></div></div>
+    <div class="field">Hair colour<div class="swatches" id="colours"></div></div>
     <div class="check"><input type="checkbox" id="raceSize" checked><label for="raceSize">Apply race size</label></div>
     <div class="row">
       <button class="btn" id="random">Random companion</button>
@@ -85,93 +87,142 @@
     <h2 style="margin-top:14px">Recipe</h2>
     <div class="recipe" id="recipe"></div>
     <div class="row" style="margin-top:8px"><button class="btn ghost" id="copy">Copy link</button></div>
-    <p class="note">Prototype limits: head and outfit are joined with a straight cut at the collar, race size is a uniform scale (no rig yet), and ears are not yet drawn over hair.</p>
+    <p class="note">Race = ears/tusks + skin palette + size, so any generic face can be any race. Faces marked "fixed skin" haven't been converted to the skin key yet.</p>
+    <p class="note">Prototype limits: head and outfit are joined with a straight cut at the collar, race size is a uniform scale (no rig yet), eyebrows and scars aren't separate layers yet.</p>
   </section>
 </main>
 
 <script>
 const $ = id => document.getElementById(id);
 let M, state = {};
-const img = {}, recolourCache = {};
+const img = {}, cache = {};
 
 const load = src => new Promise((res, rej) => {
   if (img[src]) return res(img[src]);
   const i = new Image(); i.onload = () => res(img[src] = i); i.onerror = rej; i.src = src;
 });
+const byId = (list, id) => list.find(x => x.id === id);
+const canvasOf = src => { const c = document.createElement('canvas'); c.width = src.width; c.height = src.height;
+  c.getContext('2d').drawImage(src, 0, 0); return c; };
 
-function recolour(hair, colour) {
-  const key = hair.id + '|' + colour;
-  if (recolourCache[key]) return recolourCache[key];
-  const src = img[hair.part.file], ramp = M.hair_colours[colour];
-  const c = document.createElement('canvas'); c.width = src.width; c.height = src.height;
-  const g = c.getContext('2d'); g.drawImage(src, 0, 0);
+// ---- Colour maths -----------------------------------------------------------
+const lin = c => (c /= 255) <= 0.04045 ? c / 12.92 : ((c + 0.055) / 1.055) ** 2.4;
+const gam = c => 255 * (c <= 0.0031308 ? c * 12.92 : 1.055 * c ** (1 / 2.4) - 0.055);
+const WP = [0.95047, 1, 1.08883];
+const fL = t => t > 0.008856 ? Math.cbrt(t) : 7.787 * t + 16 / 116;
+const fI = t => t ** 3 > 0.008856 ? t ** 3 : (t - 16 / 116) / 7.787;
+function toLab(r, g, b) {
+  r = lin(r); g = lin(g); b = lin(b);
+  const x = fL((0.4124 * r + 0.3576 * g + 0.1805 * b) / WP[0]), y = fL(0.2126 * r + 0.7152 * g + 0.0722 * b),
+        z = fL((0.0193 * r + 0.1192 * g + 0.9505 * b) / WP[2]);
+  return [116 * y - 16, 500 * (x - y), 200 * (y - z)];
+}
+function fromLab(L, a, bb) {
+  const fy = (L + 16) / 116, X = fI(fy + a / 500) * WP[0], Y = fI(fy), Z = fI(fy - bb / 200) * WP[2];
+  const r = 3.2406 * X - 1.5372 * Y - 0.4986 * Z, g = -0.9689 * X + 1.8758 * Y + 0.0415 * Z,
+        b = 0.0557 * X - 0.2040 * Y + 1.0570 * Z;
+  return [r, g, b].map(v => gam(Math.max(0, Math.min(1, v))));
+}
+
+// Skin: shift masked pixels so their mean becomes the target; keep lightness detail and some chroma detail.
+function skinned(part, skinId) {
+  const key = part.file + '|' + skinId;
+  if (cache[key]) return cache[key];
+  if (!part.skin_mask || !skinId) return cache[key] = img[part.file];
+  const c = canvasOf(img[part.file]), g = c.getContext('2d');
   const d = g.getImageData(0, 0, c.width, c.height), p = d.data;
+  const m = canvasOf(img[part.skin_mask]).getContext('2d').getImageData(0, 0, c.width, c.height).data;
+  const [kL, ka, kb] = part.key_lab, [tL, ta, tb] = M.skins[skinId].lab, keep = 0.35;
+  for (let i = 0; i < p.length; i += 4) {
+    if (!m[i] || !p[i + 3]) continue;
+    const [L, a, b] = toLab(p[i], p[i + 1], p[i + 2]);
+    const [r, gg, bb] = fromLab(tL + (L - kL), ta + (a - ka) * keep, tb + (b - kb) * keep);
+    p[i] = r; p[i + 1] = gg; p[i + 2] = bb;
+  }
+  g.putImageData(d, 0, 0);
+  return cache[key] = c;
+}
+
+// Hair: gradient map over the part's own luminance range.
+function haired(hair, colour) {
+  const key = hair.id + '|' + colour;
+  if (cache[key]) return cache[key];
+  const c = canvasOf(img[hair.part.file]), g = c.getContext('2d');
+  const d = g.getImageData(0, 0, c.width, c.height), p = d.data, ramp = M.hair_colours[colour];
   const [lo, hi] = hair.lum, span = Math.max(hi - lo, 1), n = ramp.length - 1;
   for (let i = 0; i < p.length; i += 4) {
     if (!p[i + 3]) continue;
-    let t = ((p[i] * .299 + p[i + 1] * .587 + p[i + 2] * .114) - lo) / span;
-    t = Math.min(1, Math.max(0, t)) * n;
+    const t = Math.min(1, Math.max(0, ((p[i] * .299 + p[i + 1] * .587 + p[i + 2] * .114) - lo) / span)) * n;
     const k = Math.min(n - 1, Math.floor(t)), f = t - k, a = ramp[k], b = ramp[k + 1];
     p[i] = a[0] + (b[0] - a[0]) * f; p[i + 1] = a[1] + (b[1] - a[1]) * f; p[i + 2] = a[2] + (b[2] - a[2]) * f;
   }
   g.putImageData(d, 0, 0);
-  return recolourCache[key] = c;
+  return cache[key] = c;
 }
 
-const byId = (list, id) => list.find(x => x.id === id);
-const hairChoices = head => M.hairs.filter(h => $('allHair').checked || h.fits.includes(head.group));
+// ---- Assembly ---------------------------------------------------------------
+const facesFor = race => M.faces.filter(f => !f.races || f.races.includes(race));
+const hairsFor = face => M.hairs.filter(h => $('allHair').checked || h.fits.includes(face.group));
 
 function compose() {
-  const head = byId(M.heads, state.head), body = byId(M.bodies, state.outfit);
+  const face = byId(M.faces, state.face), body = byId(M.bodies, state.outfit), race = M.races[state.race];
+  const skin = face.lime ? state.skin : null;
   const c = document.createElement('canvas'); c.width = 1024; c.height = 1536;
   const g = c.getContext('2d');
-  g.drawImage(img[head.part.file], head.part.x, head.part.y);
-  if (body) g.drawImage(img[body.part.file], body.part.x, body.part.y);
-  if (head.beard) g.drawImage(img[head.beard.file], head.beard.x, head.beard.y);
+  const put = (part, src, dx = 0, dy = 0) => g.drawImage(src, part.x + dx, part.y + dy);
+  put(face.part, skinned(face.part, skin));
+  if (body) put(body.part, skinned(body.part, body.lime ? state.skin : null));
+  if (face.beard) put(face.beard, img[face.beard.file]);
   const hair = byId(M.hairs, state.hair);
-  if (hair) {
-    const dy = head.skull[0] - hair.ref_skull[0], dx = head.skull[1] - hair.ref_skull[1];
-    g.drawImage(recolour(hair, state.hairCol), hair.part.x + dx, hair.part.y + dy);
+  if (hair) put(hair.part, haired(hair, state.hairCol), face.skull[1] - hair.ref_skull[1], face.skull[0] - hair.ref_skull[0]);
+  if (race.ears && !face.races) {  // generic faces get the race's ears (+ tusks), drawn over hair
+    const e = M.ears[race.ears];
+    put(e.part, skinned(e.part, skin), face.skull[1] - e.ref_skull[1], face.skull[0] - e.ref_skull[0]);
   }
-  return { c, head };
+  return { c, face };
 }
 
 function render() {
-  const { c, head } = compose();
-  const out = $('body').getContext('2d');
+  const { c, face } = compose();
+  const out = $('body').getContext('2d'), floor = M.floor_y;
   out.clearRect(0, 0, 1024, 1536);
-  const s = $('raceSize').checked ? M.races[head.race].scale : 1;
-  const floor = M.floor_y;
   // dashed line = human head height, solid line = ground
-  out.save(); out.setLineDash([10, 10]); out.strokeStyle = 'rgba(120,100,80,.45)'; out.lineWidth = 3;
-  const humanTop = floor - (floor - M.heads[0].skull[0]) / 1.15;
-  out.beginPath(); out.moveTo(80, humanTop); out.lineTo(944, humanTop); out.stroke();
-  out.beginPath(); out.setLineDash([]); out.moveTo(60, floor); out.lineTo(964, floor); out.stroke(); out.restore();
-  const k = s / 1.15; // fit an ogre (1.15) inside the canvas
+  out.save(); out.strokeStyle = 'rgba(120,100,80,.45)'; out.lineWidth = 3;
+  const humanTop = floor - (floor - M.faces[0].skull[0]) / 1.15;
+  out.setLineDash([10, 10]); out.beginPath(); out.moveTo(80, humanTop); out.lineTo(944, humanTop); out.stroke();
+  out.setLineDash([]); out.beginPath(); out.moveTo(60, floor); out.lineTo(964, floor); out.stroke(); out.restore();
+  const k = ($('raceSize').checked ? M.races[state.race].scale : 1) / 1.15;  // fit an ogre (1.15) in the frame
   out.drawImage(c, 512 - 512 * k, floor - floor * k, 1024 * k, 1536 * k);
 
-  const p = $('portrait').getContext('2d');
+  const p = $('portrait').getContext('2d'), [sy, sx] = face.skull;
   p.fillStyle = '#4a3f52'; p.fillRect(0, 0, 512, 512);
-  const [sy, sx] = head.skull;
   p.drawImage(c, sx - 270, sy - 70, 540, 540, 0, 0, 512, 512);
 
-  const recipe = `race=${head.race}&face=${head.id}&outfit=${state.outfit}&hair=${state.hair || 'none'}&hair_col=${state.hairCol}`;
+  const recipe = `race=${state.race}&face=${state.face}&skin=${state.skin}&outfit=${state.outfit}` +
+    `&hair=${state.hair || 'none'}&hair_col=${state.hairCol}`;
   $('recipe').textContent = recipe;
   history.replaceState(null, '', '#' + recipe);
 }
 
-function fillHairSelect() {
-  const head = byId(M.heads, state.head);
-  const opts = hairChoices(head);
-  $('hair').innerHTML = '<option value="">Bald</option>' + opts.map(h => `<option value="${h.id}">${h.label}</option>`).join('');
-  if (state.hair && !opts.some(h => h.id === state.hair)) state.hair = opts[0] ? opts[0].id : '';
-  $('hair').value = state.hair || '';
-}
-
 function sync() {
-  $('head').value = state.head; $('outfit').value = state.outfit;
-  fillHairSelect();
-  document.querySelectorAll('.swatch').forEach(b => b.setAttribute('aria-pressed', b.dataset.c === state.hairCol));
+  const race = M.races[state.race];
+  const faces = facesFor(state.race);
+  if (!faces.some(f => f.id === state.face)) state.face = faces[0].id;
+  const face = byId(M.faces, state.face);
+  if (!race.skins.includes(state.skin)) state.skin = race.skins[0];
+  $('race').value = state.race;
+  $('face').innerHTML = faces.map(f => `<option value="${f.id}">${f.label}</option>`).join('');
+  $('face').value = state.face;
+  $('skins').innerHTML = face.lime ? race.skins.map(s =>
+    `<button class="swatch" data-s="${s}" title="${s}" aria-label="${s}" aria-pressed="${s === state.skin}" ` +
+    `style="background:rgb(${M.skins[s].rgb.join(',')})"></button>`).join('') : '';
+  $('skinNote').textContent = face.lime ? '' : '(fixed on this face)';
+  $('outfit').value = state.outfit;
+  const hairs = hairsFor(face);
+  if (state.hair && !hairs.some(h => h.id === state.hair)) state.hair = hairs[0] ? hairs[0].id : '';
+  $('hair').innerHTML = '<option value="">Bald</option>' + hairs.map(h => `<option value="${h.id}">${h.label}</option>`).join('');
+  $('hair').value = state.hair || '';
+  document.querySelectorAll('#colours .swatch').forEach(b => b.setAttribute('aria-pressed', b.dataset.c === state.hairCol));
   render();
 }
 
@@ -180,33 +231,35 @@ function mulberry32(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = 
 
 function generate(rand) {
   const pick = a => a[Math.floor(rand() * a.length)];
-  const head = pick(M.heads);
-  const hairs = M.hairs.filter(h => h.fits.includes(head.group));
-  state = { head: head.id, outfit: pick(M.bodies).id,
+  const race = pick(Object.keys(M.races)), face = pick(facesFor(race));
+  const hairs = M.hairs.filter(h => h.fits.includes(face.group));
+  state = { race, face: face.id, skin: pick(M.races[race].skins), outfit: pick(M.bodies).id,
     hair: rand() < 0.12 ? '' : pick(hairs).id, hairCol: pick(Object.keys(M.hair_colours)) };
   sync();
 }
 
 function fromHash() {
   const q = new URLSearchParams(location.hash.slice(1));
-  if (!q.get('face')) return false;
-  state = { head: q.get('face'), outfit: q.get('outfit'), hair: q.get('hair') === 'none' ? '' : q.get('hair'),
-    hairCol: q.get('hair_col') || 'brown' };
-  return byId(M.heads, state.head) && byId(M.bodies, state.outfit);
+  if (!q.get('face') || !M.races[q.get('race')]) return false;
+  state = { race: q.get('race'), face: q.get('face'), skin: q.get('skin'), outfit: q.get('outfit'),
+    hair: q.get('hair') === 'none' ? '' : q.get('hair'), hairCol: q.get('hair_col') || 'brown' };
+  return byId(M.faces, state.face) && byId(M.bodies, state.outfit);
 }
 
 (async () => {
   M = await (await fetch('manifest.json')).json();
-  const files = [...M.heads.flatMap(h => [h.part.file, h.beard && h.beard.file].filter(Boolean)),
-    ...M.bodies.map(b => b.part.file), ...M.hairs.map(h => h.part.file)];
-  await Promise.all(files.map(load));
+  const parts = [...M.faces.flatMap(f => [f.part, f.beard]), ...M.bodies.map(b => b.part),
+    ...Object.values(M.ears).map(e => e.part), ...M.hairs.map(h => h.part)].filter(Boolean);
+  await Promise.all(parts.flatMap(p => [p.file, p.skin_mask]).filter(Boolean).map(load));
 
-  $('head').innerHTML = M.heads.map(h => `<option value="${h.id}">${h.label}</option>`).join('');
+  $('race').innerHTML = Object.entries(M.races).map(([k, r]) => `<option value="${k}">${r.label}</option>`).join('');
   $('outfit').innerHTML = M.bodies.map(b => `<option value="${b.id}">${b.label}</option>`).join('');
   $('colours').innerHTML = Object.entries(M.hair_colours).map(([k, r]) =>
     `<button class="swatch" data-c="${k}" title="${k}" aria-label="${k}" style="background:rgb(${r[2].join(',')})"></button>`).join('');
 
-  $('head').onchange = e => { state.head = e.target.value; sync(); };
+  $('race').onchange = e => { state.race = e.target.value; sync(); };
+  $('face').onchange = e => { state.face = e.target.value; sync(); };
+  $('skins').onclick = e => { const s = e.target.dataset.s; if (s) { state.skin = s; sync(); } };
   $('outfit').onchange = e => { state.outfit = e.target.value; render(); };
   $('hair').onchange = e => { state.hair = e.target.value; render(); };
   $('allHair').onchange = sync;
@@ -216,7 +269,7 @@ function fromHash() {
   $('fromSeed').onclick = () => generate(mulberry32(+$('seed').value || 0));
   $('copy').onclick = () => navigator.clipboard && navigator.clipboard.writeText(location.href);
 
-  if (!fromHash()) state = { head: 'aldric', outfit: 'aldric', hair: 'short01', hairCol: 'blond' };
+  if (!fromHash()) state = { race: 'human', face: 'aldric', skin: 'fair', outfit: 'knight', hair: 'short01', hairCol: 'blond' };
   sync();
   window.addEventListener('hashchange', () => { if (fromHash()) sync(); });
 })();

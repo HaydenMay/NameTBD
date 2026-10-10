@@ -6,176 +6,517 @@
  "floor_y": 1510,
  "races": {
   "human": {
+   "label": "Human",
    "scale": 1.0,
-   "label": "Human"
+   "ears": null,
+   "skins": [
+    "porcelain",
+    "fair",
+    "tan",
+    "olive",
+    "brown",
+    "deep"
+   ]
   },
   "elf": {
+   "label": "Elf",
    "scale": 0.98,
-   "label": "Elf"
+   "ears": "elf",
+   "skins": [
+    "moonpale",
+    "fair",
+    "golden",
+    "cool_olive"
+   ]
   },
   "dwarf": {
+   "label": "Dwarf",
    "scale": 0.8,
-   "label": "Dwarf"
+   "ears": null,
+   "skins": [
+    "ruddy",
+    "tan",
+    "weathered",
+    "brown"
+   ]
   },
   "goblin": {
+   "label": "Goblin",
    "scale": 0.78,
-   "label": "Goblin"
+   "ears": "goblin",
+   "skins": [
+    "moss",
+    "olive_green",
+    "grey_green",
+    "yellow_green"
+   ]
   },
   "ogre": {
+   "label": "Ogre",
    "scale": 1.15,
-   "label": "Ogre"
+   "ears": "ogre",
+   "skins": [
+    "ogre_green",
+    "dusky",
+    "slate",
+    "mud"
+   ]
   }
  },
- "heads": [
+ "skins": {
+  "porcelain": {
+   "rgb": [
+    246,
+    212,
+    188
+   ],
+   "lab": [
+    87.15,
+    8.27,
+    16.25
+   ]
+  },
+  "fair": {
+   "rgb": [
+    236,
+    186,
+    150
+   ],
+   "lab": [
+    79.13,
+    13.22,
+    25.13
+   ]
+  },
+  "tan": {
+   "rgb": [
+    212,
+    156,
+    112
+   ],
+   "lab": [
+    68.71,
+    15.6,
+    31.17
+   ]
+  },
+  "olive": {
+   "rgb": [
+    186,
+    138,
+    94
+   ],
+   "lab": [
+    61.15,
+    12.93,
+    30.62
+   ]
+  },
+  "brown": {
+   "rgb": [
+    146,
+    96,
+    62
+   ],
+   "lab": [
+    45.39,
+    16.57,
+    27.57
+   ]
+  },
+  "deep": {
+   "rgb": [
+    96,
+    62,
+    44
+   ],
+   "lab": [
+    29.7,
+    12.62,
+    17.11
+   ]
+  },
+  "moonpale": {
+   "rgb": [
+    236,
+    222,
+    214
+   ],
+   "lab": [
+    89.36,
+    3.44,
+    5.62
+   ]
+  },
+  "golden": {
+   "rgb": [
+    224,
+    182,
+    128
+   ],
+   "lab": [
+    76.6,
+    8.15,
+    33.18
+   ]
+  },
+  "cool_olive": {
+   "rgb": [
+    182,
+    166,
+    128
+   ],
+   "lab": [
+    68.59,
+    -0.1,
+    21.82
+   ]
+  },
+  "ruddy": {
+   "rgb": [
+    226,
+    160,
+    126
+   ],
+   "lab": [
+    71.43,
+    20.49,
+    27.48
+   ]
+  },
+  "weathered": {
+   "rgb": [
+    168,
+    116,
+    82
+   ],
+   "lab": [
+    53.41,
+    16.48,
+    26.93
+   ]
+  },
+  "moss": {
+   "rgb": [
+    122,
+    148,
+    70
+   ],
+   "lab": [
+    57.81,
+    -22.13,
+    37.85
+   ]
+  },
+  "olive_green": {
+   "rgb": [
+    150,
+    154,
+    78
+   ],
+   "lab": [
+    61.78,
+    -12.74,
+    39.07
+   ]
+  },
+  "grey_green": {
+   "rgb": [
+    124,
+    140,
+    108
+   ],
+   "lab": [
+    56.21,
+    -11.91,
+    15.21
+   ]
+  },
+  "yellow_green": {
+   "rgb": [
+    168,
+    174,
+    80
+   ],
+   "lab": [
+    68.88,
+    -15.39,
+    46.8
+   ]
+  },
+  "ogre_green": {
+   "rgb": [
+    138,
+    154,
+    116
+   ],
+   "lab": [
+    61.46,
+    -12.71,
+    18.1
+   ]
+  },
+  "dusky": {
+   "rgb": [
+    168,
+    138,
+    104
+   ],
+   "lab": [
+    59.44,
+    6.49,
+    22.49
+   ]
+  },
+  "slate": {
+   "rgb": [
+    122,
+    132,
+    138
+   ],
+   "lab": [
+    54.53,
+    -2.38,
+    -4.49
+   ]
+  },
+  "mud": {
+   "rgb": [
+    118,
+    128,
+    84
+   ],
+   "lab": [
+    51.76,
+    -11.51,
+    22.7
+   ]
+  }
+ },
+ "faces": [
   {
    "id": "aldric",
-   "label": "Aldric (human)",
-   "race": "human",
-   "sex": "m",
+   "label": "Aldric",
    "group": "m",
    "skull": [
     84,
     520
    ],
+   "races": null,
+   "lime": true,
    "part": {
     "file": "assets/head_aldric.png",
     "x": 356,
-    "y": 84
+    "y": 84,
+    "skin_mask": "assets/head_aldric_skin.png",
+    "key_lab": [
+     72.66,
+     -17.75,
+     63.51
+    ]
    }
   },
   {
-   "id": "human_f",
-   "label": "Human woman",
-   "race": "human",
-   "sex": "f",
+   "id": "rowan",
+   "label": "Rowan",
    "group": "f",
    "skull": [
-    56,
-    512
+    54,
+    514
    ],
+   "races": null,
+   "lime": true,
    "part": {
-    "file": "assets/head_human_f.png",
-    "x": 391,
-    "y": 56
+    "file": "assets/head_rowan.png",
+    "x": 394,
+    "y": 54,
+    "skin_mask": "assets/head_rowan_skin.png",
+    "key_lab": [
+     75.7,
+     -24.13,
+     62.86
+    ]
    }
   },
   {
-   "id": "elf",
-   "label": "Elf",
-   "race": "elf",
-   "sex": "f",
-   "group": "f",
-   "skull": [
-    89,
-    519
-   ],
-   "part": {
-    "file": "assets/head_elf.png",
-    "x": 354,
-    "y": 89
-   }
-  },
-  {
-   "id": "goblin",
-   "label": "Goblin",
-   "race": "goblin",
-   "sex": "m",
-   "group": "m",
-   "skull": [
-    86,
-    524
-   ],
-   "part": {
-    "file": "assets/head_goblin.png",
-    "x": 301,
-    "y": 86
-   }
-  },
-  {
-   "id": "dwarf",
-   "label": "Dwarf",
-   "race": "dwarf",
-   "sex": "m",
-   "group": "m",
-   "skull": [
-    59,
-    524
-   ],
-   "part": {
-    "file": "assets/head_dwarf.png",
-    "x": 284,
-    "y": 59
-   },
-   "beard": {
-    "file": "assets/beard_dwarf.png",
-    "x": 418,
-    "y": 290
-   }
-  },
-  {
-   "id": "ogre",
-   "label": "Ogre",
-   "race": "ogre",
-   "sex": "m",
+   "id": "brug",
+   "label": "Brug",
    "group": "m",
    "skull": [
     92,
     527
    ],
+   "races": [
+    "ogre"
+   ],
+   "lime": true,
    "part": {
-    "file": "assets/head_ogre.png",
+    "file": "assets/head_brug.png",
     "x": 390,
-    "y": 92
+    "y": 92,
+    "skin_mask": "assets/head_brug_skin.png",
+    "key_lab": [
+     69.64,
+     -15.12,
+     61.99
+    ]
+   }
+  },
+  {
+   "id": "snik",
+   "label": "Snik (fixed skin)",
+   "group": "m",
+   "skull": [
+    86,
+    524
+   ],
+   "races": [
+    "goblin"
+   ],
+   "lime": false,
+   "part": {
+    "file": "assets/head_snik.png",
+    "x": 301,
+    "y": 86
+   }
+  },
+  {
+   "id": "thrain",
+   "label": "Thrain (fixed skin)",
+   "group": "m",
+   "skull": [
+    59,
+    524
+   ],
+   "races": [
+    "dwarf"
+   ],
+   "lime": false,
+   "part": {
+    "file": "assets/head_thrain.png",
+    "x": 284,
+    "y": 59
+   },
+   "beard": {
+    "file": "assets/beard_thrain.png",
+    "x": 418,
+    "y": 290
    }
   }
  ],
  "bodies": [
   {
-   "id": "aldric",
+   "id": "knight",
    "label": "Knight plate",
+   "lime": true,
    "part": {
-    "file": "assets/body_aldric.png",
+    "file": "assets/body_knight.png",
     "x": 162,
-    "y": 352
+    "y": 352,
+    "skin_mask": "assets/body_knight_skin.png",
+    "key_lab": [
+     53.86,
+     -11.14,
+     47.73
+    ]
    }
   },
   {
-   "id": "human_f",
+   "id": "cleric",
    "label": "Cleric robe",
+   "lime": true,
    "part": {
-    "file": "assets/body_human_f.png",
+    "file": "assets/body_cleric.png",
     "x": 178,
-    "y": 318
+    "y": 318,
+    "skin_mask": "assets/body_cleric_skin.png",
+    "key_lab": [
+     71.51,
+     -25.07,
+     61.58
+    ]
    }
   },
   {
-   "id": "elf",
-   "label": "Cleric robe (elf)",
+   "id": "guard",
+   "label": "Caravan guard",
+   "lime": true,
    "part": {
-    "file": "assets/body_elf.png",
-    "x": 178,
-    "y": 318
+    "file": "assets/body_guard.png",
+    "x": 189,
+    "y": 305,
+    "skin_mask": "assets/body_guard_skin.png",
+    "key_lab": [
+     62.66,
+     -13.77,
+     57.74
+    ]
    }
   },
   {
-   "id": "goblin",
-   "label": "Rogue leathers",
+   "id": "rogue",
+   "label": "Rogue leathers (fixed skin)",
+   "lime": false,
    "part": {
-    "file": "assets/body_goblin.png",
+    "file": "assets/body_rogue.png",
     "x": 193,
     "y": 322
    }
-  },
-  {
-   "id": "ogre",
-   "label": "Caravan guard",
-   "part": {
-    "file": "assets/body_ogre.png",
-    "x": 189,
-    "y": 305
-   }
   }
  ],
+ "ears": {
+  "elf": {
+   "ref_skull": [
+    84,
+    520
+   ],
+   "part": {
+    "file": "assets/ears_elf.png",
+    "x": 335,
+    "y": 132,
+    "skin_mask": "assets/ears_elf_skin.png",
+    "key_lab": [
+     62.71,
+     -15.89,
+     56.75
+    ]
+   }
+  },
+  "goblin": {
+   "ref_skull": [
+    84,
+    520
+   ],
+   "part": {
+    "file": "assets/ears_goblin.png",
+    "x": 259,
+    "y": 152,
+    "skin_mask": "assets/ears_goblin_skin.png",
+    "key_lab": [
+     64.8,
+     -15.59,
+     59.37
+    ]
+   }
+  },
+  "ogre": {
+   "ref_skull": [
+    84,
+    520
+   ],
+   "part": {
+    "file": "assets/ears_ogre.png",
+    "x": 382,
+    "y": 187,
+    "skin_mask": "assets/ears_ogre_skin.png",
+    "key_lab": [
+     62.62,
+     -15.77,
+     57.8
+    ]
+   }
+  }
+ },
  "hairs": [
   {
    "id": "short01",
