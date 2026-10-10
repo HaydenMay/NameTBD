@@ -1,5 +1,5 @@
 {
- "version": 1791659323,
+ "version": 1791660313,
  "canvas": [
   1024,
   1536
@@ -430,7 +430,70 @@
    "knight_m": {
     "profile": "knight_walk",
     "hem": 985,
-    "belt": 735
+    "belt": 735,
+    "leg_seam": [
+     [
+      355,
+      974
+     ],
+     [
+      375,
+      946
+     ],
+     [
+      395,
+      921
+     ],
+     [
+      425,
+      921
+     ],
+     [
+      455,
+      914
+     ],
+     [
+      485,
+      909
+     ],
+     [
+      505,
+      917
+     ],
+     [
+      515,
+      936
+     ],
+     [
+      555,
+      1045
+     ],
+     [
+      585,
+      1039
+     ],
+     [
+      615,
+      1030
+     ],
+     [
+      645,
+      1001
+     ],
+     [
+      675,
+      976
+     ],
+     [
+      715,
+      957
+     ]
+    ],
+    "keep_torso": [
+     488,
+     656,
+     1000
+    ]
    },
    "cleric_m": {
     "profile": "cleric_walk",
@@ -995,8 +1058,8 @@
      },
      "thigh_n": {
       "file": "assets/anim_knight_m_thigh_n.png",
-      "x": 321,
-      "y": 903
+      "x": 330,
+      "y": 849
      },
      "shin_n": {
       "file": "assets/anim_knight_m_shin_n.png",
@@ -1006,7 +1069,7 @@
      "thigh_f": {
       "file": "assets/anim_knight_m_thigh_f.png",
       "x": 517,
-      "y": 905
+      "y": 881
      },
      "shin_f": {
       "file": "assets/anim_knight_m_shin_f.png",

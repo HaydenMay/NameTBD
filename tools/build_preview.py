@@ -368,7 +368,7 @@ def main():
             entry["back"] = save_part(back, f"body_{bid}_back", True)
         cfg = ANIM["outfits"].get(bid)
         if cfg and tpl in ANIM["templates"]:
-            pieces, anchors = anim_rig.split(front, ANIM["templates"][tpl], cfg["hem"], cfg["belt"])
+            pieces, anchors = anim_rig.split(front, ANIM["templates"][tpl], cfg["hem"], cfg["belt"], cfg.get("leg_seam"), cfg.get("keep_torso"))
             entry["anim"] = {"profile": cfg["profile"], "anchors": anchors,
                              "pieces": {k: save_part(v, f"anim_{bid}_{k}", True, min_skin=1500)  # stray greenish armour px are not skin
                                         for k, v in pieces.items() if (v[..., 3] > 0).any()}}

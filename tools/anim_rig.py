@@ -72,15 +72,22 @@ def _seam(a, vis, y_mid, up, down):
     return ndimage.median_filter(seam, size=41, mode="nearest").astype(int)
 
 
-def split(a, t, hem, belt):
+def split(a, t, hem, belt, leg_seam=None, keep_torso=None):
     H, W = a.shape[:2]
     yy, xx = np.mgrid[0:H, 0:W]
     vis = a[..., 3] > 0
     arm_n = _arm_mask(a, vis, xx, yy, t, "n")
     arm_f = _arm_mask(a, vis, xx, yy, t, "f") & ~arm_n
     leg_top = max(t["leg_top"], hem)
-    hem_seam = _seam(a, vis, leg_top, 45, 45)[None, :]            # follows the hem / plate edge
+    if leg_seam:   # hand-drawn cut line (x,y points), e.g. above the knight's thigh plates
+        px, py = zip(*leg_seam)
+        hem_seam = np.interp(np.arange(W), px, py).astype(int)[None, :]
+    else:
+        hem_seam = _seam(a, vis, leg_top, 45, 45)[None, :]        # follows the hem / plate edge
     legs = vis & (yy >= hem_seam) & ~arm_n & ~arm_f
+    if keep_torso:  # tabard / front panel stays on the torso above its hem
+        x0, x1, y1 = keep_torso
+        legs &= ~((xx >= x0) & (xx <= x1) & (yy < y1))
     torso = vis & ~legs & ~arm_n & ~arm_f
     near = xx < t["leg_split_x"]
     k = t["knee_y"]
