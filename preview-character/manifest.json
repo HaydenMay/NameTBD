@@ -1,5 +1,5 @@
 {
- "version": 1791612739,
+ "version": 1791613502,
  "canvas": [
   1024,
   1536
@@ -456,6 +456,198 @@
      74.17,
      -26.64,
      67.41
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_m1_lean_a.png",
+    "x": 506,
+    "y": 170,
+    "lum": [
+     38.9,
+     147.4
+    ]
+   },
+   "id": "m1_lean_a",
+   "label": "Corwin",
+   "template": "m",
+   "group": "m",
+   "skull": [
+    82,
+    521
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_m1_lean_a.png",
+    "x": 386,
+    "y": 82,
+    "skin_mask": "assets/head_m1_lean_a_skin.png",
+    "key_lab": [
+     76.18,
+     -28.22,
+     68.56
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_m6_lean_b.png",
+    "x": 505,
+    "y": 168,
+    "lum": [
+     50.0,
+     141.4
+    ]
+   },
+   "id": "m6_lean_b",
+   "label": "Corwin (alt)",
+   "template": "m",
+   "group": "m",
+   "skull": [
+    82,
+    522
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_m6_lean_b.png",
+    "x": 386,
+    "y": 82,
+    "skin_mask": "assets/head_m6_lean_b_skin.png",
+    "key_lab": [
+     75.71,
+     -28.75,
+     67.57
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_m2_weathered.png",
+    "x": 509,
+    "y": 168,
+    "lum": [
+     31.7,
+     151.5
+    ]
+   },
+   "id": "m2_weathered",
+   "label": "Doran",
+   "template": "m",
+   "group": "m",
+   "skull": [
+    82,
+    521
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_m2_weathered.png",
+    "x": 386,
+    "y": 82,
+    "skin_mask": "assets/head_m2_weathered_skin.png",
+    "key_lab": [
+     73.48,
+     -28.51,
+     65.58
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_m3_gentle.png",
+    "x": 496,
+    "y": 161,
+    "lum": [
+     40.7,
+     158.0
+    ]
+   },
+   "id": "m3_gentle",
+   "label": "Tomas",
+   "template": "m",
+   "group": "m",
+   "skull": [
+    82,
+    522
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_m3_gentle.png",
+    "x": 386,
+    "y": 82,
+    "skin_mask": "assets/head_m3_gentle_skin.png",
+    "key_lab": [
+     75.23,
+     -29.09,
+     67.9
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_m4_stern.png",
+    "x": 503,
+    "y": 169,
+    "lum": [
+     38.5,
+     152.1
+    ]
+   },
+   "id": "m4_stern",
+   "label": "Varek",
+   "template": "m",
+   "group": "m",
+   "skull": [
+    81,
+    522
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_m4_stern.png",
+    "x": 386,
+    "y": 81,
+    "skin_mask": "assets/head_m4_stern_skin.png",
+    "key_lab": [
+     73.98,
+     -26.71,
+     66.15
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_m5_sunworn.png",
+    "x": 507,
+    "y": 169,
+    "lum": [
+     23.3,
+     170.5
+    ]
+   },
+   "id": "m5_sunworn",
+   "label": "Haldor",
+   "template": "m",
+   "group": "m",
+   "skull": [
+    82,
+    522
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_m5_sunworn.png",
+    "x": 388,
+    "y": 82,
+    "skin_mask": "assets/head_m5_sunworn_skin.png",
+    "key_lab": [
+     74.7,
+     -26.8,
+     65.48
     ]
    }
   },

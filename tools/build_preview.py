@@ -43,11 +43,17 @@ FACES = [
     # corwin: to be remade on male_base with a neutral expression
     ("pip", "male_pip", "Pip", "m", None),
     ("edric", "male_edric", "Edric", "m", None),
+    ("m1_lean_a", "../faces_m/m1_lean_a", "Corwin", "m", None),
+    ("m6_lean_b", "../faces_m/m6_lean_b", "Corwin (alt)", "m", None),
+    ("m2_weathered", "../faces_m/m2_weathered", "Doran", "m", None),
+    ("m3_gentle", "../faces_m/m3_gentle", "Tomas", "m", None),
+    ("m4_stern", "../faces_m/m4_stern", "Varek", "m", None),
+    ("m5_sunworn", "../faces_m/m5_sunworn", "Haldor", "m", None),
     ("brug", "ogre_lime_01", "Brug", "m", ["ogre"]),
     ("rowan", "rowan_bluebrow", "Rowan", "f", None),
     ("mira", "mira_bluebrow", "Mira", "f", None),
 ]
-BROWS = {"aldric", "rowan", "mira", "hobb", "pip", "edric"}   # art/parts/brows/brows_<id>.png (blue key)
+BROWS = {"aldric", "rowan", "mira", "hobb", "pip", "edric", "m1_lean_a", "m6_lean_b", "m2_weathered", "m3_gentle", "m4_stern", "m5_sunworn"}   # art/parts/brows/brows_<id>.png (blue key)
 SCARS = set()  # old scars were painted on retired faces; scars come back as generic layers                     # art/parts/scars/scar_<id>.png (optional layer)
 
 # id, file, label, template
