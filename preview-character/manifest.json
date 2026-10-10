@@ -1,5 +1,5 @@
 {
- "version": 1791654641,
+ "version": 1791656671,
  "canvas": [
   1024,
   1536
@@ -986,24 +986,12 @@
      "arm_n": {
       "file": "assets/anim_knight_m_arm_n.png",
       "x": 163,
-      "y": 490,
-      "skin_mask": "assets/anim_knight_m_arm_n_skin.png",
-      "key_lab": [
-       27.08,
-       -3.5,
-       11.24
-      ]
+      "y": 490
      },
      "arm_f": {
       "file": "assets/anim_knight_m_arm_f.png",
       "x": 653,
-      "y": 490,
-      "skin_mask": "assets/anim_knight_m_arm_f_skin.png",
-      "key_lab": [
-       37.78,
-       -4.72,
-       23.41
-      ]
+      "y": 490
      },
      "thigh_n": {
       "file": "assets/anim_knight_m_thigh_n.png",
@@ -1018,35 +1006,17 @@
      "thigh_f": {
       "file": "assets/anim_knight_m_thigh_f.png",
       "x": 517,
-      "y": 925,
-      "skin_mask": "assets/anim_knight_m_thigh_f_skin.png",
-      "key_lab": [
-       38.38,
-       -4.04,
-       18.63
-      ]
+      "y": 925
      },
      "shin_f": {
       "file": "assets/anim_knight_m_shin_f.png",
       "x": 517,
-      "y": 1055,
-      "skin_mask": "assets/anim_knight_m_shin_f_skin.png",
-      "key_lab": [
-       49.57,
-       -5.11,
-       24.25
-      ]
+      "y": 1055
      },
      "hips": {
       "file": "assets/anim_knight_m_hips.png",
       "x": 321,
-      "y": 760,
-      "skin_mask": "assets/anim_knight_m_hips_skin.png",
-      "key_lab": [
-       24.21,
-       -2.92,
-       12.91
-      ]
+      "y": 760
      },
      "torso": {
       "file": "assets/anim_knight_m_torso.png",
@@ -1055,25 +1025,13 @@
      },
      "skirt": {
       "file": "assets/anim_knight_m_skirt.png",
-      "x": 276,
-      "y": 730,
-      "skin_mask": "assets/anim_knight_m_skirt_skin.png",
-      "key_lab": [
-       20.12,
-       -2.81,
-       11.53
-      ]
+      "x": 306,
+      "y": 730
      },
      "fill_f": {
       "file": "assets/anim_knight_m_fill_f.png",
       "x": 653,
-      "y": 490,
-      "skin_mask": "assets/anim_knight_m_fill_f_skin.png",
-      "key_lab": [
-       47.73,
-       -4.63,
-       23.52
-      ]
+      "y": 490
      },
      "cap_n": {
       "file": "assets/anim_knight_m_cap_n.png",
@@ -1217,24 +1175,12 @@
      "arm_n": {
       "file": "assets/anim_cleric_m_arm_n.png",
       "x": 159,
-      "y": 490,
-      "skin_mask": "assets/anim_cleric_m_arm_n_skin.png",
-      "key_lab": [
-       36.28,
-       -7.28,
-       19.06
-      ]
+      "y": 490
      },
      "arm_f": {
       "file": "assets/anim_cleric_m_arm_f.png",
       "x": 641,
-      "y": 490,
-      "skin_mask": "assets/anim_cleric_m_arm_f_skin.png",
-      "key_lab": [
-       84.42,
-       -7.56,
-       45.53
-      ]
+      "y": 490
      },
      "shin_n": {
       "file": "assets/anim_cleric_m_shin_n.png",
@@ -1244,46 +1190,22 @@
      "shin_f": {
       "file": "assets/anim_cleric_m_shin_f.png",
       "x": 521,
-      "y": 1130,
-      "skin_mask": "assets/anim_cleric_m_shin_f_skin.png",
-      "key_lab": [
-       87.92,
-       -7.71,
-       69.77
-      ]
+      "y": 1130
      },
      "torso": {
       "file": "assets/anim_cleric_m_torso.png",
-      "x": 227,
-      "y": 329,
-      "skin_mask": "assets/anim_cleric_m_torso_skin.png",
-      "key_lab": [
-       56.88,
-       -6.26,
-       30.1
-      ]
+      "x": 239,
+      "y": 329
      },
      "skirt": {
       "file": "assets/anim_cleric_m_skirt.png",
       "x": 258,
-      "y": 715,
-      "skin_mask": "assets/anim_cleric_m_skirt_skin.png",
-      "key_lab": [
-       62.28,
-       -6.57,
-       32.75
-      ]
+      "y": 715
      },
      "fill_f": {
       "file": "assets/anim_cleric_m_fill_f.png",
       "x": 641,
-      "y": 490,
-      "skin_mask": "assets/anim_cleric_m_fill_f_skin.png",
-      "key_lab": [
-       79.55,
-       -6.05,
-       44.0
-      ]
+      "y": 490
      },
      "cap_n": {
       "file": "assets/anim_cleric_m_cap_n.png",
@@ -1293,13 +1215,7 @@
      "cap_f": {
       "file": "assets/anim_cleric_m_cap_f.png",
       "x": 653,
-      "y": 484,
-      "skin_mask": "assets/anim_cleric_m_cap_f_skin.png",
-      "key_lab": [
-       92.83,
-       -6.96,
-       45.44
-      ]
+      "y": 484
      }
     }
    },
@@ -1479,36 +1395,18 @@
      },
      "torso": {
       "file": "assets/anim_guard_m_torso.png",
-      "x": 220,
-      "y": 316,
-      "skin_mask": "assets/anim_guard_m_torso_skin.png",
-      "key_lab": [
-       53.11,
-       -12.32,
-       47.63
-      ]
+      "x": 231,
+      "y": 316
      },
      "skirt": {
       "file": "assets/anim_guard_m_skirt.png",
-      "x": 282,
-      "y": 730,
-      "skin_mask": "assets/anim_guard_m_skirt_skin.png",
-      "key_lab": [
-       34.55,
-       -5.93,
-       17.79
-      ]
+      "x": 312,
+      "y": 730
      },
      "fill_f": {
       "file": "assets/anim_guard_m_fill_f.png",
       "x": 652,
-      "y": 490,
-      "skin_mask": "assets/anim_guard_m_fill_f_skin.png",
-      "key_lab": [
-       56.71,
-       -11.4,
-       48.34
-      ]
+      "y": 490
      },
      "cap_n": {
       "file": "assets/anim_guard_m_cap_n.png",

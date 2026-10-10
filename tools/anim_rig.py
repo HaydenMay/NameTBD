@@ -85,6 +85,12 @@ def split(a, t, hem, belt):
         p = a.copy()
         p[~m, 3] = 0
         pieces[name] = p
+    # static hip underlay: fade its bottom edge so it never shows a hard line under swinging legs
+    hp = pieces["hips"]
+    if (hp[..., 3] > 0).any():
+        bottom = np.where((hp[..., 3] > 0).any(1))[0].max()
+        fade = np.clip((bottom - yy) / 60.0, 0, 1)
+        hp[..., 3] = (hp[..., 3] * fade).astype(np.uint8)
 
     # torso with the arm holes filled from the nearest torso pixels
     tor = a.copy()
@@ -92,7 +98,7 @@ def split(a, t, hem, belt):
     fill_f = np.zeros_like(a)
     for side, arm in (("n", arm_n), ("f", arm_f)):
         dst = tor if side == "n" else fill_f   # far fill goes BEHIND the far arm, never over it
-        hole = arm & ndimage.binary_dilation(torso, iterations=45)
+        hole = arm & ndimage.binary_dilation(torso, iterations=15)  # only right next to the body
         hole[: t["arm_top"]] = False
         if hole.any():
             _, _, val = _hsv(a)

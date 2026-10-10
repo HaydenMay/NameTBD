@@ -227,7 +227,7 @@ def skull(a):
     return [top, int((xs.min() + xs.max()) / 2)]
 
 
-def save_part(a, name, lime=False, hue_lo=None, reach=4, eyes=False):
+def save_part(a, name, lime=False, hue_lo=None, reach=4, eyes=False, min_skin=50):
     """Crop to content and save; for lime parts also save a skin mask + its mean Lab."""
     ys, xs = np.where(a[..., 3] > 0)
     x0, y0, x1, y1 = xs.min(), ys.min(), xs.max() + 1, ys.max() + 1
@@ -240,7 +240,7 @@ def save_part(a, name, lime=False, hue_lo=None, reach=4, eyes=False):
             zone = np.zeros(crop.shape[:2], bool)
             zone[120:260, crop.shape[1] // 2:] = True
         m = skin_mask(crop, hue_lo=hue_lo, reach=reach, eye_zone=zone) & (crop[..., 3] > 0)
-        if m.sum() > 50:
+        if m.sum() > min_skin:
             Image.fromarray((m * 255).astype(np.uint8)).save(ASSETS / f"{name}_skin.png", optimize=True)
             part["skin_mask"] = f"assets/{name}_skin.png"
             part["key_lab"] = [round(float(v), 2) for v in rgb2lab(crop[..., :3])[m].mean(0)]
@@ -370,7 +370,7 @@ def main():
         if cfg and tpl in ANIM["templates"]:
             pieces, anchors = anim_rig.split(front, ANIM["templates"][tpl], cfg["hem"], cfg["belt"])
             entry["anim"] = {"profile": cfg["profile"], "anchors": anchors,
-                             "pieces": {k: save_part(v, f"anim_{bid}_{k}", True)
+                             "pieces": {k: save_part(v, f"anim_{bid}_{k}", True, min_skin=1500)  # stray greenish armour px are not skin
                                         for k, v in pieces.items() if (v[..., 3] > 0).any()}}
         if tpl in RIG:
             entry["rig"] = {k: save_part(v, f"body_{bid}_{k}", True)
