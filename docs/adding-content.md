@@ -34,6 +34,17 @@ All generation happens in ChatGPT as **edits** of a reference image, so pose, si
 Same as a new character, but describe only the clothing and keep the face simple — the face is discarded. Each outfit is cut into slots (top / bottom / gloves / boots) and mixes with all others.
 Keep clear seams: a belt or hem at the waist, cuffs at the wrists, boot tops at the shins.
 
+## Making a new face
+Edit the sex's base (`male_base.png` / `female_base.png`), editing the same message each time.
+- **Fixed:** skull, ears, jawline, cheek line, neck, head size/position. Hair is drawn to hug these.
+- **Change only what's inside the face:** age lines, nose, eye shape, brow shape, lips, cheekbone shading, weathering.
+- **Neutral expression, mouth closed.** Smiles/smirks/worry become expression patches later.
+- Wrinkles and shading stay in lime (they recolour with skin). Freckles, moles, scars, tattoos are future add-on layers, not painted into faces.
+- Run `python tools/check_face.py NEW.png` (male) or `--base art/template/female_base.png --cut 332` (female). FAIL = regenerate.
+
+Prompt:
+> Edit this image: transform him into a completely different man — `<DETAILS INSIDE THE FACE>`, with a calm, neutral expression and mouth closed. The head outline must stay EXACTLY the same as the original: same skull, same ear size and position, same jaw width and cheek line — only change the facial features inside the face. Keep the completely bald head, clean-shaven face, blue eyebrows and bright lime green skin. Keep the armor, pose, body, neck and art style exactly the same. Same flat magenta background.
+
 ## Rules that keep the pipeline working
 - Always edit, never generate from scratch.
 - **Skin in bright lime green** (faces, ears, hands, arms); recoloured per race at runtime.
