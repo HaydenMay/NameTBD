@@ -40,11 +40,15 @@ FACES = [
     ("aldric", "aldric_bluebrow", "Aldric", "m", None),
     ("bran", "male_face02_cleric", "Bran", "m", None),
     ("garrett", "garrett_bluebrow", "Garrett", "m", None),
+    ("hobb", "male_hobb", "Hobb", "m", None),
+    ("corwin", "male_corwin", "Corwin", "m", None),
+    ("pip", "male_pip", "Pip", "m", None),
+    ("edric", "male_edric", "Edric", "m", None),
     ("brug", "ogre_lime_01", "Brug", "m", ["ogre"]),
     ("rowan", "rowan_bluebrow", "Rowan", "f", None),
     ("mira", "mira_bluebrow", "Mira", "f", None),
 ]
-BROWS = {"aldric", "garrett", "rowan", "mira"}   # art/parts/brows/brows_<id>.png (blue key)
+BROWS = {"aldric", "garrett", "rowan", "mira", "hobb", "corwin", "pip", "edric"}   # art/parts/brows/brows_<id>.png (blue key)
 SCARS = {"aldric", "garrett"}                     # art/parts/scars/scar_<id>.png (optional layer)
 
 # id, file, label, template

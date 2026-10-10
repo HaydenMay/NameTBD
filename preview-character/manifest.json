@@ -1,5 +1,5 @@
 {
- "version": 1791611077,
+ "version": 1791611512,
  "canvas": [
   1024,
   1536
@@ -425,6 +425,134 @@
      73.91,
      -13.62,
      66.08
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_hobb.png",
+    "x": 507,
+    "y": 161,
+    "lum": [
+     18.9,
+     158.3
+    ]
+   },
+   "id": "hobb",
+   "label": "Hobb",
+   "template": "m",
+   "group": "m",
+   "skull": [
+    82,
+    521
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_hobb.png",
+    "x": 388,
+    "y": 82,
+    "skin_mask": "assets/head_hobb_skin.png",
+    "key_lab": [
+     75.95,
+     -22.51,
+     68.06
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_corwin.png",
+    "x": 511,
+    "y": 154,
+    "lum": [
+     35.5,
+     144.7
+    ]
+   },
+   "id": "corwin",
+   "label": "Corwin",
+   "template": "m",
+   "group": "m",
+   "skull": [
+    82,
+    521
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_corwin.png",
+    "x": 396,
+    "y": 82,
+    "skin_mask": "assets/head_corwin_skin.png",
+    "key_lab": [
+     76.57,
+     -23.86,
+     68.1
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_pip.png",
+    "x": 500,
+    "y": 152,
+    "lum": [
+     48.3,
+     186.3
+    ]
+   },
+   "id": "pip",
+   "label": "Pip",
+   "template": "m",
+   "group": "m",
+   "skull": [
+    81,
+    520
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_pip.png",
+    "x": 385,
+    "y": 81,
+    "skin_mask": "assets/head_pip_skin.png",
+    "key_lab": [
+     78.49,
+     -24.84,
+     69.3
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_edric.png",
+    "x": 504,
+    "y": 166,
+    "lum": [
+     29.4,
+     155.8
+    ]
+   },
+   "id": "edric",
+   "label": "Edric",
+   "template": "m",
+   "group": "m",
+   "skull": [
+    82,
+    521
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_edric.png",
+    "x": 386,
+    "y": 82,
+    "skin_mask": "assets/head_edric_skin.png",
+    "key_lab": [
+     74.17,
+     -26.64,
+     67.41
     ]
    }
   },
