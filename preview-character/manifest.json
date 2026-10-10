@@ -1,5 +1,5 @@
 {
- "version": 1791663732,
+ "version": 1791666593,
  "canvas": [
   1024,
   1536
@@ -1008,13 +1008,7 @@
    "part": {
     "file": "assets/body_knight_m.png",
     "x": 163,
-    "y": 325,
-    "skin_mask": "assets/body_knight_m_skin.png",
-    "key_lab": [
-     32.24,
-     -3.78,
-     17.0
-    ]
+    "y": 325
    },
    "back": {
     "file": "assets/body_knight_m_back.png",

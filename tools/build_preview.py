@@ -363,7 +363,7 @@ def main():
         drop[:cut - 20] |= ndimage.binary_dilation(hm, iterations=6)[:cut - 20]  # face edge: nose/lash tips
         front[drop, 3] = 0
         entry = {"id": bid, "label": label, "template": tpl, "lime": True,
-                 "part": save_part(front, f"body_{bid}", True)}
+                 "part": save_part(front, f"body_{bid}", True, min_skin=1500)}
         if stump.any():
             entry["back"] = save_part(back, f"body_{bid}_back", True)
         cfg = ANIM["outfits"].get(bid)
