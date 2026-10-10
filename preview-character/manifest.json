@@ -1,5 +1,5 @@
 {
- "version": 1791602219,
+ "version": 1791606809,
  "canvas": [
   1024,
   1536
@@ -17,6 +17,15 @@
     "olive",
     "brown",
     "deep"
+   ],
+   "hair": [
+    "black",
+    "brown",
+    "auburn",
+    "ginger",
+    "blond",
+    "silver",
+    "white"
    ]
   },
   "elf": {
@@ -28,6 +37,13 @@
     "fair",
     "golden",
     "cool_olive"
+   ],
+   "hair": [
+    "silver",
+    "white",
+    "blond",
+    "black",
+    "auburn"
    ]
   },
   "dwarf": {
@@ -39,6 +55,14 @@
     "tan",
     "weathered",
     "brown"
+   ],
+   "hair": [
+    "ginger",
+    "auburn",
+    "brown",
+    "black",
+    "silver",
+    "white"
    ]
   },
   "goblin": {
@@ -50,6 +74,12 @@
     "olive_green",
     "grey_green",
     "yellow_green"
+   ],
+   "hair": [
+    "black",
+    "brown",
+    "white",
+    "teal"
    ]
   },
   "ogre": {
@@ -61,6 +91,12 @@
     "dusky",
     "slate",
     "mud"
+   ],
+   "hair": [
+    "black",
+    "brown",
+    "auburn",
+    "silver"
    ]
   }
  },
@@ -298,6 +334,7 @@
   {
    "id": "aldric",
    "label": "Aldric",
+   "template": "m",
    "group": "m",
    "skull": [
     84,
@@ -307,19 +344,91 @@
    "lime": true,
    "part": {
     "file": "assets/head_aldric.png",
-    "x": 356,
+    "x": 385,
     "y": 84,
     "skin_mask": "assets/head_aldric_skin.png",
     "key_lab": [
-     72.66,
-     -17.75,
-     63.51
+     72.61,
+     -17.73,
+     63.47
+    ]
+   }
+  },
+  {
+   "id": "bran",
+   "label": "Bran",
+   "template": "m",
+   "group": "m",
+   "skull": [
+    81,
+    520
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_bran.png",
+    "x": 390,
+    "y": 81,
+    "skin_mask": "assets/head_bran_skin.png",
+    "key_lab": [
+     70.59,
+     -14.61,
+     64.02
+    ]
+   }
+  },
+  {
+   "id": "garrett",
+   "label": "Garrett",
+   "template": "m",
+   "group": "m",
+   "skull": [
+    80,
+    518
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_garrett.png",
+    "x": 389,
+    "y": 80,
+    "skin_mask": "assets/head_garrett_skin.png",
+    "key_lab": [
+     73.03,
+     -15.11,
+     66.21
+    ]
+   }
+  },
+  {
+   "id": "brug",
+   "label": "Brug",
+   "template": "m",
+   "group": "m",
+   "skull": [
+    92,
+    527
+   ],
+   "races": [
+    "ogre"
+   ],
+   "lime": true,
+   "part": {
+    "file": "assets/head_brug.png",
+    "x": 397,
+    "y": 92,
+    "skin_mask": "assets/head_brug_skin.png",
+    "key_lab": [
+     69.68,
+     -15.15,
+     62.21
     ]
    }
   },
   {
    "id": "rowan",
    "label": "Rowan",
+   "template": "f",
    "group": "f",
    "skull": [
     54,
@@ -333,135 +442,169 @@
     "y": 54,
     "skin_mask": "assets/head_rowan_skin.png",
     "key_lab": [
-     75.7,
-     -24.13,
-     62.86
+     75.55,
+     -24.11,
+     62.75
     ]
    }
   },
   {
-   "id": "brug",
-   "label": "Brug",
-   "group": "m",
+   "id": "mira",
+   "label": "Mira",
+   "template": "f",
+   "group": "f",
    "skull": [
-    92,
-    527
+    54,
+    513
    ],
-   "races": [
-    "ogre"
-   ],
+   "races": null,
    "lime": true,
    "part": {
-    "file": "assets/head_brug.png",
-    "x": 390,
-    "y": 92,
-    "skin_mask": "assets/head_brug_skin.png",
+    "file": "assets/head_mira.png",
+    "x": 396,
+    "y": 54,
+    "skin_mask": "assets/head_mira_skin.png",
     "key_lab": [
-     69.64,
-     -15.12,
-     61.99
+     77.46,
+     -21.81,
+     66.47
     ]
-   }
-  },
-  {
-   "id": "snik",
-   "label": "Snik (fixed skin)",
-   "group": "m",
-   "skull": [
-    86,
-    524
-   ],
-   "races": [
-    "goblin"
-   ],
-   "lime": false,
-   "part": {
-    "file": "assets/head_snik.png",
-    "x": 301,
-    "y": 86
-   }
-  },
-  {
-   "id": "thrain",
-   "label": "Thrain (fixed skin)",
-   "group": "m",
-   "skull": [
-    59,
-    524
-   ],
-   "races": [
-    "dwarf"
-   ],
-   "lime": false,
-   "part": {
-    "file": "assets/head_thrain.png",
-    "x": 284,
-    "y": 59
-   },
-   "beard": {
-    "file": "assets/beard_thrain.png",
-    "x": 418,
-    "y": 290
    }
   }
  ],
  "bodies": [
   {
-   "id": "knight",
+   "id": "knight_m",
    "label": "Knight plate",
+   "template": "m",
    "lime": true,
    "part": {
-    "file": "assets/body_knight.png",
+    "file": "assets/body_knight_m.png",
     "x": 162,
-    "y": 352,
-    "skin_mask": "assets/body_knight_skin.png",
+    "y": 186,
+    "skin_mask": "assets/body_knight_m_skin.png",
     "key_lab": [
-     53.86,
-     -11.14,
-     47.73
+     30.86,
+     -4.3,
+     19.29
+    ]
+   },
+   "back": {
+    "file": "assets/body_knight_m_back.png",
+    "x": 428,
+    "y": 345,
+    "skin_mask": "assets/body_knight_m_back_skin.png",
+    "key_lab": [
+     57.2,
+     -12.42,
+     52.33
     ]
    }
   },
   {
-   "id": "cleric",
+   "id": "cleric_m",
    "label": "Cleric robe",
+   "template": "m",
    "lime": true,
    "part": {
-    "file": "assets/body_cleric.png",
-    "x": 178,
-    "y": 318,
-    "skin_mask": "assets/body_cleric_skin.png",
+    "file": "assets/body_cleric_m.png",
+    "x": 159,
+    "y": 329,
+    "skin_mask": "assets/body_cleric_m_skin.png",
     "key_lab": [
-     71.51,
-     -25.07,
-     61.58
+     84.56,
+     -7.58,
+     45.97
+    ]
+   },
+   "back": {
+    "file": "assets/body_cleric_m_back.png",
+    "x": 427,
+    "y": 345,
+    "skin_mask": "assets/body_cleric_m_back_skin.png",
+    "key_lab": [
+     58.83,
+     -12.78,
+     55.86
     ]
    }
   },
   {
-   "id": "guard",
+   "id": "guard_m",
    "label": "Caravan guard",
+   "template": "m",
    "lime": true,
    "part": {
-    "file": "assets/body_guard.png",
+    "file": "assets/body_guard_m.png",
     "x": 189,
-    "y": 305,
-    "skin_mask": "assets/body_guard_skin.png",
+    "y": 173,
+    "skin_mask": "assets/body_guard_m_skin.png",
     "key_lab": [
-     62.66,
-     -13.77,
-     57.74
+     61.86,
+     -13.6,
+     56.83
+    ]
+   },
+   "back": {
+    "file": "assets/body_guard_m_back.png",
+    "x": 442,
+    "y": 345,
+    "skin_mask": "assets/body_guard_m_back_skin.png",
+    "key_lab": [
+     68.78,
+     -14.92,
+     63.29
     ]
    }
   },
   {
-   "id": "rogue",
-   "label": "Rogue leathers (fixed skin)",
-   "lime": false,
+   "id": "cleric_f",
+   "label": "Cleric robe",
+   "template": "f",
+   "lime": true,
    "part": {
-    "file": "assets/body_rogue.png",
-    "x": 193,
-    "y": 322
+    "file": "assets/body_cleric_f.png",
+    "x": 178,
+    "y": 311
+   },
+   "back": {
+    "file": "assets/body_cleric_f_back.png",
+    "x": 440,
+    "y": 332,
+    "skin_mask": "assets/body_cleric_f_back_skin.png",
+    "key_lab": [
+     73.76,
+     -25.7,
+     63.47
+    ]
+   }
+  },
+  {
+   "id": "knight_f",
+   "label": "Knight plate",
+   "template": "f",
+   "lime": true,
+   "part": {
+    "file": "assets/body_knight_f.png",
+    "x": 234,
+    "y": 190,
+    "skin_mask": "assets/body_knight_f_skin.png",
+    "key_lab": [
+     84.22,
+     -7.46,
+     41.94
+    ]
+   },
+   "back": {
+    "file": "assets/body_knight_f_back.png",
+    "x": 459,
+    "y": 332,
+    "skin_mask": "assets/body_knight_f_back_skin.png",
+    "key_lab": [
+     68.24,
+     -20.53,
+     60.14
+    ]
    }
   }
  ],
@@ -543,8 +686,7 @@
    "id": "wavy01",
    "label": "Wavy",
    "fits": [
-    "m",
-    "f"
+    "m"
    ],
    "ref_skull": [
     84,
@@ -624,8 +766,7 @@
    "id": "shaggy01",
    "label": "Shaggy",
    "fits": [
-    "m",
-    "f"
+    "m"
    ],
    "ref_skull": [
     84,
@@ -645,8 +786,7 @@
    "id": "curly01",
    "label": "Curly",
    "fits": [
-    "m",
-    "f"
+    "m"
    ],
    "ref_skull": [
     84,
@@ -726,8 +866,7 @@
    "id": "hiponytail01",
    "label": "High ponytail",
    "fits": [
-    "f",
-    "m"
+    "f"
    ],
    "ref_skull": [
     56,
@@ -767,8 +906,7 @@
    "id": "longstraight01",
    "label": "Long straight",
    "fits": [
-    "f",
-    "m"
+    "f"
    ],
    "ref_skull": [
     56,

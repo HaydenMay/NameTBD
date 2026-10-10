@@ -31,34 +31,47 @@ PARTS = ROOT / "art" / "parts"
 OUT = ROOT / "preview-character"
 ASSETS = OUT / "assets"
 
-NECK_STRIP = 60
-NECK_HALF_W = 62
+# Each sex has one base template. Heads only join bodies made on the same template,
+# so neck width and collar height always match at the cut line.
+TEMPLATES = {"m": {"cut": 345}, "f": {"cut": 332}}
 
-# id, file, label, sex/hair group, collar y, lime skin key?, races it suits (None = any)
+# id, file, label, template, races it suits (None = any). All lime-skin edits.
 FACES = [
-    ("aldric", "aldric_bald_limekey", "Aldric", "m", 352, True, None),
-    ("rowan", "human_f_lime_01", "Rowan", "f", 318, True, None),
-    ("brug", "ogre_lime_01", "Brug", "m", 305, True, ["ogre"]),
-    ("snik", "goblin_humanlike_01", "Snik (fixed skin)", "m", 322, False, ["goblin"]),
-    ("thrain", "dwarf_bald_01", "Thrain (fixed skin)", "m", 300, False, ["dwarf"]),
+    ("aldric", "aldric_bald_limekey", "Aldric", "m", None),
+    ("bran", "male_face02_cleric", "Bran", "m", None),
+    ("garrett", "male_face03_cleric", "Garrett", "m", None),
+    ("brug", "ogre_lime_01", "Brug", "m", ["ogre"]),
+    ("rowan", "human_f_lime_01", "Rowan", "f", None),
+    ("mira", "female_face02_cleric", "Mira", "f", None),
 ]
 
-# id, file, label, collar y, lime skin key?
+# id, file, label, template
 BODIES = [
-    ("knight", "aldric_bald_limekey", "Knight plate", 352, True),
-    ("cleric", "human_f_lime_01", "Cleric robe", 318, True),
-    ("guard", "ogre_lime_01", "Caravan guard", 305, True),
-    ("rogue", "goblin_humanlike_01", "Rogue leathers (fixed skin)", 322, False),
+    ("knight_m", "aldric_bald_limekey", "Knight plate", "m"),
+    ("cleric_m", "aldric_lime_cleric", "Cleric robe", "m"),
+    ("guard_m", "ogre_lime_01", "Caravan guard", "m"),
+    ("cleric_f", "human_f_lime_01", "Cleric robe", "f"),
+    ("knight_f", "female_face02_knight", "Knight plate", "f"),
 ]
 
 EARS = ["elf", "goblin", "ogre"]  # authored on lime Aldric
 
 RACES = {
-    "human": {"label": "Human", "scale": 1.00, "ears": None, "skins": ["porcelain", "fair", "tan", "olive", "brown", "deep"]},
-    "elf": {"label": "Elf", "scale": 0.98, "ears": "elf", "skins": ["moonpale", "fair", "golden", "cool_olive"]},
-    "dwarf": {"label": "Dwarf", "scale": 0.80, "ears": None, "skins": ["ruddy", "tan", "weathered", "brown"]},
-    "goblin": {"label": "Goblin", "scale": 0.78, "ears": "goblin", "skins": ["moss", "olive_green", "grey_green", "yellow_green"]},
-    "ogre": {"label": "Ogre", "scale": 1.15, "ears": "ogre", "skins": ["ogre_green", "dusky", "slate", "mud"]},
+    "human": {"label": "Human", "scale": 1.00, "ears": None,
+              "skins": ["porcelain", "fair", "tan", "olive", "brown", "deep"],
+              "hair": ["black", "brown", "auburn", "ginger", "blond", "silver", "white"]},
+    "elf": {"label": "Elf", "scale": 0.98, "ears": "elf",
+            "skins": ["moonpale", "fair", "golden", "cool_olive"],
+            "hair": ["silver", "white", "blond", "black", "auburn"]},
+    "dwarf": {"label": "Dwarf", "scale": 0.80, "ears": None,
+              "skins": ["ruddy", "tan", "weathered", "brown"],
+              "hair": ["ginger", "auburn", "brown", "black", "silver", "white"]},
+    "goblin": {"label": "Goblin", "scale": 0.78, "ears": "goblin",
+               "skins": ["moss", "olive_green", "grey_green", "yellow_green"],
+               "hair": ["black", "brown", "white", "teal"]},
+    "ogre": {"label": "Ogre", "scale": 1.15, "ears": "ogre",
+             "skins": ["ogre_green", "dusky", "slate", "mud"],
+             "hair": ["black", "brown", "auburn", "silver"]},
 }
 
 SKINS = {  # mid-tone sRGB of each skin; converted to Lab for the page
@@ -72,18 +85,18 @@ SKINS = {  # mid-tone sRGB of each skin; converted to Lab for the page
 
 HAIRS = [
     ("short01", "Short", ["m"], "aldric_bald_01"),
-    ("wavy01", "Wavy", ["m", "f"], "aldric_bald_01"),
+    ("wavy01", "Wavy", ["m"], "aldric_bald_01"),
     ("topknot01", "Top-knot", ["m"], "aldric_bald_01"),
     ("ponytail02", "Ponytail", ["m"], "aldric_bald_01"),
     ("slicked01", "Slicked back", ["m"], "aldric_bald_01"),
-    ("shaggy01", "Shaggy", ["m", "f"], "aldric_bald_01"),
-    ("curly01", "Curly", ["m", "f"], "aldric_bald_01"),
+    ("shaggy01", "Shaggy", ["m"], "aldric_bald_01"),
+    ("curly01", "Curly", ["m"], "aldric_bald_01"),
     ("spiky02", "Spiky", ["m"], "aldric_bald_01"),
     ("bun01", "Bun", ["f"], "human_f_bald_01"),
     ("sidebraid01", "Side braid", ["f"], "human_f_bald_01"),
-    ("hiponytail01", "High ponytail", ["f", "m"], "human_f_bald_01"),
+    ("hiponytail01", "High ponytail", ["f"], "human_f_bald_01"),
     ("pixie01", "Pixie", ["f"], "human_f_bald_01"),
-    ("longstraight01", "Long straight", ["f", "m"], "human_f_bald_01"),
+    ("longstraight01", "Long straight", ["f"], "human_f_bald_01"),
 ]
 
 HAIR_COLOURS = {
@@ -144,13 +157,17 @@ def lum_range(a):
     return [round(float(lo), 1), round(float(hi), 1)]
 
 
-def head_part(a, collar, sk):
-    head = a.copy()
-    keep = np.zeros(a.shape[:2], bool)
-    keep[:collar] = True
-    keep[collar:collar + NECK_STRIP, sk[1] - NECK_HALF_W:sk[1] + NECK_HALF_W] = True
-    head[~keep, 3] = 0
-    return head
+def head_mask(a, limit=480):
+    """Whole head: the skin region from the top of the skull down to where the outfit
+    starts, plus everything it encloses (eyes, brows, lips) and its outline."""
+    skin = skin_mask(a) & (a[..., 3] > 0)
+    skin[limit:] = False
+    labels, n = ndimage.label(skin)
+    if n:  # the head is the largest skin blob above the shoulders; drop hands/arms/specks
+        sizes = ndimage.sum(skin, labels, range(1, n + 1))
+        skin = labels == (1 + int(np.argmax(sizes)))
+    head = ndimage.binary_fill_holes(ndimage.binary_closing(skin, iterations=6))
+    return ndimage.binary_dilation(head, iterations=5) & (a[..., 3] > 0)
 
 
 def dwarf_beard(a, collar):
@@ -178,20 +195,33 @@ def main():
     ref_skulls = {n: skull(keyed(SRC / f"{n}.png")) for n in ["aldric_bald_01", "human_f_bald_01", "aldric_bald_limekey"]}
 
     faces = []
-    for fid, fname, label, group, collar, lime, races in FACES:
+    for fid, fname, label, tpl, races in FACES:
         a = keyed(SRC / f"{fname}.png")
-        sk = skull(a)
-        entry = {"id": fid, "label": label, "group": group, "skull": sk, "races": races,
-                 "lime": lime, "part": save_part(head_part(a, collar, sk), f"head_{fid}", lime)}
-        if fid == "thrain":
-            entry["beard"] = save_part(dwarf_beard(a, collar), "beard_thrain")
-        faces.append(entry)
+        head = a.copy()
+        head[~head_mask(a), 3] = 0
+        faces.append({"id": fid, "label": label, "template": tpl, "group": tpl, "skull": skull(a), "races": races,
+                      "lime": True, "part": save_part(head, f"head_{fid}", True)})
 
     bodies = []
-    for bid, fname, label, collar, lime in BODIES:
+    for bid, fname, label, tpl in BODIES:
         a = keyed(SRC / f"{fname}.png")
-        a[:collar, :, 3] = 0
-        bodies.append({"id": bid, "label": label, "lime": lime, "part": save_part(a, f"body_{bid}", lime)})
+        hm = head_mask(a)
+        cut = TEMPLATES[tpl]["cut"]
+        # back: the donor's own neck stump, drawn behind the head to fill any gap
+        back = a.copy()
+        stump = hm & (skin_mask(a) | (a[..., :3].max(2) < 90))
+        stump[:cut] = False
+        back[~stump, 3] = 0
+        # front: everything that isn't the donor's head (collars, hoods, armour, hands)
+        front = a.copy()
+        drop = ndimage.binary_dilation(hm, iterations=1)
+        drop[:cut - 20] |= ndimage.binary_dilation(hm, iterations=6)[:cut - 20]  # face edge: nose/lash tips
+        front[drop, 3] = 0
+        entry = {"id": bid, "label": label, "template": tpl, "lime": True,
+                 "part": save_part(front, f"body_{bid}", True)}
+        if stump.any():
+            entry["back"] = save_part(back, f"body_{bid}_back", True)
+        bodies.append(entry)
 
     ears = {}
     for e in EARS:

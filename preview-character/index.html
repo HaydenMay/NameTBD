@@ -66,7 +66,6 @@
     <div class="field">Skin <span id="skinNote"></span><div class="swatches" id="skins"></div></div>
     <label class="field">Outfit <select id="outfit"></select></label>
     <label class="field">Hairstyle <select id="hair"></select></label>
-    <div class="check"><input type="checkbox" id="allHair"><label for="allHair">Show every hairstyle (ignore groups)</label></div>
     <div class="field">Hair colour<div class="swatches" id="colours"></div></div>
     <div class="check"><input type="checkbox" id="raceSize" checked><label for="raceSize">Apply race size</label></div>
     <div class="row">
@@ -87,7 +86,7 @@
     <h2 style="margin-top:14px">Recipe</h2>
     <div class="recipe" id="recipe"></div>
     <div class="row" style="margin-top:8px"><button class="btn ghost" id="copy">Copy link</button></div>
-    <p class="note">Race = ears/tusks + skin palette + size, so any generic face can be any race. Faces marked "fixed skin" haven't been converted to the skin key yet.</p>
+    <p class="note">Race = ears/tusks + skin palette + hair colours + size. Outfits and hairstyles follow the face's template (male or female), so necks and skulls always match.</p>
     <p class="note">Prototype limits: head and outfit are joined with a straight cut at the collar, race size is a uniform scale (no rig yet), eyebrows and scars aren't separate layers yet.</p>
   </section>
 </main>
@@ -162,7 +161,8 @@ function haired(hair, colour) {
 
 // ---- Assembly ---------------------------------------------------------------
 const facesFor = race => M.faces.filter(f => !f.races || f.races.includes(race));
-const hairsFor = face => M.hairs.filter(h => $('allHair').checked || h.fits.includes(face.group));
+const hairsFor = face => M.hairs.filter(h => h.fits.includes(face.template));
+const bodiesFor = face => M.bodies.filter(b => b.template === face.template);
 
 function compose() {
   const face = byId(M.faces, state.face), body = byId(M.bodies, state.outfit), race = M.races[state.race];
@@ -170,6 +170,7 @@ function compose() {
   const c = document.createElement('canvas'); c.width = 1024; c.height = 1536;
   const g = c.getContext('2d');
   const put = (part, src, dx = 0, dy = 0) => g.drawImage(src, part.x + dx, part.y + dy);
+  if (body && body.back) put(body.back, skinned(body.back, state.skin));
   put(face.part, skinned(face.part, skin));
   if (body) put(body.part, skinned(body.part, body.lime ? state.skin : null));
   if (face.beard) put(face.beard, img[face.beard.file]);
@@ -217,7 +218,13 @@ function sync() {
     `<button class="swatch" data-s="${s}" title="${s}" aria-label="${s}" aria-pressed="${s === state.skin}" ` +
     `style="background:rgb(${M.skins[s].rgb.join(',')})"></button>`).join('') : '';
   $('skinNote').textContent = face.lime ? '' : '(fixed on this face)';
+  const bodies = bodiesFor(face);
+  if (!bodies.some(b => b.id === state.outfit)) state.outfit = bodies[0].id;
+  $('outfit').innerHTML = bodies.map(b => `<option value="${b.id}">${b.label}</option>`).join('');
   $('outfit').value = state.outfit;
+  if (!race.hair.includes(state.hairCol)) state.hairCol = race.hair[0];
+  $('colours').innerHTML = race.hair.map(k =>
+    `<button class="swatch" data-c="${k}" title="${k}" aria-label="${k}" style="background:rgb(${M.hair_colours[k][2].join(',')})"></button>`).join('');
   const hairs = hairsFor(face);
   if (state.hair && !hairs.some(h => h.id === state.hair)) state.hair = hairs[0] ? hairs[0].id : '';
   $('hair').innerHTML = '<option value="">Bald</option>' + hairs.map(h => `<option value="${h.id}">${h.label}</option>`).join('');
@@ -232,9 +239,8 @@ function mulberry32(a) { return () => { a |= 0; a = a + 0x6D2B79F5 | 0; let t = 
 function generate(rand) {
   const pick = a => a[Math.floor(rand() * a.length)];
   const race = pick(Object.keys(M.races)), face = pick(facesFor(race));
-  const hairs = M.hairs.filter(h => h.fits.includes(face.group));
-  state = { race, face: face.id, skin: pick(M.races[race].skins), outfit: pick(M.bodies).id,
-    hair: rand() < 0.12 ? '' : pick(hairs).id, hairCol: pick(Object.keys(M.hair_colours)) };
+  state = { race, face: face.id, skin: pick(M.races[race].skins), outfit: pick(bodiesFor(face)).id,
+    hair: rand() < 0.12 ? '' : pick(hairsFor(face)).id, hairCol: pick(M.races[race].hair) };
   sync();
 }
 
@@ -248,28 +254,24 @@ function fromHash() {
 
 (async () => {
   M = await (await fetch('manifest.json', { cache: 'no-cache' })).json();
-  const parts = [...M.faces.flatMap(f => [f.part, f.beard]), ...M.bodies.map(b => b.part),
+  const parts = [...M.faces.flatMap(f => [f.part, f.beard]), ...M.bodies.flatMap(b => [b.part, b.back]),
     ...Object.values(M.ears).map(e => e.part), ...M.hairs.map(h => h.part)].filter(Boolean);
   await Promise.all(parts.flatMap(p => [p.file, p.skin_mask]).filter(Boolean).map(load));
 
   $('race').innerHTML = Object.entries(M.races).map(([k, r]) => `<option value="${k}">${r.label}</option>`).join('');
-  $('outfit').innerHTML = M.bodies.map(b => `<option value="${b.id}">${b.label}</option>`).join('');
-  $('colours').innerHTML = Object.entries(M.hair_colours).map(([k, r]) =>
-    `<button class="swatch" data-c="${k}" title="${k}" aria-label="${k}" style="background:rgb(${r[2].join(',')})"></button>`).join('');
 
   $('race').onchange = e => { state.race = e.target.value; sync(); };
   $('face').onchange = e => { state.face = e.target.value; sync(); };
   $('skins').onclick = e => { const s = e.target.dataset.s; if (s) { state.skin = s; sync(); } };
   $('outfit').onchange = e => { state.outfit = e.target.value; render(); };
   $('hair').onchange = e => { state.hair = e.target.value; render(); };
-  $('allHair').onchange = sync;
   $('raceSize').onchange = render;
   $('colours').onclick = e => { const c = e.target.dataset.c; if (c) { state.hairCol = c; sync(); } };
   $('random').onclick = () => { const s = Math.floor(Math.random() * 1e6); $('seed').value = s; generate(mulberry32(s)); };
   $('fromSeed').onclick = () => generate(mulberry32(+$('seed').value || 0));
   $('copy').onclick = () => navigator.clipboard && navigator.clipboard.writeText(location.href);
 
-  if (!fromHash()) state = { race: 'human', face: 'aldric', skin: 'fair', outfit: 'knight', hair: 'short01', hairCol: 'blond' };
+  if (!fromHash()) state = { race: 'human', face: 'aldric', skin: 'fair', outfit: 'knight_m', hair: 'short01', hairCol: 'blond' };
   sync();
   window.addEventListener('hashchange', () => { if (fromHash()) sync(); });
 })();
