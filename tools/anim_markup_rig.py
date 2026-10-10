@@ -84,8 +84,8 @@ def split_markup(a, t, belt, sections, keep_torso=None):
 
     # static underlay between the thighs, faded out toward the knees
     hz = vis & (yy > belt) & (yy < t["knee_y"])
-    for s in ("n", "f"):
-        hz &= ~limb["arm_" + s] & ~limb["farm_" + s]
+    for s in ("n", "f"):   # only what lies between the legs (chainmail), never the leg armour itself
+        hz &= ~limb["arm_" + s] & ~limb["farm_" + s] & ~limb["thigh_" + s] & ~limb["shin_" + s]
     hips = a.copy()
     hips[~hz, 3] = 0
     hips[..., 3] = (hips[..., 3] * np.clip((t["knee_y"] - yy) / 80.0, 0, 1)).astype(np.uint8)
