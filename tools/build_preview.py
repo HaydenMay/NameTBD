@@ -54,6 +54,14 @@ FACES = [
     ("mira", "mira_bluebrow", "Mira", "f", None),
 ]
 BROWS = {"aldric", "rowan", "mira", "hobb", "pip", "edric", "m1_lean_a", "m6_lean_b", "m2_weathered", "m3_gentle", "m4_stern", "m5_sunworn"}   # art/parts/brows/brows_<id>.png (blue key)
+# Faces that never get a beard (too young/round to carry one).
+NO_BEARD = {"pip"}
+# Face/beard pairs that were reviewed and rejected.
+BLOCKED_BEARD = {
+    "hobb": ["trimmed"],
+    "m2_weathered": ["trimmed"],
+    "m5_sunworn": ["trimmed"],
+}
 # Bloodline-style blocklist: face/hair pairs that were reviewed and rejected.
 BLOCKED_HAIR = {
     "m1_lean_a": ["m_wavy", "m_midpart"],   # narrower cheek: far-side strands float off the face
@@ -271,6 +279,10 @@ def main():
             extra["scar"] = save_part(np.asarray(Image.open(PARTS / "scars" / f"scar_{fid}.png").convert("RGBA")).copy(), f"scar_{fid}")
         if fid in BLOCKED_HAIR:
             extra["blocked_hair"] = BLOCKED_HAIR[fid]
+        if fid in NO_BEARD:
+            extra["blocked_beard"] = [b[0] for b in BEARDS]
+        elif fid in BLOCKED_BEARD:
+            extra["blocked_beard"] = BLOCKED_BEARD[fid]
         faces.append({**extra, "id": fid, "label": label, "template": tpl, "group": tpl, "skull": skull(a), "races": races,
                       "lime": True, "part": save_part(head, f"head_{fid}", True, hue_lo=40, reach=12, eyes=True)})
 

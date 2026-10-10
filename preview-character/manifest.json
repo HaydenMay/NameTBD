@@ -1,5 +1,5 @@
 {
- "version": 1791615957,
+ "version": 1791616450,
  "canvas": [
   1024,
   1536
@@ -376,6 +376,9 @@
    "blocked_hair": [
     "m_midpart"
    ],
+   "blocked_beard": [
+    "trimmed"
+   ],
    "id": "hobb",
    "label": "Hobb",
    "template": "m",
@@ -408,6 +411,10 @@
      186.3
     ]
    },
+   "blocked_beard": [
+    "trimmed",
+    "full"
+   ],
    "id": "pip",
    "label": "Pip",
    "template": "m",
@@ -548,6 +555,9 @@
      151.5
     ]
    },
+   "blocked_beard": [
+    "trimmed"
+   ],
    "id": "m2_weathered",
    "label": "Doran",
    "template": "m",
@@ -644,6 +654,9 @@
      170.5
     ]
    },
+   "blocked_beard": [
+    "trimmed"
+   ],
    "id": "m5_sunworn",
    "label": "Haldor",
    "template": "m",
