@@ -1,5 +1,5 @@
 {
- "version": 1791612336,
+ "version": 1791612739,
  "canvas": [
   1024,
   1536
@@ -334,97 +334,32 @@
   {
    "brows": {
     "file": "assets/brows_aldric.png",
-    "x": 503,
-    "y": 169,
+    "x": 499,
+    "y": 166,
     "lum": [
-     15.9,
-     122.1
+     60.5,
+     143.1
     ]
-   },
-   "scar": {
-    "file": "assets/scar_aldric.png",
-    "x": 537,
-    "y": 137
    },
    "id": "aldric",
    "label": "Aldric",
    "template": "m",
    "group": "m",
    "skull": [
-    83,
-    520
+    82,
+    523
    ],
    "races": null,
    "lime": true,
    "part": {
     "file": "assets/head_aldric.png",
-    "x": 385,
-    "y": 83,
+    "x": 386,
+    "y": 82,
     "skin_mask": "assets/head_aldric_skin.png",
     "key_lab": [
-     71.31,
-     -15.95,
-     63.25
-    ]
-   }
-  },
-  {
-   "id": "bran",
-   "label": "Bran",
-   "template": "m",
-   "group": "m",
-   "skull": [
-    81,
-    520
-   ],
-   "races": null,
-   "lime": true,
-   "part": {
-    "file": "assets/head_bran.png",
-    "x": 390,
-    "y": 81,
-    "skin_mask": "assets/head_bran_skin.png",
-    "key_lab": [
-     68.29,
-     -13.84,
-     62.4
-    ]
-   }
-  },
-  {
-   "brows": {
-    "file": "assets/brows_garrett.png",
-    "x": 500,
-    "y": 162,
-    "lum": [
-     25.9,
-     128.0
-    ]
-   },
-   "scar": {
-    "file": "assets/scar_garrett.png",
-    "x": 518,
-    "y": 132
-   },
-   "id": "garrett",
-   "label": "Garrett",
-   "template": "m",
-   "group": "m",
-   "skull": [
-    80,
-    520
-   ],
-   "races": null,
-   "lime": true,
-   "part": {
-    "file": "assets/head_garrett.png",
-    "x": 389,
-    "y": 80,
-    "skin_mask": "assets/head_garrett_skin.png",
-    "key_lab": [
-     73.91,
-     -13.62,
-     66.08
+     76.57,
+     -29.21,
+     66.85
     ]
    }
   },
@@ -457,38 +392,6 @@
      75.95,
      -22.51,
      68.06
-    ]
-   }
-  },
-  {
-   "brows": {
-    "file": "assets/brows_corwin.png",
-    "x": 511,
-    "y": 154,
-    "lum": [
-     35.5,
-     144.7
-    ]
-   },
-   "id": "corwin",
-   "label": "Corwin",
-   "template": "m",
-   "group": "m",
-   "skull": [
-    82,
-    521
-   ],
-   "races": null,
-   "lime": true,
-   "part": {
-    "file": "assets/head_corwin.png",
-    "x": 396,
-    "y": 82,
-    "skin_mask": "assets/head_corwin_skin.png",
-    "key_lab": [
-     76.57,
-     -23.86,
-     68.1
     ]
    }
   },
@@ -654,24 +557,24 @@
    "lime": true,
    "part": {
     "file": "assets/body_knight_m.png",
-    "x": 162,
-    "y": 346,
+    "x": 163,
+    "y": 325,
     "skin_mask": "assets/body_knight_m_skin.png",
     "key_lab": [
-     29.43,
-     -4.26,
-     19.04
+     32.24,
+     -3.78,
+     17.0
     ]
    },
    "back": {
     "file": "assets/body_knight_m_back.png",
-    "x": 476,
+    "x": 475,
     "y": 345,
     "skin_mask": "assets/body_knight_m_back_skin.png",
     "key_lab": [
-     53.28,
-     -11.06,
-     49.7
+     58.5,
+     -26.27,
+     55.17
     ]
    }
   },

@@ -282,7 +282,7 @@ function fromHash() {
   $('fromSeed').onclick = () => generate(mulberry32(+$('seed').value || 0));
   $('copy').onclick = () => navigator.clipboard && navigator.clipboard.writeText(location.href);
 
-  if (!fromHash()) state = { race: 'human', face: 'aldric', skin: 'fair', outfit: 'knight_m', hair: 'short02', hairCol: 'blond', scar: true };
+  if (!fromHash()) state = { race: 'human', face: 'aldric', skin: 'fair', outfit: 'knight_m', hair: 'm_short', hairCol: 'blond', scar: false };
   sync();
   window.addEventListener('hashchange', () => { if (fromHash()) sync(); });
 })();

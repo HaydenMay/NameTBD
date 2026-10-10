@@ -37,23 +37,22 @@ TEMPLATES = {"m": {"cut": 345}, "f": {"cut": 332}}
 
 # id, file, label, template, races it suits (None = any). All lime-skin edits.
 FACES = [
-    ("aldric", "aldric_bluebrow", "Aldric", "m", None),
-    ("bran", "male_face02_cleric", "Bran", "m", None),
-    ("garrett", "garrett_bluebrow", "Garrett", "m", None),
+    ("aldric", "../../template/male_base", "Aldric", "m", None),
+    # retired 2026-10-09 (stubble baked in, not made from male_base): bran, garrett
     ("hobb", "male_hobb", "Hobb", "m", None),
-    ("corwin", "male_corwin", "Corwin", "m", None),
+    # corwin: to be remade on male_base with a neutral expression
     ("pip", "male_pip", "Pip", "m", None),
     ("edric", "male_edric", "Edric", "m", None),
     ("brug", "ogre_lime_01", "Brug", "m", ["ogre"]),
     ("rowan", "rowan_bluebrow", "Rowan", "f", None),
     ("mira", "mira_bluebrow", "Mira", "f", None),
 ]
-BROWS = {"aldric", "garrett", "rowan", "mira", "hobb", "corwin", "pip", "edric"}   # art/parts/brows/brows_<id>.png (blue key)
-SCARS = {"aldric", "garrett"}                     # art/parts/scars/scar_<id>.png (optional layer)
+BROWS = {"aldric", "rowan", "mira", "hobb", "pip", "edric"}   # art/parts/brows/brows_<id>.png (blue key)
+SCARS = set()  # old scars were painted on retired faces; scars come back as generic layers                     # art/parts/scars/scar_<id>.png (optional layer)
 
 # id, file, label, template
 BODIES = [
-    ("knight_m", "aldric_bald_limekey", "Knight plate", "m"),
+    ("knight_m", "../../template/male_base", "Knight plate", "m"),
     ("cleric_m", "aldric_lime_cleric", "Cleric robe", "m"),
     ("guard_m", "ogre_lime_01", "Caravan guard", "m"),
     ("cleric_f", "human_f_lime_01", "Cleric robe", "f"),
