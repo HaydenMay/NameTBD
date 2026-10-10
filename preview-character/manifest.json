@@ -1,0 +1,624 @@
+{
+ "canvas": [
+  1024,
+  1536
+ ],
+ "floor_y": 1510,
+ "races": {
+  "human": {
+   "scale": 1.0,
+   "label": "Human"
+  },
+  "elf": {
+   "scale": 0.98,
+   "label": "Elf"
+  },
+  "dwarf": {
+   "scale": 0.8,
+   "label": "Dwarf"
+  },
+  "goblin": {
+   "scale": 0.78,
+   "label": "Goblin"
+  },
+  "ogre": {
+   "scale": 1.15,
+   "label": "Ogre"
+  }
+ },
+ "heads": [
+  {
+   "id": "aldric",
+   "label": "Aldric (human)",
+   "race": "human",
+   "sex": "m",
+   "group": "m",
+   "skull": [
+    84,
+    520
+   ],
+   "part": {
+    "file": "assets/head_aldric.png",
+    "x": 356,
+    "y": 84
+   }
+  },
+  {
+   "id": "human_f",
+   "label": "Human woman",
+   "race": "human",
+   "sex": "f",
+   "group": "f",
+   "skull": [
+    56,
+    512
+   ],
+   "part": {
+    "file": "assets/head_human_f.png",
+    "x": 391,
+    "y": 56
+   }
+  },
+  {
+   "id": "elf",
+   "label": "Elf",
+   "race": "elf",
+   "sex": "f",
+   "group": "f",
+   "skull": [
+    89,
+    519
+   ],
+   "part": {
+    "file": "assets/head_elf.png",
+    "x": 354,
+    "y": 89
+   }
+  },
+  {
+   "id": "goblin",
+   "label": "Goblin",
+   "race": "goblin",
+   "sex": "m",
+   "group": "m",
+   "skull": [
+    86,
+    524
+   ],
+   "part": {
+    "file": "assets/head_goblin.png",
+    "x": 301,
+    "y": 86
+   }
+  },
+  {
+   "id": "dwarf",
+   "label": "Dwarf",
+   "race": "dwarf",
+   "sex": "m",
+   "group": "m",
+   "skull": [
+    59,
+    524
+   ],
+   "part": {
+    "file": "assets/head_dwarf.png",
+    "x": 284,
+    "y": 59
+   },
+   "beard": {
+    "file": "assets/beard_dwarf.png",
+    "x": 418,
+    "y": 290
+   }
+  },
+  {
+   "id": "ogre",
+   "label": "Ogre",
+   "race": "ogre",
+   "sex": "m",
+   "group": "m",
+   "skull": [
+    92,
+    527
+   ],
+   "part": {
+    "file": "assets/head_ogre.png",
+    "x": 390,
+    "y": 92
+   }
+  }
+ ],
+ "bodies": [
+  {
+   "id": "aldric",
+   "label": "Knight plate",
+   "part": {
+    "file": "assets/body_aldric.png",
+    "x": 162,
+    "y": 352
+   }
+  },
+  {
+   "id": "human_f",
+   "label": "Cleric robe",
+   "part": {
+    "file": "assets/body_human_f.png",
+    "x": 178,
+    "y": 318
+   }
+  },
+  {
+   "id": "elf",
+   "label": "Cleric robe (elf)",
+   "part": {
+    "file": "assets/body_elf.png",
+    "x": 178,
+    "y": 318
+   }
+  },
+  {
+   "id": "goblin",
+   "label": "Rogue leathers",
+   "part": {
+    "file": "assets/body_goblin.png",
+    "x": 193,
+    "y": 322
+   }
+  },
+  {
+   "id": "ogre",
+   "label": "Caravan guard",
+   "part": {
+    "file": "assets/body_ogre.png",
+    "x": 189,
+    "y": 305
+   }
+  }
+ ],
+ "hairs": [
+  {
+   "id": "short01",
+   "label": "Short",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    84,
+    520
+   ],
+   "lum": [
+    27.1,
+    215.3
+   ],
+   "part": {
+    "file": "assets/hair_short01.png",
+    "x": 330,
+    "y": 30
+   }
+  },
+  {
+   "id": "wavy01",
+   "label": "Wavy",
+   "fits": [
+    "m",
+    "f"
+   ],
+   "ref_skull": [
+    84,
+    520
+   ],
+   "lum": [
+    29.0,
+    214.3
+   ],
+   "part": {
+    "file": "assets/hair_wavy01.png",
+    "x": 281,
+    "y": 33
+   }
+  },
+  {
+   "id": "topknot01",
+   "label": "Top-knot",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    84,
+    520
+   ],
+   "lum": [
+    15.1,
+    215.7
+   ],
+   "part": {
+    "file": "assets/hair_topknot01.png",
+    "x": 342,
+    "y": 21
+   }
+  },
+  {
+   "id": "ponytail02",
+   "label": "Ponytail",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    84,
+    520
+   ],
+   "lum": [
+    7.3,
+    188.9
+   ],
+   "part": {
+    "file": "assets/hair_ponytail02.png",
+    "x": 301,
+    "y": 82
+   }
+  },
+  {
+   "id": "slicked01",
+   "label": "Slicked back",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    84,
+    520
+   ],
+   "lum": [
+    7.1,
+    176.9
+   ],
+   "part": {
+    "file": "assets/hair_slicked01.png",
+    "x": 351,
+    "y": 72
+   }
+  },
+  {
+   "id": "shaggy01",
+   "label": "Shaggy",
+   "fits": [
+    "m",
+    "f"
+   ],
+   "ref_skull": [
+    84,
+    520
+   ],
+   "lum": [
+    7.1,
+    200.6
+   ],
+   "part": {
+    "file": "assets/hair_shaggy01.png",
+    "x": 344,
+    "y": 49
+   }
+  },
+  {
+   "id": "curly01",
+   "label": "Curly",
+   "fits": [
+    "m",
+    "f"
+   ],
+   "ref_skull": [
+    84,
+    520
+   ],
+   "lum": [
+    8.1,
+    181.4
+   ],
+   "part": {
+    "file": "assets/hair_curly01.png",
+    "x": 371,
+    "y": 64
+   }
+  },
+  {
+   "id": "spiky02",
+   "label": "Spiky",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    84,
+    520
+   ],
+   "lum": [
+    8.6,
+    182.9
+   ],
+   "part": {
+    "file": "assets/hair_spiky02.png",
+    "x": 367,
+    "y": 37
+   }
+  },
+  {
+   "id": "bun01",
+   "label": "Bun",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    56,
+    512
+   ],
+   "lum": [
+    14.1,
+    190.6
+   ],
+   "part": {
+    "file": "assets/hair_bun01.png",
+    "x": 324,
+    "y": 40
+   }
+  },
+  {
+   "id": "sidebraid01",
+   "label": "Side braid",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    56,
+    512
+   ],
+   "lum": [
+    15.1,
+    187.1
+   ],
+   "part": {
+    "file": "assets/hair_sidebraid01.png",
+    "x": 349,
+    "y": 41
+   }
+  },
+  {
+   "id": "hiponytail01",
+   "label": "High ponytail",
+   "fits": [
+    "f",
+    "m"
+   ],
+   "ref_skull": [
+    56,
+    512
+   ],
+   "lum": [
+    12.1,
+    172.2
+   ],
+   "part": {
+    "file": "assets/hair_hiponytail01.png",
+    "x": 215,
+    "y": 16
+   }
+  },
+  {
+   "id": "pixie01",
+   "label": "Pixie",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    56,
+    512
+   ],
+   "lum": [
+    17.9,
+    179.6
+   ],
+   "part": {
+    "file": "assets/hair_pixie01.png",
+    "x": 353,
+    "y": 25
+   }
+  },
+  {
+   "id": "longstraight01",
+   "label": "Long straight",
+   "fits": [
+    "f",
+    "m"
+   ],
+   "ref_skull": [
+    56,
+    512
+   ],
+   "lum": [
+    16.1,
+    172.7
+   ],
+   "part": {
+    "file": "assets/hair_longstraight01.png",
+    "x": 204,
+    "y": 42
+   }
+  }
+ ],
+ "hair_colours": {
+  "black": [
+   [
+    14,
+    11,
+    14
+   ],
+   [
+    38,
+    32,
+    36
+   ],
+   [
+    78,
+    68,
+    72
+   ],
+   [
+    150,
+    140,
+    150
+   ]
+  ],
+  "brown": [
+   [
+    30,
+    16,
+    10
+   ],
+   [
+    88,
+    52,
+    28
+   ],
+   [
+    140,
+    92,
+    52
+   ],
+   [
+    205,
+    160,
+    110
+   ]
+  ],
+  "auburn": [
+   [
+    40,
+    12,
+    8
+   ],
+   [
+    120,
+    42,
+    22
+   ],
+   [
+    178,
+    80,
+    40
+   ],
+   [
+    230,
+    150,
+    100
+   ]
+  ],
+  "ginger": [
+   [
+    60,
+    18,
+    6
+   ],
+   [
+    170,
+    62,
+    18
+   ],
+   [
+    222,
+    110,
+    40
+   ],
+   [
+    250,
+    180,
+    110
+   ]
+  ],
+  "blond": [
+   [
+    70,
+    40,
+    12
+   ],
+   [
+    190,
+    140,
+    50
+   ],
+   [
+    235,
+    195,
+    90
+   ],
+   [
+    255,
+    240,
+    180
+   ]
+  ],
+  "silver": [
+   [
+    40,
+    40,
+    46
+   ],
+   [
+    130,
+    130,
+    140
+   ],
+   [
+    195,
+    195,
+    205
+   ],
+   [
+    245,
+    245,
+    250
+   ]
+  ],
+  "white": [
+   [
+    70,
+    66,
+    70
+   ],
+   [
+    190,
+    186,
+    190
+   ],
+   [
+    235,
+    232,
+    235
+   ],
+   [
+    255,
+    255,
+    255
+   ]
+  ],
+  "teal": [
+   [
+    8,
+    30,
+    34
+   ],
+   [
+    24,
+    100,
+    104
+   ],
+   [
+    60,
+    160,
+    160
+   ],
+   [
+    170,
+    230,
+    220
+   ]
+  ]
+ }
+}
