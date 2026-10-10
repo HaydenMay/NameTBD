@@ -99,7 +99,7 @@ const img = {}, cache = {};
 
 const load = src => new Promise((res, rej) => {
   if (img[src]) return res(img[src]);
-  const i = new Image(); i.onload = () => res(img[src] = i); i.onerror = rej; i.src = src;
+  const i = new Image(); i.onload = () => res(img[src] = i); i.onerror = rej; i.src = src + '?v=' + M.version;
 });
 const byId = (list, id) => list.find(x => x.id === id);
 const canvasOf = src => { const c = document.createElement('canvas'); c.width = src.width; c.height = src.height;
@@ -247,7 +247,7 @@ function fromHash() {
 }
 
 (async () => {
-  M = await (await fetch('manifest.json')).json();
+  M = await (await fetch('manifest.json', { cache: 'no-cache' })).json();
   const parts = [...M.faces.flatMap(f => [f.part, f.beard]), ...M.bodies.map(b => b.part),
     ...Object.values(M.ears).map(e => e.part), ...M.hairs.map(h => h.part)].filter(Boolean);
   await Promise.all(parts.flatMap(p => [p.file, p.skin_mask]).filter(Boolean).map(load));

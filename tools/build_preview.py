@@ -15,6 +15,7 @@ Output: preview-character/assets/*.png + preview-character/manifest.json
 import json
 import shutil
 import sys
+import time
 from pathlib import Path
 
 import numpy as np
@@ -206,7 +207,7 @@ def main():
     skins = {k: {"rgb": list(v), "lab": [round(float(x), 2) for x in rgb2lab(np.array([[v]], float))[0, 0]]}
              for k, v in SKINS.items()}
 
-    manifest = {"canvas": [1024, 1536], "floor_y": 1510, "races": RACES, "skins": skins,
+    manifest = {"version": int(time.time()), "canvas": [1024, 1536], "floor_y": 1510, "races": RACES, "skins": skins,
                 "faces": faces, "bodies": bodies, "ears": ears, "hairs": hairs, "hair_colours": HAIR_COLOURS}
     (OUT / "manifest.json").write_text(json.dumps(manifest, indent=1))
     print(f"{len(faces)} faces, {len(bodies)} bodies, {len(ears)} ears, {len(hairs)} hairs, {len(skins)} skins")
