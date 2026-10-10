@@ -1,5 +1,5 @@
 {
- "version": 1791666593,
+ "version": 1791670624,
  "canvas": [
   1024,
   1536
@@ -571,6 +571,16 @@
      143.1
     ]
    },
+   "mouth": [
+    550,
+    606,
+    296
+   ],
+   "tusks": {
+    "file": "assets/tusks_aldric.png",
+    "x": 528,
+    "y": 269
+   },
    "id": "aldric",
    "label": "Aldric",
    "template": "m",
@@ -606,6 +616,16 @@
    "blocked_hair": [
     "m_midpart"
    ],
+   "mouth": [
+    545,
+    619,
+    290
+   ],
+   "tusks": {
+    "file": "assets/tusks_hobb.png",
+    "x": 523,
+    "y": 263
+   },
    "blocked_beard": [
     "trimmed"
    ],
@@ -640,6 +660,16 @@
      48.3,
      186.3
     ]
+   },
+   "mouth": [
+    531,
+    607,
+    284
+   ],
+   "tusks": {
+    "file": "assets/tusks_pip.png",
+    "x": 509,
+    "y": 257
    },
    "blocked_beard": [
     "trimmed",
@@ -681,6 +711,16 @@
     "m_midpart",
     "m_wavy"
    ],
+   "mouth": [
+    537,
+    605,
+    290
+   ],
+   "tusks": {
+    "file": "assets/tusks_edric.png",
+    "x": 515,
+    "y": 263
+   },
    "id": "edric",
    "label": "Edric",
    "template": "m",
@@ -717,6 +757,16 @@
     "m_wavy",
     "m_midpart"
    ],
+   "mouth": [
+    556,
+    610,
+    297
+   ],
+   "tusks": {
+    "file": "assets/tusks_m1_lean_a.png",
+    "x": 534,
+    "y": 270
+   },
    "id": "m1_lean_a",
    "label": "Corwin",
    "template": "m",
@@ -753,6 +803,16 @@
     "m_wavy",
     "m_midpart"
    ],
+   "mouth": [
+    551,
+    628,
+    295
+   ],
+   "tusks": {
+    "file": "assets/tusks_m6_lean_b.png",
+    "x": 529,
+    "y": 268
+   },
    "id": "m6_lean_b",
    "label": "Corwin (alt)",
    "template": "m",
@@ -784,6 +844,16 @@
      31.7,
      151.5
     ]
+   },
+   "mouth": [
+    544,
+    628,
+    292
+   ],
+   "tusks": {
+    "file": "assets/tusks_m2_weathered.png",
+    "x": 522,
+    "y": 265
    },
    "blocked_beard": [
     "trimmed"
@@ -820,6 +890,16 @@
      158.0
     ]
    },
+   "mouth": [
+    546,
+    608,
+    295
+   ],
+   "tusks": {
+    "file": "assets/tusks_m3_gentle.png",
+    "x": 524,
+    "y": 268
+   },
    "id": "m3_gentle",
    "label": "Tomas",
    "template": "m",
@@ -852,6 +932,16 @@
      152.1
     ]
    },
+   "mouth": [
+    543,
+    607,
+    297
+   ],
+   "tusks": {
+    "file": "assets/tusks_m4_stern.png",
+    "x": 521,
+    "y": 270
+   },
    "id": "m4_stern",
    "label": "Varek",
    "template": "m",
@@ -883,6 +973,16 @@
      23.3,
      170.5
     ]
+   },
+   "mouth": [
+    545,
+    610,
+    293
+   ],
+   "tusks": {
+    "file": "assets/tusks_m5_sunworn.png",
+    "x": 523,
+    "y": 266
    },
    "blocked_beard": [
     "trimmed"
@@ -944,6 +1044,16 @@
      138.4
     ]
    },
+   "mouth": [
+    548,
+    601,
+    280
+   ],
+   "tusks": {
+    "file": "assets/tusks_rowan.png",
+    "x": 526,
+    "y": 253
+   },
    "id": "rowan",
    "label": "Rowan",
    "template": "f",
@@ -975,6 +1085,16 @@
      12.3,
      117.4
     ]
+   },
+   "mouth": [
+    548,
+    594,
+    260
+   ],
+   "tusks": {
+    "file": "assets/tusks_mira.png",
+    "x": 526,
+    "y": 233
    },
    "id": "mira",
    "label": "Mira",
@@ -1663,9 +1783,9 @@
     "y": 187,
     "skin_mask": "assets/ears_ogre_skin.png",
     "key_lab": [
-     61.85,
-     -14.25,
-     55.93
+     60.85,
+     -15.55,
+     57.09
     ]
    }
   }

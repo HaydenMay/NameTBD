@@ -118,6 +118,17 @@ BLOCKED_BEARD = {
     "m5_sunworn": ["trimmed"],
 }
 # Bloodline-style blocklist: face/hair pairs that were reviewed and rejected.
+# Mouth lines [left x, right x, y] where auto-detection (tools/mouth.py) picks the wrong stroke.
+MOUTH_OVERRIDE = {
+    "edric": [537, 605, 290],
+    "m1_lean_a": [556, 610, 297],
+    "m5_sunworn": [545, 610, 293],
+}
+# Races a face is never used for (reviewed and rejected, like the hair blocklist).
+BLOCKED_RACES = {
+}
+TUSK_REF_MOUTH = [550, 606, 297]   # mouth of aldric_bald_limekey, where ears_ogre's tusks were drawn
+
 BLOCKED_HAIR = {
     "m1_lean_a": ["m_wavy", "m_midpart"],   # narrower cheek: far-side strands float off the face
     "m6_lean_b": ["m_wavy", "m_midpart"],
@@ -306,6 +317,36 @@ def dwarf_beard(a, collar):
     return out
 
 
+def tusk_pieces():
+    """Split ears_ogre.png into the ear (largest piece) and the near / far tusks."""
+    a = np.asarray(Image.open(PARTS / "ears" / "ears_ogre.png").convert("RGBA")).copy()
+    lab, n = ndimage.label(a[..., 3] > 0)
+    sizes = ndimage.sum(a[..., 3] > 0, lab, range(1, n + 1))
+    order = np.argsort(-sizes) + 1
+    ear = np.isin(lab, order[:1])
+    tusks = [lab == i for i in order[1:3]]
+    tusks.sort(key=lambda m: np.where(m)[1].mean())          # near (left) first
+    return a, ear, tusks
+
+
+def tusk_layer(mo, head):
+    """Tusks moved onto a face's mouth corners, clipped to that face so none float off it."""
+    a, _, tusks = tusk_pieces()
+    if len(tusks) < 2:
+        return None
+    out = np.zeros_like(a)
+    for m, corner_ref, corner in ((tusks[0], TUSK_REF_MOUTH[0], mo[0]), (tusks[1], TUSK_REF_MOUTH[1], mo[1])):
+        dx, dy = corner - corner_ref, mo[2] - TUSK_REF_MOUTH[2]
+        piece = a.copy()
+        piece[~m, 3] = 0
+        piece = np.roll(np.roll(piece, dy, 0), dx, 1)
+        vis = piece[..., 3] > 0
+        out[vis] = piece[vis]
+    face = ndimage.binary_dilation(head[..., 3] > 0, iterations=2)
+    out[~face, 3] = 0
+    return out if (out[..., 3] > 0).any() else None
+
+
 def main():
     if ASSETS.exists():
         shutil.rmtree(ASSETS)
@@ -334,6 +375,17 @@ def main():
             extra["scar"] = save_part(np.asarray(Image.open(PARTS / "scars" / f"scar_{fid}.png").convert("RGBA")).copy(), f"scar_{fid}")
         if fid in BLOCKED_HAIR:
             extra["blocked_hair"] = BLOCKED_HAIR[fid]
+        if fid in BLOCKED_RACES:
+            extra["blocked_races"] = BLOCKED_RACES[fid]
+        if races is None:  # generic face: tusks placed on THIS face's mouth corners
+            from mouth import mouth
+            top, cx = skull(a)[:2]
+            mo = MOUTH_OVERRIDE.get(fid) or mouth(a, top, cx)
+            if mo:
+                extra["mouth"] = mo
+                tusks = tusk_layer(mo, head)
+                if tusks is not None:
+                    extra["tusks"] = save_part(tusks, f"tusks_{fid}")
         if fid in NO_BEARD:
             extra["blocked_beard"] = [b[0] for b in BEARDS]
         elif fid in BLOCKED_BEARD:
@@ -389,6 +441,9 @@ def main():
     ears = {}
     for e in EARS:
         a = np.asarray(Image.open(PARTS / "ears" / f"ears_{e}.png").convert("RGBA")).copy()
+        if e == "ogre":  # tusks live on each face now (tusk_layer); keep only the ear here
+            _, ear, _ = tusk_pieces()
+            a[~ear, 3] = 0
         ears[e] = {"ref_skull": ref_skulls["aldric_bald_limekey"], "part": save_part(a, f"ears_{e}", True, hue_lo=40)}
 
     hairs = []
