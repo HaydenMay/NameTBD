@@ -1,5 +1,5 @@
 {
- "version": 1791615056,
+ "version": 1791615506,
  "canvas": [
   1024,
   1536
@@ -984,6 +984,66 @@
     "file": "assets/hair_m_wavy.png",
     "x": 297,
     "y": 22
+   }
+  },
+  {
+   "id": "m_ponytail2",
+   "label": "Ponytail",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    82,
+    523
+   ],
+   "lum": [
+    7.1,
+    166.7
+   ],
+   "part": {
+    "file": "assets/hair_m_ponytail2.png",
+    "x": 289,
+    "y": 44
+   }
+  },
+  {
+   "id": "m_topknot2",
+   "label": "Top-knot",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    82,
+    523
+   ],
+   "lum": [
+    7.1,
+    216.5
+   ],
+   "part": {
+    "file": "assets/hair_m_topknot2.png",
+    "x": 368,
+    "y": 26
+   }
+  },
+  {
+   "id": "m_slicked2",
+   "label": "Slicked back",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    82,
+    523
+   ],
+   "lum": [
+    7.1,
+    193.8
+   ],
+   "part": {
+    "file": "assets/hair_m_slicked2.png",
+    "x": 356,
+    "y": 46
    }
   },
   {
