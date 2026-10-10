@@ -92,6 +92,27 @@ def split(a, t, hem, belt):
         "thigh_f": thigh_zone & ~near & (yy < knee + 25), "shin_f": legs & ~near & (yy >= knee - 8),
         "hips": vis & (yy >= t["leg_top"] - 100) & (yy < k - 20) & ~arm_n & ~arm_f,
     }
+    # Knee/thigh plate belongs to the lower leg (user sketch): find the closed painted
+    # outline around each knee pivot, fill it, and move it from thigh to shin so the plate
+    # is never split or duplicated. Outfits without a closed shape there are unaffected.
+    _, _, val = _hsv(a)
+    outline = ndimage.binary_closing((val < 0.22) & vis, iterations=2)
+    shapes = ndimage.binary_fill_holes(outline) & ~outline
+    lab, _ = ndimage.label(shapes)
+    for side, near_side in (("n", near), ("f", ~near)):
+        kx, ky = t["pivots"]["knee_" + side]
+        ids = {lab[ky + dy, kx + dx] for dy in range(-40, 41, 10) for dx in range(-40, 41, 10)} - {0}
+        best = max(ids, key=lambda l: (lab == l).sum(), default=0)
+        if best:
+            cop = lab == best
+            ys = np.where(cop)[0]
+            if 3000 < cop.sum() < 40000 and ys.min() > hem_seam.min() - 20 and ys.max() < ky + 200:
+                cop = ndimage.binary_dilation(cop, iterations=4) & vis & near_side   # + its outline
+                regions["shin_" + side] = regions["shin_" + side] | cop
+                regions["thigh_" + side] = regions["thigh_" + side] & ~cop
+    # the static hip underlay must stay above the hem, or it leaves a still copy of the knees
+    regions["hips"] &= yy < hem_seam + 25
+
     if hem >= k:  # long robe: thighs are never visible, and copies of robe pixels would
         for n in ("thigh_n", "thigh_f", "hips"):   # peek out as the skirt sways
             regions[n] = np.zeros_like(vis)

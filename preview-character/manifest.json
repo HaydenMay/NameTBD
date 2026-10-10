@@ -1,5 +1,5 @@
 {
- "version": 1791657882,
+ "version": 1791659323,
  "canvas": [
   1024,
   1536
@@ -1001,7 +1001,7 @@
      "shin_n": {
       "file": "assets/anim_knight_m_shin_n.png",
       "x": 299,
-      "y": 1037
+      "y": 992
      },
      "thigh_f": {
       "file": "assets/anim_knight_m_thigh_f.png",
@@ -1011,7 +1011,7 @@
      "shin_f": {
       "file": "assets/anim_knight_m_shin_f.png",
       "x": 517,
-      "y": 1044
+      "y": 992
      },
      "hips": {
       "file": "assets/anim_knight_m_hips.png",
