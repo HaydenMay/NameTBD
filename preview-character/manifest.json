@@ -1,5 +1,5 @@
 {
- "version": 1791657389,
+ "version": 1791657882,
  "canvas": [
   1024,
   1536
@@ -995,23 +995,23 @@
      },
      "thigh_n": {
       "file": "assets/anim_knight_m_thigh_n.png",
-      "x": 330,
-      "y": 925
+      "x": 321,
+      "y": 903
      },
      "shin_n": {
       "file": "assets/anim_knight_m_shin_n.png",
       "x": 299,
-      "y": 1055
+      "y": 1037
      },
      "thigh_f": {
       "file": "assets/anim_knight_m_thigh_f.png",
       "x": 517,
-      "y": 925
+      "y": 905
      },
      "shin_f": {
       "file": "assets/anim_knight_m_shin_f.png",
       "x": 517,
-      "y": 1055
+      "y": 1044
      },
      "hips": {
       "file": "assets/anim_knight_m_hips.png",
@@ -1184,13 +1184,13 @@
      },
      "shin_n": {
       "file": "assets/anim_cleric_m_shin_n.png",
-      "x": 295,
-      "y": 1130
+      "x": 274,
+      "y": 1096
      },
      "shin_f": {
       "file": "assets/anim_cleric_m_shin_f.png",
-      "x": 521,
-      "y": 1130
+      "x": 517,
+      "y": 1095
      },
      "torso": {
       "file": "assets/anim_cleric_m_torso.png",
@@ -1370,23 +1370,23 @@
      },
      "thigh_n": {
       "file": "assets/anim_guard_m_thigh_n.png",
-      "x": 344,
-      "y": 840
+      "x": 346,
+      "y": 796
      },
      "shin_n": {
       "file": "assets/anim_guard_m_shin_n.png",
       "x": 314,
-      "y": 1055
+      "y": 1077
      },
      "thigh_f": {
       "file": "assets/anim_guard_m_thigh_f.png",
       "x": 517,
-      "y": 840
+      "y": 821
      },
      "shin_f": {
       "file": "assets/anim_guard_m_shin_f.png",
       "x": 517,
-      "y": 1055
+      "y": 1077
      },
      "hips": {
       "file": "assets/anim_guard_m_hips.png",

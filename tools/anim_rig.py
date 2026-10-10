@@ -59,6 +59,19 @@ def _arm_mask(a, vis, xx, yy, t, side):
     return m & vis
 
 
+def _seam(a, vis, y_mid, up, down):
+    """Per-column cut line: snap to the darkest painted outline within [y_mid-up, y_mid+down],
+    then median-smooth across columns so plates are cut along their edges, not through them."""
+    _, _, v = _hsv(a)
+    H, W = vis.shape
+    lo, hi = max(0, y_mid - up), min(H, y_mid + down)
+    band = np.where(vis[lo:hi], v[lo:hi], 9.0)
+    band = ndimage.uniform_filter1d(band, 5, axis=1)          # favour outlines that run sideways
+    seam = lo + np.argmin(band, axis=0)
+    seam = np.where(vis[lo:hi].any(0), seam, y_mid)
+    return ndimage.median_filter(seam, size=41, mode="nearest").astype(int)
+
+
 def split(a, t, hem, belt):
     H, W = a.shape[:2]
     yy, xx = np.mgrid[0:H, 0:W]
@@ -66,15 +79,17 @@ def split(a, t, hem, belt):
     arm_n = _arm_mask(a, vis, xx, yy, t, "n")
     arm_f = _arm_mask(a, vis, xx, yy, t, "f") & ~arm_n
     leg_top = max(t["leg_top"], hem)
-    legs = vis & (yy >= leg_top) & ~arm_n & ~arm_f
+    hem_seam = _seam(a, vis, leg_top, 45, 45)[None, :]            # follows the hem / plate edge
+    legs = vis & (yy >= hem_seam) & ~arm_n & ~arm_f
     torso = vis & ~legs & ~arm_n & ~arm_f
     near = xx < t["leg_split_x"]
     k = t["knee_y"]
-    thigh_zone = vis & (yy >= leg_top - 60) & ~arm_n & ~arm_f
+    knee = _seam(a, vis, k, 50, 50)[None, :]                       # follows the knee plate / cuff edge
+    thigh_zone = vis & (yy >= hem_seam - 60) & ~arm_n & ~arm_f
     regions = {
         "arm_n": arm_n, "arm_f": arm_f,
-        "thigh_n": thigh_zone & near & (yy < k + 30), "shin_n": legs & near & (yy >= k - 30),
-        "thigh_f": thigh_zone & ~near & (yy < k + 30), "shin_f": legs & ~near & (yy >= k - 30),
+        "thigh_n": thigh_zone & near & (yy < knee + 25), "shin_n": legs & near & (yy >= knee - 8),
+        "thigh_f": thigh_zone & ~near & (yy < knee + 25), "shin_f": legs & ~near & (yy >= knee - 8),
         "hips": vis & (yy >= t["leg_top"] - 100) & (yy < k - 20) & ~arm_n & ~arm_f,
     }
     if hem >= k:  # long robe: thighs are never visible, and copies of robe pixels would
