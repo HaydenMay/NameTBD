@@ -20,7 +20,7 @@ def _hsv(a):
     return h, s, mx
 
 
-def skin_mask(a, region=None, hue_lo=None):
+def skin_mask(a, region=None, hue_lo=None, reach=4, eye_zone=None):
     """hue_lo: heads paint noses/ears a yellower lime (use ~40); outfits must stay at 50
     so gold trim and cream cloth aren't caught."""
     h, s, v = _hsv(a)
@@ -30,9 +30,14 @@ def skin_mask(a, region=None, hue_lo=None):
         core &= region
     core = ndimage.binary_closing(ndimage.binary_opening(core, iterations=1), iterations=2)
     # Edge pixels: any greenish tint, however faint, touching the core.
-    near = ndimage.binary_dilation(core, iterations=4)
+    near = ndimage.binary_dilation(core, iterations=reach)
     edge = near & hue_ok & (s > 0.08)
     eye_white = (v > 0.8) & (s < 0.35)  # sclera and highlights pick up a faint lime tint
+    if eye_zone is not None:  # only near the eyes; pale rim light on the skull is skin
+        eye_white &= eye_zone
+        # on heads, any lime tint outside the eyes is skin (faint rim light at the skull edge)
+        rim_hue = (h >= (hue_lo or KEY_HUE[0])) & (h <= 140)
+        edge |= rim_hue & (s > 0.08) & ~eye_zone
     return (core | edge) & ~eye_white
 
 

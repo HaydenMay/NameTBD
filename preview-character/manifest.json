@@ -1,5 +1,5 @@
 {
- "version": 1791614268,
+ "version": 1791615056,
  "canvas": [
   1024,
   1536
@@ -357,9 +357,9 @@
     "y": 82,
     "skin_mask": "assets/head_aldric_skin.png",
     "key_lab": [
-     76.57,
-     -29.21,
-     66.85
+     76.53,
+     -28.97,
+     66.4
     ]
    }
   },
@@ -392,9 +392,9 @@
     "y": 82,
     "skin_mask": "assets/head_hobb_skin.png",
     "key_lab": [
-     75.95,
-     -22.51,
-     68.06
+     75.86,
+     -22.48,
+     67.97
     ]
    }
   },
@@ -424,9 +424,9 @@
     "y": 81,
     "skin_mask": "assets/head_pip_skin.png",
     "key_lab": [
-     78.49,
-     -24.84,
-     69.3
+     78.41,
+     -24.7,
+     68.92
     ]
    }
   },
@@ -441,7 +441,8 @@
     ]
    },
    "blocked_hair": [
-    "m_midpart"
+    "m_midpart",
+    "m_wavy"
    ],
    "id": "edric",
    "label": "Edric",
@@ -459,9 +460,9 @@
     "y": 82,
     "skin_mask": "assets/head_edric_skin.png",
     "key_lab": [
-     74.17,
-     -26.64,
-     67.41
+     74.21,
+     -26.46,
+     67.03
     ]
    }
   },
@@ -495,9 +496,9 @@
     "y": 82,
     "skin_mask": "assets/head_m1_lean_a_skin.png",
     "key_lab": [
-     76.18,
-     -28.22,
-     68.56
+     76.19,
+     -28.04,
+     68.19
     ]
    }
   },
@@ -531,9 +532,9 @@
     "y": 82,
     "skin_mask": "assets/head_m6_lean_b_skin.png",
     "key_lab": [
-     75.71,
-     -28.75,
-     67.57
+     75.76,
+     -28.56,
+     67.22
     ]
    }
   },
@@ -563,9 +564,9 @@
     "y": 82,
     "skin_mask": "assets/head_m2_weathered_skin.png",
     "key_lab": [
-     73.48,
-     -28.51,
-     65.58
+     73.5,
+     -28.41,
+     65.36
     ]
    }
   },
@@ -595,9 +596,9 @@
     "y": 82,
     "skin_mask": "assets/head_m3_gentle_skin.png",
     "key_lab": [
-     75.23,
-     -29.09,
-     67.9
+     75.06,
+     -28.89,
+     67.5
     ]
    }
   },
@@ -627,9 +628,9 @@
     "y": 81,
     "skin_mask": "assets/head_m4_stern_skin.png",
     "key_lab": [
-     73.98,
-     -26.71,
-     66.15
+     74.0,
+     -26.6,
+     65.93
     ]
    }
   },
@@ -659,9 +660,9 @@
     "y": 82,
     "skin_mask": "assets/head_m5_sunworn_skin.png",
     "key_lab": [
-     74.7,
-     -26.8,
-     65.48
+     74.69,
+     -26.52,
+     64.85
     ]
    }
   },
@@ -684,9 +685,9 @@
     "y": 92,
     "skin_mask": "assets/head_brug_skin.png",
     "key_lab": [
-     67.99,
-     -13.95,
-     60.8
+     67.91,
+     -13.86,
+     60.41
     ]
    }
   },
@@ -716,9 +717,9 @@
     "y": 54,
     "skin_mask": "assets/head_rowan_skin.png",
     "key_lab": [
-     74.76,
-     -21.33,
-     60.13
+     74.57,
+     -21.2,
+     59.8
     ]
    }
   },
@@ -748,9 +749,9 @@
     "y": 53,
     "skin_mask": "assets/head_mira_skin.png",
     "key_lab": [
-     73.91,
-     -21.29,
-     62.04
+     73.74,
+     -21.23,
+     61.85
     ]
    }
   }
@@ -986,26 +987,6 @@
    }
   },
   {
-   "id": "m_ponytail",
-   "label": "Ponytail",
-   "fits": [
-    "m"
-   ],
-   "ref_skull": [
-    82,
-    523
-   ],
-   "lum": [
-    13.8,
-    206.9
-   ],
-   "part": {
-    "file": "assets/hair_m_ponytail.png",
-    "x": 312,
-    "y": 35
-   }
-  },
-  {
    "id": "m_shaggy",
    "label": "Shaggy",
    "fits": [
@@ -1046,46 +1027,6 @@
    }
   },
   {
-   "id": "m_topknot_soft",
-   "label": "Top-knot",
-   "fits": [
-    "m"
-   ],
-   "ref_skull": [
-    82,
-    523
-   ],
-   "lum": [
-    7.1,
-    204.8
-   ],
-   "part": {
-    "file": "assets/hair_m_topknot_soft.png",
-    "x": 378,
-    "y": 32
-   }
-  },
-  {
-   "id": "m_buzz",
-   "label": "Buzz cut",
-   "fits": [
-    "m"
-   ],
-   "ref_skull": [
-    82,
-    523
-   ],
-   "lum": [
-    13.6,
-    179.2
-   ],
-   "part": {
-    "file": "assets/hair_m_buzz.png",
-    "x": 397,
-    "y": 77
-   }
-  },
-  {
    "id": "m_midpart",
    "label": "Middle part",
    "fits": [
@@ -1123,26 +1064,6 @@
     "file": "assets/hair_spiky02.png",
     "x": 367,
     "y": 37
-   }
-  },
-  {
-   "id": "slicked01",
-   "label": "Slicked back",
-   "fits": [
-    "m"
-   ],
-   "ref_skull": [
-    84,
-    520
-   ],
-   "lum": [
-    7.1,
-    176.9
-   ],
-   "part": {
-    "file": "assets/hair_slicked01.png",
-    "x": 351,
-    "y": 72
    }
   },
   {

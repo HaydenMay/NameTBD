@@ -58,7 +58,7 @@ BROWS = {"aldric", "rowan", "mira", "hobb", "pip", "edric", "m1_lean_a", "m6_lea
 BLOCKED_HAIR = {
     "m1_lean_a": ["m_wavy", "m_midpart"],   # narrower cheek: far-side strands float off the face
     "m6_lean_b": ["m_wavy", "m_midpart"],
-    "edric": ["m_midpart"],                  # far-side strands stand off the cheek
+    "edric": ["m_midpart", "m_wavy"],        # far-side strands stand off the cheek
     "hobb": ["m_midpart"],                   # wider face: fringe lands on his brow
 }
 SCARS = set()  # old scars were painted on retired faces; scars come back as generic layers                     # art/parts/scars/scar_<id>.png (optional layer)
@@ -104,14 +104,14 @@ SKINS = {  # mid-tone sRGB of each skin; converted to Lab for the page
 HAIRS = [  # (id, label, fits, reference image the hair was drawn on[, x nudge])
     ("m_short", "Short", ["m"], "male_base"),
     ("m_wavy", "Long wavy", ["m"], "male_base"),
-    ("m_ponytail", "Ponytail", ["m"], "male_base"),
+    # pulled (gap behind the ear): ("m_ponytail", "Ponytail", ["m"], "male_base"),
     ("m_shaggy", "Shaggy", ["m"], "male_base"),
     ("m_curly", "Curly", ["m"], "male_base"),
-    ("m_topknot_soft", "Top-knot", ["m"], "male_base"),
-    ("m_buzz", "Buzz cut", ["m"], "male_base"),
+    # pulled (shaved sides lost in masking): ("m_topknot_soft", "Top-knot", ["m"], "male_base"),
+    # pulled (shaved sides lost in masking): ("m_buzz", "Buzz cut", ["m"], "male_base"),
     ("m_midpart", "Middle part", ["m"], "male_base"),
     ("spiky02", "Spiky", ["m"], "aldric_bald_01"),
-    ("slicked01", "Slicked back", ["m"], "aldric_bald_01"),
+    # pulled (old source, ear gaps): ("slicked01", "Slicked back", ["m"], "aldric_bald_01"),
     # replaced by m_topknot_soft: ("topknot02", "Top-knot (shaved)", ["m"], "aldric_bald_limekey"),
     ("bun01", "Bun", ["f"], "human_f_bald_01"),
     ("sidebraid01", "Side braid", ["f"], "human_f_bald_01"),
@@ -155,7 +155,7 @@ def skull(a):
     return [top, int((xs.min() + xs.max()) / 2)]
 
 
-def save_part(a, name, lime=False, hue_lo=None):
+def save_part(a, name, lime=False, hue_lo=None, reach=4, eyes=False):
     """Crop to content and save; for lime parts also save a skin mask + its mean Lab."""
     ys, xs = np.where(a[..., 3] > 0)
     x0, y0, x1, y1 = xs.min(), ys.min(), xs.max() + 1, ys.max() + 1
@@ -163,7 +163,11 @@ def save_part(a, name, lime=False, hue_lo=None):
     Image.fromarray(crop).save(ASSETS / f"{name}.png", optimize=True)
     part = {"file": f"assets/{name}.png", "x": int(x0), "y": int(y0)}
     if lime:
-        m = skin_mask(crop, hue_lo=hue_lo) & (crop[..., 3] > 0)
+        zone = None
+        if eyes:  # heads: eyes sit in the front half, 120-260px below the crown
+            zone = np.zeros(crop.shape[:2], bool)
+            zone[120:260, crop.shape[1] // 2:] = True
+        m = skin_mask(crop, hue_lo=hue_lo, reach=reach, eye_zone=zone) & (crop[..., 3] > 0)
         if m.sum() > 50:
             Image.fromarray((m * 255).astype(np.uint8)).save(ASSETS / f"{name}_skin.png", optimize=True)
             part["skin_mask"] = f"assets/{name}_skin.png"
@@ -244,8 +248,10 @@ def main():
         head[~head_mask(a, TEMPLATES[tpl]["cut"]), 3] = 0
         if fid in BROWS:  # neutralise faint blue brow edges left on the face under the brow layer
             h, sat, _ = _hsv(head)
-            tint = (h >= 170) & (h <= 275) & (sat > 0.1)
+            tint = (h >= 125) & (h <= 275) & (sat > 0.1)   # teal (lime/blue blend) through blue
             tint[300:] = False
+            sk = skull(head)
+            tint[sk[0] + 120:sk[0] + 260, sk[1]:] &= ~((h >= 195) & (h <= 275))[sk[0] + 120:sk[0] + 260, sk[1]:]  # keep blue irises
             grey = head[..., :3].mean(2).astype(np.uint8) // 2
             head[tint, 0] = head[tint, 1] = head[tint, 2] = grey[tint]
         extra = {}
@@ -257,7 +263,7 @@ def main():
         if fid in BLOCKED_HAIR:
             extra["blocked_hair"] = BLOCKED_HAIR[fid]
         faces.append({**extra, "id": fid, "label": label, "template": tpl, "group": tpl, "skull": skull(a), "races": races,
-                      "lime": True, "part": save_part(head, f"head_{fid}", True, hue_lo=40)})
+                      "lime": True, "part": save_part(head, f"head_{fid}", True, hue_lo=40, reach=12, eyes=True)})
 
     bodies = []
     for bid, fname, label, tpl in BODIES:
