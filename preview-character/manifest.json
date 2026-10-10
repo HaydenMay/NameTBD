@@ -1,5 +1,5 @@
 {
- "version": 1791613502,
+ "version": 1791613781,
  "canvas": [
   1024,
   1536
@@ -1069,26 +1069,6 @@
     "file": "assets/hair_m_buzz.png",
     "x": 397,
     "y": 77
-   }
-  },
-  {
-   "id": "m_midpart",
-   "label": "Middle part",
-   "fits": [
-    "m"
-   ],
-   "ref_skull": [
-    82,
-    523
-   ],
-   "lum": [
-    7.6,
-    204.2
-   ],
-   "part": {
-    "file": "assets/hair_m_midpart.png",
-    "x": 355,
-    "y": 49
    }
   },
   {
