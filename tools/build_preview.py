@@ -56,8 +56,10 @@ FACES = [
 BROWS = {"aldric", "rowan", "mira", "hobb", "pip", "edric", "m1_lean_a", "m6_lean_b", "m2_weathered", "m3_gentle", "m4_stern", "m5_sunworn"}   # art/parts/brows/brows_<id>.png (blue key)
 # Bloodline-style blocklist: face/hair pairs that were reviewed and rejected.
 BLOCKED_HAIR = {
-    "m1_lean_a": ["m_wavy"],   # narrower cheek: far-side strands float off the face
-    "m6_lean_b": ["m_wavy"],
+    "m1_lean_a": ["m_wavy", "m_midpart"],   # narrower cheek: far-side strands float off the face
+    "m6_lean_b": ["m_wavy", "m_midpart"],
+    "edric": ["m_midpart"],                  # far-side strands stand off the cheek
+    "hobb": ["m_midpart"],                   # wider face: fringe lands on his brow
 }
 SCARS = set()  # old scars were painted on retired faces; scars come back as generic layers                     # art/parts/scars/scar_<id>.png (optional layer)
 

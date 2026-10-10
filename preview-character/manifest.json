@@ -1,5 +1,5 @@
 {
- "version": 1791614187,
+ "version": 1791614268,
  "canvas": [
   1024,
   1536
@@ -373,6 +373,9 @@
      158.3
     ]
    },
+   "blocked_hair": [
+    "m_midpart"
+   ],
    "id": "hobb",
    "label": "Hobb",
    "template": "m",
@@ -437,6 +440,9 @@
      155.8
     ]
    },
+   "blocked_hair": [
+    "m_midpart"
+   ],
    "id": "edric",
    "label": "Edric",
    "template": "m",
@@ -470,7 +476,8 @@
     ]
    },
    "blocked_hair": [
-    "m_wavy"
+    "m_wavy",
+    "m_midpart"
    ],
    "id": "m1_lean_a",
    "label": "Corwin",
@@ -505,7 +512,8 @@
     ]
    },
    "blocked_hair": [
-    "m_wavy"
+    "m_wavy",
+    "m_midpart"
    ],
    "id": "m6_lean_b",
    "label": "Corwin (alt)",
