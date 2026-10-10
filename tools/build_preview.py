@@ -37,13 +37,15 @@ TEMPLATES = {"m": {"cut": 345}, "f": {"cut": 332}}
 
 # id, file, label, template, races it suits (None = any). All lime-skin edits.
 FACES = [
-    ("aldric", "aldric_bald_limekey", "Aldric", "m", None),
+    ("aldric", "aldric_bluebrow", "Aldric", "m", None),
     ("bran", "male_face02_cleric", "Bran", "m", None),
-    ("garrett", "male_face03_cleric", "Garrett", "m", None),
+    ("garrett", "garrett_bluebrow", "Garrett", "m", None),
     ("brug", "ogre_lime_01", "Brug", "m", ["ogre"]),
-    ("rowan", "human_f_lime_01", "Rowan", "f", None),
-    ("mira", "female_face02_cleric", "Mira", "f", None),
+    ("rowan", "rowan_bluebrow", "Rowan", "f", None),
+    ("mira", "mira_bluebrow", "Mira", "f", None),
 ]
+BROWS = {"aldric", "garrett", "rowan", "mira"}   # art/parts/brows/brows_<id>.png (blue key)
+SCARS = {"aldric", "garrett"}                     # art/parts/scars/scar_<id>.png (optional layer)
 
 # id, file, label, template
 BODIES = [
@@ -84,9 +86,9 @@ SKINS = {  # mid-tone sRGB of each skin; converted to Lab for the page
 }
 
 HAIRS = [
-    ("short01", "Short", ["m"], "aldric_bald_01"),
-    ("wavy01", "Wavy", ["m"], "aldric_bald_01"),
-    ("topknot01", "Top-knot", ["m"], "aldric_bald_01"),
+    ("short02", "Short", ["m"], "aldric_bald_limekey", 8),
+    ("wavy02", "Long wavy", ["m"], "aldric_bald_limekey", -4),
+    ("topknot02", "Top-knot", ["m"], "aldric_bald_limekey"),
     ("ponytail02", "Ponytail", ["m"], "aldric_bald_01"),
     ("slicked01", "Slicked back", ["m"], "aldric_bald_01"),
     ("shaggy01", "Shaggy", ["m"], "aldric_bald_01"),
@@ -220,7 +222,19 @@ def main():
         a = keyed(SRC / f"{fname}.png")
         head = a.copy()
         head[~head_mask(a, TEMPLATES[tpl]["cut"]), 3] = 0
-        faces.append({"id": fid, "label": label, "template": tpl, "group": tpl, "skull": skull(a), "races": races,
+        if fid in BROWS:  # neutralise faint blue brow edges left on the face under the brow layer
+            h, sat, _ = _hsv(head)
+            tint = (h >= 170) & (h <= 275) & (sat > 0.1)
+            tint[300:] = False
+            grey = head[..., :3].mean(2).astype(np.uint8) // 2
+            head[tint, 0] = head[tint, 1] = head[tint, 2] = grey[tint]
+        extra = {}
+        if fid in BROWS:
+            b = np.asarray(Image.open(PARTS / "brows" / f"brows_{fid}.png").convert("RGBA")).copy()
+            extra["brows"] = {**save_part(b, f"brows_{fid}"), "lum": lum_range(b)}
+        if fid in SCARS:
+            extra["scar"] = save_part(np.asarray(Image.open(PARTS / "scars" / f"scar_{fid}.png").convert("RGBA")).copy(), f"scar_{fid}")
+        faces.append({**extra, "id": fid, "label": label, "template": tpl, "group": tpl, "skull": skull(a), "races": races,
                       "lime": True, "part": save_part(head, f"head_{fid}", True, hue_lo=40)})
 
     bodies = []
@@ -256,9 +270,10 @@ def main():
         ears[e] = {"ref_skull": ref_skulls["aldric_bald_limekey"], "part": save_part(a, f"ears_{e}", True, hue_lo=40)}
 
     hairs = []
-    for hid, label, fits, ref in HAIRS:
+    for hid, label, fits, ref, *shift in HAIRS:
         a = np.asarray(Image.open(PARTS / "hair" / f"hair_{hid}.png").convert("RGBA")).copy()
-        hairs.append({"id": hid, "label": label, "fits": fits, "ref_skull": ref_skulls[ref],
+        ry, rx = ref_skulls[ref]
+        hairs.append({"id": hid, "label": label, "fits": fits, "ref_skull": [ry, rx - (shift[0] if shift else 0)],
                       "lum": lum_range(a), "part": save_part(a, f"hair_{hid}")})
 
     skins = {k: {"rgb": list(v), "lab": [round(float(x), 2) for x in rgb2lab(np.array([[v]], float))[0, 0]]}

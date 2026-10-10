@@ -1,5 +1,5 @@
 {
- "version": 1791607589,
+ "version": 1791609796,
  "canvas": [
   1024,
   1536
@@ -332,12 +332,26 @@
  },
  "faces": [
   {
+   "brows": {
+    "file": "assets/brows_aldric.png",
+    "x": 503,
+    "y": 169,
+    "lum": [
+     15.9,
+     122.1
+    ]
+   },
+   "scar": {
+    "file": "assets/scar_aldric.png",
+    "x": 537,
+    "y": 137
+   },
    "id": "aldric",
    "label": "Aldric",
    "template": "m",
    "group": "m",
    "skull": [
-    84,
+    83,
     520
    ],
    "races": null,
@@ -345,12 +359,12 @@
    "part": {
     "file": "assets/head_aldric.png",
     "x": 385,
-    "y": 84,
+    "y": 83,
     "skin_mask": "assets/head_aldric_skin.png",
     "key_lab": [
-     70.55,
-     -16.65,
-     61.83
+     71.31,
+     -15.95,
+     63.25
     ]
    }
   },
@@ -378,13 +392,27 @@
    }
   },
   {
+   "brows": {
+    "file": "assets/brows_garrett.png",
+    "x": 500,
+    "y": 162,
+    "lum": [
+     25.9,
+     128.0
+    ]
+   },
+   "scar": {
+    "file": "assets/scar_garrett.png",
+    "x": 518,
+    "y": 132
+   },
    "id": "garrett",
    "label": "Garrett",
    "template": "m",
    "group": "m",
    "skull": [
     80,
-    518
+    520
    ],
    "races": null,
    "lime": true,
@@ -394,9 +422,9 @@
     "y": 80,
     "skin_mask": "assets/head_garrett_skin.png",
     "key_lab": [
-     70.85,
-     -14.39,
-     64.76
+     73.91,
+     -13.62,
+     66.08
     ]
    }
   },
@@ -426,6 +454,15 @@
    }
   },
   {
+   "brows": {
+    "file": "assets/brows_rowan.png",
+    "x": 510,
+    "y": 155,
+    "lum": [
+     44.6,
+     138.4
+    ]
+   },
    "id": "rowan",
    "label": "Rowan",
    "template": "f",
@@ -442,32 +479,41 @@
     "y": 54,
     "skin_mask": "assets/head_rowan_skin.png",
     "key_lab": [
-     74.23,
-     -23.58,
-     61.84
+     74.76,
+     -21.33,
+     60.13
     ]
    }
   },
   {
+   "brows": {
+    "file": "assets/brows_mira.png",
+    "x": 510,
+    "y": 146,
+    "lum": [
+     12.3,
+     117.4
+    ]
+   },
    "id": "mira",
    "label": "Mira",
    "template": "f",
    "group": "f",
    "skull": [
-    54,
-    513
+    53,
+    512
    ],
    "races": null,
    "lime": true,
    "part": {
     "file": "assets/head_mira.png",
-    "x": 396,
-    "y": 54,
+    "x": 393,
+    "y": 53,
     "skin_mask": "assets/head_mira_skin.png",
     "key_lab": [
-     76.33,
-     -21.09,
-     65.66
+     73.91,
+     -21.29,
+     62.04
     ]
    }
   }
@@ -663,47 +709,47 @@
  },
  "hairs": [
   {
-   "id": "short01",
+   "id": "short02",
    "label": "Short",
    "fits": [
     "m"
    ],
    "ref_skull": [
     84,
-    520
+    512
    ],
    "lum": [
-    27.1,
-    215.3
+    12.1,
+    173.6
    ],
    "part": {
-    "file": "assets/hair_short01.png",
-    "x": 330,
-    "y": 30
+    "file": "assets/hair_short02.png",
+    "x": 388,
+    "y": 65
    }
   },
   {
-   "id": "wavy01",
-   "label": "Wavy",
+   "id": "wavy02",
+   "label": "Long wavy",
    "fits": [
     "m"
    ],
    "ref_skull": [
     84,
-    520
+    524
    ],
    "lum": [
-    29.0,
-    214.3
+    7.1,
+    182.8
    ],
    "part": {
-    "file": "assets/hair_wavy01.png",
-    "x": 281,
-    "y": 33
+    "file": "assets/hair_wavy02.png",
+    "x": 311,
+    "y": 71
    }
   },
   {
-   "id": "topknot01",
+   "id": "topknot02",
    "label": "Top-knot",
    "fits": [
     "m"
@@ -713,13 +759,13 @@
     520
    ],
    "lum": [
-    15.1,
-    215.7
+    7.1,
+    191.9
    ],
    "part": {
-    "file": "assets/hair_topknot01.png",
-    "x": 342,
-    "y": 21
+    "file": "assets/hair_topknot02.png",
+    "x": 373,
+    "y": 33
    }
   },
   {

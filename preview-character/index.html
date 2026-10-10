@@ -64,6 +64,7 @@
     <label class="field">Race <select id="race"></select></label>
     <label class="field">Face <select id="face"></select></label>
     <div class="field">Skin <span id="skinNote"></span><div class="swatches" id="skins"></div></div>
+    <div class="check" id="scarRow"><input type="checkbox" id="scar"><label for="scar">Scar</label></div>
     <label class="field">Outfit <select id="outfit"></select></label>
     <label class="field">Hairstyle <select id="hair"></select></label>
     <div class="field">Hair colour<div class="swatches" id="colours"></div></div>
@@ -143,12 +144,13 @@ function skinned(part, skinId) {
 }
 
 // Hair: gradient map over the part's own luminance range.
-function haired(hair, colour) {
-  const key = hair.id + '|' + colour;
+function haired(hair, colour) { return gradientPart(hair.part.file, hair.lum, colour); }
+function gradientPart(file, lum, colour) {
+  const key = file + '|' + colour;
   if (cache[key]) return cache[key];
-  const c = canvasOf(img[hair.part.file]), g = c.getContext('2d');
+  const c = canvasOf(img[file]), g = c.getContext('2d');
   const d = g.getImageData(0, 0, c.width, c.height), p = d.data, ramp = M.hair_colours[colour];
-  const [lo, hi] = hair.lum, span = Math.max(hi - lo, 1), n = ramp.length - 1;
+  const [lo, hi] = lum, span = Math.max(hi - lo, 1), n = ramp.length - 1;
   for (let i = 0; i < p.length; i += 4) {
     if (!p[i + 3]) continue;
     const t = Math.min(1, Math.max(0, ((p[i] * .299 + p[i + 1] * .587 + p[i + 2] * .114) - lo) / span)) * n;
@@ -172,6 +174,11 @@ function compose() {
   const put = (part, src, dx = 0, dy = 0) => g.drawImage(src, part.x + dx, part.y + dy);
   if (body && body.back) put(body.back, skinned(body.back, state.skin));
   put(face.part, skinned(face.part, skin));
+  if (face.scar && state.scar) {  // multiply: scar reads as a darker, redder line on any skin
+    g.save(); g.globalCompositeOperation = 'multiply'; g.globalAlpha = 0.85;
+    put(face.scar, img[face.scar.file]); g.restore();
+  }
+  if (face.brows) put(face.brows, gradientPart(face.brows.file, face.brows.lum, state.hairCol));
   if (body) put(body.part, skinned(body.part, body.lime ? state.skin : null));
   if (face.beard) put(face.beard, img[face.beard.file]);
   const hair = byId(M.hairs, state.hair);
@@ -200,7 +207,7 @@ function render() {
   p.drawImage(c, sx - 270, sy - 70, 540, 540, 0, 0, 512, 512);
 
   const recipe = `race=${state.race}&face=${state.face}&skin=${state.skin}&outfit=${state.outfit}` +
-    `&hair=${state.hair || 'none'}&hair_col=${state.hairCol}`;
+    `&hair=${state.hair || 'none'}&hair_col=${state.hairCol}` + (state.scar && face.scar ? '&scar=1' : '');
   $('recipe').textContent = recipe;
   history.replaceState(null, '', '#' + recipe);
 }
@@ -218,6 +225,8 @@ function sync() {
     `<button class="swatch" data-s="${s}" title="${s}" aria-label="${s}" aria-pressed="${s === state.skin}" ` +
     `style="background:rgb(${M.skins[s].rgb.join(',')})"></button>`).join('') : '';
   $('skinNote').textContent = face.lime ? '' : '(fixed on this face)';
+  $('scarRow').style.display = face.scar ? '' : 'none';
+  $('scar').checked = !!state.scar;
   const bodies = bodiesFor(face);
   if (!bodies.some(b => b.id === state.outfit)) state.outfit = bodies[0].id;
   $('outfit').innerHTML = bodies.map(b => `<option value="${b.id}">${b.label}</option>`).join('');
@@ -240,7 +249,7 @@ function generate(rand) {
   const pick = a => a[Math.floor(rand() * a.length)];
   const race = pick(Object.keys(M.races)), face = pick(facesFor(race));
   state = { race, face: face.id, skin: pick(M.races[race].skins), outfit: pick(bodiesFor(face)).id,
-    hair: rand() < 0.12 ? '' : pick(hairsFor(face)).id, hairCol: pick(M.races[race].hair) };
+    hair: rand() < 0.12 ? '' : pick(hairsFor(face)).id, hairCol: pick(M.races[race].hair), scar: rand() < 0.25 };
   sync();
 }
 
@@ -248,13 +257,13 @@ function fromHash() {
   const q = new URLSearchParams(location.hash.slice(1));
   if (!q.get('face') || !M.races[q.get('race')]) return false;
   state = { race: q.get('race'), face: q.get('face'), skin: q.get('skin'), outfit: q.get('outfit'),
-    hair: q.get('hair') === 'none' ? '' : q.get('hair'), hairCol: q.get('hair_col') || 'brown' };
+    hair: q.get('hair') === 'none' ? '' : q.get('hair'), hairCol: q.get('hair_col') || 'brown', scar: q.get('scar') === '1' };
   return byId(M.faces, state.face) && byId(M.bodies, state.outfit);
 }
 
 (async () => {
   M = await (await fetch('manifest.json', { cache: 'no-cache' })).json();
-  const parts = [...M.faces.flatMap(f => [f.part, f.beard]), ...M.bodies.flatMap(b => [b.part, b.back]),
+  const parts = [...M.faces.flatMap(f => [f.part, f.beard, f.brows, f.scar]), ...M.bodies.flatMap(b => [b.part, b.back]),
     ...Object.values(M.ears).map(e => e.part), ...M.hairs.map(h => h.part)].filter(Boolean);
   await Promise.all(parts.flatMap(p => [p.file, p.skin_mask]).filter(Boolean).map(load));
 
@@ -266,12 +275,13 @@ function fromHash() {
   $('outfit').onchange = e => { state.outfit = e.target.value; render(); };
   $('hair').onchange = e => { state.hair = e.target.value; render(); };
   $('raceSize').onchange = render;
+  $('scar').onchange = e => { state.scar = e.target.checked; render(); };
   $('colours').onclick = e => { const c = e.target.dataset.c; if (c) { state.hairCol = c; sync(); } };
   $('random').onclick = () => { const s = Math.floor(Math.random() * 1e6); $('seed').value = s; generate(mulberry32(s)); };
   $('fromSeed').onclick = () => generate(mulberry32(+$('seed').value || 0));
   $('copy').onclick = () => navigator.clipboard && navigator.clipboard.writeText(location.href);
 
-  if (!fromHash()) state = { race: 'human', face: 'aldric', skin: 'fair', outfit: 'knight_m', hair: 'short01', hairCol: 'blond' };
+  if (!fromHash()) state = { race: 'human', face: 'aldric', skin: 'fair', outfit: 'knight_m', hair: 'short02', hairCol: 'blond', scar: true };
   sync();
   window.addEventListener('hashchange', () => { if (fromHash()) sync(); });
 })();
