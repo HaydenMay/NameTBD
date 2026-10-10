@@ -170,7 +170,7 @@ RACES = {
 SKINS = {  # mid-tone sRGB of each skin; converted to Lab for the page
     "porcelain": (246, 212, 188), "fair": (236, 186, 150), "tan": (212, 156, 112),
     "olive": (186, 138, 94), "brown": (146, 96, 62), "deep": (96, 62, 44),
-    "moonpale": (236, 222, 214), "golden": (224, 182, 128), "cool_olive": (182, 166, 128),
+    "moonpale": (222, 204, 192), "golden": (224, 182, 128), "cool_olive": (182, 166, 128),
     "ruddy": (226, 160, 126), "weathered": (168, 116, 82),
     "moss": (122, 148, 70), "olive_green": (150, 154, 78), "grey_green": (124, 140, 108), "yellow_green": (168, 174, 80),
     "ogre_green": (138, 154, 116), "dusky": (168, 138, 104), "slate": (122, 132, 138), "mud": (118, 128, 84),
