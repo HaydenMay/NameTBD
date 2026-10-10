@@ -1,5 +1,5 @@
 {
- "version": 1791611512,
+ "version": 1791612336,
  "canvas": [
   1024,
   1536
@@ -837,43 +837,163 @@
  },
  "hairs": [
   {
-   "id": "topknot02",
+   "id": "m_short",
+   "label": "Short",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    82,
+    523
+   ],
+   "lum": [
+    8.8,
+    176.8
+   ],
+   "part": {
+    "file": "assets/hair_m_short.png",
+    "x": 343,
+    "y": 33
+   }
+  },
+  {
+   "id": "m_wavy",
+   "label": "Long wavy",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    82,
+    523
+   ],
+   "lum": [
+    6.6,
+    204.6
+   ],
+   "part": {
+    "file": "assets/hair_m_wavy.png",
+    "x": 297,
+    "y": 22
+   }
+  },
+  {
+   "id": "m_ponytail",
+   "label": "Ponytail",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    82,
+    523
+   ],
+   "lum": [
+    13.8,
+    206.9
+   ],
+   "part": {
+    "file": "assets/hair_m_ponytail.png",
+    "x": 312,
+    "y": 35
+   }
+  },
+  {
+   "id": "m_shaggy",
+   "label": "Shaggy",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    82,
+    523
+   ],
+   "lum": [
+    8.8,
+    207.1
+   ],
+   "part": {
+    "file": "assets/hair_m_shaggy.png",
+    "x": 335,
+    "y": 22
+   }
+  },
+  {
+   "id": "m_curly",
+   "label": "Curly",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    82,
+    523
+   ],
+   "lum": [
+    7.1,
+    203.9
+   ],
+   "part": {
+    "file": "assets/hair_m_curly.png",
+    "x": 380,
+    "y": 54
+   }
+  },
+  {
+   "id": "m_topknot_soft",
    "label": "Top-knot",
    "fits": [
     "m"
    ],
    "ref_skull": [
-    84,
-    520
+    82,
+    523
    ],
    "lum": [
     7.1,
-    191.9
+    204.8
    ],
    "part": {
-    "file": "assets/hair_topknot02.png",
-    "x": 373,
-    "y": 33
+    "file": "assets/hair_m_topknot_soft.png",
+    "x": 378,
+    "y": 32
    }
   },
   {
-   "id": "slicked01",
-   "label": "Slicked back",
+   "id": "m_buzz",
+   "label": "Buzz cut",
    "fits": [
     "m"
    ],
    "ref_skull": [
-    84,
-    520
+    82,
+    523
    ],
    "lum": [
-    7.1,
-    176.9
+    13.6,
+    179.2
    ],
    "part": {
-    "file": "assets/hair_slicked01.png",
-    "x": 351,
-    "y": 72
+    "file": "assets/hair_m_buzz.png",
+    "x": 397,
+    "y": 77
+   }
+  },
+  {
+   "id": "m_midpart",
+   "label": "Middle part",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    82,
+    523
+   ],
+   "lum": [
+    7.6,
+    204.2
+   ],
+   "part": {
+    "file": "assets/hair_m_midpart.png",
+    "x": 355,
+    "y": 49
    }
   },
   {
@@ -894,6 +1014,26 @@
     "file": "assets/hair_spiky02.png",
     "x": 367,
     "y": 37
+   }
+  },
+  {
+   "id": "slicked01",
+   "label": "Slicked back",
+   "fits": [
+    "m"
+   ],
+   "ref_skull": [
+    84,
+    520
+   ],
+   "lum": [
+    7.1,
+    176.9
+   ],
+   "part": {
+    "file": "assets/hair_slicked01.png",
+    "x": 351,
+    "y": 72
    }
   },
   {

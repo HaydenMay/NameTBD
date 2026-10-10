@@ -78,7 +78,10 @@ def recolour(a, mask, target_lab, chroma_keep=0.35):
     d = lab[mask] - core_mean
     new = np.empty_like(d)
     new[:, 0] = target_lab[0] + d[:, 0]
-    new[:, 1:] = target_lab[1:] + d[:, 1:] * chroma_keep
+    # painted redness (blush, nose, lips) is authored for a light key; on darker skin the
+    # same chroma swing reads as maroon patches, so scale it with target lightness.
+    keep = chroma_keep * min(1.0, max(0.25, target_lab[0] / core_mean[0]) ** 1.5)
+    new[:, 1:] = target_lab[1:] + d[:, 1:] * keep
     out = a.copy()
     out[mask, :3] = lab2rgb(new).clip(0, 255).astype(np.uint8)
     return out

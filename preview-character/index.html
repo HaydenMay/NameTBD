@@ -132,7 +132,8 @@ function skinned(part, skinId) {
   const c = canvasOf(img[part.file]), g = c.getContext('2d');
   const d = g.getImageData(0, 0, c.width, c.height), p = d.data;
   const m = canvasOf(img[part.skin_mask]).getContext('2d').getImageData(0, 0, c.width, c.height).data;
-  const [kL, ka, kb] = part.key_lab, [tL, ta, tb] = M.skins[skinId].lab, keep = 0.35;
+  const [kL, ka, kb] = part.key_lab, [tL, ta, tb] = M.skins[skinId].lab;
+  const keep = 0.35 * Math.min(1, Math.max(0.25, tL / kL) ** 1.5);  // less painted redness on darker skin
   for (let i = 0; i < p.length; i += 4) {
     if (!m[i] || !p[i + 3]) continue;
     const [L, a, b] = toLab(p[i], p[i + 1], p[i + 2]);

@@ -89,15 +89,18 @@ SKINS = {  # mid-tone sRGB of each skin; converted to Lab for the page
     "ogre_green": (138, 154, 116), "dusky": (168, 138, 104), "slate": (122, 132, 138), "mud": (118, 128, 84),
 }
 
-HAIRS = [
-    # rejected 2026-10-09, redo on clean-shaven lime Aldric: ("short02", "Short", ["m"], "aldric_bald_limekey", 8),
-    # rejected 2026-10-09, redo on clean-shaven lime Aldric: ("wavy02", "Long wavy", ["m"], "aldric_bald_limekey", -4),
-    ("topknot02", "Top-knot", ["m"], "aldric_bald_limekey"),
-    # rejected 2026-10-09, redo on clean-shaven lime Aldric: ("ponytail02", "Ponytail", ["m"], "aldric_bald_01"),
-    ("slicked01", "Slicked back", ["m"], "aldric_bald_01"),
-    # rejected 2026-10-09, redo on clean-shaven lime Aldric: ("shaggy01", "Shaggy", ["m"], "aldric_bald_01"),
-    # rejected 2026-10-09, redo on clean-shaven lime Aldric: ("curly01", "Curly", ["m"], "aldric_bald_01"),
+HAIRS = [  # (id, label, fits, reference image the hair was drawn on[, x nudge])
+    ("m_short", "Short", ["m"], "male_base"),
+    ("m_wavy", "Long wavy", ["m"], "male_base"),
+    ("m_ponytail", "Ponytail", ["m"], "male_base"),
+    ("m_shaggy", "Shaggy", ["m"], "male_base"),
+    ("m_curly", "Curly", ["m"], "male_base"),
+    ("m_topknot_soft", "Top-knot", ["m"], "male_base"),
+    ("m_buzz", "Buzz cut", ["m"], "male_base"),
+    ("m_midpart", "Middle part", ["m"], "male_base"),
     ("spiky02", "Spiky", ["m"], "aldric_bald_01"),
+    ("slicked01", "Slicked back", ["m"], "aldric_bald_01"),
+    # replaced by m_topknot_soft: ("topknot02", "Top-knot (shaved)", ["m"], "aldric_bald_limekey"),
     ("bun01", "Bun", ["f"], "human_f_bald_01"),
     ("sidebraid01", "Side braid", ["f"], "human_f_bald_01"),
     ("hiponytail01", "High ponytail", ["f"], "human_f_bald_01"),
@@ -220,6 +223,7 @@ def main():
         shutil.rmtree(ASSETS)
     ASSETS.mkdir(parents=True)
     ref_skulls = {n: skull(keyed(SRC / f"{n}.png")) for n in ["aldric_bald_01", "human_f_bald_01", "aldric_bald_limekey"]}
+    ref_skulls["male_base"] = skull(keyed(ROOT / "art" / "template" / "male_base.png"))
 
     faces = []
     for fid, fname, label, tpl, races in FACES:

@@ -151,6 +151,15 @@ def main():
         haired = bp.keyed(Path(f))
         cut = cut_dir / f"{name}.png"
         extract(f, a.base, str(cut), ylimit=800, hue=(195, 255))
+        # the base's blue brows are not hair: drop anything on them
+        hb, sb, _ = _hsv(base)
+        brows = ndimage.binary_dilation((hb >= 195) & (hb <= 255) & (sb > 0.35) & (np.arange(1536)[:, None] < 300), iterations=5)
+        ca = np.asarray(Image.open(cut).convert("RGBA")).copy()
+        lab, n = ndimage.label(ca[..., 3] > 0)
+        if n:  # remove whole cut pieces that sit mostly on the brows
+            on = ndimage.mean(brows, lab, range(1, n + 1))
+            ca[np.isin(lab, 1 + np.flatnonzero(on > 0.5)), 3] = 0
+        Image.fromarray(ca).save(cut)
         m = measure(haired, base, np.asarray(Image.open(cut).convert("RGBA")))
         v, notes = verdict(m)
         sheet = fit_sheet(cut, ref_skull, name, f"{name}: {v}")
