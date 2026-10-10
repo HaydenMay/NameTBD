@@ -24,9 +24,16 @@ def split_markup(a, t, belt, sections, keep_torso=None):
     vis = a[..., 3] > 0
     none = np.zeros_like(vis)
     keep = none.copy()
-    if keep_torso:
-        x0, x1, y1 = keep_torso
-        keep = (xx >= x0) & (xx <= x1) & (yy < y1)
+    if keep_torso:  # the front panel (tabard) by its real shape, not a box:
+        x0, x1, y1 = keep_torso   # blue cloth below the belt inside this search area, + trim/outline
+        h, sat, val = _hsv(a)
+        cloth = vis & (h >= 195) & (h <= 245) & (sat > 0.25) & (yy > belt) & (yy < y1 + 40)             & (xx >= x0 - 20) & (xx <= x1 + 20)
+        lab, n = ndimage.label(cloth)
+        if n:
+            sizes = ndimage.sum(cloth, lab, range(1, n + 1))
+            cloth = lab == 1 + int(np.argmax(sizes))
+            cloth = ndimage.binary_fill_holes(ndimage.binary_closing(cloth, iterations=4))
+            keep = ndimage.binary_dilation(cloth, iterations=14) & vis   # gold trim + dark outline
 
     limb, pivots = {}, {}
     for s in ("n", "f"):
