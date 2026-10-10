@@ -1,5 +1,5 @@
 {
- "version": 1791615506,
+ "version": 1791615607,
  "canvas": [
   1024,
   1536
@@ -1227,6 +1227,7 @@
    }
   }
  ],
+ "beards": [],
  "hair_colours": {
   "black": [
    [

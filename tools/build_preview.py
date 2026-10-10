@@ -123,6 +123,10 @@ HAIRS = [  # (id, label, fits, reference image the hair was drawn on[, x nudge])
     ("longstraight01", "Long straight", ["f"], "human_f_bald_01"),
 ]
 
+# Beards: blue edits of male_base, cut with check_hair.py, drawn over the outfit collar.
+BEARDS = [  # (id, label, reference image)
+]
+
 HAIR_COLOURS = {
     "black": [[14, 11, 14], [38, 32, 36], [78, 68, 72], [150, 140, 150]],
     "brown": [[30, 16, 10], [88, 52, 28], [140, 92, 52], [205, 160, 110]],
@@ -307,11 +311,17 @@ def main():
         hairs.append({"id": hid, "label": label, "fits": fits, "ref_skull": [ry, rx - (shift[0] if shift else 0)],
                       "lum": lum_range(a), "part": save_part(a, f"hair_{hid}")})
 
+    beards = []
+    for bid, label, ref in BEARDS:
+        a = np.asarray(Image.open(PARTS / "beards" / f"beard_{bid}.png").convert("RGBA")).copy()
+        beards.append({"id": bid, "label": label, "ref_skull": ref_skulls[ref],
+                       "lum": lum_range(a), "part": save_part(a, f"beard_{bid}")})
+
     skins = {k: {"rgb": list(v), "lab": [round(float(x), 2) for x in rgb2lab(np.array([[v]], float))[0, 0]]}
              for k, v in SKINS.items()}
 
     manifest = {"version": int(time.time()), "canvas": [1024, 1536], "floor_y": 1510, "races": RACES, "skins": skins,
-                "faces": faces, "bodies": bodies, "ears": ears, "hairs": hairs, "hair_colours": HAIR_COLOURS}
+                "faces": faces, "bodies": bodies, "ears": ears, "hairs": hairs, "beards": beards, "hair_colours": HAIR_COLOURS}
     (OUT / "manifest.json").write_text(json.dumps(manifest, indent=1))
     print(f"{len(faces)} faces, {len(bodies)} bodies, {len(ears)} ears, {len(hairs)} hairs, {len(skins)} skins")
 
