@@ -118,11 +118,12 @@ export function buildCharacter(M, r) {
   draw(body.part, skinned(M, body.part, r.skin));
   for (const n of ['hair', 'beard', 'ears']) for (const it of L[n] || []) sg.drawImage(it.src, it.x, it.y);
   return { recipe: { ...r }, face, body, layers: L, legacy, still, anchors: (body.anim && body.anim.anchors) || {},
-    template: body.template, rigged: !!pieces };
+    template: body.template, rigged: !!pieces, pivots: (body.anim && body.anim.pivots) || {} };
 }
 
 /** Draw one frame. opts: {order, hidden:Set, legacy, debug:{boxes,pivots,tint}}. Returns drawn transforms. */
 export function drawCharacter(g, ch, pivots, ps, opts = {}) {
+  pivots = { ...pivots, ...(ch.pivots || {}) };
   const T = layerTransforms(pivots, ps);
   const order = opts.order || DEFAULT_ORDER;
   const hidden = opts.hidden || new Set();
@@ -177,6 +178,7 @@ function mapLegacy(rig) {
 
 /** World-space joint anchors for a pose (only joints the rig actually has). */
 export function anchorsFor(ch, pivots, ps) {
+  pivots = { ...pivots, ...(ch.pivots || {}) };
   const T = layerTransforms(pivots, ps);
   const A = {
     neck: applyChain(pivots.neck, T.torso), waist: applyChain(pivots.waist, T.torso),
@@ -185,7 +187,8 @@ export function anchorsFor(ch, pivots, ps) {
     knee_n: applyChain(pivots.knee_n, T.thigh_n), knee_f: applyChain(pivots.knee_f, T.thigh_f),
     ankle_n: applyChain(pivots.ankle_n, T.shin_n), ankle_f: applyChain(pivots.ankle_f, T.shin_f),
   };
-  for (const k of ['wrist_n', 'grip_n']) if (ch.anchors[k]) A[k] = applyChain(ch.anchors[k], T.arm_n);
-  for (const k of ['wrist_f', 'grip_f']) if (ch.anchors[k]) A[k] = applyChain(ch.anchors[k], T.arm_f);
+  for (const k of ['wrist_n', 'grip_n']) if (ch.anchors[k]) A[k] = applyChain(ch.anchors[k], T.grip);
+  for (const k of ['wrist_f', 'grip_f']) if (ch.anchors[k]) A[k] = applyChain(ch.anchors[k], T.farm_f);
+  for (const s of ['n', 'f']) if (pivots['elbow_' + s]) A['elbow_' + s] = applyChain(pivots['elbow_' + s], T['arm_' + s]);
   return A;
 }

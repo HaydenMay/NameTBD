@@ -5,8 +5,8 @@ export const MODES = ['cutout', 'robe', 'subtle'];
 
 // Back-to-front draw order. Layer names match manifest pieces (anim.pieces) plus head layers.
 export const DEFAULT_ORDER = [
-  'hips', 'fill_f', 'arm_f', 'cap_f', 'thigh_f', 'shin_f', 'thigh_n', 'shin_n',
-  'neck', 'head', 'skirt', 'torso', 'hair', 'beard', 'ears', 'arm_n', 'cap_n', 'grip',
+  'hips', 'fill_f', 'arm_f', 'farm_f', 'cap_f', 'thigh_f', 'shin_f', 'thigh_n', 'shin_n',
+  'neck', 'head', 'skirt', 'torso', 'hair', 'beard', 'ears', 'arm_n', 'farm_n', 'cap_n', 'grip',
 ];
 
 const FALLBACK = {
@@ -40,6 +40,8 @@ export function pose(profile, phase, amp = 1) {
     shin_f: Math.max(0, -cw) * p.knee_bend * amp,
     arm_n: sw * p.arm_swing * amp,                          // arms oppose their legs
     arm_f: -sw * p.far_arm_swing * amp,
+    elbow_n: -(0.5 + 0.5 * sw) * (p.elbow_bend || 0) * amp,   // forearm bends more on the forward swing
+    elbow_f: -(0.5 - 0.5 * sw) * (p.elbow_bend || 0) * amp,
     skirt: -sw * p.skirt_sway * amp,
     squash: 1 - Math.abs(cw) * (p.squash || 0) * amp,        // subtle mode: tiny vertical breathing
     lift_n: 0, lift_f: 0,
@@ -65,6 +67,7 @@ export function rotateAbout(pt, pivot, angle) {
 export function layerTransforms(P, ps) {
   const body = [{ dx: 0, dy: ps.bob }, { pivot: P.waist, angle: ps.lean, sy: ps.squash }];
   const head = [...body, { dx: 0, dy: ps.head_bob }];
+  const elbow = s => (P['elbow_' + s] ? [{ pivot: P['elbow_' + s], angle: ps['elbow_' + s] || 0 }] : []);
   return {
     hips: [{ dx: 0, dy: ps.bob * 0.5 }],
     thigh_n: [{ pivot: P.hip_n, angle: ps.thigh_n }],
@@ -76,7 +79,9 @@ export function layerTransforms(P, ps) {
     head, hair: head, beard: head, ears: head,
     arm_n: [...body, { pivot: P.shoulder_n, angle: ps.arm_n }],
     arm_f: [...body, { pivot: P.shoulder_f, angle: ps.arm_f }],
-    grip: [...body, { pivot: P.shoulder_n, angle: ps.arm_n }],
+    farm_n: [...body, { pivot: P.shoulder_n, angle: ps.arm_n }, ...elbow('n')],
+    farm_f: [...body, { pivot: P.shoulder_f, angle: ps.arm_f }, ...elbow('f')],
+    grip: [...body, { pivot: P.shoulder_n, angle: ps.arm_n }, ...elbow('n')],
   };
 }
 

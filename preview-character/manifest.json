@@ -1,5 +1,5 @@
 {
- "version": 1791660313,
+ "version": 1791663458,
  "canvas": [
   1024,
   1536
@@ -493,7 +493,8 @@
      488,
      656,
      1000
-    ]
+    ],
+    "markup": "art/markup/knight_m.jpg"
    },
    "cleric_m": {
     "profile": "cleric_walk",
@@ -527,6 +528,7 @@
     "knee_bend": 0.35,
     "arm_swing": 0.1,
     "far_arm_swing": 0.08,
+    "elbow_bend": 0.15,
     "skirt_sway": 0.012
    },
    "cleric_walk": {
@@ -1045,41 +1047,64 @@
       915
      ]
     },
+    "pivots": {
+     "elbow_n": [
+      273,
+      653
+     ],
+     "knee_n": [
+      431,
+      1022
+     ],
+     "elbow_f": [
+      728,
+      705
+     ],
+     "knee_f": [
+      609,
+      1041
+     ]
+    },
     "pieces": {
      "arm_n": {
       "file": "assets/anim_knight_m_arm_n.png",
-      "x": 163,
-      "y": 490
+      "x": 202,
+      "y": 346
      },
-     "arm_f": {
-      "file": "assets/anim_knight_m_arm_f.png",
-      "x": 653,
-      "y": 490
+     "farm_n": {
+      "file": "assets/anim_knight_m_farm_n.png",
+      "x": 163,
+      "y": 577
      },
      "thigh_n": {
       "file": "assets/anim_knight_m_thigh_n.png",
-      "x": 330,
-      "y": 849
+      "x": 342,
+      "y": 740
      },
      "shin_n": {
       "file": "assets/anim_knight_m_shin_n.png",
       "x": 299,
-      "y": 992
+      "y": 994
+     },
+     "arm_f": {
+      "file": "assets/anim_knight_m_arm_f.png",
+      "x": 596,
+      "y": 368
+     },
+     "farm_f": {
+      "file": "assets/anim_knight_m_farm_f.png",
+      "x": 666,
+      "y": 630
      },
      "thigh_f": {
       "file": "assets/anim_knight_m_thigh_f.png",
       "x": 517,
-      "y": 881
+      "y": 760
      },
      "shin_f": {
       "file": "assets/anim_knight_m_shin_f.png",
       "x": 517,
-      "y": 992
-     },
-     "hips": {
-      "file": "assets/anim_knight_m_hips.png",
-      "x": 321,
-      "y": 760
+      "y": 1003
      },
      "torso": {
       "file": "assets/anim_knight_m_torso.png",
@@ -1093,18 +1118,13 @@
      },
      "fill_f": {
       "file": "assets/anim_knight_m_fill_f.png",
-      "x": 653,
-      "y": 490
+      "x": 596,
+      "y": 372
      },
-     "cap_n": {
-      "file": "assets/anim_knight_m_cap_n.png",
-      "x": 202,
-      "y": 484
-     },
-     "cap_f": {
-      "file": "assets/anim_knight_m_cap_f.png",
-      "x": 676,
-      "y": 484
+     "hips": {
+      "file": "assets/anim_knight_m_hips.png",
+      "x": 321,
+      "y": 736
      }
     }
    },
@@ -1234,6 +1254,7 @@
       949
      ]
     },
+    "pivots": {},
     "pieces": {
      "arm_n": {
       "file": "assets/anim_cleric_m_arm_n.png",
@@ -1408,6 +1429,7 @@
       902
      ]
     },
+    "pivots": {},
     "pieces": {
      "arm_n": {
       "file": "assets/anim_guard_m_arm_n.png",

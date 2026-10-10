@@ -368,8 +368,17 @@ def main():
             entry["back"] = save_part(back, f"body_{bid}_back", True)
         cfg = ANIM["outfits"].get(bid)
         if cfg and tpl in ANIM["templates"]:
-            pieces, anchors = anim_rig.split(front, ANIM["templates"][tpl], cfg["hem"], cfg["belt"], cfg.get("leg_seam"), cfg.get("keep_torso"))
-            entry["anim"] = {"profile": cfg["profile"], "anchors": anchors,
+            pivots = {}
+            if cfg.get("markup"):
+                import markup
+                from anim_markup_rig import split_markup
+                sections = markup.load(ROOT / cfg["markup"], front)
+                pieces, anchors, pivots = split_markup(front, ANIM["templates"][tpl], cfg["belt"],
+                                                       sections, cfg.get("keep_torso"))
+            else:
+                pieces, anchors = anim_rig.split(front, ANIM["templates"][tpl], cfg["hem"], cfg["belt"],
+                                                 cfg.get("leg_seam"), cfg.get("keep_torso"))
+            entry["anim"] = {"profile": cfg["profile"], "anchors": anchors, "pivots": pivots,
                              "pieces": {k: save_part(v, f"anim_{bid}_{k}", True, min_skin=1500)  # stray greenish armour px are not skin
                                         for k, v in pieces.items() if (v[..., 3] > 0).any()}}
         if tpl in RIG:
