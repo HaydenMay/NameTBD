@@ -1,5 +1,5 @@
 {
- "version": 1791616844,
+ "version": 1791617400,
  "canvas": [
   1024,
   1536
@@ -836,9 +836,9 @@
      "y": 325,
      "skin_mask": "assets/body_knight_m_torso_skin.png",
      "key_lab": [
-      30.91,
-      -3.56,
-      17.0
+      22.56,
+      -2.79,
+      12.6
      ]
     },
     "arm_n": {
@@ -866,7 +866,7 @@
     "thigh_n": {
      "file": "assets/body_knight_m_thigh_n.png",
      "x": 330,
-     "y": 770
+     "y": 925
     },
     "shin_n": {
      "file": "assets/body_knight_m_shin_n.png",
@@ -876,12 +876,12 @@
     "thigh_f": {
      "file": "assets/body_knight_m_thigh_f.png",
      "x": 517,
-     "y": 770,
+     "y": 925,
      "skin_mask": "assets/body_knight_m_thigh_f_skin.png",
      "key_lab": [
-      31.32,
-      -3.48,
-      15.71
+      38.38,
+      -4.04,
+      18.63
      ]
     },
     "shin_f": {
@@ -942,9 +942,9 @@
      "y": 329,
      "skin_mask": "assets/body_cleric_m_torso_skin.png",
      "key_lab": [
-      93.24,
-      -7.84,
-      49.21
+      89.56,
+      -7.76,
+      49.04
      ]
     },
     "arm_n": {
@@ -972,7 +972,7 @@
     "thigh_n": {
      "file": "assets/body_cleric_m_thigh_n.png",
      "x": 258,
-     "y": 770
+     "y": 990
     },
     "shin_n": {
      "file": "assets/body_cleric_m_shin_n.png",
@@ -982,12 +982,12 @@
     "thigh_f": {
      "file": "assets/body_cleric_m_thigh_f.png",
      "x": 517,
-     "y": 770,
+     "y": 990,
      "skin_mask": "assets/body_cleric_m_thigh_f_skin.png",
      "key_lab": [
-      82.85,
+      83.04,
       -7.43,
-      45.63
+      45.69
      ]
     },
     "shin_f": {
@@ -1048,9 +1048,9 @@
      "y": 316,
      "skin_mask": "assets/body_guard_m_torso_skin.png",
      "key_lab": [
-      43.36,
-      -10.34,
-      42.66
+      44.26,
+      -10.83,
+      44.5
      ]
     },
     "arm_n": {
@@ -1078,7 +1078,7 @@
     "thigh_n": {
      "file": "assets/body_guard_m_thigh_n.png",
      "x": 344,
-     "y": 770
+     "y": 840
     },
     "shin_n": {
      "file": "assets/body_guard_m_shin_n.png",
@@ -1088,7 +1088,7 @@
     "thigh_f": {
      "file": "assets/body_guard_m_thigh_f.png",
      "x": 517,
-     "y": 770
+     "y": 840
     },
     "shin_f": {
      "file": "assets/body_guard_m_shin_f.png",

@@ -48,21 +48,23 @@ RIG = {
 }
 
 
-def split_rig(a, r):
+def split_rig(a, r, hem):
     """Cut a full outfit image into rig pieces (torso, arms, thighs, shins)."""
     H, W = a.shape[:2]
     yy, xx = np.mgrid[0:H, 0:W]
     vis = a[..., 3] > 0
     tx0, tx1, ty = r["tabard"]
+    ty = max(ty, hem)
     arm_band = (yy >= r["arm_top"]) & (yy < r["arm_bottom"])
     arm_n = (xx < r["arm_n_x"]) & arm_band
     arm_f = (xx > r["arm_f_x"]) & arm_band
-    legs = (yy >= r["leg_top"]) & ~((xx > tx0) & (xx < tx1) & (yy < ty)) & ~arm_n & ~arm_f
+    # everything above the hem (skirt, tabard, robe, faulds) stays on the torso
+    legs = (yy >= max(r["leg_top"], hem)) & ~arm_n & ~arm_f
     torso = vis & ~legs & ~arm_n & ~arm_f
     near = xx < r["leg_split_x"]
     k = r["knee_y"]
     # thighs reach up under the torso so a swinging leg never shows a gap at the hip
-    thigh_zone = (yy >= r["leg_top"] - 90) & ~arm_n & ~arm_f
+    thigh_zone = (yy >= max(r["leg_top"], hem) - 60) & ~arm_n & ~arm_f
     regions = {
         "torso": torso, "arm_n": vis & arm_n, "arm_f": vis & arm_f,
         "thigh_n": vis & thigh_zone & near & (yy < k + 30), "shin_n": vis & legs & near & (yy >= k - 30),
@@ -123,11 +125,11 @@ SCARS = set()  # old scars were painted on retired faces; scars come back as gen
 
 # id, file, label, template
 BODIES = [
-    ("knight_m", "../../template/male_base", "Knight plate", "m"),
-    ("cleric_m", "aldric_lime_cleric", "Cleric robe", "m"),
-    ("guard_m", "ogre_lime_01", "Caravan guard", "m"),
-    ("cleric_f", "human_f_lime_01", "Cleric robe", "f"),
-    ("knight_f", "female_face02_knight", "Knight plate", "f"),
+    ("knight_m", "../../template/male_base", "Knight plate", "m", 985),
+    ("cleric_m", "aldric_lime_cleric", "Cleric robe", "m", 1050),
+    ("guard_m", "ogre_lime_01", "Caravan guard", "m", 900),
+    ("cleric_f", "human_f_lime_01", "Cleric robe", "f", 0),
+    ("knight_f", "female_face02_knight", "Knight plate", "f", 0),
 ]
 
 EARS = ["elf", "goblin", "ogre"]  # authored on lime Aldric
@@ -337,7 +339,7 @@ def main():
                       "lime": True, "part": save_part(head, f"head_{fid}", True, hue_lo=40, reach=12, eyes=True)})
 
     bodies = []
-    for bid, fname, label, tpl in BODIES:
+    for bid, fname, label, tpl, hem in BODIES:
         a = keyed(SRC / f"{fname}.png")
         cut = TEMPLATES[tpl]["cut"]
         hm = head_mask(a, cut)
@@ -363,7 +365,7 @@ def main():
             entry["back"] = save_part(back, f"body_{bid}_back", True)
         if tpl in RIG:
             entry["rig"] = {k: save_part(v, f"body_{bid}_{k}", True)
-                            for k, v in split_rig(front, RIG[tpl]).items() if (v[..., 3] > 0).any()}
+                            for k, v in split_rig(front, RIG[tpl], hem).items() if (v[..., 3] > 0).any()}
         bodies.append(entry)
 
     ears = {}
