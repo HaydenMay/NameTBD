@@ -6,7 +6,9 @@ All generation happens in ChatGPT as **edits** of a reference image, so pose, si
 ## Reference images (never change these)
 | File | Use |
 |---|---|
-| `art/template/golden_aldric.png` | Starting point for new faces/races and new outfits |
+| `art/template/male_base.png` | **Male reference**: lime skin, blue brows, clean-shaven, bald. Edit this for every new male face, hairstyle and beard |
+| `art/template/female_base.png` | **Female reference** (Rowan): lime skin, blue brows, bald. Edit this for every new female face and hairstyle |
+| `art/template/golden_aldric.png` | Original style reference (historical) |
 | `art/incoming/phase0/aldric_bald_limekey.png` | Lime-skin Aldric: ears/tusks and other race layers |
 | `art/incoming/phase0/aldric_bald_01.png` | Male (`humanoid_m`) hair & beards |
 | `art/incoming/phase0/human_f_bald_01.png` | Female (`humanoid_f`) hair |
