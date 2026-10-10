@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Animation Debugger</title>
+<style>
+  :root {
+    --bg: #efe6d2; --panel: #f8f2e4; --ink: #2f241b; --muted: #7a6a58;
+    --line: #d8c9ac; --accent: #8a4b2a; --accent-ink: #fff8ee; --stage: #e6dac0; --warn: #a3412a;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #1f1a15; --panel: #2a231c; --ink: #f1e6d3; --muted: #b3a38c;
+      --line: #43382c; --accent: #d08a5a; --accent-ink: #1f1a15; --stage: #2f271f; --warn: #e07a5f;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #1f1a15; --panel: #2a231c; --ink: #f1e6d3; --muted: #b3a38c;
+    --line: #43382c; --accent: #d08a5a; --accent-ink: #1f1a15; --stage: #2f271f; --warn: #e07a5f;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font: 14px/1.45 Georgia, "Iowan Old Style", serif; }
+  header { padding: 14px 16px 4px; max-width: 1400px; margin: 0 auto; display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+  h1 { margin: 0; font-size: 22px; }
+  .tag { font: 12px ui-monospace, Consolas, monospace; color: var(--warn); border: 1px solid var(--warn); border-radius: 4px; padding: 1px 6px; }
+  header a { color: var(--accent); }
+  main { max-width: 1400px; margin: 0 auto; padding: 10px 16px 32px; display: grid;
+    grid-template-columns: 290px minmax(0, 1fr) 300px; gap: 14px; align-items: start; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+  .panel + .panel { margin-top: 12px; }
+  h2 { font-size: 14px; margin: 0 0 8px; }
+  label.f { display: block; margin-bottom: 9px; font-size: 12.5px; color: var(--muted); }
+  select, input[type=text], input[type=number] { width: 100%; margin-top: 3px; padding: 6px 7px; font: inherit;
+    color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; }
+  input[type=range] { width: 100%; accent-color: var(--accent); }
+  .row { display: flex; gap: 6px; flex-wrap: wrap; }
+  button { padding: 6px 9px; font: inherit; font-size: 13px; border-radius: 6px; cursor: pointer;
+    border: 1px solid var(--accent); background: var(--accent); color: var(--accent-ink); }
+  button.ghost { background: transparent; color: var(--accent); }
+  .chk { display: flex; gap: 6px; align-items: center; font-size: 12.5px; margin: 3px 0; }
+  .stage { background: var(--stage); border: 1px solid var(--line); border-radius: 10px; padding: 8px; }
+  #view { width: 100%; height: auto; aspect-ratio: 1024 / 1536; max-height: 78vh; display: block; margin: 0 auto; }
+  .scrub { display: flex; gap: 8px; align-items: center; margin-top: 8px; }
+  .scrub output { font: 12px ui-monospace, Consolas, monospace; min-width: 52px; text-align: right; }
+  #order { list-style: none; padding: 0; margin: 0; font: 12px ui-monospace, Consolas, monospace; }
+  #order li { display: flex; align-items: center; gap: 4px; padding: 2px 0; border-bottom: 1px dotted var(--line); }
+  #order li span { flex: 1; }
+  #order li button { padding: 0 6px; font-size: 11px; }
+  #order li .sw { width: 10px; height: 10px; border-radius: 2px; flex: none; }
+  .mono { font: 12px/1.4 ui-monospace, Consolas, monospace; word-break: break-all; color: var(--muted); }
+  .note { font-size: 12px; color: var(--muted); }
+  #compare, #caravan { width: 100%; height: auto; display: block; border-radius: 8px; background: var(--stage); }
+  .wide { grid-column: 1 / -1; }
+  @media (max-width: 1100px) { main { grid-template-columns: 1fr; } #view { max-height: none; max-width: 420px; } }
+</style>
+</head>
+<body>
+<header>
+  <h1>Animation Debugger</h1><span class="tag">DEV ONLY</span>
+  <a href="../preview-character/" id="back">← Character preview</a>
+</header>
+<main>
+  <div>
+    <section class="panel">
+      <h2>Character</h2>
+      <label class="f">Recipe <input type="text" id="recipe" spellcheck="false"></label>
+      <div class="row"><button id="apply">Load recipe</button><button class="ghost" id="rand">Random</button></div>
+      <label class="f" style="margin-top:9px">Outfit <select id="outfit"></select></label>
+      <label class="f">Animation profile <select id="profile"></select></label>
+      <label class="f">Arm test
+        <select id="armtest">
+          <option value="C">C: outline-cut, near front / far behind (new)</option>
+          <option value="A">A: legacy straight-cut rig</option>
+          <option value="B">B: both arms behind torso</option>
+          <option value="D">D: C with reduced arm swing (40%)</option>
+        </select></label>
+    </section>
+    <section class="panel">
+      <h2>Playback</h2>
+      <div class="row">
+        <button id="play">Play</button><button class="ghost" id="restart">Restart</button>
+      </div>
+      <label class="f" style="margin-top:8px">Speed
+        <select id="speed"><option>0.1</option><option>0.25</option><option>0.5</option><option selected>1</option><option>1.5</option><option>2</option></select></label>
+      <div class="chk"><input type="checkbox" id="loop" checked><label for="loop">Loop</label></div>
+      <label class="f">Amplitude <output id="ampv">100%</output><input type="range" id="amp" min="0" max="150" value="100"></label>
+    </section>
+    <section class="panel">
+      <h2>Overlays</h2>
+      <div class="chk"><input type="checkbox" id="anchors" checked><label for="anchors">Joint anchors</label></div>
+      <div class="chk"><input type="checkbox" id="pivots"><label for="pivots">Pivots (rotation centres)</label></div>
+      <div class="chk"><input type="checkbox" id="boxes"><label for="boxes">Layer bounding boxes</label></div>
+      <div class="chk"><input type="checkbox" id="masks"><label for="masks">Segmentation masks</label></div>
+      <div class="chk"><input type="checkbox" id="ghost"><label for="ghost">Standing original overlay</label></div>
+      <label class="f">Overlay opacity <input type="range" id="ghostA" min="5" max="100" value="40"></label>
+      <div class="chk"><input type="checkbox" id="weapon"><label for="weapon">Grip test (debug staff on near hand)</label></div>
+    </section>
+  </div>
+
+  <div>
+    <section class="stage">
+      <canvas id="view" width="1024" height="1536"></canvas>
+      <div class="scrub">
+        <input type="range" id="phase" min="0" max="1000" value="0" aria-label="Walk cycle phase">
+        <output id="phaseV">0.0%</output>
+      </div>
+    </section>
+  </div>
+
+  <div>
+    <section class="panel">
+      <h2>Layers (back → front)</h2>
+      <ul id="order"></ul>
+      <div class="row" style="margin-top:6px"><button class="ghost" id="resetOrder">Reset order</button></div>
+    </section>
+    <section class="panel">
+      <h2>Export</h2>
+      <div class="row"><button id="png">Frame PNG</button><button class="ghost" id="json">Debug JSON</button></div>
+      <p class="mono" id="status"></p>
+    </section>
+  </div>
+
+  <section class="panel wide">
+    <h2>Arm layering comparison (current phase)</h2>
+    <canvas id="compare" width="2048" height="760"></canvas>
+    <p class="note">Same character, same pose. A = old straight-cut rig, B = both arms behind the torso, C = new outline-cut rig, D = C with 40% arm swing.</p>
+  </section>
+
+  <section class="panel wide">
+    <h2>Caravan scale: 8 companions</h2>
+    <div class="row" style="margin-bottom:6px">
+      <button class="ghost" id="reroll">Reroll companions</button>
+      <label class="chk"><input type="checkbox" id="caravanSubtle">Force subtle walk for all</label>
+      <span class="mono" id="fps"></span>
+    </div>
+    <canvas id="caravan" width="1800" height="300"></canvas>
+    <p class="note">Rendered at roughly the size characters would appear beside the wagon. Ground scrolls at the speed that keeps planted feet still.</p>
+  </section>
+</main>
+
+<script type="module">
+import { DEFAULT_ORDER, resolveProfile, pose, parseRecipe, recipeString, randomRecipe, groundSpeed } from './anim.js';
+import { loadManifest, buildCharacter, drawCharacter, anchorsFor } from './charlib.js';
+
+const $ = id => document.getElementById(id);
+const M = await loadManifest();
+const COLOURS = { hips: '#7f7f7f', fill_f: '#5a5aa0', arm_f: '#3f7fff', cap_f: '#7fb0ff', thigh_f: '#2fae6a', shin_f: '#1d7a49',
+  thigh_n: '#e3b02c', shin_n: '#d2711c', neck: '#b07cc6', head: '#c35bb5', skirt: '#2fb8b8', torso: '#999999',
+  hair: '#8a5a2b', beard: '#6b4a2b', ears: '#c39bd3', arm_n: '#e8473f', cap_n: '#ff9a8a', grip: '#000000' };
+let order = [...DEFAULT_ORDER];
+const hidden = new Set();
+let ch = null, phase = 0, playing = false, last = 0;
+
+// ---- character ----------------------------------------------------------------
+const outfitsAnim = M.bodies.filter(b => b.anim);
+$('outfit').innerHTML = M.bodies.map(b => `<option value="${b.id}">${b.label} (${b.template})${b.anim ? '' : ' - no rig'}</option>`).join('');
+$('profile').innerHTML = '<option value="">Auto (from outfit)</option>' +
+  Object.entries(M.anim.profiles).map(([k, p]) => `<option value="${k}">${p.label}</option>`).join('');
+
+function load(r) {
+  try { ch = buildCharacter(M, r); }
+  catch (e) { $('status').textContent = String(e.message || e); return; }
+  $('recipe').value = recipeString(r); $('outfit').value = r.outfit;
+  history.replaceState(null, '', '#' + recipeString(r));
+  $('back').href = '../preview-character/#' + recipeString(r);
+  draw();
+}
+
+$('apply').onclick = () => load(parseRecipe($('recipe').value));
+$('rand').onclick = () => load(randomRecipe(M, Math.floor(Math.random() * 1e6)));
+$('outfit').onchange = e => load({ ...ch.recipe, outfit: e.target.value });
+
+// ---- pose ---------------------------------------------------------------------
+const profile = () => resolveProfile(M.anim, ch.recipe.outfit, $('profile').value);
+const pivots = () => M.anim.templates[ch.template] && M.anim.templates[ch.template].pivots;
+function currentPose(prof = profile(), ph = phase) {
+  const amp = $('amp').value / 100;
+  const ps = pose(prof, ph, amp);
+  if ($('armtest').value === 'D') { ps.arm_n *= 0.4; ps.arm_f *= 0.4; }
+  if (!ch.rigged || !pivots()) return pose({ ...prof, mode: 'subtle', leg_swing: 0, arm_swing: 0, far_arm_swing: 0, knee_bend: 0, skirt_sway: 0 }, ph, amp);
+  return ps;
+}
+function orderFor(test) {
+  if (test === 'B') return order.filter(n => n !== 'arm_n' && n !== 'cap_n').flatMap(n => n === 'cap_f' ? ['cap_f', 'arm_n', 'cap_n'] : [n]);
+  return order;
+}
+
+// ---- drawing ------------------------------------------------------------------
+function render(g, opts = {}) {
+  const P = pivots() || M.anim.templates.m.pivots;
+  const ps = opts.pose || currentPose();
+  const test = opts.test || $('armtest').value;
+  g.clearRect(0, 0, 1024, 1536);
+  g.strokeStyle = 'rgba(120,100,80,.5)'; g.lineWidth = 3;
+  g.beginPath(); g.moveTo(40, M.floor_y); g.lineTo(984, M.floor_y); g.stroke();
+  const dbg = opts.plain ? null : { boxes: $('boxes').checked, tint: $('masks').checked, colour: n => COLOURS[n] || '#000' };
+  drawCharacter(g, ch, P, ps, { order: orderFor(test), hidden, legacy: test === 'A', debug: dbg });
+  if (opts.plain) return ps;
+  if ($('weapon').checked && ch.anchors.grip_n) drawGrip(g, P, ps);
+  if ($('ghost').checked) { g.globalAlpha = $('ghostA').value / 100; g.drawImage(ch.still, 0, 0); g.globalAlpha = 1; }
+  const A = anchorsFor(ch, P, ps);
+  if ($('pivots').checked) for (const [k, v] of Object.entries(P)) mark(g, v, '#00a0ff', 9, k + ' (pivot)', true);
+  if ($('anchors').checked) for (const [k, v] of Object.entries(A)) mark(g, v, '#ffd400', 11, k);
+  return ps;
+}
+function mark(g, [x, y], col, r, label, ring) {
+  g.save(); g.lineWidth = 4; g.strokeStyle = '#000'; g.fillStyle = col;
+  g.beginPath(); g.arc(x, y, r, 0, Math.PI * 2); ring ? g.stroke() : (g.fill(), g.stroke());
+  g.font = 'bold 20px sans-serif'; g.lineWidth = 5; g.strokeText(label, x + r + 4, y + 6); g.fillStyle = '#fff'; g.fillText(label, x + r + 4, y + 6);
+  g.restore();
+}
+// Debug grip: a straight staff drawn through the near-hand grip, rotating with the arm.
+function drawGrip(g, P, ps) {
+  const A = anchorsFor(ch, P, ps), [x, y] = A.grip_n, ang = ps.arm_n - 0.25;
+  g.save(); g.translate(x, y); g.rotate(ang);
+  g.strokeStyle = '#2a1a10'; g.lineWidth = 22; g.beginPath(); g.moveTo(0, -330); g.lineTo(0, 260); g.stroke();
+  g.strokeStyle = '#8a5a30'; g.lineWidth = 14; g.beginPath(); g.moveTo(0, -326); g.lineTo(0, 256); g.stroke();
+  g.restore();
+  // fingers over the shaft: redraw the near fist on top (arm piece clipped to the grip region)
+  const arm = ch.layers.arm_n; if (!arm) return;
+  g.save(); g.beginPath(); g.arc(x, y, 62, 0, Math.PI * 2); g.clip();
+  drawCharacter(g, ch, P, ps, { order: ['arm_n'] }); g.restore();
+}
+
+function draw() {
+  if (!ch) return;
+  const ps = render($('view').getContext('2d'));
+  $('phase').value = Math.round(phase * 1000);
+  $('phaseV').textContent = (phase * 100).toFixed(1) + '%';
+  renderOrderList();
+  drawCompare();
+  window.__last = { ps };
+}
+
+// ---- comparison panel -----------------------------------------------------------
+function drawCompare() {
+  const c = $('compare'), g = c.getContext('2d'), tmp = document.createElement('canvas');
+  tmp.width = 1024; tmp.height = 1536;
+  g.clearRect(0, 0, c.width, c.height);
+  ['A', 'B', 'C', 'D'].forEach((t, i) => {
+    const tg = tmp.getContext('2d'); const prof = profile();
+    const ps = pose(prof, phase, $('amp').value / 100);
+    if (t === 'D') { ps.arm_n *= 0.4; ps.arm_f *= 0.4; }
+    render(tg, { test: t, pose: ps, plain: true });
+    g.drawImage(tmp, 150, 330, 724, 1130, i * 512, 0, 512, 760 * 0.92);
+    g.fillStyle = '#000'; g.font = 'bold 32px sans-serif'; g.fillText(t, i * 512 + 12, 40);
+  });
+}
+
+// ---- layer list -----------------------------------------------------------------
+function renderOrderList() {
+  const present = new Set(Object.keys(ch.layers));
+  $('order').innerHTML = order.map((n, i) => `<li><span class="sw" style="background:${COLOURS[n] || '#000'}"></span>
+    <input type="checkbox" data-vis="${n}" ${hidden.has(n) ? '' : 'checked'} ${present.has(n) || n === 'grip' ? '' : 'disabled'}>
+    <span style="${present.has(n) ? '' : 'opacity:.4'}">${i}. ${n}</span>
+    <button class="ghost" data-up="${i}" aria-label="Move ${n} back">↑</button><button class="ghost" data-dn="${i}" aria-label="Move ${n} forward">↓</button></li>`).join('');
+}
+$('order').onclick = e => {
+  const t = e.target;
+  if (t.dataset.vis) { t.checked ? hidden.delete(t.dataset.vis) : hidden.add(t.dataset.vis); draw(); }
+  const swap = (i, j) => { if (j < 0 || j >= order.length) return; [order[i], order[j]] = [order[j], order[i]]; draw(); };
+  if (t.dataset.up) swap(+t.dataset.up, +t.dataset.up - 1);
+  if (t.dataset.dn) swap(+t.dataset.dn, +t.dataset.dn + 1);
+};
+$('resetOrder').onclick = () => { order = [...DEFAULT_ORDER]; draw(); };
+
+// ---- playback -------------------------------------------------------------------
+function tick(now) {
+  if (!playing) return;
+  const dt = (now - last) / 1000; last = now;
+  phase += dt * $('speed').value / profile().period;
+  if (phase >= 1) { if ($('loop').checked) phase %= 1; else { phase = 1 - 1e-6; playing = false; $('play').textContent = 'Play'; } }
+  draw();
+  requestAnimationFrame(tick);
+}
+$('play').onclick = () => { playing = !playing; $('play').textContent = playing ? 'Pause' : 'Play';
+  if (playing) { last = performance.now(); requestAnimationFrame(tick); } };
+$('restart').onclick = () => { phase = 0; draw(); };
+$('phase').oninput = e => { phase = e.target.value / 1000; draw(); };
+for (const id of ['amp', 'speed', 'profile', 'armtest', 'anchors', 'pivots', 'boxes', 'masks', 'ghost', 'ghostA', 'weapon'])
+  $(id).addEventListener('input', () => { $('ampv').textContent = $('amp').value + '%'; draw(); });
+
+// ---- export ---------------------------------------------------------------------
+function download(name, href) { const a = document.createElement('a'); a.download = name; a.href = href; a.click(); }
+$('png').onclick = () => download(`frame_${ch.recipe.face}_${(phase * 100).toFixed(0)}.png`, $('view').toDataURL('image/png'));
+$('json').onclick = () => {
+  const P = pivots(), ps = currentPose();
+  const data = { recipe: recipeString(ch.recipe), outfit: ch.recipe.outfit, phase, amplitude: $('amp').value / 100,
+    armTest: $('armtest').value, profile: profile(), pose: ps, joints: anchorsFor(ch, P, ps),
+    order: orderFor($('armtest').value).filter(n => !hidden.has(n)), hidden: [...hidden],
+    layers: Object.fromEntries(Object.entries(ch.layers).map(([k, v]) => [k, v.map(it => ({ file: it.file, x: it.x, y: it.y, w: it.w, h: it.h }))])) };
+  download(`anim_debug_${ch.recipe.face}.json`, URL.createObjectURL(new Blob([JSON.stringify(data, null, 1)], { type: 'application/json' })));
+  $('status').textContent = 'Exported phase ' + (phase * 100).toFixed(1) + '%';
+};
+
+// ---- caravan test: 8 companions at gameplay scale --------------------------------------
+let crew = [], cphase = 0, clast = performance.now(), frames = 0, fpsT = clast, scroll = 0;
+function reroll() {
+  const seed = Math.floor(Math.random() * 1e6);
+  crew = Array.from({ length: 8 }, (_, i) => buildCharacter(M, randomRecipe(M, seed + i * 7919)))
+    .map((c, i) => ({ c, off: i * 0.137 }));
+}
+reroll();
+$('reroll').onclick = reroll;
+const tmpC = document.createElement('canvas'); tmpC.width = 1024; tmpC.height = 1536;
+function caravan(now) {
+  const dt = Math.min(0.1, (now - clast) / 1000); clast = now; frames++;
+  if (now - fpsT > 1000) { $('fps').textContent = frames + ' fps (8 characters)'; frames = 0; fpsT = now; }
+  const c = $('caravan'), g = c.getContext('2d'), H = c.height, scale = 0.17;
+  g.fillStyle = getComputedStyle(document.body).getPropertyValue('--stage'); g.fillRect(0, 0, c.width, H);
+  const P = M.anim.templates.m.pivots;
+  const speeds = crew.map(({ c: k }) => groundSpeed($('caravanSubtle').checked ? M.anim.profiles.subtle_walk : resolveProfile(M.anim, k.recipe.outfit), P));
+  const v = Math.max(...speeds, 1) * scale; scroll = (scroll + v * dt) % 60;
+  g.strokeStyle = 'rgba(120,100,80,.45)'; g.lineWidth = 2; const gy = H - 22;
+  g.beginPath(); g.moveTo(0, gy); g.lineTo(c.width, gy); g.stroke();
+  for (let x = -scroll; x < c.width; x += 60) { g.beginPath(); g.moveTo(x, gy + 4); g.lineTo(x + 18, gy + 4); g.stroke(); }
+  crew.forEach(({ c: k, off }, i) => {
+    const prof = $('caravanSubtle').checked ? M.anim.profiles.subtle_walk : resolveProfile(M.anim, k.recipe.outfit);
+    const ph = (now / 1000 / prof.period + off) % 1;
+    const tg = tmpC.getContext('2d'); tg.clearRect(0, 0, 1024, 1536);
+    drawCharacter(tg, k, P, pose(prof, ph, 1));
+    g.drawImage(tmpC, 20 + i * 220, gy - M.floor_y * scale, 1024 * scale, 1536 * scale);
+  });
+  requestAnimationFrame(caravan);
+}
+requestAnimationFrame(caravan);
+
+const initial = location.hash.length > 1 ? parseRecipe(location.hash) : null;
+load(initial && initial.face ? initial : randomRecipe(M, 7));
+
+async function captureStrip(name, recipe, profileId, phases, h = 300) {
+  const k = buildCharacter(M, recipe), P = M.anim.templates[k.template].pivots;
+  const prof = resolveProfile(M.anim, recipe.outfit, profileId), w = h * 1024 / 1536;
+  const strip = document.createElement('canvas'); strip.width = w * phases.length; strip.height = h;
+  const sg = strip.getContext('2d'); sg.fillStyle = '#e6dac0'; sg.fillRect(0, 0, strip.width, h);
+  const tmp = document.createElement('canvas'); tmp.width = 1024; tmp.height = 1536;
+  phases.forEach((ph, i) => { const tg = tmp.getContext('2d'); tg.clearRect(0, 0, 1024, 1536);
+    drawCharacter(tg, k, P, pose(prof, ph, 1)); sg.drawImage(tmp, i * w, 0, w, h); });
+  await fetch('/__save?name=' + name, { method: 'POST', body: strip.toDataURL('image/png') });
+}
+window.__debug = { captureStrip, M, get ch() { return ch; }, setPhase: p => { phase = p; draw(); }, render, pose, profile, draw };
+</script>
+</body>
+</html>

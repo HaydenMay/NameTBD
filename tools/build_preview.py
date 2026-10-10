@@ -24,6 +24,7 @@ from scipy import ndimage
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from skin import _hsv, rgb2lab, skin_mask  # noqa: E402
+import anim_rig  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 SRC = ROOT / "art" / "incoming" / "phase0"
@@ -37,6 +38,8 @@ TEMPLATES = {"m": {"cut": 345}, "f": {"cut": 332}}
 
 # Walk-test rig (male template, canvas px). "n" = near limb (image-left, drawn in front),
 # "f" = far limb (image-right, drawn behind). Measured on art/template/male_base.png.
+ANIM = json.loads((Path(__file__).resolve().parent / "anim_profiles.json").read_text())
+
 RIG = {
     "m": {
         "pivots": {"neck": [512, 375], "shoulder_n": [300, 505], "shoulder_f": [690, 505],
@@ -363,6 +366,12 @@ def main():
                  "part": save_part(front, f"body_{bid}", True)}
         if stump.any():
             entry["back"] = save_part(back, f"body_{bid}_back", True)
+        cfg = ANIM["outfits"].get(bid)
+        if cfg and tpl in ANIM["templates"]:
+            pieces, anchors = anim_rig.split(front, ANIM["templates"][tpl], cfg["hem"], cfg["belt"])
+            entry["anim"] = {"profile": cfg["profile"], "anchors": anchors,
+                             "pieces": {k: save_part(v, f"anim_{bid}_{k}", True)
+                                        for k, v in pieces.items() if (v[..., 3] > 0).any()}}
         if tpl in RIG:
             entry["rig"] = {k: save_part(v, f"body_{bid}_{k}", True)
                             for k, v in split_rig(front, RIG[tpl], hem).items() if (v[..., 3] > 0).any()}
@@ -390,7 +399,7 @@ def main():
              for k, v in SKINS.items()}
 
     manifest = {"version": int(time.time()), "canvas": [1024, 1536], "floor_y": 1510, "races": RACES, "skins": skins,
-                "rig": {k: v["pivots"] for k, v in RIG.items()}, "faces": faces, "bodies": bodies, "ears": ears, "hairs": hairs, "beards": beards, "hair_colours": HAIR_COLOURS}
+                "rig": {k: v["pivots"] for k, v in RIG.items()}, "anim": {k: v for k, v in ANIM.items() if k != "_doc"}, "faces": faces, "bodies": bodies, "ears": ears, "hairs": hairs, "beards": beards, "hair_colours": HAIR_COLOURS}
     (OUT / "manifest.json").write_text(json.dumps(manifest, indent=1))
     print(f"{len(faces)} faces, {len(bodies)} bodies, {len(ears)} ears, {len(hairs)} hairs, {len(skins)} skins")
 

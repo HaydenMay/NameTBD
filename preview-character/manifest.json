@@ -1,5 +1,5 @@
 {
- "version": 1791617400,
+ "version": 1791654641,
  "canvas": [
   1024,
   1536
@@ -360,6 +360,139 @@
     630,
     1085
    ]
+  }
+ },
+ "anim": {
+  "templates": {
+   "m": {
+    "pivots": {
+     "neck": [
+      512,
+      375
+     ],
+     "shoulder_n": [
+      300,
+      505
+     ],
+     "shoulder_f": [
+      690,
+      505
+     ],
+     "hip_n": [
+      430,
+      860
+     ],
+     "hip_f": [
+      610,
+      860
+     ],
+     "knee_n": [
+      425,
+      1085
+     ],
+     "knee_f": [
+      630,
+      1085
+     ],
+     "ankle_n": [
+      420,
+      1330
+     ],
+     "ankle_f": [
+      640,
+      1330
+     ],
+     "waist": [
+      512,
+      720
+     ]
+    },
+    "arm_n_x": 350,
+    "arm_f_x": 675,
+    "arm_top": 490,
+    "arm_bottom": 990,
+    "leg_top": 860,
+    "leg_split_x": 517,
+    "knee_y": 1085,
+    "cap": {
+     "y0": 430,
+     "y1": 590,
+     "feather": 45
+    }
+   }
+  },
+  "outfits": {
+   "guard_m": {
+    "profile": "leather_walk",
+    "hem": 900,
+    "belt": 735
+   },
+   "knight_m": {
+    "profile": "knight_walk",
+    "hem": 985,
+    "belt": 735
+   },
+   "cleric_m": {
+    "profile": "cleric_walk",
+    "hem": 1130,
+    "belt": 720
+   }
+  },
+  "default_profile": "subtle_walk",
+  "profiles": {
+   "leather_walk": {
+    "label": "Leather (cutout)",
+    "mode": "cutout",
+    "period": 0.9,
+    "bob": 8,
+    "head_bob": 2,
+    "lean": 0.01,
+    "leg_swing": 0.28,
+    "knee_bend": 0.42,
+    "arm_swing": 0.11,
+    "far_arm_swing": 0.09,
+    "skirt_sway": 0.0
+   },
+   "knight_walk": {
+    "label": "Knight (restrained cutout)",
+    "mode": "cutout",
+    "period": 0.95,
+    "bob": 7,
+    "head_bob": 1.5,
+    "lean": 0.008,
+    "leg_swing": 0.24,
+    "knee_bend": 0.35,
+    "arm_swing": 0.1,
+    "far_arm_swing": 0.08,
+    "skirt_sway": 0.012
+   },
+   "cleric_walk": {
+    "label": "Robe (sway)",
+    "mode": "robe",
+    "period": 1.0,
+    "bob": 6,
+    "head_bob": 1.5,
+    "lean": 0.006,
+    "leg_swing": 0.12,
+    "knee_bend": 0.18,
+    "arm_swing": 0.07,
+    "far_arm_swing": 0.06,
+    "skirt_sway": 0.025
+   },
+   "subtle_walk": {
+    "label": "Subtle (no limb rotation)",
+    "mode": "subtle",
+    "period": 0.9,
+    "bob": 6,
+    "head_bob": 1.5,
+    "lean": 0.0,
+    "leg_swing": 0.0,
+    "knee_bend": 0.0,
+    "arm_swing": 0.0,
+    "far_arm_swing": 0.0,
+    "skirt_sway": 0.0,
+    "squash": 0.012
+   }
   }
  },
  "faces": [
@@ -829,6 +962,131 @@
      55.17
     ]
    },
+   "anim": {
+    "profile": "knight_walk",
+    "anchors": {
+     "wrist_n": [
+      268,
+      902
+     ],
+     "grip_n": [
+      268,
+      932
+     ],
+     "wrist_f": [
+      773,
+      885
+     ],
+     "grip_f": [
+      773,
+      915
+     ]
+    },
+    "pieces": {
+     "arm_n": {
+      "file": "assets/anim_knight_m_arm_n.png",
+      "x": 163,
+      "y": 490,
+      "skin_mask": "assets/anim_knight_m_arm_n_skin.png",
+      "key_lab": [
+       27.08,
+       -3.5,
+       11.24
+      ]
+     },
+     "arm_f": {
+      "file": "assets/anim_knight_m_arm_f.png",
+      "x": 653,
+      "y": 490,
+      "skin_mask": "assets/anim_knight_m_arm_f_skin.png",
+      "key_lab": [
+       37.78,
+       -4.72,
+       23.41
+      ]
+     },
+     "thigh_n": {
+      "file": "assets/anim_knight_m_thigh_n.png",
+      "x": 330,
+      "y": 925
+     },
+     "shin_n": {
+      "file": "assets/anim_knight_m_shin_n.png",
+      "x": 299,
+      "y": 1055
+     },
+     "thigh_f": {
+      "file": "assets/anim_knight_m_thigh_f.png",
+      "x": 517,
+      "y": 925,
+      "skin_mask": "assets/anim_knight_m_thigh_f_skin.png",
+      "key_lab": [
+       38.38,
+       -4.04,
+       18.63
+      ]
+     },
+     "shin_f": {
+      "file": "assets/anim_knight_m_shin_f.png",
+      "x": 517,
+      "y": 1055,
+      "skin_mask": "assets/anim_knight_m_shin_f_skin.png",
+      "key_lab": [
+       49.57,
+       -5.11,
+       24.25
+      ]
+     },
+     "hips": {
+      "file": "assets/anim_knight_m_hips.png",
+      "x": 321,
+      "y": 760,
+      "skin_mask": "assets/anim_knight_m_hips_skin.png",
+      "key_lab": [
+       24.21,
+       -2.92,
+       12.91
+      ]
+     },
+     "torso": {
+      "file": "assets/anim_knight_m_torso.png",
+      "x": 212,
+      "y": 325
+     },
+     "skirt": {
+      "file": "assets/anim_knight_m_skirt.png",
+      "x": 276,
+      "y": 730,
+      "skin_mask": "assets/anim_knight_m_skirt_skin.png",
+      "key_lab": [
+       20.12,
+       -2.81,
+       11.53
+      ]
+     },
+     "fill_f": {
+      "file": "assets/anim_knight_m_fill_f.png",
+      "x": 653,
+      "y": 490,
+      "skin_mask": "assets/anim_knight_m_fill_f_skin.png",
+      "key_lab": [
+       47.73,
+       -4.63,
+       23.52
+      ]
+     },
+     "cap_n": {
+      "file": "assets/anim_knight_m_cap_n.png",
+      "x": 202,
+      "y": 484
+     },
+     "cap_f": {
+      "file": "assets/anim_knight_m_cap_f.png",
+      "x": 676,
+      "y": 484
+     }
+    }
+   },
    "rig": {
     "torso": {
      "file": "assets/body_knight_m_torso.png",
@@ -935,6 +1193,116 @@
      53.66
     ]
    },
+   "anim": {
+    "profile": "cleric_walk",
+    "anchors": {
+     "wrist_n": [
+      273,
+      919
+     ],
+     "grip_n": [
+      273,
+      949
+     ],
+     "wrist_f": [
+      766,
+      919
+     ],
+     "grip_f": [
+      766,
+      949
+     ]
+    },
+    "pieces": {
+     "arm_n": {
+      "file": "assets/anim_cleric_m_arm_n.png",
+      "x": 159,
+      "y": 490,
+      "skin_mask": "assets/anim_cleric_m_arm_n_skin.png",
+      "key_lab": [
+       36.28,
+       -7.28,
+       19.06
+      ]
+     },
+     "arm_f": {
+      "file": "assets/anim_cleric_m_arm_f.png",
+      "x": 641,
+      "y": 490,
+      "skin_mask": "assets/anim_cleric_m_arm_f_skin.png",
+      "key_lab": [
+       84.42,
+       -7.56,
+       45.53
+      ]
+     },
+     "shin_n": {
+      "file": "assets/anim_cleric_m_shin_n.png",
+      "x": 295,
+      "y": 1130
+     },
+     "shin_f": {
+      "file": "assets/anim_cleric_m_shin_f.png",
+      "x": 521,
+      "y": 1130,
+      "skin_mask": "assets/anim_cleric_m_shin_f_skin.png",
+      "key_lab": [
+       87.92,
+       -7.71,
+       69.77
+      ]
+     },
+     "torso": {
+      "file": "assets/anim_cleric_m_torso.png",
+      "x": 227,
+      "y": 329,
+      "skin_mask": "assets/anim_cleric_m_torso_skin.png",
+      "key_lab": [
+       56.88,
+       -6.26,
+       30.1
+      ]
+     },
+     "skirt": {
+      "file": "assets/anim_cleric_m_skirt.png",
+      "x": 258,
+      "y": 715,
+      "skin_mask": "assets/anim_cleric_m_skirt_skin.png",
+      "key_lab": [
+       62.28,
+       -6.57,
+       32.75
+      ]
+     },
+     "fill_f": {
+      "file": "assets/anim_cleric_m_fill_f.png",
+      "x": 641,
+      "y": 490,
+      "skin_mask": "assets/anim_cleric_m_fill_f_skin.png",
+      "key_lab": [
+       79.55,
+       -6.05,
+       44.0
+      ]
+     },
+     "cap_n": {
+      "file": "assets/anim_cleric_m_cap_n.png",
+      "x": 211,
+      "y": 484
+     },
+     "cap_f": {
+      "file": "assets/anim_cleric_m_cap_f.png",
+      "x": 653,
+      "y": 484,
+      "skin_mask": "assets/anim_cleric_m_cap_f_skin.png",
+      "key_lab": [
+       92.83,
+       -6.96,
+       45.44
+      ]
+     }
+    }
+   },
    "rig": {
     "torso": {
      "file": "assets/body_cleric_m_torso.png",
@@ -1040,6 +1408,125 @@
      -14.88,
      63.53
     ]
+   },
+   "anim": {
+    "profile": "leather_walk",
+    "anchors": {
+     "wrist_n": [
+      281,
+      883
+     ],
+     "grip_n": [
+      281,
+      913
+     ],
+     "wrist_f": [
+      770,
+      872
+     ],
+     "grip_f": [
+      770,
+      902
+     ]
+    },
+    "pieces": {
+     "arm_n": {
+      "file": "assets/anim_guard_m_arm_n.png",
+      "x": 189,
+      "y": 490,
+      "skin_mask": "assets/anim_guard_m_arm_n_skin.png",
+      "key_lab": [
+       61.56,
+       -14.35,
+       56.55
+      ]
+     },
+     "arm_f": {
+      "file": "assets/anim_guard_m_arm_f.png",
+      "x": 652,
+      "y": 490,
+      "skin_mask": "assets/anim_guard_m_arm_f_skin.png",
+      "key_lab": [
+       63.04,
+       -12.67,
+       57.98
+      ]
+     },
+     "thigh_n": {
+      "file": "assets/anim_guard_m_thigh_n.png",
+      "x": 344,
+      "y": 840
+     },
+     "shin_n": {
+      "file": "assets/anim_guard_m_shin_n.png",
+      "x": 314,
+      "y": 1055
+     },
+     "thigh_f": {
+      "file": "assets/anim_guard_m_thigh_f.png",
+      "x": 517,
+      "y": 840
+     },
+     "shin_f": {
+      "file": "assets/anim_guard_m_shin_f.png",
+      "x": 517,
+      "y": 1055
+     },
+     "hips": {
+      "file": "assets/anim_guard_m_hips.png",
+      "x": 327,
+      "y": 760
+     },
+     "torso": {
+      "file": "assets/anim_guard_m_torso.png",
+      "x": 220,
+      "y": 316,
+      "skin_mask": "assets/anim_guard_m_torso_skin.png",
+      "key_lab": [
+       53.11,
+       -12.32,
+       47.63
+      ]
+     },
+     "skirt": {
+      "file": "assets/anim_guard_m_skirt.png",
+      "x": 282,
+      "y": 730,
+      "skin_mask": "assets/anim_guard_m_skirt_skin.png",
+      "key_lab": [
+       34.55,
+       -5.93,
+       17.79
+      ]
+     },
+     "fill_f": {
+      "file": "assets/anim_guard_m_fill_f.png",
+      "x": 652,
+      "y": 490,
+      "skin_mask": "assets/anim_guard_m_fill_f_skin.png",
+      "key_lab": [
+       56.71,
+       -11.4,
+       48.34
+      ]
+     },
+     "cap_n": {
+      "file": "assets/anim_guard_m_cap_n.png",
+      "x": 203,
+      "y": 484,
+      "skin_mask": "assets/anim_guard_m_cap_n_skin.png",
+      "key_lab": [
+       48.36,
+       -10.33,
+       48.92
+      ]
+     },
+     "cap_f": {
+      "file": "assets/anim_guard_m_cap_f.png",
+      "x": 663,
+      "y": 484
+     }
+    }
    },
    "rig": {
     "torso": {

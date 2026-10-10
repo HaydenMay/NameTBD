@@ -71,6 +71,7 @@
     <div class="field">Hair colour<div class="swatches" id="colours"></div></div>
     <div class="check"><input type="checkbox" id="raceSize" checked><label for="raceSize">Apply race size</label></div>
     <div class="row" style="margin-bottom:12px"><button class="btn ghost" id="walk" title="Work in progress: rig test, not final">Walk test (WIP)</button></div>
+    <p class="note" style="margin-top:0"><a id="animLink" href="../animation/">Open in animation debugger (dev) →</a></p>
     <div class="row">
       <button class="btn" id="random">Random companion</button>
     </div>
@@ -267,6 +268,7 @@ function render() {
     `&hair=${state.hair || 'none'}&beard=${state.beard || 'none'}&hair_col=${state.hairCol}` + (state.scar && face.scar ? '&scar=1' : '');
   $('recipe').textContent = recipe;
   history.replaceState(null, '', '#' + recipe);
+  $('animLink').href = '../animation/#' + recipe;
 }
 
 function sync() {
