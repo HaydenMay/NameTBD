@@ -1,5 +1,5 @@
 {
- "version": 1791697989,
+ "version": 1791698702,
  "canvas": [
   1024,
   1536
@@ -1785,6 +1785,60 @@
      59.8
     ]
    },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_rowan.png",
+      "x": 364,
+      "y": 127,
+      "skin_mask": "assets/ears_elf_rowan_skin.png",
+      "key_lab": [
+       74.13,
+       -29.24,
+       58.86
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_rowan.png",
+      "x": 370,
+      "y": 122
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_rowan.png",
+      "x": 439,
+      "y": 180,
+      "skin_mask": "assets/earpatch_elf_rowan_skin.png",
+      "key_lab": [
+       69.9,
+       -18.18,
+       61.2
+      ]
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_rowan.png",
+      "x": 345,
+      "y": 160,
+      "skin_mask": "assets/ears_goblin_rowan_skin.png",
+      "key_lab": [
+       76.81,
+       -29.08,
+       58.59
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_rowan.png",
+      "x": 394,
+      "y": 255
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_rowan.png",
+      "x": 450,
+      "y": 175
+     }
+    }
+   },
    "id": "rowan",
    "label": "Rowan",
    "template": "f",
@@ -1827,6 +1881,66 @@
      -22.3,
      65.38
     ]
+   },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_f1.png",
+      "x": 380,
+      "y": 130,
+      "skin_mask": "assets/ears_elf_f1_skin.png",
+      "key_lab": [
+       75.11,
+       -29.12,
+       58.68
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_f1.png",
+      "x": 383,
+      "y": 120
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_f1.png",
+      "x": 446,
+      "y": 181,
+      "skin_mask": "assets/earpatch_elf_f1_skin.png",
+      "key_lab": [
+       70.11,
+       -19.57,
+       64.49
+      ]
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_f1.png",
+      "x": 348,
+      "y": 164,
+      "skin_mask": "assets/ears_goblin_f1_skin.png",
+      "key_lab": [
+       75.58,
+       -29.19,
+       58.71
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_f1.png",
+      "x": 361,
+      "y": 186
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_f1.png",
+      "x": 401,
+      "y": 112,
+      "skin_mask": "assets/earpatch_goblin_f1_skin.png",
+      "key_lab": [
+       62.97,
+       -24.02,
+       48.28
+      ]
+     }
+    }
    },
    "id": "f1",
    "label": "Brenna",
@@ -1876,6 +1990,60 @@
      65.99
     ]
    },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_f2.png",
+      "x": 345,
+      "y": 140,
+      "skin_mask": "assets/ears_elf_f2_skin.png",
+      "key_lab": [
+       75.32,
+       -29.67,
+       59.74
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_f2.png",
+      "x": 377,
+      "y": 124
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_f2.png",
+      "x": 441,
+      "y": 186,
+      "skin_mask": "assets/earpatch_elf_f2_skin.png",
+      "key_lab": [
+       68.36,
+       -19.07,
+       63.05
+      ]
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_f2.png",
+      "x": 345,
+      "y": 165,
+      "skin_mask": "assets/ears_goblin_f2_skin.png",
+      "key_lab": [
+       76.15,
+       -28.6,
+       57.73
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_f2.png",
+      "x": 347,
+      "y": 129
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_f2.png",
+      "x": 401,
+      "y": 164
+     }
+    }
+   },
    "id": "f2",
    "label": "Lisette",
    "template": "f",
@@ -1919,6 +2087,66 @@
      65.43
     ]
    },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_f3.png",
+      "x": 376,
+      "y": 139,
+      "skin_mask": "assets/ears_elf_f3_skin.png",
+      "key_lab": [
+       74.54,
+       -29.31,
+       59.02
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_f3.png",
+      "x": 375,
+      "y": 122
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_f3.png",
+      "x": 442,
+      "y": 185,
+      "skin_mask": "assets/earpatch_elf_f3_skin.png",
+      "key_lab": [
+       66.55,
+       -18.09,
+       61.05
+      ]
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_f3.png",
+      "x": 347,
+      "y": 167,
+      "skin_mask": "assets/ears_goblin_f3_skin.png",
+      "key_lab": [
+       76.45,
+       -29.28,
+       58.96
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_f3.png",
+      "x": 355,
+      "y": 136
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_f3.png",
+      "x": 401,
+      "y": 140,
+      "skin_mask": "assets/earpatch_goblin_f3_skin.png",
+      "key_lab": [
+       71.82,
+       -20.58,
+       56.59
+      ]
+     }
+    }
+   },
    "id": "f3",
    "label": "Old Maud",
    "template": "f",
@@ -1961,6 +2189,55 @@
      -22.4,
      65.66
     ]
+   },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_f4.png",
+      "x": 373,
+      "y": 138,
+      "skin_mask": "assets/ears_elf_f4_skin.png",
+      "key_lab": [
+       74.2,
+       -29.57,
+       59.43
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_f4.png",
+      "x": 397,
+      "y": 124
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_f4.png",
+      "x": 443,
+      "y": 187,
+      "skin_mask": "assets/earpatch_elf_f4_skin.png",
+      "key_lab": [
+       64.14,
+       -18.17,
+       59.38
+      ]
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_f4.png",
+      "x": 350,
+      "y": 165,
+      "skin_mask": "assets/ears_goblin_f4_skin.png",
+      "key_lab": [
+       76.13,
+       -28.71,
+       57.91
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_f4.png",
+      "x": 347,
+      "y": 168
+     }
+    }
    },
    "id": "f4",
    "label": "Sela",
@@ -2010,6 +2287,66 @@
      64.16
     ]
    },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_f5.png",
+      "x": 369,
+      "y": 136,
+      "skin_mask": "assets/ears_elf_f5_skin.png",
+      "key_lab": [
+       73.92,
+       -29.72,
+       59.68
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_f5.png",
+      "x": 369,
+      "y": 122
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_f5.png",
+      "x": 441,
+      "y": 187,
+      "skin_mask": "assets/earpatch_elf_f5_skin.png",
+      "key_lab": [
+       71.69,
+       -19.53,
+       63.78
+      ]
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_f5.png",
+      "x": 353,
+      "y": 163,
+      "skin_mask": "assets/ears_goblin_f5_skin.png",
+      "key_lab": [
+       76.63,
+       -28.5,
+       57.56
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_f5.png",
+      "x": 354,
+      "y": 162
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_f5.png",
+      "x": 450,
+      "y": 262,
+      "skin_mask": "assets/earpatch_goblin_f5_skin.png",
+      "key_lab": [
+       46.02,
+       -21.78,
+       47.53
+      ]
+     }
+    }
+   },
    "id": "f5",
    "label": "Greta",
    "template": "f",
@@ -2057,6 +2394,66 @@
      -21.85,
      65.49
     ]
+   },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_f6.png",
+      "x": 380,
+      "y": 141,
+      "skin_mask": "assets/ears_elf_f6_skin.png",
+      "key_lab": [
+       73.37,
+       -29.4,
+       59.01
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_f6.png",
+      "x": 377,
+      "y": 124
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_f6.png",
+      "x": 446,
+      "y": 188,
+      "skin_mask": "assets/earpatch_elf_f6_skin.png",
+      "key_lab": [
+       66.06,
+       -18.88,
+       61.27
+      ]
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_f6.png",
+      "x": 353,
+      "y": 171,
+      "skin_mask": "assets/ears_goblin_f6_skin.png",
+      "key_lab": [
+       75.81,
+       -29.68,
+       59.61
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_f6.png",
+      "x": 364,
+      "y": 132
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_f6.png",
+      "x": 404,
+      "y": 123,
+      "skin_mask": "assets/earpatch_goblin_f6_skin.png",
+      "key_lab": [
+       68.37,
+       -24.16,
+       46.79
+      ]
+     }
+    }
    },
    "id": "f6",
    "label": "Ione",
@@ -2106,6 +2503,60 @@
      65.94
     ]
    },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_f7.png",
+      "x": 374,
+      "y": 145,
+      "skin_mask": "assets/ears_elf_f7_skin.png",
+      "key_lab": [
+       73.37,
+       -29.64,
+       59.45
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_f7.png",
+      "x": 371,
+      "y": 129
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_f7.png",
+      "x": 443,
+      "y": 191,
+      "skin_mask": "assets/earpatch_elf_f7_skin.png",
+      "key_lab": [
+       67.19,
+       -18.8,
+       61.83
+      ]
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_f7.png",
+      "x": 348,
+      "y": 173,
+      "skin_mask": "assets/ears_goblin_f7_skin.png",
+      "key_lab": [
+       74.24,
+       -29.51,
+       59.2
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_f7.png",
+      "x": 348,
+      "y": 170
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_f7.png",
+      "x": 403,
+      "y": 135
+     }
+    }
+   },
    "id": "f7",
    "label": "Kestra",
    "template": "f",
@@ -2154,6 +2605,66 @@
      65.94
     ]
    },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_f8.png",
+      "x": 371,
+      "y": 149,
+      "skin_mask": "assets/ears_elf_f8_skin.png",
+      "key_lab": [
+       70.89,
+       -29.58,
+       59.07
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_f8.png",
+      "x": 376,
+      "y": 127
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_f8.png",
+      "x": 445,
+      "y": 191,
+      "skin_mask": "assets/earpatch_elf_f8_skin.png",
+      "key_lab": [
+       57.53,
+       -15.47,
+       54.08
+      ]
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_f8.png",
+      "x": 350,
+      "y": 173,
+      "skin_mask": "assets/ears_goblin_f8_skin.png",
+      "key_lab": [
+       74.37,
+       -29.83,
+       59.75
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_f8.png",
+      "x": 363,
+      "y": 133
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_f8.png",
+      "x": 405,
+      "y": 119,
+      "skin_mask": "assets/earpatch_goblin_f8_skin.png",
+      "key_lab": [
+       69.46,
+       -21.04,
+       49.16
+      ]
+     }
+    }
+   },
    "id": "f8",
    "label": "Hilde",
    "template": "f",
@@ -2196,6 +2707,55 @@
      -22.05,
      65.63
     ]
+   },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_f9.png",
+      "x": 378,
+      "y": 142,
+      "skin_mask": "assets/ears_elf_f9_skin.png",
+      "key_lab": [
+       74.69,
+       -29.06,
+       58.57
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_f9.png",
+      "x": 375,
+      "y": 124
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_f9.png",
+      "x": 444,
+      "y": 189,
+      "skin_mask": "assets/earpatch_elf_f9_skin.png",
+      "key_lab": [
+       64.18,
+       -17.75,
+       58.99
+      ]
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_f9.png",
+      "x": 352,
+      "y": 168,
+      "skin_mask": "assets/ears_goblin_f9_skin.png",
+      "key_lab": [
+       74.52,
+       -29.43,
+       59.09
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_f9.png",
+      "x": 350,
+      "y": 169
+     }
+    }
    },
    "id": "f9",
    "label": "Yvaine",

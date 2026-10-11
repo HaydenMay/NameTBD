@@ -38,7 +38,7 @@ for i, f in enumerate(faces):
     tone = race["skins"][i % len(race["skins"])]
     col = race["hair"][i % len(race["hair"])]
     body = B["cleric_m" if f["template"] == "m" else "cleric_f"]
-    hair = H["m_short" if f["template"] == "m" else "bun01"]
+    hair = H["m_short" if f["template"] == "m" else "f5"]
     c = Image.new("RGBA", (1024, 1536), (70, 60, 75, 255))
     if body.get("back"):
         c.alpha_composite(load(body["back"], tone), (body["back"]["x"], body["back"]["y"]))

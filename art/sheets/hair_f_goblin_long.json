@@ -1,0 +1,82 @@
+[
+ {
+  "id": "fl1",
+  "label": "Long straight",
+  "sheet_xy": [
+   67,
+   32
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   960
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "fl2",
+  "label": "Long waves",
+  "sheet_xy": [
+   434,
+   32
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   960
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "fl3",
+  "label": "Side braid",
+  "sheet_xy": [
+   801,
+   32
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   960
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "fl4",
+  "label": "Two braids",
+  "sheet_xy": [
+   1168,
+   32
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   960
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ }
+]

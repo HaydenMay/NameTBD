@@ -1,0 +1,122 @@
+[
+ {
+  "id": "f2",
+  "label": "Bob",
+  "sheet_xy": [
+   6,
+   74
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "f3",
+  "label": "High ponytail",
+  "sheet_xy": [
+   312,
+   74
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "f5",
+  "label": "Bun",
+  "sheet_xy": [
+   618,
+   74
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "f7",
+  "label": "Pixie",
+  "sheet_xy": [
+   924,
+   74
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "f9",
+  "label": "Shoulder-length",
+  "sheet_xy": [
+   1230,
+   74
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "f10",
+  "label": "Crown braid",
+  "sheet_xy": [
+   6,
+   548
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ }
+]

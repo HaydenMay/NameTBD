@@ -3,7 +3,7 @@
   "id": "m_short",
   "label": "Short",
   "sheet_xy": [
-   18,
+   6,
    74
   ],
   "src_xy": [
@@ -23,7 +23,7 @@
   "id": "m_wavy",
   "label": "Long wavy",
   "sheet_xy": [
-   318,
+   312,
    74
   ],
   "src_xy": [
@@ -63,7 +63,7 @@
   "id": "m_topknot2",
   "label": "Top-knot",
   "sheet_xy": [
-   918,
+   924,
    74
   ],
   "src_xy": [
@@ -83,7 +83,7 @@
   "id": "m_slicked2",
   "label": "Slicked back",
   "sheet_xy": [
-   1218,
+   1230,
    74
   ],
   "src_xy": [
@@ -103,7 +103,7 @@
   "id": "m_shaggy",
   "label": "Shaggy",
   "sheet_xy": [
-   18,
+   6,
    548
   ],
   "src_xy": [
@@ -123,7 +123,7 @@
   "id": "m_curly",
   "label": "Curly",
   "sheet_xy": [
-   318,
+   312,
    548
   ],
   "src_xy": [
@@ -163,7 +163,7 @@
   "id": "spiky02",
   "label": "Spiky",
   "sheet_xy": [
-   918,
+   924,
    548
   ],
   "src_xy": [
