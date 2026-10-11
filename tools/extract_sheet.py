@@ -17,7 +17,9 @@ from recolor import gradient_map  # noqa: E402
 from skin import _hsv  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-RAMPS = {"tusks": [(70, 58, 42), (176, 160, 124), (228, 216, 184), (252, 246, 228)]}
+RAMPS = {"tusks": [(70, 58, 42), (176, 160, 124), (228, 216, 184), (252, 246, 228)],
+         # skin parts go back to the lime key so they recolour exactly like the face
+         "lime": [(28, 30, 12), (120, 160, 24), (178, 222, 52), (226, 248, 140)]}
 
 
 def main(cells_json, edited, kind):
@@ -45,8 +47,19 @@ def main(cells_json, edited, kind):
         canvas = np.zeros((1536, 1024, 4), np.uint8)
         sx, sy = c["src_xy"]
         canvas[sy:sy + H, sx:sx + W] = piece[Y:Y + H, X:X + W]
-        img = gradient_map(Image.fromarray(canvas), RAMPS.get(kind, RAMPS["tusks"]))
+        img = gradient_map(Image.fromarray(canvas), RAMPS["lime" if kind.startswith("ears") else "tusks"])
         img.save(out_dir / f"{kind}_{c['id']}.png")
+        if kind.startswith("ears"):
+            # old human ear pixels the edit erased to background: cut them from the face
+            bg = (e[..., 0] > 200) & (e[..., 1] < 90) & (e[..., 2] > 200)
+            cut = changed & bg
+            cut[:, X + 130:] = False
+            cut[:Y + 100] = False
+            cut[Y + 310:] = False
+            cut = ndimage.binary_dilation(cut, iterations=2)
+            cmask = np.zeros((1536, 1024, 4), np.uint8)
+            cmask[sy:sy + H, sx:sx + W, 3] = cut[Y:Y + H, X:X + W] * 255
+            Image.fromarray(cmask).save(out_dir / f"cut_{c['id']}.png")
         print(c["label"], int(m.sum()), "px")
 
 

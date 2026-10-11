@@ -1,5 +1,5 @@
 {
- "version": 1791679496,
+ "version": 1791680312,
  "canvas": [
   1024,
   1536
@@ -175,14 +175,14 @@
   },
   "moonpale": {
    "rgb": [
-    222,
-    204,
-    192
+    206,
+    188,
+    176
    ],
    "lab": [
-    83.19,
-    4.29,
-    8.23
+    77.41,
+    4.38,
+    8.37
    ]
   },
   "golden": {
@@ -584,6 +584,44 @@
     "x": 399,
     "y": 272
    },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_aldric.png",
+      "x": 354,
+      "y": 128,
+      "skin_mask": "assets/ears_elf_aldric_skin.png",
+      "key_lab": [
+       76.05,
+       -27.88,
+       56.52
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_aldric.png",
+      "x": 353,
+      "y": 150
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_aldric.png",
+      "x": 353,
+      "y": 140,
+      "skin_mask": "assets/ears_goblin_aldric_skin.png",
+      "key_lab": [
+       74.82,
+       -29.36,
+       58.82
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_aldric.png",
+      "x": 353,
+      "y": 153
+     }
+    }
+   },
    "id": "aldric",
    "label": "Aldric",
    "template": "m",
@@ -628,6 +666,44 @@
     "file": "assets/tusks_hobb.png",
     "x": 407,
     "y": 270
+   },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_hobb.png",
+      "x": 352,
+      "y": 132,
+      "skin_mask": "assets/ears_elf_hobb_skin.png",
+      "key_lab": [
+       76.24,
+       -27.99,
+       56.74
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_hobb.png",
+      "x": 352,
+      "y": 157
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_hobb.png",
+      "x": 351,
+      "y": 142,
+      "skin_mask": "assets/ears_goblin_hobb_skin.png",
+      "key_lab": [
+       74.79,
+       -29.55,
+       59.11
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_hobb.png",
+      "x": 371,
+      "y": 155
+     }
+    }
    },
    "blocked_beard": [
     "trimmed"
@@ -676,6 +752,44 @@
     "file": "assets/tusks_pip.png",
     "x": 359,
     "y": 265
+   },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_pip.png",
+      "x": 351,
+      "y": 132,
+      "skin_mask": "assets/ears_elf_pip_skin.png",
+      "key_lab": [
+       75.4,
+       -28.12,
+       56.9
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_pip.png",
+      "x": 352,
+      "y": 216
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_pip.png",
+      "x": 350,
+      "y": 149,
+      "skin_mask": "assets/ears_goblin_pip_skin.png",
+      "key_lab": [
+       74.82,
+       -29.43,
+       58.93
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_pip.png",
+      "x": 352,
+      "y": 163
+     }
+    }
    },
    "blocked_beard": [
     "trimmed",
@@ -727,6 +841,44 @@
     "x": 398,
     "y": 273
    },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_edric.png",
+      "x": 352,
+      "y": 128,
+      "skin_mask": "assets/ears_elf_edric_skin.png",
+      "key_lab": [
+       74.63,
+       -28.33,
+       57.18
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_edric.png",
+      "x": 351,
+      "y": 150
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_edric.png",
+      "x": 351,
+      "y": 149,
+      "skin_mask": "assets/ears_goblin_edric_skin.png",
+      "key_lab": [
+       73.95,
+       -29.23,
+       58.47
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_edric.png",
+      "x": 351,
+      "y": 154
+     }
+    }
+   },
    "id": "edric",
    "label": "Edric",
    "template": "m",
@@ -775,6 +927,44 @@
     "file": "assets/tusks_m1_lean_a.png",
     "x": 400,
     "y": 281
+   },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_m1_lean_a.png",
+      "x": 352,
+      "y": 133,
+      "skin_mask": "assets/ears_elf_m1_lean_a_skin.png",
+      "key_lab": [
+       75.59,
+       -28.26,
+       57.16
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_m1_lean_a.png",
+      "x": 351,
+      "y": 150
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_m1_lean_a.png",
+      "x": 351,
+      "y": 150,
+      "skin_mask": "assets/ears_goblin_m1_lean_a_skin.png",
+      "key_lab": [
+       74.56,
+       -29.14,
+       58.39
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_m1_lean_a.png",
+      "x": 365,
+      "y": 186
+     }
+    }
    },
    "id": "m1_lean_a",
    "label": "Corwin",
@@ -825,6 +1015,44 @@
     "x": 408,
     "y": 282
    },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_m6_lean_b.png",
+      "x": 353,
+      "y": 134,
+      "skin_mask": "assets/ears_elf_m6_lean_b_skin.png",
+      "key_lab": [
+       76.08,
+       -28.14,
+       56.98
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_m6_lean_b.png",
+      "x": 352,
+      "y": 150
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_m6_lean_b.png",
+      "x": 352,
+      "y": 153,
+      "skin_mask": "assets/ears_goblin_m6_lean_b_skin.png",
+      "key_lab": [
+       75.06,
+       -29.54,
+       59.13
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_m6_lean_b.png",
+      "x": 352,
+      "y": 157
+     }
+    }
+   },
    "id": "m6_lean_b",
    "label": "Corwin (alt)",
    "template": "m",
@@ -866,6 +1094,44 @@
     "file": "assets/tusks_m2_weathered.png",
     "x": 547,
     "y": 280
+   },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_m2_weathered.png",
+      "x": 351,
+      "y": 126,
+      "skin_mask": "assets/ears_elf_m2_weathered_skin.png",
+      "key_lab": [
+       75.56,
+       -28.65,
+       57.87
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_m2_weathered.png",
+      "x": 355,
+      "y": 152
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_m2_weathered.png",
+      "x": 351,
+      "y": 154,
+      "skin_mask": "assets/ears_goblin_m2_weathered_skin.png",
+      "key_lab": [
+       75.23,
+       -29.75,
+       59.58
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_m2_weathered.png",
+      "x": 351,
+      "y": 154
+     }
+    }
    },
    "blocked_beard": [
     "trimmed"
@@ -915,6 +1181,44 @@
     "x": 420,
     "y": 279
    },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_m3_gentle.png",
+      "x": 353,
+      "y": 126,
+      "skin_mask": "assets/ears_elf_m3_gentle_skin.png",
+      "key_lab": [
+       75.51,
+       -28.39,
+       57.37
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_m3_gentle.png",
+      "x": 352,
+      "y": 150
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_m3_gentle.png",
+      "x": 352,
+      "y": 156,
+      "skin_mask": "assets/ears_goblin_m3_gentle_skin.png",
+      "key_lab": [
+       75.1,
+       -29.53,
+       59.17
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_m3_gentle.png",
+      "x": 352,
+      "y": 170
+     }
+    }
+   },
    "id": "m3_gentle",
    "label": "Tomas",
    "template": "m",
@@ -957,6 +1261,44 @@
     "x": 402,
     "y": 284
    },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_m4_stern.png",
+      "x": 354,
+      "y": 137,
+      "skin_mask": "assets/ears_elf_m4_stern_skin.png",
+      "key_lab": [
+       74.75,
+       -28.41,
+       57.38
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_m4_stern.png",
+      "x": 352,
+      "y": 151
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_m4_stern.png",
+      "x": 352,
+      "y": 158,
+      "skin_mask": "assets/ears_goblin_m4_stern_skin.png",
+      "key_lab": [
+       74.11,
+       -29.27,
+       58.6
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_m4_stern.png",
+      "x": 352,
+      "y": 156
+     }
+    }
+   },
    "id": "m4_stern",
    "label": "Varek",
    "template": "m",
@@ -998,6 +1340,44 @@
     "file": "assets/tusks_m5_sunworn.png",
     "x": 407,
     "y": 274
+   },
+   "race_ears": {
+    "elf": {
+     "part": {
+      "file": "assets/ears_elf_m5_sunworn.png",
+      "x": 353,
+      "y": 133,
+      "skin_mask": "assets/ears_elf_m5_sunworn_skin.png",
+      "key_lab": [
+       75.19,
+       -28.32,
+       57.21
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_elf_m5_sunworn.png",
+      "x": 352,
+      "y": 150
+     }
+    },
+    "goblin": {
+     "part": {
+      "file": "assets/ears_goblin_m5_sunworn.png",
+      "x": 352,
+      "y": 155,
+      "skin_mask": "assets/ears_goblin_m5_sunworn_skin.png",
+      "key_lab": [
+       74.07,
+       -29.26,
+       58.6
+      ]
+     },
+     "cut": {
+      "file": "assets/earcut_goblin_m5_sunworn.png",
+      "x": 358,
+      "y": 246
+     }
+    }
    },
    "blocked_beard": [
     "trimmed"

@@ -43,6 +43,14 @@ for i, f in enumerate(faces):
     if body.get("back"):
         c.alpha_composite(load(body["back"], tone), (body["back"]["x"], body["back"]["y"]))
     c.alpha_composite(load(f["part"], tone), (f["part"]["x"], f["part"]["y"]))
+    own = (f.get("race_ears") or {}).get(race["ears"] or "")
+    if own and own.get("cut"):
+        cut = np.asarray(Image.open(ROOT / "preview-character" / own["cut"]["file"]))[..., 3] > 0
+        arr = np.asarray(c).copy()
+        cx0, cy0 = own["cut"]["x"], own["cut"]["y"]
+        sub = arr[cy0:cy0 + cut.shape[0], cx0:cx0 + cut.shape[1]]
+        sub[cut] = (70, 60, 75, 255)
+        c = Image.fromarray(arr)
     if f.get("brows"):
         c.alpha_composite(gradient_map(Image.open(ROOT / "preview-character" / f["brows"]["file"]), M["hair_colours"][col]),
                           (f["brows"]["x"], f["brows"]["y"]))
@@ -51,9 +59,12 @@ for i, f in enumerate(faces):
     c.alpha_composite(gradient_map(Image.open(ROOT / "preview-character" / hp["file"]), M["hair_colours"][col]),
                       (hp["x"] + f["skull"][1] - hair["ref_skull"][1], hp["y"] + f["skull"][0] - hair["ref_skull"][0]))
     if race["ears"]:
-        e = M["ears"][race["ears"]]
-        c.alpha_composite(load(e["part"], tone), (e["part"]["x"] + f["skull"][1] - e["ref_skull"][1],
-                                                   e["part"]["y"] + f["skull"][0] - e["ref_skull"][0]))
+        if own:
+            c.alpha_composite(load(own["part"], tone), (own["part"]["x"], own["part"]["y"]))
+        else:
+            e = M["ears"][race["ears"]]
+            c.alpha_composite(load(e["part"], tone), (e["part"]["x"] + f["skull"][1] - e["ref_skull"][1],
+                                                       e["part"]["y"] + f["skull"][0] - e["ref_skull"][0]))
         if race["ears"] == "ogre" and f.get("tusks"):
             t = f["tusks"]
             c.alpha_composite(load(t), (t["x"], t["y"]))
