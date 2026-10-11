@@ -51,7 +51,12 @@ def register(orig_cell, edit_sheet, X, Y, W, H):
     return best[1], best[2], best[0]
 
 
-def main(kind, tpl, edited):
+PREFIX = ""
+
+
+def main(kind, tpl, edited, prefix=""):
+    global PREFIX
+    PREFIX = prefix
     cells = json.loads((ROOT / f"art/sheets/new_{kind}_{tpl}.json").read_text())
     orig = np.asarray(Image.open(ROOT / f"art/sheets/new_{kind}_{tpl}.png").convert("RGB")).astype(int)
     e_img = Image.open(edited).convert("RGB")
@@ -73,7 +78,7 @@ def main(kind, tpl, edited):
         txt[120:] = False
         ca[ndimage.binary_dilation(txt, iterations=3)] = (255, 0, 255)
         cell = Image.fromarray(ca)
-        name = f"{tpl}{'l' if kind == 'hairlong' else ''}{c['n']}"
+        name = f"{tpl}{PREFIX or ('l' if kind == 'hairlong' else '')}{c['n']}"
         if kind == "faces":
             full = base_img.copy()
             full.paste(cell, (sx, sy))
@@ -158,4 +163,4 @@ def main(kind, tpl, edited):
 
 
 if __name__ == "__main__":
-    main(*sys.argv[1:4])
+    main(*sys.argv[1:5])

@@ -1,5 +1,5 @@
 {
- "version": 1791742354,
+ "version": 1791742585,
  "canvas": [
   1024,
   1536
@@ -3930,8 +3930,8 @@
    }
   },
   {
-   "id": "f9",
-   "label": "Shoulder-length",
+   "id": "fu1",
+   "label": "High bun",
    "fits": [
     "f"
    ],
@@ -3940,45 +3940,268 @@
     514
    ],
    "lum": [
-    16.3,
-    149.9
+    6.7,
+    152.6
    ],
    "part": {
-    "file": "assets/hair_f9.png",
-    "x": 345,
-    "y": 27
+    "file": "assets/hair_fu1.png",
+    "x": 375,
+    "y": 0
    },
-   "race_versions": {
-    "elf": {
-     "ref_skull": [
-      54,
-      514
-     ],
-     "lum": [
-      20.2,
-      168.1
-     ],
-     "part": {
-      "file": "assets/hair_f9_elf.png",
-      "x": 342,
-      "y": 29
-     }
-    },
-    "goblin": {
-     "ref_skull": [
-      54,
-      514
-     ],
-     "lum": [
-      21.6,
-      158.8
-     ],
-     "part": {
-      "file": "assets/hair_f9_goblin.png",
-      "x": 341,
-      "y": 27
-     }
-    }
+   "ties": {
+    "file": "assets/hair_fu1_ties.png",
+    "x": 440,
+    "y": 30
+   },
+   "earfill": {
+    "file": "assets/hair_fu1_earfill.png",
+    "x": 399,
+    "y": 157
+   }
+  },
+  {
+   "id": "fu2",
+   "label": "Low chignon",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    5.9,
+    156.6
+   ],
+   "part": {
+    "file": "assets/hair_fu2.png",
+    "x": 345,
+    "y": 45
+   },
+   "ties": {
+    "file": "assets/hair_fu2_ties.png",
+    "x": 380,
+    "y": 202
+   },
+   "earfill": {
+    "file": "assets/hair_fu2_earfill.png",
+    "x": 380,
+    "y": 158
+   }
+  },
+  {
+   "id": "fu3",
+   "label": "Braided bun",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    5.7,
+    154.3
+   ],
+   "part": {
+    "file": "assets/hair_fu3.png",
+    "x": 362,
+    "y": 11
+   },
+   "ties": {
+    "file": "assets/hair_fu3_ties.png",
+    "x": 411,
+    "y": 47
+   },
+   "earfill": {
+    "file": "assets/hair_fu3_earfill.png",
+    "x": 386,
+    "y": 205
+   }
+  },
+  {
+   "id": "fu4",
+   "label": "Messy bun",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    7.1,
+    154.9
+   ],
+   "part": {
+    "file": "assets/hair_fu4.png",
+    "x": 341,
+    "y": 0
+   },
+   "ties": {
+    "file": "assets/hair_fu4_ties.png",
+    "x": 419,
+    "y": 41
+   },
+   "earfill": {
+    "file": "assets/hair_fu4_earfill.png",
+    "x": 359,
+    "y": 126
+   }
+  },
+  {
+   "id": "fu5",
+   "label": "Twin buns",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    7.2,
+    156.6
+   ],
+   "part": {
+    "file": "assets/hair_fu5.png",
+    "x": 352,
+    "y": 9
+   },
+   "ties": {
+    "file": "assets/hair_fu5_ties.png",
+    "x": 404,
+    "y": 53
+   },
+   "earfill": {
+    "file": "assets/hair_fu5_earfill.png",
+    "x": 385,
+    "y": 124
+   }
+  },
+  {
+   "id": "fu6",
+   "label": "French twist",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    7.3,
+    157.0
+   ],
+   "part": {
+    "file": "assets/hair_fu6.png",
+    "x": 359,
+    "y": 7
+   },
+   "ties": {
+    "file": "assets/hair_fu6_ties.png",
+    "x": 366,
+    "y": 54
+   }
+  },
+  {
+   "id": "fu7",
+   "label": "Braided crown bun",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    4.6,
+    153.8
+   ],
+   "part": {
+    "file": "assets/hair_fu7.png",
+    "x": 344,
+    "y": 32
+   },
+   "ties": {
+    "file": "assets/hair_fu7_ties.png",
+    "x": 369,
+    "y": 193
+   },
+   "earfill": {
+    "file": "assets/hair_fu7_earfill.png",
+    "x": 375,
+    "y": 196
+   }
+  },
+  {
+   "id": "fu8",
+   "label": "Short ponytail",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    7.2,
+    150.4
+   ],
+   "part": {
+    "file": "assets/hair_fu8.png",
+    "x": 354,
+    "y": 45
+   },
+   "ties": {
+    "file": "assets/hair_fu8_ties.png",
+    "x": 416,
+    "y": 63
+   }
+  },
+  {
+   "id": "fu9",
+   "label": "Wavy chin-length",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    8.5,
+    158.9
+   ],
+   "part": {
+    "file": "assets/hair_fu9.png",
+    "x": 329,
+    "y": 46
+   }
+  },
+  {
+   "id": "fu10",
+   "label": "Tousled crop",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    8.5,
+    161.3
+   ],
+   "part": {
+    "file": "assets/hair_fu10.png",
+    "x": 360,
+    "y": 21
+   },
+   "earfill": {
+    "file": "assets/hair_fu10_earfill.png",
+    "x": 379,
+    "y": 193
    }
   },
   {
