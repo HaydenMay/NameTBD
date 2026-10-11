@@ -1,5 +1,5 @@
 {
- "version": 1791740326,
+ "version": 1791740892,
  "canvas": [
   1024,
   1536
@@ -2943,89 +2943,89 @@
    "lime": true,
    "part": {
     "file": "assets/body_guard_m.png",
-    "x": 189,
-    "y": 316,
+    "x": 180,
+    "y": 326,
     "skin_mask": "assets/body_guard_m_skin.png",
     "key_lab": [
-     61.9,
-     -13.62,
-     56.85
+     64.27,
+     -28.86,
+     57.63
     ]
    },
    "back": {
     "file": "assets/body_guard_m_back.png",
-    "x": 491,
+    "x": 482,
     "y": 345,
     "skin_mask": "assets/body_guard_m_back_skin.png",
     "key_lab": [
-     68.64,
-     -14.88,
-     63.53
+     64.49,
+     -29.8,
+     59.26
     ]
    },
    "anim": {
     "profile": "leather_walk",
     "anchors": {
      "wrist_n": [
-      281,
-      883
+      271,
+      894
      ],
      "grip_n": [
-      281,
-      913
+      271,
+      924
      ],
      "wrist_f": [
-      770,
-      872
+      774,
+      879
      ],
      "grip_f": [
-      770,
-      902
+      774,
+      909
      ]
     },
     "pivots": {},
     "pieces": {
      "arm_n": {
       "file": "assets/anim_guard_m_arm_n.png",
-      "x": 189,
+      "x": 180,
       "y": 490,
       "skin_mask": "assets/anim_guard_m_arm_n_skin.png",
       "key_lab": [
-       61.56,
-       -14.35,
-       56.55
+       65.34,
+       -29.43,
+       58.51
       ]
      },
      "arm_f": {
       "file": "assets/anim_guard_m_arm_f.png",
-      "x": 652,
+      "x": 665,
       "y": 490,
       "skin_mask": "assets/anim_guard_m_arm_f_skin.png",
       "key_lab": [
-       63.04,
-       -12.67,
-       57.98
+       63.41,
+       -28.36,
+       56.9
       ]
      },
      "thigh_n": {
       "file": "assets/anim_guard_m_thigh_n.png",
-      "x": 346,
-      "y": 796
+      "x": 326,
+      "y": 802
      },
      "shin_n": {
       "file": "assets/anim_guard_m_shin_n.png",
-      "x": 314,
-      "y": 1077
+      "x": 307,
+      "y": 869
      },
      "thigh_f": {
       "file": "assets/anim_guard_m_thigh_f.png",
       "x": 517,
-      "y": 821
+      "y": 813
      },
      "shin_f": {
       "file": "assets/anim_guard_m_shin_f.png",
       "x": 517,
-      "y": 1077
+      "y": 872
      },
      "hips": {
       "file": "assets/anim_guard_m_hips.png",
@@ -3034,33 +3034,27 @@
      },
      "torso": {
       "file": "assets/anim_guard_m_torso.png",
-      "x": 231,
-      "y": 316
+      "x": 235,
+      "y": 326
      },
      "skirt": {
       "file": "assets/anim_guard_m_skirt.png",
-      "x": 312,
+      "x": 348,
       "y": 730
      },
      "fill_f": {
       "file": "assets/anim_guard_m_fill_f.png",
-      "x": 652,
+      "x": 665,
       "y": 490
      },
      "cap_n": {
       "file": "assets/anim_guard_m_cap_n.png",
-      "x": 203,
-      "y": 484,
-      "skin_mask": "assets/anim_guard_m_cap_n_skin.png",
-      "key_lab": [
-       48.36,
-       -10.33,
-       48.92
-      ]
+      "x": 201,
+      "y": 484
      },
      "cap_f": {
       "file": "assets/anim_guard_m_cap_f.png",
-      "x": 663,
+      "x": 670,
       "y": 484
      }
     }
@@ -3068,24 +3062,24 @@
    "rig": {
     "torso": {
      "file": "assets/body_guard_m_torso.png",
-     "x": 223,
-     "y": 316,
+     "x": 225,
+     "y": 326,
      "skin_mask": "assets/body_guard_m_torso_skin.png",
      "key_lab": [
-      44.26,
-      -10.83,
-      44.5
+      37.11,
+      -18.49,
+      34.49
      ]
     },
     "arm_n": {
      "file": "assets/body_guard_m_arm_n.png",
-     "x": 189,
+     "x": 180,
      "y": 490,
      "skin_mask": "assets/body_guard_m_arm_n_skin.png",
      "key_lab": [
-      61.6,
-      -14.36,
-      56.58
+      65.34,
+      -29.43,
+      58.51
      ]
     },
     "arm_f": {
@@ -3094,19 +3088,19 @@
      "y": 490,
      "skin_mask": "assets/body_guard_m_arm_f_skin.png",
      "key_lab": [
-      64.67,
-      -12.93,
-      59.04
+      64.1,
+      -28.6,
+      57.52
      ]
     },
     "thigh_n": {
      "file": "assets/body_guard_m_thigh_n.png",
-     "x": 344,
+     "x": 326,
      "y": 840
     },
     "shin_n": {
      "file": "assets/body_guard_m_shin_n.png",
-     "x": 314,
+     "x": 307,
      "y": 1055
     },
     "thigh_f": {
@@ -3121,7 +3115,7 @@
     },
     "hips": {
      "file": "assets/body_guard_m_hips.png",
-     "x": 349,
+     "x": 337,
      "y": 760
     }
    }
@@ -3173,6 +3167,34 @@
      32.39,
      -13.28,
      36.73
+    ]
+   }
+  },
+  {
+   "id": "guard_f",
+   "label": "Caravan guard",
+   "template": "f",
+   "lime": true,
+   "part": {
+    "file": "assets/body_guard_f.png",
+    "x": 202,
+    "y": 310,
+    "skin_mask": "assets/body_guard_f_skin.png",
+    "key_lab": [
+     69.86,
+     -21.39,
+     59.18
+    ]
+   },
+   "back": {
+    "file": "assets/body_guard_f_back.png",
+    "x": 498,
+    "y": 332,
+    "skin_mask": "assets/body_guard_f_back_skin.png",
+    "key_lab": [
+     74.72,
+     -24.23,
+     64.38
     ]
    }
   }

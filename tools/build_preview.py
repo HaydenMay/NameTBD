@@ -153,9 +153,10 @@ SCARS = set()  # old scars were painted on retired faces; scars come back as gen
 BODIES = [
     ("knight_m", "../../template/male_base", "Knight plate", "m", 985),
     ("cleric_m", "aldric_lime_cleric", "Cleric robe", "m", 1050),
-    ("guard_m", "ogre_lime_01", "Caravan guard", "m", 900),
+    ("guard_m", "../outfits/guard_m", "Caravan guard", "m", 900),   # was ogre_lime_01 (ogre body)
     ("cleric_f", "human_f_lime_01", "Cleric robe", "f", 0),
     ("knight_f", "female_face02_knight", "Knight plate", "f", 0),
+    ("guard_f", "../outfits/guard_f", "Caravan guard", "f", 0),
 ]
 
 EARS = ["elf", "goblin", "ogre"]  # authored on lime Aldric
