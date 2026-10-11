@@ -38,7 +38,7 @@ Unity is the eventual engine; everything so far is a browser prototype (Canvas 2
 - Tests: `node --test tests/anim.test.mjs` (11 pass). Visual check: `py tools/devserver.py 8722` then `__debug.captureStrip(...)` in the debugger saves to `art/review/captures/`.
 
 ## Open issues / next steps (user's latest direction)
-1. **User wants to redo the female outfits (and possibly all outfits)**: the female near (left) foot points toward the viewer. Plan: re-edit each female outfit so the front foot points right like the back foot; males are roughly fine. Legs come from the full image only, so armless versions needn't change; re-run build → walk re-cuts automatically. If outfits are fully regenerated, also regenerate their armless versions and update `BODIES` + `anim_profiles.json` (`hem/belt/knee` read off a grid render).
+1. ~~Female near foot points at viewer~~ **Done**: boots-only ChatGPT edits pasted onto the originals below y=1210 (rest of image untouched; armless versions unchanged). Walk rig now keeps each toe on its own boot (outline-walled growth below the boot shafts); `cleric_f` has a hand `foot_split` line (boots painted touching) and a pinned `shift` (auto-registration drifted). Known nit: hairline sliver / heel notch on cleric_f far boot; fix = regenerate cleric boots with a magenta gap, then drop `foot_split`.
 2. Female high-ponytail band could be redone with an orange tie.
 3. Optional: men's earless heads (only matters if races return).
 4. Later: Unity port (recipe + layered renderer using these exact assets/manifest).
