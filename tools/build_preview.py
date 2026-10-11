@@ -450,6 +450,10 @@ def main():
                 tusks = np.asarray(Image.open(painted).convert("RGBA")).copy()
                 if tusks is not None:
                     extra["tusks"] = save_part(tusks, f"tusks_{fid}")
+        hf = PARTS / "ears_human" / f"ears_human_{fid}.png"   # own ear, drawn over hair for humans
+        if hf.exists():
+            extra["ear_human"] = save_part(np.asarray(Image.open(hf).convert("RGBA")).copy(), f"ear_human_{fid}",
+                                           True, hue_lo=40, reach=12, eyes="none", all_skin=True)
         for rk in ("elf", "goblin"):   # per-face painted race ears (batch sheet) + old-ear cut
             ef = PARTS / f"ears_{rk}" / f"ears_{rk}_{fid}.png"
             if ef.exists():

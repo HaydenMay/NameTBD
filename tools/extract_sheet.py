@@ -49,7 +49,7 @@ def main(cells_json, edited, kind):
         canvas[sy:sy + H, sx:sx + W] = piece[Y:Y + H, X:X + W]
         img = gradient_map(Image.fromarray(canvas), RAMPS["lime" if kind.startswith("ears") else "tusks"])
         img.save(out_dir / f"{kind}_{c['id']}.png")
-        if kind.startswith("ears"):
+        if kind.startswith("ears") and kind != "ears_human":
             # old human ear pixels the edit erased to background: cut them from the face
             bg = (e[..., 0] > 200) & (e[..., 1] < 90) & (e[..., 2] > 200)
             cut = changed & bg
