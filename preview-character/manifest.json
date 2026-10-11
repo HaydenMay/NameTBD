@@ -1,5 +1,5 @@
 {
- "version": 1791692260,
+ "version": 1791694860,
  "canvas": [
   1024,
   1536
@@ -2430,6 +2430,21 @@
       "x": 350,
       "y": 33
      }
+    },
+    "goblin": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      14.0,
+      160.1
+     ],
+     "part": {
+      "file": "assets/hair_m_short_goblin.png",
+      "x": 349,
+      "y": 34
+     }
     }
    }
   },
@@ -2467,6 +2482,21 @@
       "x": 350,
       "y": 24
      }
+    },
+    "goblin": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      10.6,
+      160.1
+     ],
+     "part": {
+      "file": "assets/hair_m_wavy_goblin.png",
+      "x": 349,
+      "y": 24
+     }
     }
    }
   },
@@ -2497,12 +2527,27 @@
      ],
      "lum": [
       18.1,
-      155.2
+      155.3
      ],
      "part": {
       "file": "assets/hair_m_ponytail2_elf.png",
       "x": 350,
       "y": 45
+     }
+    },
+    "goblin": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      16.7,
+      148.7
+     ],
+     "part": {
+      "file": "assets/hair_m_ponytail2_goblin.png",
+      "x": 349,
+      "y": 44
      }
     }
    }
@@ -2541,6 +2586,21 @@
       "x": 350,
       "y": 28
      }
+    },
+    "goblin": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      13.8,
+      160.8
+     ],
+     "part": {
+      "file": "assets/hair_m_topknot2_goblin.png",
+      "x": 349,
+      "y": 23
+     }
     }
    }
   },
@@ -2576,6 +2636,21 @@
      "part": {
       "file": "assets/hair_m_slicked2_elf.png",
       "x": 350,
+      "y": 47
+     }
+    },
+    "goblin": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      11.4,
+      158.8
+     ],
+     "part": {
+      "file": "assets/hair_m_slicked2_goblin.png",
+      "x": 349,
       "y": 47
      }
     }
@@ -2615,6 +2690,21 @@
       "x": 350,
       "y": 24
      }
+    },
+    "goblin": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      12.0,
+      157.6
+     ],
+     "part": {
+      "file": "assets/hair_m_shaggy_goblin.png",
+      "x": 349,
+      "y": 24
+     }
     }
    }
   },
@@ -2650,6 +2740,21 @@
      "part": {
       "file": "assets/hair_m_curly_elf.png",
       "x": 354,
+      "y": 54
+     }
+    },
+    "goblin": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      11.9,
+      164.4
+     ],
+     "part": {
+      "file": "assets/hair_m_curly_goblin.png",
+      "x": 349,
       "y": 54
      }
     }
@@ -2689,6 +2794,21 @@
       "x": 350,
       "y": 39
      }
+    },
+    "goblin": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      8.2,
+      153.4
+     ],
+     "part": {
+      "file": "assets/hair_m_midpart_goblin.png",
+      "x": 349,
+      "y": 38
+     }
     }
    }
   },
@@ -2725,6 +2845,21 @@
       "file": "assets/hair_spiky02_elf.png",
       "x": 350,
       "y": 33
+     }
+    },
+    "goblin": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      10.4,
+      139.4
+     ],
+     "part": {
+      "file": "assets/hair_spiky02_goblin.png",
+      "x": 349,
+      "y": 36
      }
     }
    }

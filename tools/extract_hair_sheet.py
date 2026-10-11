@@ -60,5 +60,10 @@ for c in cells:
         idx = ndimage.distance_transform_edt(~src, return_distances=False, return_indices=True)
         canvas[hole] = canvas[idx[0][hole], idx[1][hole]]
         canvas[hole, 3] = 255
+    # strands painted over the base ear's lower half (lobe) peek out on faces whose ear differs
+    lobe = ear.copy()
+    lobe[: ys_e.min() + int(0.55 * (ys_e.max() - ys_e.min()))] = False
+    lobe = ndimage.binary_dilation(lobe, iterations=5)
+    canvas[lobe, 3] = 0
     Image.fromarray(defringe(canvas)).save(ROOT / "art/parts/hair" / f"hair_{c['id']}_{race}.png")
     print(c["label"], int(m.sum()))
