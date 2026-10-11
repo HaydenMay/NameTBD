@@ -64,6 +64,9 @@ def main(kind, tpl, edited):
         W, H = c["size"]
         sx, sy = c["src_xy"]
         dx, dy, err = register(orig[Y:Y + H, X:X + W], e, X, Y, W, H)
+        if kind != "faces":   # hair can run past the cell edge: cut into the gap between cells
+            MX = 45
+            X, W, sx = X - MX, W + 2 * MX, sx - MX
         cell = e_img.crop((X + dx, Y + dy, X + dx + W, Y + dy + H))
         ca = np.asarray(cell).copy()                            # drop labels ChatGPT writes on the sheet
         txt = (ca.min(2) > 235)
@@ -80,7 +83,7 @@ def main(kind, tpl, edited):
         else:
             a = np.asarray(cell.convert("RGBA")).copy()
             h, s, v = _hsv(a)
-            blue = (h >= 190) & (h <= 260) & (s > 0.35) & (v > 0.15)
+            blue = (h >= 190) & (h <= 260) & (s > 0.62) & (v > 0.15)   # vivid key only (robe blues are duller)
             brows = (bh >= 190) & (bh <= 260) & (bs > 0.35)
             bfull = ndimage.binary_dilation(brows, iterations=4)
             brows = np.zeros((H, W), bool)                     # cell window may start above the canvas
@@ -91,7 +94,7 @@ def main(kind, tpl, edited):
             if n:
                 sizes = ndimage.sum(m, lab, range(1, n + 1))
                 cx_ = ndimage.center_of_mass(m, lab, range(1, n + 1))
-                keep = [i + 1 for i in range(n) if sizes[i] >= 40 and (cx_[i][1] > 60 or sizes[i] > 0.2 * sizes.max())]
+                keep = [i + 1 for i in range(n) if sizes[i] >= 40 and (60 < cx_[i][1] < W - 60 or sizes[i] > 0.2 * sizes.max())]
                 m = np.isin(lab, keep)                      # drop neighbouring cells' strands at the edge
             m |= ndimage.binary_dilation(m, iterations=2) & (v < 0.35)
             lab_h, nh = ndimage.label(m)                     # drop detached flecks (robe outline bits)
@@ -103,9 +106,11 @@ def main(kind, tpl, edited):
             bridge = ndimage.binary_closing(m, iterations=10) & ~m
             limey = (h >= 50) & (h <= 120) & (s > 0.3)
             mag = (a[..., 0] > 200) & (a[..., 1] < 90) & (a[..., 2] > 200)
-            bluish = (h >= 185) & (h <= 265) & (s > 0.15)
+            bluish = (h >= 185) & (h <= 265) & (s > 0.55)   # hair-blue specks only, not robe blue
             m |= bridge & bluish & ~mag                      # blue specks inside braids are hair
-            ocell = orig[Y:Y + H, X:X + W]
+            ocell = np.zeros((H, W, 3), int) + (255, 0, 255)
+            oc = orig[Y:Y + H, max(X, 0):X + W]
+            ocell[:oc.shape[0], max(-X, 0):max(-X, 0) + oc.shape[1]] = oc
             added = np.abs(np.asarray(cell.convert("RGB")).astype(int) - ocell).sum(2) > 110   # painted by the edit
             added = ndimage.binary_opening(added, iterations=1)
             near_hair = ndimage.binary_dilation(m, iterations=6)
@@ -113,14 +118,26 @@ def main(kind, tpl, edited):
             inside_hair = ndimage.binary_closing(m, iterations=14) & ~m
             warm = (h >= 15) & (h <= 50) & (s > 0.35) & (v > 0.25)   # gold / brown bands
             dark = v < 0.3                                         # dark elastic bands
-            tie = inside_hair & (added | warm) & (warm | dark) & ~limey & ~mag & ~bluish
-            lab_t, nt = ndimage.label(tie)
-            if nt:
-                sz = ndimage.sum(tie, lab_t, range(1, nt + 1))
-                tie = np.isin(lab_t, 1 + np.flatnonzero((sz >= 40) & (sz <= 1500)))
-                tie = ndimage.binary_dilation(tie, iterations=1) & inside_hair
+            tie = np.zeros_like(m)   # ties come only from the orange key (guessing grabbed robe bits)
+            orange = (h >= 15) & (h <= 40) & (s > 0.6) & (v > 0.6)   # key-coloured ties (preferred)
+            ol, on = ndimage.label(orange)
+            keep_o = []
+            for i in range(1, on + 1):                                # a tie is mostly wrapped in hair;
+                comp = ol == i                                        # robe gold/medallions are not
+                ring = ndimage.binary_dilation(comp, iterations=4) & ~comp
+                if comp.sum() >= 40 and (m & ring).sum() / max(ring.sum(), 1) > 0.35:
+                    keep_o.append(i)
+            orange = np.isin(ol, keep_o)
+            if orange.sum() > 80:
+                tie = orange.copy()
+                tie |= ndimage.binary_dilation(tie, iterations=2) & (v < 0.35)      # its outline
+                m &= ~tie
             ties = a.copy()
             ties[~tie, 3] = 0
+            if orange.sum() > 80:   # recolour the orange key to leather brown
+                from recolor import gradient_map
+                ties = np.asarray(gradient_map(Image.fromarray(ties),
+                                  [(28, 16, 8), (92, 56, 30), (150, 98, 54), (214, 168, 110)])).copy()
             a = np.asarray(cell.convert("RGBA")).copy()
             a[~m, 3] = 0
             a[~m, 3] = 0
