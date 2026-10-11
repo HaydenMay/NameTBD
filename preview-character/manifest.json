@@ -1,5 +1,5 @@
 {
- "version": 1791740892,
+ "version": 1791741061,
  "canvas": [
   1024,
   1536
@@ -2572,13 +2572,13 @@
    },
    "back": {
     "file": "assets/body_knight_m_back.png",
-    "x": 475,
-    "y": 345,
+    "x": 427,
+    "y": 357,
     "skin_mask": "assets/body_knight_m_back_skin.png",
     "key_lab": [
-     58.5,
-     -26.27,
-     55.17
+     60.7,
+     -26.04,
+     55.81
     ]
    },
    "anim": {
@@ -2779,13 +2779,13 @@
    },
    "back": {
     "file": "assets/body_cleric_m_back.png",
-    "x": 480,
-    "y": 345,
+    "x": 434,
+    "y": 357,
     "skin_mask": "assets/body_cleric_m_back_skin.png",
     "key_lab": [
-     55.38,
-     -11.85,
-     53.66
+     62.36,
+     -13.36,
+     58.64
     ]
    },
    "anim": {
@@ -2954,13 +2954,13 @@
    },
    "back": {
     "file": "assets/body_guard_m_back.png",
-    "x": 482,
-    "y": 345,
+    "x": 435,
+    "y": 357,
     "skin_mask": "assets/body_guard_m_back_skin.png",
     "key_lab": [
-     64.49,
-     -29.8,
-     59.26
+     65.32,
+     -29.08,
+     59.17
     ]
    },
    "anim": {
@@ -3132,13 +3132,13 @@
    },
    "back": {
     "file": "assets/body_cleric_f_back.png",
-    "x": 481,
-    "y": 332,
+    "x": 455,
+    "y": 344,
     "skin_mask": "assets/body_cleric_f_back_skin.png",
     "key_lab": [
-     74.64,
-     -26.22,
-     64.16
+     74.08,
+     -25.54,
+     63.34
     ]
    }
   },
@@ -3160,13 +3160,13 @@
    },
    "back": {
     "file": "assets/body_knight_f_back.png",
-    "x": 529,
-    "y": 334,
+    "x": 490,
+    "y": 344,
     "skin_mask": "assets/body_knight_f_back_skin.png",
     "key_lab": [
-     32.39,
-     -13.28,
-     36.73
+     51.11,
+     -15.52,
+     48.87
     ]
    }
   },
@@ -3188,13 +3188,13 @@
    },
    "back": {
     "file": "assets/body_guard_f_back.png",
-    "x": 498,
-    "y": 332,
+    "x": 463,
+    "y": 344,
     "skin_mask": "assets/body_guard_f_back_skin.png",
     "key_lab": [
-     74.72,
-     -24.23,
-     64.38
+     72.46,
+     -23.12,
+     62.59
     ]
    }
   }

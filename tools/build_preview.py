@@ -500,14 +500,10 @@ def main():
         hm = head_mask(a, cut)
         # back: the donor's own neck stump, drawn behind the head to fill any gap
         back = a.copy()
-        stump = hm & skin_mask(a)
-        stump[:cut] = False
-        cols = neck_columns(a, cut)  # neck only: never the donor's chin or jaw
-        if cols:
-            stump[:, :cols[0]] = False
-            stump[:, cols[1] + 1:] = False
-        else:
-            stump[:] = False
+        # the donor's whole neck opening below the chin (skin + shadows + lining), so V-necks
+        # never show background; starts a little below the cut so the donor chin can't poke out
+        stump = hm.copy()
+        stump[:cut + 12] = False
         back[~stump, 3] = 0
         # front: everything that isn't the donor's head (collars, hoods, armour, hands)
         front = a.copy()
