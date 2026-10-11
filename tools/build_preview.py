@@ -453,7 +453,11 @@ def main():
         hf = PARTS / "ears_human" / f"ears_human_{fid}.png"   # own ear, drawn over hair for humans
         if hf.exists():   # orange edit = WHERE the ear is; pixels = the face's own painted ear
             em = np.asarray(Image.open(hf).convert("RGBA"))[..., 3] > 0
-            em = ndimage.binary_dilation(ndimage.binary_fill_holes(em), iterations=2) & (a[..., 3] > 0)
+            em = ndimage.binary_fill_holes(em)
+            _, _, ev = _hsv(a)   # grow only onto the ear's own dark outline, never onto skin
+            em |= ndimage.binary_dilation(em, iterations=4) & (ev < 0.35)
+            em = ndimage.binary_erosion(em, iterations=1) | (em & (ev < 0.35))
+            em &= a[..., 3] > 0
             ear_px = a.copy()
             ear_px[~em, 3] = 0
             extra["ear_human"] = save_part(ear_px, f"ear_human_{fid}", True, hue_lo=40, reach=12, eyes="none")

@@ -1,5 +1,5 @@
 {
- "version": 1791697660,
+ "version": 1791697833,
  "canvas": [
   1024,
   1536
@@ -587,7 +587,7 @@
    "ear_human": {
     "file": "assets/ear_human_aldric.png",
     "x": 386,
-    "y": 202,
+    "y": 204,
     "skin_mask": "assets/ear_human_aldric_skin.png",
     "key_lab": [
      76.53,
@@ -703,7 +703,7 @@
    "ear_human": {
     "file": "assets/ear_human_hobb.png",
     "x": 388,
-    "y": 193,
+    "y": 194,
     "skin_mask": "assets/ear_human_hobb_skin.png",
     "key_lab": [
      75.86,
@@ -822,7 +822,7 @@
    "ear_human": {
     "file": "assets/ear_human_pip.png",
     "x": 385,
-    "y": 196,
+    "y": 198,
     "skin_mask": "assets/ear_human_pip_skin.png",
     "key_lab": [
      78.41,
@@ -943,7 +943,7 @@
    "ear_human": {
     "file": "assets/ear_human_edric.png",
     "x": 386,
-    "y": 195,
+    "y": 196,
     "skin_mask": "assets/ear_human_edric_skin.png",
     "key_lab": [
      74.21,
@@ -1063,7 +1063,7 @@
    "ear_human": {
     "file": "assets/ear_human_m1_lean_a.png",
     "x": 386,
-    "y": 198,
+    "y": 201,
     "skin_mask": "assets/ear_human_m1_lean_a_skin.png",
     "key_lab": [
      76.19,
@@ -1183,7 +1183,7 @@
    "ear_human": {
     "file": "assets/ear_human_m6_lean_b.png",
     "x": 386,
-    "y": 200,
+    "y": 203,
     "skin_mask": "assets/ear_human_m6_lean_b_skin.png",
     "key_lab": [
      75.76,
@@ -1296,7 +1296,7 @@
    "ear_human": {
     "file": "assets/ear_human_m2_weathered.png",
     "x": 386,
-    "y": 200,
+    "y": 202,
     "skin_mask": "assets/ear_human_m2_weathered_skin.png",
     "key_lab": [
      73.5,
@@ -1415,7 +1415,7 @@
    "ear_human": {
     "file": "assets/ear_human_m3_gentle.png",
     "x": 386,
-    "y": 201,
+    "y": 203,
     "skin_mask": "assets/ear_human_m3_gentle_skin.png",
     "key_lab": [
      75.06,
@@ -1528,7 +1528,7 @@
    "ear_human": {
     "file": "assets/ear_human_m4_stern.png",
     "x": 386,
-    "y": 201,
+    "y": 203,
     "skin_mask": "assets/ear_human_m4_stern_skin.png",
     "key_lab": [
      74.0,
@@ -1641,7 +1641,7 @@
    "ear_human": {
     "file": "assets/ear_human_m5_sunworn.png",
     "x": 388,
-    "y": 199,
+    "y": 201,
     "skin_mask": "assets/ear_human_m5_sunworn_skin.png",
     "key_lab": [
      74.69,
@@ -1776,8 +1776,8 @@
    ],
    "ear_human": {
     "file": "assets/ear_human_rowan.png",
-    "x": 412,
-    "y": 183,
+    "x": 410,
+    "y": 186,
     "skin_mask": "assets/ear_human_rowan_skin.png",
     "key_lab": [
      74.57,
@@ -1819,8 +1819,8 @@
    },
    "ear_human": {
     "file": "assets/ear_human_f1.png",
-    "x": 412,
-    "y": 185,
+    "x": 410,
+    "y": 187,
     "skin_mask": "assets/ear_human_f1_skin.png",
     "key_lab": [
      75.58,
@@ -1867,8 +1867,8 @@
    ],
    "ear_human": {
     "file": "assets/ear_human_f2.png",
-    "x": 411,
-    "y": 185,
+    "x": 409,
+    "y": 188,
     "skin_mask": "assets/ear_human_f2_skin.png",
     "key_lab": [
      76.84,
@@ -1910,8 +1910,8 @@
    },
    "ear_human": {
     "file": "assets/ear_human_f3.png",
-    "x": 411,
-    "y": 184,
+    "x": 409,
+    "y": 187,
     "skin_mask": "assets/ear_human_f3_skin.png",
     "key_lab": [
      75.41,
@@ -1953,8 +1953,8 @@
    },
    "ear_human": {
     "file": "assets/ear_human_f4.png",
-    "x": 412,
-    "y": 186,
+    "x": 410,
+    "y": 189,
     "skin_mask": "assets/ear_human_f4_skin.png",
     "key_lab": [
      76.21,
@@ -2001,8 +2001,8 @@
    ],
    "ear_human": {
     "file": "assets/ear_human_f5.png",
-    "x": 411,
-    "y": 183,
+    "x": 409,
+    "y": 186,
     "skin_mask": "assets/ear_human_f5_skin.png",
     "key_lab": [
      73.72,
@@ -2050,7 +2050,7 @@
    "ear_human": {
     "file": "assets/ear_human_f6.png",
     "x": 351,
-    "y": 186,
+    "y": 189,
     "skin_mask": "assets/ear_human_f6_skin.png",
     "key_lab": [
      76.1,
@@ -2097,8 +2097,8 @@
    ],
    "ear_human": {
     "file": "assets/ear_human_f7.png",
-    "x": 411,
-    "y": 187,
+    "x": 409,
+    "y": 190,
     "skin_mask": "assets/ear_human_f7_skin.png",
     "key_lab": [
      76.63,
@@ -2145,8 +2145,8 @@
    ],
    "ear_human": {
     "file": "assets/ear_human_f8.png",
-    "x": 413,
-    "y": 186,
+    "x": 411,
+    "y": 189,
     "skin_mask": "assets/ear_human_f8_skin.png",
     "key_lab": [
      76.05,
@@ -2189,7 +2189,7 @@
    "ear_human": {
     "file": "assets/ear_human_f9.png",
     "x": 356,
-    "y": 185,
+    "y": 187,
     "skin_mask": "assets/ear_human_f9_skin.png",
     "key_lab": [
      76.13,
