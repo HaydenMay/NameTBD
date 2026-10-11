@@ -210,10 +210,10 @@ HAIRS = [  # (id, label, fits, reference image the hair was drawn on[, x nudge])
     ("f7", "Pixie", ["f"], "female_base"),
     ("f9", "Shoulder-length", ["f"], "female_base"),
     ("f10", "Crown braid", ["f"], "female_base"),
-    ("fl1", "Long straight", ["f"], "female_base"),
-    ("fl2", "Long waves", ["f"], "female_base"),
-    ("fl3", "Side braid", ["f"], "female_base"),
-    ("fl4", "Two braids", ["f"], "female_base"),
+    # pulled (falls over the outfit; needs an updo instead): ("fl1", "Long straight", ["f"], "female_base"),
+    # pulled (falls over the outfit; needs an updo instead): ("fl2", "Long waves", ["f"], "female_base"),
+    # pulled (falls over the outfit; needs an updo instead): ("fl3", "Side braid", ["f"], "female_base"),
+    # pulled (falls over the outfit; needs an updo instead): ("fl4", "Two braids", ["f"], "female_base"),
 ]
 
 # Beards: blue edits of male_base, cut with check_hair.py, drawn over the outfit collar.
