@@ -219,6 +219,7 @@ function compose(pose = null) {
   if (ownEars && ownEars.cut) {   // remove the human ear where the painted race ear doesn't cover it
     g.save(); g.globalCompositeOperation = 'destination-out'; put(ownEars.cut, img[ownEars.cut.file]); g.restore();
   }
+  if (ownEars && ownEars.patch) put(ownEars.patch, skinned(ownEars.patch, skin));   // skin painted over the old ear
   if (face.scar && state.scar) {  // multiply: scar reads as a darker, redder line on any skin
     g.save(); g.globalCompositeOperation = 'multiply'; g.globalAlpha = 0.85;
     put(face.scar, img[face.scar.file]); g.restore();
@@ -334,7 +335,7 @@ function fromHash() {
 
 (async () => {
   M = await (await fetch('manifest.json', { cache: 'no-cache' })).json();
-  const parts = [...M.faces.flatMap(f => [f.part, f.beard, f.brows, f.scar, f.tusks, ...Object.values(f.race_ears || {}).flatMap(r => [r.part, r.cut])]), ...M.bodies.flatMap(b => [b.part, b.back, ...Object.values(b.rig || {})]),
+  const parts = [...M.faces.flatMap(f => [f.part, f.beard, f.brows, f.scar, f.tusks, ...Object.values(f.race_ears || {}).flatMap(r => [r.part, r.cut, r.patch])]), ...M.bodies.flatMap(b => [b.part, b.back, ...Object.values(b.rig || {})]),
     ...Object.values(M.ears).map(e => e.part), ...M.hairs.map(h => h.part), ...(M.beards || []).map(b => b.part)].filter(Boolean);
   await Promise.all(parts.flatMap(p => [p.file, p.skin_mask]).filter(Boolean).map(load));
 

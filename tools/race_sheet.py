@@ -51,6 +51,9 @@ for i, f in enumerate(faces):
         sub = arr[cy0:cy0 + cut.shape[0], cx0:cx0 + cut.shape[1]]
         sub[cut] = (70, 60, 75, 255)
         c = Image.fromarray(arr)
+    if own and own.get("patch"):
+        pp = own["patch"]
+        c.alpha_composite(load(pp, tone), (pp["x"], pp["y"]))
     if f.get("brows"):
         c.alpha_composite(gradient_map(Image.open(ROOT / "preview-character" / f["brows"]["file"]), M["hair_colours"][col]),
                           (f["brows"]["x"], f["brows"]["y"]))

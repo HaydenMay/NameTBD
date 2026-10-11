@@ -403,6 +403,9 @@ def main():
                 ent = {"part": save_part(ea, f"ears_{rk}_{fid}", True, hue_lo=40)}
                 if (ca[..., 3] > 0).any():
                     ent["cut"] = save_part(ca, f"earcut_{rk}_{fid}")
+                pa = np.asarray(Image.open(PARTS / f"ears_{rk}" / f"patch_{fid}.png").convert("RGBA")).copy()
+                if (pa[..., 3] > 0).any():
+                    ent["patch"] = save_part(pa, f"earpatch_{rk}_{fid}", True, hue_lo=40, reach=12)
                 extra.setdefault("race_ears", {})[rk] = ent
         if fid in NO_BEARD:
             extra["blocked_beard"] = [b[0] for b in BEARDS]

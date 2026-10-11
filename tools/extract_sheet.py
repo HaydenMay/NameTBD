@@ -28,7 +28,7 @@ def main(cells_json, edited, kind):
     h, s, v = _hsv(e)
     orig = np.asarray(Image.open(Path(cells_json).with_suffix(".png")).convert("RGB")).astype(int)
     changed = np.abs(e[..., :3].astype(int) - orig).sum(2) > 90
-    key = (h >= 0) & (h <= 48) & (s > 0.55) & (v > 0.45) & changed
+    key = (((h >= 0) & (h <= 48)) | (h >= 340)) & (s > 0.5) & (v > 0.22) & changed   # incl. dark inner-ear shading
     out_dir = ROOT / "art" / "parts" / kind
     out_dir.mkdir(parents=True, exist_ok=True)
     for c in cells:
@@ -40,7 +40,7 @@ def main(cells_json, edited, kind):
         if n:
             sizes = ndimage.sum(m, lab, range(1, n + 1))
             m = np.isin(lab, 1 + np.flatnonzero(sizes >= 25))
-        m = ndimage.binary_closing(m, iterations=1)
+        m = ndimage.binary_fill_holes(ndimage.binary_closing(m, iterations=2))
         m |= ndimage.binary_dilation(m, iterations=2) & (v < 0.35)   # painted outline
         piece = e.copy()
         piece[~m, 3] = 0
@@ -60,6 +60,17 @@ def main(cells_json, edited, kind):
             cmask = np.zeros((1536, 1024, 4), np.uint8)
             cmask[sy:sy + H, sx:sx + W, 3] = cut[Y:Y + H, X:X + W] * 255
             Image.fromarray(cmask).save(out_dir / f"cut_{c['id']}.png")
+            # skin the edit repainted over the old ear (lime key, recolours like the face)
+            zone = np.zeros_like(changed)
+            zone[Y + 90:Y + 330, X:X + 150] = True
+            warm = ((h <= 50) | (h >= 330)) & (s > 0.35)          # leftover ear colour: never copy raw
+            rep = changed & ~bg & ~m & zone & ~(v < 0.12) & ~warm
+            rep = ndimage.binary_opening(rep, iterations=1)
+            rep = ndimage.binary_closing(rep, iterations=3) & ~bg & ~m
+            pmask = np.zeros((1536, 1024, 4), np.uint8)
+            pmask[sy:sy + H, sx:sx + W, :3] = e[Y:Y + H, X:X + W, :3]
+            pmask[sy:sy + H, sx:sx + W, 3] = rep[Y:Y + H, X:X + W] * 255
+            Image.fromarray(pmask).save(out_dir / f"patch_{c['id']}.png")
         print(c["label"], int(m.sum()), "px")
 
 

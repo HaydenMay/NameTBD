@@ -1,5 +1,5 @@
 {
- "version": 1791680312,
+ "version": 1791680805,
  "canvas": [
   1024,
   1536
@@ -592,33 +592,55 @@
       "y": 128,
       "skin_mask": "assets/ears_elf_aldric_skin.png",
       "key_lab": [
-       76.05,
-       -27.88,
-       56.52
+       73.13,
+       -27.28,
+       55.19
       ]
      },
      "cut": {
       "file": "assets/earcut_elf_aldric.png",
       "x": 353,
       "y": 150
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_aldric.png",
+      "x": 415,
+      "y": 162,
+      "skin_mask": "assets/earpatch_elf_aldric_skin.png",
+      "key_lab": [
+       49.96,
+       -30.56,
+       49.12
+      ]
      }
     },
     "goblin": {
      "part": {
       "file": "assets/ears_goblin_aldric.png",
       "x": 353,
-      "y": 140,
+      "y": 139,
       "skin_mask": "assets/ears_goblin_aldric_skin.png",
       "key_lab": [
-       74.82,
-       -29.36,
-       58.82
+       71.67,
+       -28.46,
+       56.94
       ]
      },
      "cut": {
       "file": "assets/earcut_goblin_aldric.png",
       "x": 353,
       "y": 153
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_aldric.png",
+      "x": 419,
+      "y": 171,
+      "skin_mask": "assets/earpatch_goblin_aldric_skin.png",
+      "key_lab": [
+       53.47,
+       -27.48,
+       52.27
+      ]
      }
     }
    },
@@ -671,37 +693,59 @@
     "elf": {
      "part": {
       "file": "assets/ears_elf_hobb.png",
-      "x": 352,
+      "x": 351,
       "y": 132,
       "skin_mask": "assets/ears_elf_hobb_skin.png",
       "key_lab": [
-       76.24,
-       -27.99,
-       56.74
+       74.33,
+       -27.56,
+       55.79
       ]
      },
      "cut": {
       "file": "assets/earcut_elf_hobb.png",
       "x": 352,
       "y": 157
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_hobb.png",
+      "x": 427,
+      "y": 232,
+      "skin_mask": "assets/earpatch_elf_hobb_skin.png",
+      "key_lab": [
+       47.86,
+       -28.53,
+       44.6
+      ]
      }
     },
     "goblin": {
      "part": {
       "file": "assets/ears_goblin_hobb.png",
       "x": 351,
-      "y": 142,
+      "y": 141,
       "skin_mask": "assets/ears_goblin_hobb_skin.png",
       "key_lab": [
-       74.79,
-       -29.55,
-       59.11
+       71.13,
+       -28.67,
+       57.22
       ]
      },
      "cut": {
       "file": "assets/earcut_goblin_hobb.png",
       "x": 371,
       "y": 155
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_hobb.png",
+      "x": 421,
+      "y": 176,
+      "skin_mask": "assets/earpatch_goblin_hobb_skin.png",
+      "key_lab": [
+       70.77,
+       -21.33,
+       64.91
+      ]
      }
     }
    },
@@ -757,37 +801,59 @@
     "elf": {
      "part": {
       "file": "assets/ears_elf_pip.png",
-      "x": 351,
+      "x": 350,
       "y": 132,
       "skin_mask": "assets/ears_elf_pip_skin.png",
       "key_lab": [
-       75.4,
-       -28.12,
-       56.9
+       72.76,
+       -27.75,
+       56.0
       ]
      },
      "cut": {
       "file": "assets/earcut_elf_pip.png",
       "x": 352,
       "y": 216
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_pip.png",
+      "x": 433,
+      "y": 278,
+      "skin_mask": "assets/earpatch_elf_pip_skin.png",
+      "key_lab": [
+       46.57,
+       -27.98,
+       45.08
+      ]
      }
     },
     "goblin": {
      "part": {
       "file": "assets/ears_goblin_pip.png",
       "x": 350,
-      "y": 149,
+      "y": 148,
       "skin_mask": "assets/ears_goblin_pip_skin.png",
       "key_lab": [
-       74.82,
-       -29.43,
-       58.93
+       71.55,
+       -28.7,
+       57.36
       ]
      },
      "cut": {
       "file": "assets/earcut_goblin_pip.png",
       "x": 352,
       "y": 163
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_pip.png",
+      "x": 413,
+      "y": 183,
+      "skin_mask": "assets/earpatch_goblin_pip_skin.png",
+      "key_lab": [
+       55.87,
+       -25.25,
+       53.74
+      ]
      }
     }
    },
@@ -845,19 +911,30 @@
     "elf": {
      "part": {
       "file": "assets/ears_elf_edric.png",
-      "x": 352,
+      "x": 351,
       "y": 128,
       "skin_mask": "assets/ears_elf_edric_skin.png",
       "key_lab": [
-       74.63,
-       -28.33,
-       57.18
+       73.01,
+       -28.32,
+       57.04
       ]
      },
      "cut": {
       "file": "assets/earcut_elf_edric.png",
       "x": 351,
       "y": 150
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_edric.png",
+      "x": 430,
+      "y": 201,
+      "skin_mask": "assets/earpatch_elf_edric_skin.png",
+      "key_lab": [
+       62.4,
+       -30.76,
+       55.39
+      ]
      }
     },
     "goblin": {
@@ -867,15 +944,26 @@
       "y": 149,
       "skin_mask": "assets/ears_goblin_edric_skin.png",
       "key_lab": [
-       73.95,
-       -29.23,
-       58.47
+       71.41,
+       -28.59,
+       57.11
       ]
      },
      "cut": {
       "file": "assets/earcut_goblin_edric.png",
       "x": 351,
       "y": 154
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_edric.png",
+      "x": 426,
+      "y": 179,
+      "skin_mask": "assets/earpatch_goblin_edric_skin.png",
+      "key_lab": [
+       80.21,
+       -16.21,
+       72.91
+      ]
      }
     }
    },
@@ -925,7 +1013,7 @@
    ],
    "tusks": {
     "file": "assets/tusks_m1_lean_a.png",
-    "x": 400,
+    "x": 370,
     "y": 281
    },
    "race_ears": {
@@ -936,15 +1024,26 @@
       "y": 133,
       "skin_mask": "assets/ears_elf_m1_lean_a_skin.png",
       "key_lab": [
-       75.59,
-       -28.26,
-       57.16
+       72.93,
+       -28.06,
+       56.59
       ]
      },
      "cut": {
       "file": "assets/earcut_elf_m1_lean_a.png",
       "x": 351,
       "y": 150
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_m1_lean_a.png",
+      "x": 433,
+      "y": 204,
+      "skin_mask": "assets/earpatch_elf_m1_lean_a_skin.png",
+      "key_lab": [
+       55.9,
+       -29.07,
+       53.7
+      ]
      }
     },
     "goblin": {
@@ -954,15 +1053,26 @@
       "y": 150,
       "skin_mask": "assets/ears_goblin_m1_lean_a_skin.png",
       "key_lab": [
-       74.56,
-       -29.14,
-       58.39
+       71.24,
+       -28.7,
+       57.33
       ]
      },
      "cut": {
       "file": "assets/earcut_goblin_m1_lean_a.png",
       "x": 365,
       "y": 186
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_m1_lean_a.png",
+      "x": 413,
+      "y": 182,
+      "skin_mask": "assets/earpatch_goblin_m1_lean_a_skin.png",
+      "key_lab": [
+       65.57,
+       -24.06,
+       61.77
+      ]
      }
     }
    },
@@ -1013,7 +1123,7 @@
    "tusks": {
     "file": "assets/tusks_m6_lean_b.png",
     "x": 408,
-    "y": 282
+    "y": 204
    },
    "race_ears": {
     "elf": {
@@ -1023,33 +1133,55 @@
       "y": 134,
       "skin_mask": "assets/ears_elf_m6_lean_b_skin.png",
       "key_lab": [
-       76.08,
-       -28.14,
-       56.98
+       74.56,
+       -27.76,
+       56.16
       ]
      },
      "cut": {
       "file": "assets/earcut_elf_m6_lean_b.png",
       "x": 352,
       "y": 150
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_m6_lean_b.png",
+      "x": 434,
+      "y": 202,
+      "skin_mask": "assets/earpatch_elf_m6_lean_b_skin.png",
+      "key_lab": [
+       62.37,
+       -28.42,
+       57.66
+      ]
      }
     },
     "goblin": {
      "part": {
       "file": "assets/ears_goblin_m6_lean_b.png",
       "x": 352,
-      "y": 153,
+      "y": 152,
       "skin_mask": "assets/ears_goblin_m6_lean_b_skin.png",
       "key_lab": [
-       75.06,
-       -29.54,
-       59.13
+       72.81,
+       -28.96,
+       57.9
       ]
      },
      "cut": {
       "file": "assets/earcut_goblin_m6_lean_b.png",
       "x": 352,
       "y": 157
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_m6_lean_b.png",
+      "x": 397,
+      "y": 164,
+      "skin_mask": "assets/earpatch_goblin_m6_lean_b_skin.png",
+      "key_lab": [
+       60.73,
+       -25.21,
+       58.09
+      ]
      }
     }
    },
@@ -1092,7 +1224,7 @@
    ],
    "tusks": {
     "file": "assets/tusks_m2_weathered.png",
-    "x": 547,
+    "x": 417,
     "y": 280
    },
    "race_ears": {
@@ -1103,15 +1235,26 @@
       "y": 126,
       "skin_mask": "assets/ears_elf_m2_weathered_skin.png",
       "key_lab": [
-       75.56,
-       -28.65,
-       57.87
+       73.33,
+       -28.23,
+       56.95
       ]
      },
      "cut": {
       "file": "assets/earcut_elf_m2_weathered.png",
       "x": 355,
       "y": 152
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_m2_weathered.png",
+      "x": 433,
+      "y": 205,
+      "skin_mask": "assets/earpatch_elf_m2_weathered_skin.png",
+      "key_lab": [
+       63.88,
+       -30.09,
+       59.75
+      ]
      }
     },
     "goblin": {
@@ -1121,15 +1264,26 @@
       "y": 154,
       "skin_mask": "assets/ears_goblin_m2_weathered_skin.png",
       "key_lab": [
-       75.23,
-       -29.75,
-       59.58
+       72.22,
+       -29.09,
+       58.15
       ]
      },
      "cut": {
       "file": "assets/earcut_goblin_m2_weathered.png",
       "x": 351,
       "y": 154
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_m2_weathered.png",
+      "x": 392,
+      "y": 185,
+      "skin_mask": "assets/earpatch_goblin_m2_weathered_skin.png",
+      "key_lab": [
+       54.78,
+       -24.86,
+       53.13
+      ]
      }
     }
    },
@@ -1178,8 +1332,8 @@
    ],
    "tusks": {
     "file": "assets/tusks_m3_gentle.png",
-    "x": 420,
-    "y": 279
+    "x": 360,
+    "y": 197
    },
    "race_ears": {
     "elf": {
@@ -1189,15 +1343,26 @@
       "y": 126,
       "skin_mask": "assets/ears_elf_m3_gentle_skin.png",
       "key_lab": [
-       75.51,
-       -28.39,
-       57.37
+       72.99,
+       -27.89,
+       56.28
       ]
      },
      "cut": {
       "file": "assets/earcut_elf_m3_gentle.png",
       "x": 352,
       "y": 150
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_m3_gentle.png",
+      "x": 433,
+      "y": 202,
+      "skin_mask": "assets/earpatch_elf_m3_gentle_skin.png",
+      "key_lab": [
+       50.11,
+       -29.86,
+       48.74
+      ]
      }
     },
     "goblin": {
@@ -1207,15 +1372,26 @@
       "y": 156,
       "skin_mask": "assets/ears_goblin_m3_gentle_skin.png",
       "key_lab": [
-       75.1,
-       -29.53,
-       59.17
+       72.82,
+       -29.02,
+       58.06
       ]
      },
      "cut": {
       "file": "assets/earcut_goblin_m3_gentle.png",
       "x": 352,
       "y": 170
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_m3_gentle.png",
+      "x": 387,
+      "y": 176,
+      "skin_mask": "assets/earpatch_goblin_m3_gentle_skin.png",
+      "key_lab": [
+       54.08,
+       -23.51,
+       52.35
+      ]
      }
     }
    },
@@ -1259,25 +1435,36 @@
    "tusks": {
     "file": "assets/tusks_m4_stern.png",
     "x": 402,
-    "y": 284
+    "y": 198
    },
    "race_ears": {
     "elf": {
      "part": {
       "file": "assets/ears_elf_m4_stern.png",
-      "x": 354,
-      "y": 137,
+      "x": 352,
+      "y": 134,
       "skin_mask": "assets/ears_elf_m4_stern_skin.png",
       "key_lab": [
-       74.75,
-       -28.41,
-       57.38
+       71.9,
+       -27.82,
+       56.05
       ]
      },
      "cut": {
       "file": "assets/earcut_elf_m4_stern.png",
       "x": 352,
       "y": 151
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_m4_stern.png",
+      "x": 433,
+      "y": 206,
+      "skin_mask": "assets/earpatch_elf_m4_stern_skin.png",
+      "key_lab": [
+       61.82,
+       -29.31,
+       57.43
+      ]
      }
     },
     "goblin": {
@@ -1287,15 +1474,26 @@
       "y": 158,
       "skin_mask": "assets/ears_goblin_m4_stern_skin.png",
       "key_lab": [
-       74.11,
-       -29.27,
-       58.6
+       71.36,
+       -28.54,
+       57.06
       ]
      },
      "cut": {
       "file": "assets/earcut_goblin_m4_stern.png",
       "x": 352,
       "y": 156
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_m4_stern.png",
+      "x": 433,
+      "y": 188,
+      "skin_mask": "assets/earpatch_goblin_m4_stern_skin.png",
+      "key_lab": [
+       55.74,
+       -26.0,
+       54.44
+      ]
      }
     }
    },
@@ -1338,26 +1536,37 @@
    ],
    "tusks": {
     "file": "assets/tusks_m5_sunworn.png",
-    "x": 407,
+    "x": 365,
     "y": 274
    },
    "race_ears": {
     "elf": {
      "part": {
       "file": "assets/ears_elf_m5_sunworn.png",
-      "x": 353,
+      "x": 352,
       "y": 133,
       "skin_mask": "assets/ears_elf_m5_sunworn_skin.png",
       "key_lab": [
-       75.19,
-       -28.32,
-       57.21
+       73.23,
+       -27.91,
+       56.34
       ]
      },
      "cut": {
       "file": "assets/earcut_elf_m5_sunworn.png",
       "x": 352,
       "y": 150
+     },
+     "patch": {
+      "file": "assets/earpatch_elf_m5_sunworn.png",
+      "x": 433,
+      "y": 207,
+      "skin_mask": "assets/earpatch_elf_m5_sunworn_skin.png",
+      "key_lab": [
+       60.24,
+       -29.11,
+       57.36
+      ]
      }
     },
     "goblin": {
@@ -1367,15 +1576,26 @@
       "y": 155,
       "skin_mask": "assets/ears_goblin_m5_sunworn_skin.png",
       "key_lab": [
-       74.07,
-       -29.26,
-       58.6
+       71.39,
+       -28.65,
+       57.29
       ]
      },
      "cut": {
       "file": "assets/earcut_goblin_m5_sunworn.png",
       "x": 358,
       "y": 246
+     },
+     "patch": {
+      "file": "assets/earpatch_goblin_m5_sunworn.png",
+      "x": 397,
+      "y": 165,
+      "skin_mask": "assets/earpatch_goblin_m5_sunworn_skin.png",
+      "key_lab": [
+       62.05,
+       -22.01,
+       58.3
+      ]
      }
     }
    },
