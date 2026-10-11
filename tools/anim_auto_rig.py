@@ -30,11 +30,11 @@ def register(full, armless):
     return best[1], best[2]
 
 
-def split_auto(front, armless, belt, hem, knee_y, neck_xy):
+def split_auto(front, armless, belt, hem, knee_y, neck_xy, shift=None):
     H, W = front.shape[:2]
     yy, xx = np.mgrid[0:H, 0:W]
     vis = front[..., 3] > 0
-    dx, dy = register(front, armless)
+    dx, dy = shift if shift else register(front, armless)   # pin when auto-registration drifts
     arm_img = np.roll(np.roll(armless, dy, 0), dx, 1)
     arm_img[front[..., 3] == 0] = 0                       # head area etc. stays as in front
     head_gap = (front[..., 3] == 0) & (arm_img[..., 3] > 0)

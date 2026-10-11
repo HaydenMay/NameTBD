@@ -217,6 +217,7 @@
       "hem": 1100,
       "belt": 690,
       "knee": 1050,
+      "shift": [-3, 12],
       "armless": "art/incoming/outfits/cleric_f_armless.png"
     }
   },

@@ -545,7 +545,7 @@ def main():
                 from anim_auto_rig import split_auto
                 armless = keyed(ROOT / cfg["armless"])
                 pieces, anchors, pivots = split_auto(front, armless, cfg["belt"], cfg["hem"], cfg["knee"],
-                                                     [skull(a)[1], TEMPLATES[tpl]["cut"]])
+                                                     [skull(a)[1], TEMPLATES[tpl]["cut"]], cfg.get("shift"))
             else:
                 pieces, anchors = anim_rig.split(front, ANIM["templates"][tpl], cfg["hem"], cfg["belt"],
                                                  cfg.get("leg_seam"), cfg.get("keep_torso"))
