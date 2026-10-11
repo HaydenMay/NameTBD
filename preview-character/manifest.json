@@ -1,5 +1,5 @@
 {
- "version": 1791679258,
+ "version": 1791679496,
  "canvas": [
   1024,
   1536
@@ -571,6 +571,9 @@
      143.1
     ]
    },
+   "blocked_races": [
+    "ogre"
+   ],
    "mouth": [
     550,
     606,
@@ -661,6 +664,9 @@
      186.3
     ]
    },
+   "blocked_races": [
+    "ogre"
+   ],
    "mouth": [
     531,
     607,
@@ -757,6 +763,9 @@
     "m_wavy",
     "m_midpart"
    ],
+   "blocked_races": [
+    "ogre"
+   ],
    "mouth": [
     556,
     610,
@@ -802,6 +811,9 @@
    "blocked_hair": [
     "m_wavy",
     "m_midpart"
+   ],
+   "blocked_races": [
+    "ogre"
    ],
    "mouth": [
     551,
@@ -890,6 +902,9 @@
      158.0
     ]
    },
+   "blocked_races": [
+    "ogre"
+   ],
    "mouth": [
     546,
     608,

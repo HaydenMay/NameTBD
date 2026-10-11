@@ -125,7 +125,8 @@ MOUTH_OVERRIDE = {
     "m5_sunworn": [545, 610, 293],
 }
 # Races a face is never used for (reviewed and rejected, like the hair blocklist).
-BLOCKED_RACES = {
+BLOCKED_RACES = {   # ogre vote 2026-10-10: keep Hobb, Edric, Doran, Varek, Haldor
+    "aldric": ["ogre"], "pip": ["ogre"], "m1_lean_a": ["ogre"], "m6_lean_b": ["ogre"], "m3_gentle": ["ogre"],
 }
 TRANSPLANT_TUSKS = False
 TUSK_REF_MOUTH = [550, 606, 297]   # mouth of aldric_bald_limekey, where ears_ogre's tusks were drawn
