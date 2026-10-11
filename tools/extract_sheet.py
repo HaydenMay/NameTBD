@@ -62,7 +62,7 @@ def main(cells_json, edited, kind):
             Image.fromarray(cmask).save(out_dir / f"cut_{c['id']}.png")
             # skin the edit repainted over the old ear (lime key, recolours like the face)
             zone = np.zeros_like(changed)
-            zone[Y + 90:Y + 330, X:X + 150] = True
+            zone[Y + 90:Y + 245, X:X + 150] = True    # stop at the bottom of the ear, not the jaw
             warm = ((h <= 50) | (h >= 330)) & (s > 0.35)          # leftover ear colour: never copy raw
             rep = changed & ~bg & ~m & zone & ~(v < 0.12) & ~warm
             rep = ndimage.binary_opening(rep, iterations=1)

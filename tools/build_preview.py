@@ -240,7 +240,7 @@ def skull(a):
     return [top, int((xs.min() + xs.max()) / 2)]
 
 
-def save_part(a, name, lime=False, hue_lo=None, reach=4, eyes=False, min_skin=50):
+def save_part(a, name, lime=False, hue_lo=None, reach=4, eyes=False, min_skin=50, all_skin=False):
     """Crop to content and save; for lime parts also save a skin mask + its mean Lab."""
     ys, xs = np.where(a[..., 3] > 0)
     x0, y0, x1, y1 = xs.min(), ys.min(), xs.max() + 1, ys.max() + 1
@@ -249,10 +249,14 @@ def save_part(a, name, lime=False, hue_lo=None, reach=4, eyes=False, min_skin=50
     part = {"file": f"assets/{name}.png", "x": int(x0), "y": int(y0)}
     if lime:
         zone = None
-        if eyes:  # heads: eyes sit in the front half, 120-260px below the crown
+        if eyes == "none":  # pieces with no eyes (ear patches): bright lime highlights are skin too
+            zone = np.zeros(crop.shape[:2], bool)
+        elif eyes:  # heads: eyes sit in the front half, 120-260px below the crown
             zone = np.zeros(crop.shape[:2], bool)
             zone[120:260, crop.shape[1] // 2:] = True
         m = skin_mask(crop, hue_lo=hue_lo, reach=reach, eye_zone=zone) & (crop[..., 3] > 0)
+        if all_skin:  # piece is skin by construction (ear patch): recolour every pixel
+            m = crop[..., 3] > 0
         if m.sum() > min_skin:
             Image.fromarray((m * 255).astype(np.uint8)).save(ASSETS / f"{name}_skin.png", optimize=True)
             part["skin_mask"] = f"assets/{name}_skin.png"
@@ -316,6 +320,40 @@ def dwarf_beard(a, collar):
     beard[:collar - 10] = False
     out = a.copy()
     out[~beard, 3] = 0
+    return out
+
+
+def old_ear_mask(top, cx):
+    """Where the human ear was on the base face (union of what the elf / goblin edits removed
+    or repainted), relative to the skull, as (mask, top, cx) of male_base."""
+    m = None
+    for rk in ("elf", "goblin"):
+        for kind in ("cut", "patch"):
+            f = PARTS / f"ears_{rk}" / f"{kind}_aldric.png"
+            if f.exists():
+                a = np.asarray(Image.open(f).convert("RGBA"))[..., 3] > 0
+                m = a if m is None else (m | a)
+    return m
+
+
+def hair_ear_fill(a, top, cx, base_skull):
+    """Hair painted around the human ear leaves a gap where the old ear was. For races with
+    their own (narrower) ears, fill only that old-ear area with the nearest hair pixels,
+    and only where the hair actually surrounds it."""
+    ear = old_ear_mask(top, cx)
+    if ear is None:
+        return None
+    dy, dx = top - base_skull[0], cx - base_skull[1]          # hair ref vs base face
+    ear = np.roll(np.roll(ear, dy, 0), dx, 1)
+    hair = a[..., 3] > 0
+    around = ndimage.binary_closing(hair, iterations=14)
+    notch = ear & around & ~hair
+    if notch.sum() < 80:
+        return None
+    idx = ndimage.distance_transform_edt(~hair, return_distances=False, return_indices=True)
+    out = np.zeros_like(a)
+    out[notch] = a[idx[0][notch], idx[1][notch]]
+    out[notch, 3] = 255
     return out
 
 
@@ -400,12 +438,12 @@ def main():
             if ef.exists():
                 ea = np.asarray(Image.open(ef).convert("RGBA")).copy()
                 ca = np.asarray(Image.open(PARTS / f"ears_{rk}" / f"cut_{fid}.png").convert("RGBA")).copy()
-                ent = {"part": save_part(ea, f"ears_{rk}_{fid}", True, hue_lo=40)}
+                ent = {"part": save_part(ea, f"ears_{rk}_{fid}", True, hue_lo=40, reach=12, eyes="none")}
                 if (ca[..., 3] > 0).any():
                     ent["cut"] = save_part(ca, f"earcut_{rk}_{fid}")
                 pa = np.asarray(Image.open(PARTS / f"ears_{rk}" / f"patch_{fid}.png").convert("RGBA")).copy()
                 if (pa[..., 3] > 0).any():
-                    ent["patch"] = save_part(pa, f"earpatch_{rk}_{fid}", True, hue_lo=40, reach=12)
+                    ent["patch"] = save_part(pa, f"earpatch_{rk}_{fid}", True, hue_lo=40, reach=12, eyes="none", all_skin=True)
                 extra.setdefault("race_ears", {})[rk] = ent
         if fid in NO_BEARD:
             extra["blocked_beard"] = [b[0] for b in BEARDS]
@@ -471,8 +509,12 @@ def main():
     for hid, label, fits, ref, *shift in HAIRS:
         a = np.asarray(Image.open(PARTS / "hair" / f"hair_{hid}.png").convert("RGBA")).copy()
         ry, rx = ref_skulls[ref]
-        hairs.append({"id": hid, "label": label, "fits": fits, "ref_skull": [ry, rx - (shift[0] if shift else 0)],
-                      "lum": lum_range(a), "part": save_part(a, f"hair_{hid}")})
+        entry = {"id": hid, "label": label, "fits": fits, "ref_skull": [ry, rx - (shift[0] if shift else 0)],
+                 "lum": lum_range(a), "part": save_part(a, f"hair_{hid}")}
+        fill = hair_ear_fill(a, ry, rx, ref_skulls["male_base"])
+        if fill is not None:
+            entry["earfill"] = save_part(fill, f"hair_{hid}_earfill")
+        hairs.append(entry)
 
     beards = []
     for bid, label, ref in BEARDS:
