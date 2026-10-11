@@ -70,7 +70,7 @@ def main(kind, tpl, edited):
         txt[120:] = False
         ca[ndimage.binary_dilation(txt, iterations=3)] = (255, 0, 255)
         cell = Image.fromarray(ca)
-        name = f"{tpl}{c['n']}"
+        name = f"{tpl}{'l' if kind == 'hairlong' else ''}{c['n']}"
         if kind == "faces":
             full = base_img.copy()
             full.paste(cell, (sx, sy))
@@ -94,6 +94,26 @@ def main(kind, tpl, edited):
                 keep = [i + 1 for i in range(n) if sizes[i] >= 40 and (cx_[i][1] > 60 or sizes[i] > 0.2 * sizes.max())]
                 m = np.isin(lab, keep)                      # drop neighbouring cells' strands at the edge
             m |= ndimage.binary_dilation(m, iterations=2) & (v < 0.35)
+            # hair ties / bands: small non-blue, non-skin pieces bridging blue hair. Kept as a
+            # separate layer so they keep their own colour (the hair layer is recoloured).
+            bridge = ndimage.binary_closing(m, iterations=10) & ~m
+            limey = (h >= 50) & (h <= 120) & (s > 0.3)
+            mag = (a[..., 0] > 200) & (a[..., 1] < 90) & (a[..., 2] > 200)
+            bluish = (h >= 185) & (h <= 265) & (s > 0.15)
+            m |= bridge & bluish & ~mag                      # blue specks inside braids are hair
+            ocell = orig[Y:Y + H, X:X + W]
+            added = np.abs(np.asarray(cell.convert("RGB")).astype(int) - ocell).sum(2) > 110   # painted by the edit
+            added = ndimage.binary_opening(added, iterations=1)
+            near_hair = ndimage.binary_dilation(m, iterations=6)
+            tie = near_hair & added & ~m & ~limey & ~mag & ~bluish
+            lab_t, nt = ndimage.label(tie)
+            if nt:
+                sz = ndimage.sum(tie, lab_t, range(1, nt + 1))
+                tie = np.isin(lab_t, 1 + np.flatnonzero((sz >= 40) & (sz <= 1500)))
+            ties = a.copy()
+            ties[~tie, 3] = 0
+            a = np.asarray(cell.convert("RGBA")).copy()
+            a[~m, 3] = 0
             a[~m, 3] = 0
             cut_off = bool(m[-3:].any())                       # hair runs off the bottom of the cell
             canvas = Image.new("RGBA", (base.shape[1], base.shape[0]), (0, 0, 0, 0))
@@ -101,6 +121,13 @@ def main(kind, tpl, edited):
             if cut_off:
                 print(f"  {name}: hair reaches the bottom edge of the cell (cut off)")
             Image.fromarray(defringe(np.asarray(canvas).copy())).save(ROOT / "art/parts/hair" / f"hair_{name}.png")
+            tc = Image.new("RGBA", canvas.size, (0, 0, 0, 0))
+            tc.paste(Image.fromarray(ties), (sx, sy))
+            tpath = ROOT / "art/parts/hair" / f"hair_{name}_ties.png"
+            if tie.any():
+                tc.save(tpath)
+            elif tpath.exists():
+                tpath.unlink()
         print(f"{name}: shift ({dx},{dy}) fit err {err:.1f}px")
 
 

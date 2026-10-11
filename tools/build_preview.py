@@ -107,8 +107,18 @@ FACES = [
     ("brug", "ogre_lime_01", "Brug", "m", ["ogre"]),
     ("rowan", "rowan_bluebrow", "Rowan", "f", None),
     ("mira", "mira_bluebrow", "Mira", "f", None),
+    ("f1", "../faces_f/f1", "Brenna", "f", None),
+    ("f2", "../faces_f/f2", "Lisette", "f", None),
+    ("f3", "../faces_f/f3", "Old Maud", "f", None),
+    ("f4", "../faces_f/f4", "Sela", "f", None),
+    ("f5", "../faces_f/f5", "Greta", "f", None),
+    ("f6", "../faces_f/f6", "Ione", "f", None),
+    ("f7", "../faces_f/f7", "Kestra", "f", None),
+    ("f8", "../faces_f/f8", "Hilde", "f", None),
+    ("f9", "../faces_f/f9", "Yvaine", "f", None),
+    ("f10", "../faces_f/f10", "Tamsin", "f", None),
 ]
-BROWS = {"aldric", "rowan", "mira", "hobb", "pip", "edric", "m1_lean_a", "m6_lean_b", "m2_weathered", "m3_gentle", "m4_stern", "m5_sunworn"}   # art/parts/brows/brows_<id>.png (blue key)
+BROWS = {"f1", "f2", "f3", "f4", "f5", "f6", "f7", "f8", "f9", "f10", "aldric", "rowan", "mira", "hobb", "pip", "edric", "m1_lean_a", "m6_lean_b", "m2_weathered", "m3_gentle", "m4_stern", "m5_sunworn"}   # art/parts/brows/brows_<id>.png (blue key)
 # Faces that never get a beard (too young/round to carry one).
 NO_BEARD = {"pip"}
 # Face/beard pairs that were reviewed and rejected.
@@ -192,11 +202,17 @@ HAIRS = [  # (id, label, fits, reference image the hair was drawn on[, x nudge])
     ("spiky02", "Spiky", ["m"], "aldric_bald_01"),
     # pulled (old source, ear gaps): ("slicked01", "Slicked back", ["m"], "aldric_bald_01"),
     # replaced by m_topknot_soft: ("topknot02", "Top-knot (shaved)", ["m"], "aldric_bald_limekey"),
-    ("bun01", "Bun", ["f"], "human_f_bald_01"),
-    ("sidebraid01", "Side braid", ["f"], "human_f_bald_01"),
-    ("hiponytail01", "High ponytail", ["f"], "human_f_bald_01"),
-    ("pixie01", "Pixie", ["f"], "human_f_bald_01"),
-    ("longstraight01", "Long straight", ["f"], "human_f_bald_01"),
+    # women: all drawn on female_base (batch sheets); older styles on the previous Rowan retired
+    ("f2", "Bob", ["f"], "female_base"),
+    ("f3", "High ponytail", ["f"], "female_base"),
+    ("f5", "Bun", ["f"], "female_base"),
+    ("f7", "Pixie", ["f"], "female_base"),
+    ("f9", "Shoulder-length", ["f"], "female_base"),
+    ("f10", "Crown braid", ["f"], "female_base"),
+    ("fl1", "Long straight", ["f"], "female_base"),
+    ("fl2", "Long waves", ["f"], "female_base"),
+    ("fl3", "Side braid", ["f"], "female_base"),
+    ("fl4", "Two braids", ["f"], "female_base"),
 ]
 
 # Beards: blue edits of male_base, cut with check_hair.py, drawn over the outfit collar.
@@ -395,6 +411,7 @@ def main():
     ASSETS.mkdir(parents=True)
     ref_skulls = {n: skull(keyed(SRC / f"{n}.png")) for n in ["aldric_bald_01", "human_f_bald_01", "aldric_bald_limekey"]}
     ref_skulls["male_base"] = skull(keyed(ROOT / "art" / "template" / "male_base.png"))
+    ref_skulls["female_base"] = skull(keyed(ROOT / "art" / "template" / "female_base.png"))
 
     faces = []
     for fid, fname, label, tpl, races in FACES:
@@ -511,6 +528,9 @@ def main():
         ry, rx = ref_skulls[ref]
         entry = {"id": hid, "label": label, "fits": fits, "ref_skull": [ry, rx - (shift[0] if shift else 0)],
                  "lum": lum_range(a), "part": save_part(a, f"hair_{hid}")}
+        tf = PARTS / "hair" / f"hair_{hid}_ties.png"   # ties / bands keep their own colour
+        if tf.exists():
+            entry["ties"] = save_part(np.asarray(Image.open(tf).convert("RGBA")).copy(), f"hair_{hid}_ties")
         for rk in ("elf", "goblin"):   # hair refitted around that race's ears (batch sheet)
             rf = PARTS / "hair" / f"hair_{hid}_{rk}.png"
             if rf.exists():

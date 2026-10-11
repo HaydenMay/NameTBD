@@ -1,5 +1,5 @@
 {
- "version": 1791694860,
+ "version": 1791696368,
  "canvas": [
   1024,
   1536
@@ -1722,6 +1722,356 @@
      61.85
     ]
    }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_f1.png",
+    "x": 506,
+    "y": 154,
+    "lum": [
+     22.2,
+     125.2
+    ]
+   },
+   "id": "f1",
+   "label": "Brenna",
+   "template": "f",
+   "group": "f",
+   "skull": [
+    52,
+    518
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_f1.png",
+    "x": 398,
+    "y": 52,
+    "skin_mask": "assets/head_f1_skin.png",
+    "key_lab": [
+     75.58,
+     -22.3,
+     65.38
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_f2.png",
+    "x": 507,
+    "y": 153,
+    "lum": [
+     46.6,
+     153.3
+    ]
+   },
+   "mouth": [
+    547,
+    601,
+    272
+   ],
+   "id": "f2",
+   "label": "Lisette",
+   "template": "f",
+   "group": "f",
+   "skull": [
+    56,
+    515
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_f2.png",
+    "x": 397,
+    "y": 56,
+    "skin_mask": "assets/head_f2_skin.png",
+    "key_lab": [
+     76.84,
+     -22.28,
+     65.99
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_f3.png",
+    "x": 511,
+    "y": 156,
+    "lum": [
+     12.1,
+     139.6
+    ]
+   },
+   "id": "f3",
+   "label": "Old Maud",
+   "template": "f",
+   "group": "f",
+   "skull": [
+    54,
+    517
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_f3.png",
+    "x": 398,
+    "y": 54,
+    "skin_mask": "assets/head_f3_skin.png",
+    "key_lab": [
+     75.41,
+     -21.5,
+     65.43
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_f4.png",
+    "x": 506,
+    "y": 155,
+    "lum": [
+     32.7,
+     141.7
+    ]
+   },
+   "id": "f4",
+   "label": "Sela",
+   "template": "f",
+   "group": "f",
+   "skull": [
+    56,
+    515
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_f4.png",
+    "x": 398,
+    "y": 56,
+    "skin_mask": "assets/head_f4_skin.png",
+    "key_lab": [
+     76.21,
+     -22.4,
+     65.66
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_f5.png",
+    "x": 506,
+    "y": 153,
+    "lum": [
+     11.7,
+     123.2
+    ]
+   },
+   "mouth": [
+    544,
+    604,
+    278
+   ],
+   "id": "f5",
+   "label": "Greta",
+   "template": "f",
+   "group": "f",
+   "skull": [
+    52,
+    517
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_f5.png",
+    "x": 397,
+    "y": 52,
+    "skin_mask": "assets/head_f5_skin.png",
+    "key_lab": [
+     73.72,
+     -20.37,
+     64.16
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_f6.png",
+    "x": 502,
+    "y": 150,
+    "lum": [
+     24.1,
+     137.7
+    ]
+   },
+   "mouth": [
+    549,
+    601,
+    277
+   ],
+   "id": "f6",
+   "label": "Ione",
+   "template": "f",
+   "group": "f",
+   "skull": [
+    56,
+    520
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_f6.png",
+    "x": 401,
+    "y": 56,
+    "skin_mask": "assets/head_f6_skin.png",
+    "key_lab": [
+     76.1,
+     -21.85,
+     65.49
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_f7.png",
+    "x": 503,
+    "y": 159,
+    "lum": [
+     33.9,
+     138.2
+    ]
+   },
+   "mouth": [
+    554,
+    597,
+    280
+   ],
+   "id": "f7",
+   "label": "Kestra",
+   "template": "f",
+   "group": "f",
+   "skull": [
+    60,
+    518
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_f7.png",
+    "x": 400,
+    "y": 60,
+    "skin_mask": "assets/head_f7_skin.png",
+    "key_lab": [
+     76.63,
+     -22.44,
+     65.94
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_f8.png",
+    "x": 507,
+    "y": 153,
+    "lum": [
+     17.6,
+     153.6
+    ]
+   },
+   "mouth": [
+    532,
+    612,
+    265
+   ],
+   "id": "f8",
+   "label": "Hilde",
+   "template": "f",
+   "group": "f",
+   "skull": [
+    59,
+    520
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_f8.png",
+    "x": 403,
+    "y": 59,
+    "skin_mask": "assets/head_f8_skin.png",
+    "key_lab": [
+     76.05,
+     -21.94,
+     65.94
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_f9.png",
+    "x": 504,
+    "y": 155,
+    "lum": [
+     20.6,
+     141.5
+    ]
+   },
+   "id": "f9",
+   "label": "Yvaine",
+   "template": "f",
+   "group": "f",
+   "skull": [
+    55,
+    517
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_f9.png",
+    "x": 400,
+    "y": 55,
+    "skin_mask": "assets/head_f9_skin.png",
+    "key_lab": [
+     76.13,
+     -22.05,
+     65.63
+    ]
+   }
+  },
+  {
+   "brows": {
+    "file": "assets/brows_f10.png",
+    "x": 505,
+    "y": 153,
+    "lum": [
+     32.6,
+     145.3
+    ]
+   },
+   "mouth": [
+    546,
+    600,
+    279
+   ],
+   "id": "f10",
+   "label": "Tamsin",
+   "template": "f",
+   "group": "f",
+   "skull": [
+    54,
+    518
+   ],
+   "races": null,
+   "lime": true,
+   "part": {
+    "file": "assets/head_f10.png",
+    "x": 400,
+    "y": 54,
+    "skin_mask": "assets/head_f10_skin.png",
+    "key_lab": [
+     75.08,
+     -21.65,
+     65.05
+    ]
+   }
   }
  ],
  "bodies": [
@@ -2865,108 +3215,263 @@
    }
   },
   {
-   "id": "bun01",
-   "label": "Bun",
+   "id": "f2",
+   "label": "Bob",
    "fits": [
     "f"
    ],
    "ref_skull": [
-    56,
-    512
+    54,
+    514
    ],
    "lum": [
-    14.1,
-    190.6
+    17.8,
+    174.3
    ],
    "part": {
-    "file": "assets/hair_bun01.png",
-    "x": 324,
-    "y": 40
+    "file": "assets/hair_f2.png",
+    "x": 353,
+    "y": 47
+   },
+   "ties": {
+    "file": "assets/hair_f2_ties.png",
+    "x": 404,
+    "y": 55
    }
   },
   {
-   "id": "sidebraid01",
-   "label": "Side braid",
-   "fits": [
-    "f"
-   ],
-   "ref_skull": [
-    56,
-    512
-   ],
-   "lum": [
-    15.1,
-    187.1
-   ],
-   "part": {
-    "file": "assets/hair_sidebraid01.png",
-    "x": 349,
-    "y": 41
-   }
-  },
-  {
-   "id": "hiponytail01",
+   "id": "f3",
    "label": "High ponytail",
    "fits": [
     "f"
    ],
    "ref_skull": [
-    56,
-    512
+    54,
+    514
    ],
    "lum": [
-    12.1,
-    172.2
+    13.7,
+    163.2
    ],
    "part": {
-    "file": "assets/hair_hiponytail01.png",
-    "x": 215,
-    "y": 16
+    "file": "assets/hair_f3.png",
+    "x": 345,
+    "y": 3
    },
-   "earfill": {
-    "file": "assets/hair_hiponytail01_earfill.png",
-    "x": 408,
-    "y": 253
+   "ties": {
+    "file": "assets/hair_f3_ties.png",
+    "x": 350,
+    "y": 32
    }
   },
   {
-   "id": "pixie01",
+   "id": "f5",
+   "label": "Bun",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    14.0,
+    170.0
+   ],
+   "part": {
+    "file": "assets/hair_f5.png",
+    "x": 351,
+    "y": 45
+   },
+   "ties": {
+    "file": "assets/hair_f5_ties.png",
+    "x": 354,
+    "y": 47
+   }
+  },
+  {
+   "id": "f7",
    "label": "Pixie",
    "fits": [
     "f"
    ],
    "ref_skull": [
-    56,
-    512
+    54,
+    514
    ],
    "lum": [
-    17.9,
-    179.6
+    17.0,
+    176.7
    ],
    "part": {
-    "file": "assets/hair_pixie01.png",
-    "x": 353,
-    "y": 25
+    "file": "assets/hair_f7.png",
+    "x": 376,
+    "y": 27
+   },
+   "ties": {
+    "file": "assets/hair_f7_ties.png",
+    "x": 455,
+    "y": 42
    }
   },
   {
-   "id": "longstraight01",
+   "id": "f9",
+   "label": "Shoulder-length",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    16.3,
+    164.6
+   ],
+   "part": {
+    "file": "assets/hair_f9.png",
+    "x": 345,
+    "y": 27
+   },
+   "ties": {
+    "file": "assets/hair_f9_ties.png",
+    "x": 358,
+    "y": 259
+   }
+  },
+  {
+   "id": "f10",
+   "label": "Crown braid",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    12.5,
+    164.9
+   ],
+   "part": {
+    "file": "assets/hair_f10.png",
+    "x": 370,
+    "y": 33
+   },
+   "ties": {
+    "file": "assets/hair_f10_ties.png",
+    "x": 370,
+    "y": 103
+   },
+   "earfill": {
+    "file": "assets/hair_f10_earfill.png",
+    "x": 379,
+    "y": 218
+   }
+  },
+  {
+   "id": "fl1",
    "label": "Long straight",
    "fits": [
     "f"
    ],
    "ref_skull": [
-    56,
-    512
+    54,
+    514
    ],
    "lum": [
-    16.1,
-    172.7
+    18.4,
+    166.1
    ],
    "part": {
-    "file": "assets/hair_longstraight01.png",
-    "x": 204,
-    "y": 42
+    "file": "assets/hair_fl1.png",
+    "x": 356,
+    "y": 54
+   },
+   "ties": {
+    "file": "assets/hair_fl1_ties.png",
+    "x": 351,
+    "y": 300
+   }
+  },
+  {
+   "id": "fl2",
+   "label": "Long waves",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    18.1,
+    164.2
+   ],
+   "part": {
+    "file": "assets/hair_fl2.png",
+    "x": 344,
+    "y": 51
+   },
+   "ties": {
+    "file": "assets/hair_fl2_ties.png",
+    "x": 350,
+    "y": 357
+   }
+  },
+  {
+   "id": "fl3",
+   "label": "Side braid",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    15.0,
+    165.4
+   ],
+   "part": {
+    "file": "assets/hair_fl3.png",
+    "x": 372,
+    "y": 53
+   },
+   "ties": {
+    "file": "assets/hair_fl3_ties.png",
+    "x": 402,
+    "y": 326
+   }
+  },
+  {
+   "id": "fl4",
+   "label": "Two braids",
+   "fits": [
+    "f"
+   ],
+   "ref_skull": [
+    54,
+    514
+   ],
+   "lum": [
+    12.8,
+    173.9
+   ],
+   "part": {
+    "file": "assets/hair_fl4.png",
+    "x": 376,
+    "y": 52
+   },
+   "ties": {
+    "file": "assets/hair_fl4_ties.png",
+    "x": 403,
+    "y": 316
+   },
+   "earfill": {
+    "file": "assets/hair_fl4_earfill.png",
+    "x": 380,
+    "y": 185
    }
   }
  ],

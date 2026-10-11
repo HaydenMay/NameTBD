@@ -15,15 +15,21 @@ src = ROOT / "art/template" / ("female_base.png" if tpl == "f" else "male_base.p
 img = Image.open(src).convert("RGB")
 top, cx = bp.skull(bp.keyed(src))[:2]
 CW, CH, COLS = 300, 400, 5
+ROWS = 2
+if kind == "hairlong":   # one row of tall cells (to the waist) so long hair is never cut off
+    CH, ROWS, COLS = 960, 1, 4
 # hairstyles need room above and behind the head for volume
-x0, y0 = cx - CW // 2 - 20, top - (60 if kind == "hair" else 30)
-crop = img.crop((x0, y0, x0 + CW, y0 + CH))
+x0, y0 = cx - CW // 2 - 20, top - (60 if kind.startswith("hair") else 30)
+padded = Image.new("RGB", (img.width, img.height + 200), (255, 0, 255))   # never crop off-canvas (black)
+padded.paste(img, (0, 100))
+crop = padded.crop((x0, y0 + 100, x0 + CW, y0 + 100 + CH))
 W, H = 1536, 1024
-gx, gy = (W - COLS * CW) // 2, (H - 2 * CH) // 3
+gap = (W - COLS * CW) // (COLS + 1)
+gx, gy = gap, (H - ROWS * CH) // (ROWS + 1)
 sheet = Image.new("RGB", (W, H), (255, 0, 255))
 cells = []
-for i in range(10):
-    X, Y = gx + (i % COLS) * CW, gy + (i // COLS) * (CH + gy)
+for i in range(COLS * ROWS):
+    X, Y = gx + (i % COLS) * (CW + gap), gy + (i // COLS) * (CH + gy)
     sheet.paste(crop, (X, Y))
     cells.append({"n": i + 1, "sheet_xy": [X, Y], "src_xy": [x0, y0], "size": [CW, CH], "src": str(src.relative_to(ROOT))})
 out = ROOT / "art/sheets" / f"new_{kind}_{tpl}"

@@ -1,0 +1,66 @@
+[
+ {
+  "n": 1,
+  "sheet_xy": [
+   67,
+   32
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   960
+  ],
+  "src": "art\\template\\female_base.png"
+ },
+ {
+  "n": 2,
+  "sheet_xy": [
+   434,
+   32
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   960
+  ],
+  "src": "art\\template\\female_base.png"
+ },
+ {
+  "n": 3,
+  "sheet_xy": [
+   801,
+   32
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   960
+  ],
+  "src": "art\\template\\female_base.png"
+ },
+ {
+  "n": 4,
+  "sheet_xy": [
+   1168,
+   32
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   960
+  ],
+  "src": "art\\template\\female_base.png"
+ }
+]
