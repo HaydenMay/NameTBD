@@ -457,7 +457,8 @@ def main():
             _, _, ev = _hsv(a)   # grow only onto the ear's own dark outline, never onto skin
             em |= ndimage.binary_dilation(em, iterations=4) & (ev < 0.35)
             em = ndimage.binary_erosion(em, iterations=1) | (em & (ev < 0.35))
-            em &= a[..., 3] > 0
+            eh, es, _ = _hsv(a)
+            em &= (a[..., 3] > 0) & ~((eh >= 270) & (eh <= 345) & (es > 0.2) & (ev > 0.5))   # magenta edge bleed
             ear_px = a.copy()
             ear_px[~em, 3] = 0
             extra["ear_human"] = save_part(ear_px, f"ear_human_{fid}", True, hue_lo=40, reach=12, eyes="none")
