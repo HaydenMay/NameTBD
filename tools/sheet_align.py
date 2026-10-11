@@ -94,6 +94,10 @@ def main(kind, tpl, edited):
                 keep = [i + 1 for i in range(n) if sizes[i] >= 40 and (cx_[i][1] > 60 or sizes[i] > 0.2 * sizes.max())]
                 m = np.isin(lab, keep)                      # drop neighbouring cells' strands at the edge
             m |= ndimage.binary_dilation(m, iterations=2) & (v < 0.35)
+            lab_h, nh = ndimage.label(m)                     # drop detached flecks (robe outline bits)
+            if nh:
+                szh = ndimage.sum(m, lab_h, range(1, nh + 1))
+                m = np.isin(lab_h, 1 + np.flatnonzero(szh >= max(300, 0.01 * szh.max())))
             # hair ties / bands: small non-blue, non-skin pieces bridging blue hair. Kept as a
             # separate layer so they keep their own colour (the hair layer is recoloured).
             bridge = ndimage.binary_closing(m, iterations=10) & ~m
@@ -105,11 +109,16 @@ def main(kind, tpl, edited):
             added = np.abs(np.asarray(cell.convert("RGB")).astype(int) - ocell).sum(2) > 110   # painted by the edit
             added = ndimage.binary_opening(added, iterations=1)
             near_hair = ndimage.binary_dilation(m, iterations=6)
-            tie = near_hair & added & ~m & ~limey & ~mag & ~bluish
+            # a tie sits BETWEEN hair (inside the hair's closed shape), never on its outer rim
+            inside_hair = ndimage.binary_closing(m, iterations=14) & ~m
+            warm = (h >= 15) & (h <= 50) & (s > 0.35) & (v > 0.25)   # gold / brown bands
+            dark = v < 0.3                                         # dark elastic bands
+            tie = inside_hair & (added | warm) & (warm | dark) & ~limey & ~mag & ~bluish
             lab_t, nt = ndimage.label(tie)
             if nt:
                 sz = ndimage.sum(tie, lab_t, range(1, nt + 1))
                 tie = np.isin(lab_t, 1 + np.flatnonzero((sz >= 40) & (sz <= 1500)))
+                tie = ndimage.binary_dilation(tie, iterations=1) & inside_hair
             ties = a.copy()
             ties[~tie, 3] = 0
             a = np.asarray(cell.convert("RGBA")).copy()

@@ -90,7 +90,7 @@
     <h2 style="margin-top:14px">Recipe</h2>
     <div class="recipe" id="recipe"></div>
     <div class="row" style="margin-top:8px"><button class="btn ghost" id="copy">Copy link</button></div>
-    <p class="note">Race = ears/tusks + skin palette + hair colours + size. Outfits and hairstyles follow the face's template (male or female), so necks and skulls always match.</p>
+    <p class="note">Humans only for now (other races parked; add ?races=all to the address to see them). Race = ears/tusks + skin palette + hair colours + size. Outfits and hairstyles follow the face's template (male or female), so necks and skulls always match.</p>
     <p class="note">Prototype limits: head and outfit are joined with a straight cut at the collar, race size is a uniform scale (no rig yet), eyebrows and scars aren't separate layers yet.</p>
   </section>
 </main>
@@ -347,6 +347,8 @@ function fromHash() {
     ...Object.values(M.ears).map(e => e.part), ...M.hairs.flatMap(h => [h.part, h.earfill, h.ties, ...Object.values(h.race_versions || {}).map(r => r.part)]), ...(M.beards || []).map(b => b.part)].filter(Boolean);
   await Promise.all(parts.flatMap(p => [p.file, p.skin_mask]).filter(Boolean).map(load));
 
+  // Non-human races are parked (parts kept); show them with ?races=all
+  if (!new URLSearchParams(location.search).has('races')) for (const k of Object.keys(M.races)) if (k !== 'human') delete M.races[k];
   $('race').innerHTML = Object.entries(M.races).map(([k, r]) => `<option value="${k}">${r.label}</option>`).join('');
 
   $('race').onchange = e => { state.race = e.target.value; sync(); };

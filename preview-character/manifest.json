@@ -1,5 +1,5 @@
 {
- "version": 1791700633,
+ "version": 1791710212,
  "canvas": [
   1024,
   1536
@@ -3696,11 +3696,6 @@
     "x": 353,
     "y": 47
    },
-   "ties": {
-    "file": "assets/hair_f2_ties.png",
-    "x": 404,
-    "y": 55
-   },
    "race_versions": {
     "elf": {
      "ref_skull": [
@@ -3745,7 +3740,7 @@
     514
    ],
    "lum": [
-    13.7,
+    13.6,
     163.2
    ],
    "part": {
@@ -3755,8 +3750,8 @@
    },
    "ties": {
     "file": "assets/hair_f3_ties.png",
-    "x": 350,
-    "y": 32
+    "x": 433,
+    "y": 38
    },
    "race_versions": {
     "elf": {
@@ -3810,11 +3805,6 @@
     "x": 351,
     "y": 45
    },
-   "ties": {
-    "file": "assets/hair_f5_ties.png",
-    "x": 354,
-    "y": 47
-   },
    "race_versions": {
     "elf": {
      "ref_skull": [
@@ -3866,11 +3856,6 @@
     "file": "assets/hair_f7.png",
     "x": 376,
     "y": 27
-   },
-   "ties": {
-    "file": "assets/hair_f7_ties.png",
-    "x": 455,
-    "y": 42
    },
    "race_versions": {
     "elf": {
@@ -3926,8 +3911,8 @@
    },
    "ties": {
     "file": "assets/hair_f9_ties.png",
-    "x": 358,
-    "y": 259
+    "x": 572,
+    "y": 344
    },
    "race_versions": {
     "elf": {
@@ -3981,11 +3966,6 @@
     "x": 370,
     "y": 33
    },
-   "ties": {
-    "file": "assets/hair_f10_ties.png",
-    "x": 370,
-    "y": 103
-   },
    "race_versions": {
     "elf": {
      "ref_skull": [
@@ -4030,8 +4010,8 @@
     514
    ],
    "lum": [
-    18.4,
-    166.1
+    19.2,
+    166.5
    ],
    "part": {
     "file": "assets/hair_fl1.png",
@@ -4040,8 +4020,8 @@
    },
    "ties": {
     "file": "assets/hair_fl1_ties.png",
-    "x": 351,
-    "y": 300
+    "x": 452,
+    "y": 341
    },
    "race_versions": {
     "elf": {
@@ -4087,8 +4067,8 @@
     514
    ],
    "lum": [
-    18.1,
-    164.2
+    18.8,
+    164.3
    ],
    "part": {
     "file": "assets/hair_fl2.png",
@@ -4097,8 +4077,8 @@
    },
    "ties": {
     "file": "assets/hair_fl2_ties.png",
-    "x": 350,
-    "y": 357
+    "x": 399,
+    "y": 342
    },
    "race_versions": {
     "elf": {
@@ -4144,8 +4124,8 @@
     514
    ],
    "lum": [
-    15.0,
-    165.4
+    15.4,
+    165.7
    ],
    "part": {
     "file": "assets/hair_fl3.png",
@@ -4154,8 +4134,8 @@
    },
    "ties": {
     "file": "assets/hair_fl3_ties.png",
-    "x": 402,
-    "y": 326
+    "x": 482,
+    "y": 510
    },
    "race_versions": {
     "elf": {
@@ -4201,8 +4181,8 @@
     514
    ],
    "lum": [
-    12.8,
-    173.9
+    13.3,
+    174.1
    ],
    "part": {
     "file": "assets/hair_fl4.png",
@@ -4211,8 +4191,8 @@
    },
    "ties": {
     "file": "assets/hair_fl4_ties.png",
-    "x": 403,
-    "y": 316
+    "x": 421,
+    "y": 391
    },
    "race_versions": {
     "elf": {
