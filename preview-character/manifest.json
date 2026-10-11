@@ -1,5 +1,5 @@
 {
- "version": 1791699742,
+ "version": 1791700119,
  "canvas": [
   1024,
   1536
@@ -1789,13 +1789,13 @@
     "elf": {
      "part": {
       "file": "assets/ears_elf_rowan.png",
-      "x": 364,
-      "y": 127,
+      "x": 346,
+      "y": 107,
       "skin_mask": "assets/ears_elf_rowan_skin.png",
       "key_lab": [
-       74.13,
-       -29.24,
-       58.86
+       72.82,
+       -29.9,
+       59.82
       ]
      }
     },
@@ -1803,12 +1803,12 @@
      "part": {
       "file": "assets/ears_goblin_rowan.png",
       "x": 345,
-      "y": 160,
+      "y": 147,
       "skin_mask": "assets/ears_goblin_rowan_skin.png",
       "key_lab": [
-       76.81,
-       -29.08,
-       58.59
+       75.18,
+       -27.96,
+       56.63
       ]
      }
     }
@@ -1860,13 +1860,13 @@
     "elf": {
      "part": {
       "file": "assets/ears_elf_f1.png",
-      "x": 380,
-      "y": 130,
+      "x": 354,
+      "y": 115,
       "skin_mask": "assets/ears_elf_f1_skin.png",
       "key_lab": [
-       75.11,
-       -29.12,
-       58.68
+       71.35,
+       -29.55,
+       59.13
       ]
      }
     },
@@ -1874,12 +1874,12 @@
      "part": {
       "file": "assets/ears_goblin_f1.png",
       "x": 348,
-      "y": 164,
+      "y": 141,
       "skin_mask": "assets/ears_goblin_f1_skin.png",
       "key_lab": [
-       75.58,
-       -29.19,
-       58.71
+       73.88,
+       -28.08,
+       56.78
       ]
      }
     }
@@ -1936,13 +1936,13 @@
     "elf": {
      "part": {
       "file": "assets/ears_elf_f2.png",
-      "x": 345,
-      "y": 140,
+      "x": 348,
+      "y": 113,
       "skin_mask": "assets/ears_elf_f2_skin.png",
       "key_lab": [
-       75.32,
-       -29.67,
-       59.74
+       71.85,
+       -29.59,
+       59.26
       ]
      }
     },
@@ -1950,12 +1950,12 @@
      "part": {
       "file": "assets/ears_goblin_f2.png",
       "x": 345,
-      "y": 165,
+      "y": 145,
       "skin_mask": "assets/ears_goblin_f2_skin.png",
       "key_lab": [
-       76.15,
-       -28.6,
-       57.73
+       72.83,
+       -28.8,
+       57.99
       ]
      }
     }
@@ -2007,13 +2007,13 @@
     "elf": {
      "part": {
       "file": "assets/ears_elf_f3.png",
-      "x": 376,
-      "y": 139,
+      "x": 347,
+      "y": 119,
       "skin_mask": "assets/ears_elf_f3_skin.png",
       "key_lab": [
-       74.54,
-       -29.31,
-       59.02
+       72.63,
+       -29.47,
+       59.14
       ]
      }
     },
@@ -2021,12 +2021,12 @@
      "part": {
       "file": "assets/ears_goblin_f3.png",
       "x": 347,
-      "y": 167,
+      "y": 146,
       "skin_mask": "assets/ears_goblin_f3_skin.png",
       "key_lab": [
-       76.45,
-       -29.28,
-       58.96
+       73.57,
+       -28.25,
+       57.06
       ]
      }
     }
@@ -2078,26 +2078,26 @@
     "elf": {
      "part": {
       "file": "assets/ears_elf_f4.png",
-      "x": 373,
-      "y": 138,
+      "x": 349,
+      "y": 126,
       "skin_mask": "assets/ears_elf_f4_skin.png",
       "key_lab": [
-       74.2,
-       -29.57,
-       59.43
+       72.1,
+       -29.5,
+       59.17
       ]
      }
     },
     "goblin": {
      "part": {
       "file": "assets/ears_goblin_f4.png",
-      "x": 350,
-      "y": 165,
+      "x": 345,
+      "y": 147,
       "skin_mask": "assets/ears_goblin_f4_skin.png",
       "key_lab": [
-       76.13,
-       -28.71,
-       57.91
+       73.9,
+       -27.98,
+       56.62
       ]
      }
     }
@@ -2154,26 +2154,26 @@
     "elf": {
      "part": {
       "file": "assets/ears_elf_f5.png",
-      "x": 369,
-      "y": 136,
+      "x": 351,
+      "y": 112,
       "skin_mask": "assets/ears_elf_f5_skin.png",
       "key_lab": [
-       73.92,
-       -29.72,
-       59.68
+       72.49,
+       -29.5,
+       59.17
       ]
      }
     },
     "goblin": {
      "part": {
       "file": "assets/ears_goblin_f5.png",
-      "x": 353,
-      "y": 163,
+      "x": 348,
+      "y": 143,
       "skin_mask": "assets/ears_goblin_f5_skin.png",
       "key_lab": [
-       76.63,
-       -28.5,
-       57.56
+       74.15,
+       -27.71,
+       56.1
       ]
      }
     }
@@ -2230,26 +2230,26 @@
     "elf": {
      "part": {
       "file": "assets/ears_elf_f6.png",
-      "x": 380,
-      "y": 141,
+      "x": 356,
+      "y": 116,
       "skin_mask": "assets/ears_elf_f6_skin.png",
       "key_lab": [
-       73.37,
-       -29.4,
-       59.01
+       73.18,
+       -29.98,
+       60.08
       ]
      }
     },
     "goblin": {
      "part": {
       "file": "assets/ears_goblin_f6.png",
-      "x": 353,
-      "y": 171,
+      "x": 350,
+      "y": 145,
       "skin_mask": "assets/ears_goblin_f6_skin.png",
       "key_lab": [
-       75.81,
-       -29.68,
-       59.61
+       74.86,
+       -28.23,
+       57.13
       ]
      }
     }
@@ -2306,13 +2306,13 @@
     "elf": {
      "part": {
       "file": "assets/ears_elf_f7.png",
-      "x": 374,
-      "y": 145,
+      "x": 348,
+      "y": 123,
       "skin_mask": "assets/ears_elf_f7_skin.png",
       "key_lab": [
-       73.37,
-       -29.64,
-       59.45
+       73.5,
+       -30.36,
+       60.78
       ]
      }
     },
@@ -2320,12 +2320,12 @@
      "part": {
       "file": "assets/ears_goblin_f7.png",
       "x": 348,
-      "y": 173,
+      "y": 149,
       "skin_mask": "assets/ears_goblin_f7_skin.png",
       "key_lab": [
-       74.24,
-       -29.51,
-       59.2
+       72.74,
+       -28.14,
+       56.79
       ]
      }
     }
@@ -2382,13 +2382,13 @@
     "elf": {
      "part": {
       "file": "assets/ears_elf_f8.png",
-      "x": 371,
-      "y": 149,
+      "x": 350,
+      "y": 119,
       "skin_mask": "assets/ears_elf_f8_skin.png",
       "key_lab": [
-       70.89,
-       -29.58,
-       59.07
+       72.15,
+       -29.9,
+       59.8
       ]
      }
     },
@@ -2396,12 +2396,12 @@
      "part": {
       "file": "assets/ears_goblin_f8.png",
       "x": 350,
-      "y": 173,
+      "y": 147,
       "skin_mask": "assets/ears_goblin_f8_skin.png",
       "key_lab": [
-       74.37,
-       -29.83,
-       59.75
+       73.56,
+       -28.6,
+       57.69
       ]
      }
     }
@@ -2453,26 +2453,26 @@
     "elf": {
      "part": {
       "file": "assets/ears_elf_f9.png",
-      "x": 378,
-      "y": 142,
+      "x": 347,
+      "y": 113,
       "skin_mask": "assets/ears_elf_f9_skin.png",
       "key_lab": [
-       74.69,
-       -29.06,
-       58.57
+       72.31,
+       -29.79,
+       59.66
       ]
      }
     },
     "goblin": {
      "part": {
       "file": "assets/ears_goblin_f9.png",
-      "x": 352,
-      "y": 168,
+      "x": 347,
+      "y": 144,
       "skin_mask": "assets/ears_goblin_f9_skin.png",
       "key_lab": [
-       74.52,
-       -29.43,
-       59.09
+       74.2,
+       -28.35,
+       57.29
       ]
      }
     }

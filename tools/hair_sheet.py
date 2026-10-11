@@ -19,12 +19,16 @@ base_name, base_face = ("female_base.png", "rowan") if tpl == "f" else ("male_ba
 base = bp.keyed(ROOT / "art/template" / base_name)
 top, cx = bp.skull(base)[:2]
 P = ROOT / "art/parts" / f"ears_{race}"
-face = Image.fromarray(base)
-cut = np.asarray(Image.open(P / f"cut_{base_face}.png"))[..., 3] > 0
-arr = np.asarray(face).copy()
-arr[cut] = (255, 0, 255, 255)
-face = Image.fromarray(arr)
-face.alpha_composite(Image.open(P / f"patch_{base_face}.png").convert("RGBA"))
+earless = ROOT / "art/incoming/earless" / f"{base_face}.png"
+if earless.exists():   # clean earless head: the race ear sits on it directly
+    face = Image.fromarray(bp.keyed(earless))
+else:
+    face = Image.fromarray(base)
+    cut = np.asarray(Image.open(P / f"cut_{base_face}.png"))[..., 3] > 0
+    arr = np.asarray(face).copy()
+    arr[cut] = (255, 0, 255, 255)
+    face = Image.fromarray(arr)
+    face.alpha_composite(Image.open(P / f"patch_{base_face}.png").convert("RGBA"))
 ear = Image.open(P / f"ears_{race}_{base_face}.png").convert("RGBA")
 refs = {n: bp.skull(bp.keyed(bp.SRC / f"{n}.png"))[:2] for n in ["aldric_bald_01"]}
 refs["male_base" if tpl == "m" else "female_base"] = [top, cx]
