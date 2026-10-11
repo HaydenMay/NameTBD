@@ -1,5 +1,5 @@
 {
- "version": 1791700119,
+ "version": 1791700633,
  "canvas": [
   1024,
   1536
@@ -3700,6 +3700,38 @@
     "file": "assets/hair_f2_ties.png",
     "x": 404,
     "y": 55
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      18.9,
+      170.0
+     ],
+     "part": {
+      "file": "assets/hair_f2_elf.png",
+      "x": 345,
+      "y": 47
+     }
+    },
+    "goblin": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      25.9,
+      171.8
+     ],
+     "part": {
+      "file": "assets/hair_f2_goblin.png",
+      "x": 343,
+      "y": 48
+     }
+    }
    }
   },
   {
@@ -3725,6 +3757,38 @@
     "file": "assets/hair_f3_ties.png",
     "x": 350,
     "y": 32
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      20.3,
+      165.6
+     ],
+     "part": {
+      "file": "assets/hair_f3_elf.png",
+      "x": 342,
+      "y": 1
+     }
+    },
+    "goblin": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      21.1,
+      159.6
+     ],
+     "part": {
+      "file": "assets/hair_f3_goblin.png",
+      "x": 341,
+      "y": 4
+     }
+    }
    }
   },
   {
@@ -3750,6 +3814,38 @@
     "file": "assets/hair_f5_ties.png",
     "x": 354,
     "y": 47
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      22.6,
+      170.9
+     ],
+     "part": {
+      "file": "assets/hair_f5_elf.png",
+      "x": 342,
+      "y": 45
+     }
+    },
+    "goblin": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      25.1,
+      163.5
+     ],
+     "part": {
+      "file": "assets/hair_f5_goblin.png",
+      "x": 341,
+      "y": 44
+     }
+    }
    }
   },
   {
@@ -3775,6 +3871,38 @@
     "file": "assets/hair_f7_ties.png",
     "x": 455,
     "y": 42
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      23.8,
+      177.6
+     ],
+     "part": {
+      "file": "assets/hair_f7_elf.png",
+      "x": 345,
+      "y": 24
+     }
+    },
+    "goblin": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      17.1,
+      170.4
+     ],
+     "part": {
+      "file": "assets/hair_f7_goblin.png",
+      "x": 342,
+      "y": 26
+     }
+    }
    }
   },
   {
@@ -3800,6 +3928,38 @@
     "file": "assets/hair_f9_ties.png",
     "x": 358,
     "y": 259
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      20.2,
+      168.1
+     ],
+     "part": {
+      "file": "assets/hair_f9_elf.png",
+      "x": 342,
+      "y": 29
+     }
+    },
+    "goblin": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      21.6,
+      158.8
+     ],
+     "part": {
+      "file": "assets/hair_f9_goblin.png",
+      "x": 341,
+      "y": 27
+     }
+    }
    }
   },
   {
@@ -3826,10 +3986,37 @@
     "x": 370,
     "y": 103
    },
-   "earfill": {
-    "file": "assets/hair_f10_earfill.png",
-    "x": 379,
-    "y": 218
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      16.1,
+      166.8
+     ],
+     "part": {
+      "file": "assets/hair_f10_elf.png",
+      "x": 342,
+      "y": 32
+     }
+    },
+    "goblin": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      18.7,
+      162.1
+     ],
+     "part": {
+      "file": "assets/hair_f10_goblin.png",
+      "x": 341,
+      "y": 34
+     }
+    }
    }
   },
   {
@@ -3855,6 +4042,38 @@
     "file": "assets/hair_fl1_ties.png",
     "x": 351,
     "y": 300
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      23.9,
+      157.1
+     ],
+     "part": {
+      "file": "assets/hair_fl1_elf.png",
+      "x": 344,
+      "y": 53
+     }
+    },
+    "goblin": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      22.6,
+      163.0
+     ],
+     "part": {
+      "file": "assets/hair_fl1_goblin.png",
+      "x": 345,
+      "y": 49
+     }
+    }
    }
   },
   {
@@ -3880,6 +4099,38 @@
     "file": "assets/hair_fl2_ties.png",
     "x": 350,
     "y": 357
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      23.5,
+      152.8
+     ],
+     "part": {
+      "file": "assets/hair_fl2_elf.png",
+      "x": 344,
+      "y": 50
+     }
+    },
+    "goblin": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      26.6,
+      157.0
+     ],
+     "part": {
+      "file": "assets/hair_fl2_goblin.png",
+      "x": 341,
+      "y": 46
+     }
+    }
    }
   },
   {
@@ -3905,6 +4156,38 @@
     "file": "assets/hair_fl3_ties.png",
     "x": 402,
     "y": 326
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      18.6,
+      154.9
+     ],
+     "part": {
+      "file": "assets/hair_fl3_elf.png",
+      "x": 345,
+      "y": 52
+     }
+    },
+    "goblin": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      25.8,
+      157.2
+     ],
+     "part": {
+      "file": "assets/hair_fl3_goblin.png",
+      "x": 342,
+      "y": 48
+     }
+    }
    }
   },
   {
@@ -3931,10 +4214,37 @@
     "x": 403,
     "y": 316
    },
-   "earfill": {
-    "file": "assets/hair_fl4_earfill.png",
-    "x": 380,
-    "y": 185
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      15.7,
+      158.4
+     ],
+     "part": {
+      "file": "assets/hair_fl4_elf.png",
+      "x": 353,
+      "y": 49
+     }
+    },
+    "goblin": {
+     "ref_skull": [
+      54,
+      514
+     ],
+     "lum": [
+      17.1,
+      164.1
+     ],
+     "part": {
+      "file": "assets/hair_fl4_goblin.png",
+      "x": 342,
+      "y": 47
+     }
+    }
    }
   }
  ],

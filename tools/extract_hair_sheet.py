@@ -16,20 +16,34 @@ from skin import _hsv  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 race, edited = sys.argv[1], sys.argv[2]
-cells = json.loads((ROOT / f"art/sheets/hair_m_{race}.json").read_text())
+sheet = sys.argv[3] if len(sys.argv) > 3 else f"hair_m_{race}"     # e.g. hair_f_elf_long
+tpl = "f" if sheet.startswith("hair_f") else "m"
+base_face = "rowan" if tpl == "f" else "aldric"
+cells = json.loads((ROOT / f"art/sheets/{sheet}.json").read_text())
 e = np.asarray(Image.open(edited).convert("RGBA")).copy()
 h, s, v = _hsv(e)
 blue = (h >= 190) & (h <= 260) & (s > 0.35) & (v > 0.15)
-base = bp.keyed(ROOT / "art/template/male_base.png")
+base = bp.keyed(ROOT / "art/template" / ("female_base.png" if tpl == "f" else "male_base.png"))
 bh, bs, _ = _hsv(base)
 top, cx = bp.skull(base)[:2]
 brows = (bh >= 190) & (bh <= 260) & (bs > 0.35)
 brows[top + 190:] = False
 brows = ndimage.binary_dilation(brows, iterations=4)
+PAD = 200   # canvas-space arrays padded so cells that start above the canvas still fit
+
+
+def padded(arr):
+    out = np.zeros((arr.shape[0] + 2 * PAD,) + arr.shape[1:], arr.dtype)
+    out[PAD:PAD + arr.shape[0]] = arr
+    return out
+
+
+brows = padded(brows)
 for c in cells:
     X, Y = c["sheet_xy"]
     W, H = c["size"]
     sx, sy = c["src_xy"]
+    sy += PAD
     m = blue[Y:Y + H, X:X + W].copy()
     m &= ~brows[sy:sy + H, sx:sx + W]                        # brows are blue too: not hair
     lab, n = ndimage.label(m)
@@ -39,10 +53,11 @@ for c in cells:
     m |= ndimage.binary_dilation(m, iterations=2) & (v[Y:Y + H, X:X + W] < 0.35)   # outline
     # the hair's outline traced along the BASE ear edge would show as a dark line on faces whose
     # ear sits a few px differently; drop dark pixels hugging that ear (each face's ear has its own outline)
-    ear = np.asarray(Image.open(ROOT / "art/parts" / f"ears_{race}" / f"ears_{race}_aldric.png"))[..., 3] > 0
+    ear = np.asarray(Image.open(ROOT / "art/parts" / f"ears_{race}" / f"ears_{race}_{base_face}.png"))[..., 3] > 0
+    ear = padded(ear)
     near_ear = ndimage.binary_dilation(ear, iterations=7)[sy:sy + H, sx:sx + W]
     m &= ~(near_ear & (v[Y:Y + H, X:X + W] < 0.4))
-    canvas = np.zeros((1536, 1024, 4), np.uint8)
+    canvas = np.zeros((1536 + 2 * PAD, 1024, 4), np.uint8)
     piece = e[Y:Y + H, X:X + W].copy()
     piece[~m, 3] = 0
     canvas[sy:sy + H, sx:sx + W] = piece
@@ -65,5 +80,6 @@ for c in cells:
     lobe[: ys_e.min() + int(0.55 * (ys_e.max() - ys_e.min()))] = False
     lobe = ndimage.binary_dilation(lobe, iterations=5)
     canvas[lobe, 3] = 0
+    canvas = canvas[PAD:PAD + 1536]
     Image.fromarray(defringe(canvas)).save(ROOT / "art/parts/hair" / f"hair_{c['id']}_{race}.png")
     print(c["label"], int(m.sum()))

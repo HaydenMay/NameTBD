@@ -559,7 +559,7 @@ def main():
             if rf.exists():
                 ra = np.asarray(Image.open(rf).convert("RGBA")).copy()
                 entry.setdefault("race_versions", {})[rk] = {
-                    "ref_skull": ref_skulls["male_base"], "lum": lum_range(ra), "part": save_part(ra, f"hair_{hid}_{rk}")}
+                    "ref_skull": ref_skulls["female_base" if "f" in fits else "male_base"], "lum": lum_range(ra), "part": save_part(ra, f"hair_{hid}_{rk}")}
         if "race_versions" not in entry:
             fill = hair_ear_fill(a, ry, rx, ref_skulls["male_base"])
             if fill is not None:
