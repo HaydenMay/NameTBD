@@ -1,5 +1,5 @@
 {
- "version": 1791671412,
+ "version": 1791679258,
  "canvas": [
   1024,
   1536
@@ -576,6 +576,11 @@
     606,
     296
    ],
+   "tusks": {
+    "file": "assets/tusks_aldric.png",
+    "x": 399,
+    "y": 272
+   },
    "id": "aldric",
    "label": "Aldric",
    "template": "m",
@@ -616,6 +621,11 @@
     619,
     290
    ],
+   "tusks": {
+    "file": "assets/tusks_hobb.png",
+    "x": 407,
+    "y": 270
+   },
    "blocked_beard": [
     "trimmed"
    ],
@@ -656,6 +666,11 @@
     607,
     284
    ],
+   "tusks": {
+    "file": "assets/tusks_pip.png",
+    "x": 359,
+    "y": 265
+   },
    "blocked_beard": [
     "trimmed",
     "full"
@@ -701,6 +716,11 @@
     605,
     290
    ],
+   "tusks": {
+    "file": "assets/tusks_edric.png",
+    "x": 398,
+    "y": 273
+   },
    "id": "edric",
    "label": "Edric",
    "template": "m",
@@ -742,6 +762,11 @@
     610,
     297
    ],
+   "tusks": {
+    "file": "assets/tusks_m1_lean_a.png",
+    "x": 400,
+    "y": 281
+   },
    "id": "m1_lean_a",
    "label": "Corwin",
    "template": "m",
@@ -783,6 +808,11 @@
     628,
     295
    ],
+   "tusks": {
+    "file": "assets/tusks_m6_lean_b.png",
+    "x": 408,
+    "y": 282
+   },
    "id": "m6_lean_b",
    "label": "Corwin (alt)",
    "template": "m",
@@ -820,6 +850,11 @@
     628,
     292
    ],
+   "tusks": {
+    "file": "assets/tusks_m2_weathered.png",
+    "x": 547,
+    "y": 280
+   },
    "blocked_beard": [
     "trimmed"
    ],
@@ -860,6 +895,11 @@
     608,
     295
    ],
+   "tusks": {
+    "file": "assets/tusks_m3_gentle.png",
+    "x": 420,
+    "y": 279
+   },
    "id": "m3_gentle",
    "label": "Tomas",
    "template": "m",
@@ -897,6 +937,11 @@
     607,
     297
    ],
+   "tusks": {
+    "file": "assets/tusks_m4_stern.png",
+    "x": 402,
+    "y": 284
+   },
    "id": "m4_stern",
    "label": "Varek",
    "template": "m",
@@ -934,6 +979,11 @@
     610,
     293
    ],
+   "tusks": {
+    "file": "assets/tusks_m5_sunworn.png",
+    "x": 407,
+    "y": 274
+   },
    "blocked_beard": [
     "trimmed"
    ],

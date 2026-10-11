@@ -166,7 +166,8 @@ function gradientPart(file, lum, colour) {
 }
 
 // ---- Assembly ---------------------------------------------------------------
-const facesFor = race => M.faces.filter(f => (!f.races || f.races.includes(race)) && !(f.blocked_races || []).includes(race));
+const facesFor = race => M.faces.filter(f => (!f.races || f.races.includes(race)) && !(f.blocked_races || []).includes(race)
+  && !(race === 'ogre' && !f.races && !f.tusks));   // generic faces need painted tusks to be ogres
 const hairsFor = face => M.hairs.filter(h => h.fits.includes(face.template) && !(face.blocked_hair || []).includes(h.id));
 const bodiesFor = face => M.bodies.filter(b => b.template === face.template);
 

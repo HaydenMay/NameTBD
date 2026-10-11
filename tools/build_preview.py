@@ -389,6 +389,9 @@ def main():
                 # Moved tusks read as stickers (reviewed 2026-10-10); tusks must be painted
                 # per face (blue-key edit, extracted like hair). Kept off until then.
                 tusks = tusk_layer(mo, head) if TRANSPLANT_TUSKS else None
+            painted = PARTS / "tusks" / f"tusks_{fid}.png"   # per-face tusks from the batch sheet
+            if painted.exists():
+                tusks = np.asarray(Image.open(painted).convert("RGBA")).copy()
                 if tusks is not None:
                     extra["tusks"] = save_part(tusks, f"tusks_{fid}")
         if fid in NO_BEARD:

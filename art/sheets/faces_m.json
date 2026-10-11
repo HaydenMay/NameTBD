@@ -1,0 +1,172 @@
+[
+ {
+  "id": "aldric",
+  "label": "Aldric",
+  "src": "art\\incoming\\phase0\\..\\..\\template\\male_base.png",
+  "sheet_xy": [
+   18,
+   74
+  ],
+  "src_xy": [
+   353,
+   52
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "hobb",
+  "label": "Hobb",
+  "src": "art\\incoming\\phase0\\male_hobb.png",
+  "sheet_xy": [
+   318,
+   74
+  ],
+  "src_xy": [
+   351,
+   52
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "pip",
+  "label": "Pip",
+  "src": "art\\incoming\\phase0\\male_pip.png",
+  "sheet_xy": [
+   618,
+   74
+  ],
+  "src_xy": [
+   350,
+   51
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "edric",
+  "label": "Edric",
+  "src": "art\\incoming\\phase0\\male_edric.png",
+  "sheet_xy": [
+   918,
+   74
+  ],
+  "src_xy": [
+   351,
+   52
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "m1_lean_a",
+  "label": "Corwin",
+  "src": "art\\incoming\\phase0\\..\\faces_m\\m1_lean_a.png",
+  "sheet_xy": [
+   1218,
+   74
+  ],
+  "src_xy": [
+   351,
+   52
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "m6_lean_b",
+  "label": "Corwin (alt)",
+  "src": "art\\incoming\\phase0\\..\\faces_m\\m6_lean_b.png",
+  "sheet_xy": [
+   18,
+   548
+  ],
+  "src_xy": [
+   352,
+   52
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "m2_weathered",
+  "label": "Doran",
+  "src": "art\\incoming\\phase0\\..\\faces_m\\m2_weathered.png",
+  "sheet_xy": [
+   318,
+   548
+  ],
+  "src_xy": [
+   351,
+   52
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "m3_gentle",
+  "label": "Tomas",
+  "src": "art\\incoming\\phase0\\..\\faces_m\\m3_gentle.png",
+  "sheet_xy": [
+   618,
+   548
+  ],
+  "src_xy": [
+   352,
+   52
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "m4_stern",
+  "label": "Varek",
+  "src": "art\\incoming\\phase0\\..\\faces_m\\m4_stern.png",
+  "sheet_xy": [
+   918,
+   548
+  ],
+  "src_xy": [
+   352,
+   51
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "m5_sunworn",
+  "label": "Haldor",
+  "src": "art\\incoming\\phase0\\..\\faces_m\\m5_sunworn.png",
+  "sheet_xy": [
+   1218,
+   548
+  ],
+  "src_xy": [
+   352,
+   52
+  ],
+  "size": [
+   300,
+   400
+  ]
+ }
+]
