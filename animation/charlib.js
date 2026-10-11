@@ -16,7 +16,7 @@ export async function loadManifest() {
   const parts = [...M.faces.flatMap(f => [f.part, f.brows, f.scar]),
     ...M.bodies.flatMap(b => [b.part, b.back, ...Object.values((b.anim && b.anim.pieces) || {}),
       ...Object.values(b.rig || {})]),
-    ...Object.values(M.ears).map(e => e.part), ...M.hairs.map(h => h.part), ...(M.beards || []).map(b => b.part)]
+    ...Object.values(M.ears).map(e => e.part), ...M.hairs.flatMap(h => [h.part, h.ties]), ...(M.beards || []).map(b => b.part)]
     .filter(Boolean);
   await Promise.all(parts.flatMap(p => [p.file, p.skin_mask]).filter(Boolean)
     .map(f => loadImage(f + '?v=' + M.version)));
@@ -100,6 +100,7 @@ export function buildCharacter(M, r) {
   if (face.brows) add('head', face.brows, gradient(M, face.brows.file, face.brows.lum, r.hairCol));
   const hair = byId(M.hairs, r.hair);
   if (hair) add('hair', hair.part, gradient(M, hair.part.file, hair.lum, r.hairCol), ...fitd(hair.ref_skull));
+  if (hair && hair.ties) add('hair', hair.ties, M._img(hair.ties.file), ...fitd(hair.ref_skull));   // ties keep their own colour
   const beard = face.template === 'm' && byId(M.beards || [], r.beard);
   if (beard) add('beard', beard.part, gradient(M, beard.part.file, beard.lum, r.hairCol), ...fitd(beard.ref_skull));
   if (race.ears && !face.races) { const e = M.ears[race.ears]; add('ears', e.part, skinned(M, e.part, skin), ...fitd(e.ref_skull)); }

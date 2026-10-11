@@ -213,7 +213,7 @@ HAIRS = [  # (id, label, fits, reference image the hair was drawn on[, x nudge])
     # replaced by m_topknot_soft: ("topknot02", "Top-knot (shaved)", ["m"], "aldric_bald_limekey"),
     # women: all drawn on female_base (batch sheets); older styles on the previous Rowan retired
     ("f2", "Bob", ["f"], "female_base"),
-    ("f3", "High ponytail", ["f"], "female_base"),
+    ("f3", "Tied ponytail", ["f"], "female_base"),
     # trimmed (duplicate of High bun): ("f5", "Bun", ["f"], "female_base"),
     # trimmed (duplicate of Tousled crop): ("f7", "Pixie", ["f"], "female_base"),
     # pulled (touches shoulders): ("f9", "Shoulder-length", ["f"], "female_base"),

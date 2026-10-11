@@ -1,5 +1,5 @@
 {
- "version": 1791747345,
+ "version": 1791749530,
  "canvas": [
   1024,
   1536
@@ -4525,7 +4525,7 @@
   },
   {
    "id": "f3",
-   "label": "High ponytail",
+   "label": "Tied ponytail",
    "fits": [
     "f"
    ],
@@ -4534,13 +4534,18 @@
     514
    ],
    "lum": [
-    13.5,
-    146.8
+    11.6,
+    152.7
    ],
    "part": {
     "file": "assets/hair_f3.png",
     "x": 345,
-    "y": 3
+    "y": 27
+   },
+   "ties": {
+    "file": "assets/hair_f3_ties.png",
+    "x": 429,
+    "y": 38
    },
    "race_versions": {
     "elf": {

@@ -39,7 +39,7 @@ Unity is the eventual engine; everything so far is a browser prototype (Canvas 2
 
 ## Open issues / next steps (user's latest direction)
 1. ~~Female near foot points at viewer~~ **Done**: boots-only ChatGPT edits pasted onto the originals below y=1210 (rest of image untouched; armless versions unchanged). Walk rig now keeps each toe on its own boot (outline-walled growth below the boot shafts); `cleric_f` has a hand `foot_split` line (boots painted touching) and a pinned `shift` (auto-registration drifted). Known nit: hairline sliver / heel notch on cleric_f far boot; fix = regenerate cleric boots with a magenta gap, then drop `foot_split`.
-2. Female high-ponytail band could be redone with an orange tie.
+2. ~~High-ponytail band~~ **Done**: f3 is now "Tied ponytail" (single full-size edit, `art/incoming/hair_single/f3.png`, extracted with `tools/extract_single_hair.py` — blue hair + orange tie, same rules as the sheets). Shorter, clears the shoulders. Its `_elf`/`_goblin` race versions are stale (races parked). Walk renderer (`animation/charlib.js`) now draws tie layers too (it never did).
 3. Optional: men's earless heads (only matters if races return).
 4. Later: Unity port (recipe + layered renderer using these exact assets/manifest).
 
