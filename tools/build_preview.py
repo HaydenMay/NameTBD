@@ -416,6 +416,11 @@ def main():
     faces = []
     for fid, fname, label, tpl, races in FACES:
         a = keyed(SRC / f"{fname}.png")
+        a_orig = a          # the painted ear lives here; the head itself is earless when available
+        el = ROOT / "art/incoming/earless" / f"{fid}.png"
+        earless_ok = el.exists() and (PARTS / "ears_human" / f"ears_human_{fid}.png").exists()
+        if earless_ok:
+            a = keyed(el)
         head = a.copy()
         head[~head_mask(a, TEMPLATES[tpl]["cut"]), 3] = 0
         if fid in BROWS:  # neutralise faint blue brow edges left on the face under the brow layer
@@ -454,12 +459,12 @@ def main():
         if hf.exists():   # orange edit = WHERE the ear is; pixels = the face's own painted ear
             em = np.asarray(Image.open(hf).convert("RGBA"))[..., 3] > 0
             em = ndimage.binary_fill_holes(em)
-            _, _, ev = _hsv(a)   # grow only onto the ear's own dark outline, never onto skin
+            _, _, ev = _hsv(a_orig)   # grow only onto the ear's own dark outline, never onto skin
             em |= ndimage.binary_dilation(em, iterations=4) & (ev < 0.35)
             em = ndimage.binary_erosion(em, iterations=1) | (em & (ev < 0.35))
-            eh, es, _ = _hsv(a)
-            em &= (a[..., 3] > 0) & ~((eh >= 270) & (eh <= 345) & (es > 0.2) & (ev > 0.5))   # magenta edge bleed
-            ear_px = a.copy()
+            eh, es, _ = _hsv(a_orig)
+            em &= (a_orig[..., 3] > 0) & ~((eh >= 270) & (eh <= 345) & (es > 0.2) & (ev > 0.5))   # magenta edge bleed
+            ear_px = a_orig.copy()
             ear_px[~em, 3] = 0
             extra["ear_human"] = save_part(ear_px, f"ear_human_{fid}", True, hue_lo=40, reach=12, eyes="none")
         for rk in ("elf", "goblin"):   # per-face painted race ears (batch sheet) + old-ear cut
@@ -468,6 +473,9 @@ def main():
                 ea = np.asarray(Image.open(ef).convert("RGBA")).copy()
                 ca = np.asarray(Image.open(PARTS / f"ears_{rk}" / f"cut_{fid}.png").convert("RGBA")).copy()
                 ent = {"part": save_part(ea, f"ears_{rk}_{fid}", True, hue_lo=40, reach=12, eyes="none")}
+                if earless_ok:   # clean earless head underneath: nothing to cut or patch
+                    extra.setdefault("race_ears", {})[rk] = ent
+                    continue
                 if (ca[..., 3] > 0).any():
                     ent["cut"] = save_part(ca, f"earcut_{rk}_{fid}")
                 pa = np.asarray(Image.open(PARTS / f"ears_{rk}" / f"patch_{fid}.png").convert("RGBA")).copy()
