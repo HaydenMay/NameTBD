@@ -227,6 +227,12 @@ function compose(pose = null) {
   if (face.brows) put(face.brows, gradientPart(face.brows.file, face.brows.lum, state.hairCol));
   if (rig) put(body.rig.torso, skinned(body.rig.torso, state.skin));
   else if (body) put(body.part, skinned(body.part, body.lime ? state.skin : null));
+  if (face.jaw_y) {   // face above the jaw always in front of the outfit (collars never clip it)
+    g.save(); g.beginPath(); g.rect(0, 0, 1024, face.jaw_y); g.clip();
+    put(face.part, skinned(face.part, skin));
+    if (face.brows) put(face.brows, gradientPart(face.brows.file, face.brows.lum, state.hairCol));
+    g.restore();
+  }
   if (face.beard) put(face.beard, img[face.beard.file]);
   const hair = byId(M.hairs, state.hair);
   if (hair) {

@@ -575,6 +575,8 @@ def main():
     skins = {k: {"rgb": list(v), "lab": [round(float(x), 2) for x in rgb2lab(np.array([[v]], float))[0, 0]]}
              for k, v in SKINS.items()}
 
+    for f in faces:   # jaw line: face above it is drawn in front of outfits
+        f["jaw_y"] = TEMPLATES[f["template"]]["cut"] - 30
     manifest = {"version": int(time.time()), "canvas": [1024, 1536], "floor_y": 1510, "races": RACES, "skins": skins,
                 "rig": {k: v["pivots"] for k, v in RIG.items()}, "anim": {k: v for k, v in ANIM.items() if k != "_doc"}, "faces": faces, "bodies": bodies, "ears": ears, "hairs": hairs, "beards": beards, "hair_colours": HAIR_COLOURS}
     (OUT / "manifest.json").write_text(json.dumps(manifest, indent=1))
