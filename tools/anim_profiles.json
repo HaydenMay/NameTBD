@@ -3,48 +3,278 @@
   "templates": {
     "m": {
       "pivots": {
-        "neck": [512, 375], "shoulder_n": [300, 505], "shoulder_f": [690, 505],
-        "hip_n": [430, 860], "hip_f": [610, 860], "knee_n": [425, 1085], "knee_f": [630, 1085],
-        "ankle_n": [420, 1330], "ankle_f": [640, 1330], "waist": [512, 720]
+        "neck": [
+          512,
+          375
+        ],
+        "shoulder_n": [
+          300,
+          505
+        ],
+        "shoulder_f": [
+          690,
+          505
+        ],
+        "hip_n": [
+          430,
+          860
+        ],
+        "hip_f": [
+          610,
+          860
+        ],
+        "knee_n": [
+          425,
+          1085
+        ],
+        "knee_f": [
+          630,
+          1085
+        ],
+        "ankle_n": [
+          420,
+          1330
+        ],
+        "ankle_f": [
+          640,
+          1330
+        ],
+        "waist": [
+          512,
+          720
+        ]
       },
-      "arm_n_x": 350, "arm_f_x": 675, "arm_top": 490, "arm_bottom": 990,
-      "leg_top": 860, "leg_split_x": 517, "knee_y": 1085,
-      "cap": { "y0": 430, "y1": 590, "feather": 45 }
+      "arm_n_x": 350,
+      "arm_f_x": 675,
+      "arm_top": 490,
+      "arm_bottom": 990,
+      "leg_top": 860,
+      "leg_split_x": 517,
+      "knee_y": 1085,
+      "cap": {
+        "y0": 430,
+        "y1": 590,
+        "feather": 45
+      }
+    },
+    "f": {
+      "pivots": {
+        "neck": [
+          512,
+          375
+        ],
+        "shoulder_n": [
+          300,
+          505
+        ],
+        "shoulder_f": [
+          690,
+          505
+        ],
+        "hip_n": [
+          430,
+          860
+        ],
+        "hip_f": [
+          610,
+          860
+        ],
+        "knee_n": [
+          425,
+          1085
+        ],
+        "knee_f": [
+          630,
+          1085
+        ],
+        "ankle_n": [
+          420,
+          1330
+        ],
+        "ankle_f": [
+          640,
+          1330
+        ],
+        "waist": [
+          512,
+          720
+        ]
+      },
+      "arm_n_x": 350,
+      "arm_f_x": 675,
+      "arm_top": 490,
+      "arm_bottom": 990,
+      "leg_top": 860,
+      "leg_split_x": 517,
+      "knee_y": 1085,
+      "cap": {
+        "y0": 430,
+        "y1": 590,
+        "feather": 45
+      }
     }
   },
   "outfits": {
-    "guard_m":  { "profile": "leather_walk", "hem": 900,  "belt": 735 },
-    "knight_m": { "profile": "knight_walk",  "hem": 985,  "belt": 735,
-                  "leg_seam": [[355, 974], [375, 946], [395, 921], [425, 921], [455, 914], [485, 909], [505, 917], [515, 936], [555, 1045], [585, 1039], [615, 1030], [645, 1001], [675, 976], [715, 957]],
-                  "keep_torso": [488, 656, 1000],
-                  "markup": "art/markup/knight_m.jpg" },
-    "cleric_m": { "profile": "cleric_walk",  "hem": 1130, "belt": 720 }
+    "guard_m": {
+      "profile": "leather_walk",
+      "hem": 875,
+      "belt": 715,
+      "knee": 1085,
+      "armless": "art/incoming/outfits/guard_m_armless.png"
+    },
+    "knight_m": {
+      "profile": "knight_walk",
+      "hem": 985,
+      "belt": 735,
+      "leg_seam": [
+        [
+          355,
+          974
+        ],
+        [
+          375,
+          946
+        ],
+        [
+          395,
+          921
+        ],
+        [
+          425,
+          921
+        ],
+        [
+          455,
+          914
+        ],
+        [
+          485,
+          909
+        ],
+        [
+          505,
+          917
+        ],
+        [
+          515,
+          936
+        ],
+        [
+          555,
+          1045
+        ],
+        [
+          585,
+          1039
+        ],
+        [
+          615,
+          1030
+        ],
+        [
+          645,
+          1001
+        ],
+        [
+          675,
+          976
+        ],
+        [
+          715,
+          957
+        ]
+      ],
+      "keep_torso": [
+        488,
+        656,
+        1000
+      ],
+      "markup": "art/markup/knight_m.jpg"
+    },
+    "cleric_m": {
+      "profile": "cleric_walk",
+      "hem": 1130,
+      "belt": 705,
+      "knee": 1085,
+      "armless": "art/incoming/outfits/cleric_m_armless.png"
+    },
+    "guard_f": {
+      "profile": "leather_walk",
+      "hem": 810,
+      "belt": 645,
+      "knee": 1050,
+      "armless": "art/incoming/outfits/guard_f_armless.png"
+    },
+    "knight_f": {
+      "profile": "knight_walk",
+      "hem": 930,
+      "belt": 625,
+      "knee": 1035,
+      "armless": "art/incoming/outfits/knight_f_armless.png"
+    },
+    "cleric_f": {
+      "profile": "cleric_walk",
+      "hem": 1100,
+      "belt": 690,
+      "knee": 1050,
+      "armless": "art/incoming/outfits/cleric_f_armless.png"
+    }
   },
   "default_profile": "subtle_walk",
   "profiles": {
     "leather_walk": {
-      "label": "Leather (cutout)", "mode": "cutout", "period": 0.9,
-      "bob": 8, "head_bob": 2, "lean": 0.01,
-      "leg_swing": 0.28, "knee_bend": 0.42, "arm_swing": 0.11, "far_arm_swing": 0.09,
+      "label": "Leather (cutout)",
+      "mode": "cutout",
+      "period": 0.9,
+      "bob": 8,
+      "head_bob": 2,
+      "lean": 0.01,
+      "leg_swing": 0.28,
+      "knee_bend": 0.42,
+      "arm_swing": 0.11,
+      "far_arm_swing": 0.09,
       "skirt_sway": 0.0
     },
     "knight_walk": {
-      "label": "Knight (restrained cutout)", "mode": "cutout", "period": 0.95,
-      "bob": 7, "head_bob": 1.5, "lean": 0.008,
-      "leg_swing": 0.24, "knee_bend": 0.35, "arm_swing": 0.10, "far_arm_swing": 0.08, "elbow_bend": 0.15,
+      "label": "Knight (restrained cutout)",
+      "mode": "cutout",
+      "period": 0.95,
+      "bob": 7,
+      "head_bob": 1.5,
+      "lean": 0.008,
+      "leg_swing": 0.24,
+      "knee_bend": 0.35,
+      "arm_swing": 0.1,
+      "far_arm_swing": 0.08,
+      "elbow_bend": 0.15,
       "skirt_sway": 0.012
     },
     "cleric_walk": {
-      "label": "Robe (sway)", "mode": "robe", "period": 1.0,
-      "bob": 6, "head_bob": 1.5, "lean": 0.006,
-      "leg_swing": 0.12, "knee_bend": 0.18, "arm_swing": 0.0, "far_arm_swing": 0.0,
+      "label": "Robe (sway)",
+      "mode": "robe",
+      "period": 1.0,
+      "bob": 6,
+      "head_bob": 1.5,
+      "lean": 0.006,
+      "leg_swing": 0.12,
+      "knee_bend": 0.18,
+      "arm_swing": 0.07,
+      "far_arm_swing": 0.06,
       "skirt_sway": 0.025
     },
     "subtle_walk": {
-      "label": "Subtle (no limb rotation)", "mode": "subtle", "period": 0.9,
-      "bob": 6, "head_bob": 1.5, "lean": 0.0,
-      "leg_swing": 0.0, "knee_bend": 0.0, "arm_swing": 0.0, "far_arm_swing": 0.0,
-      "skirt_sway": 0.0, "squash": 0.012
+      "label": "Subtle (no limb rotation)",
+      "mode": "subtle",
+      "period": 0.9,
+      "bob": 6,
+      "head_bob": 1.5,
+      "lean": 0.0,
+      "leg_swing": 0.0,
+      "knee_bend": 0.0,
+      "arm_swing": 0.0,
+      "far_arm_swing": 0.0,
+      "skirt_sway": 0.0,
+      "squash": 0.012
     }
   }
 }

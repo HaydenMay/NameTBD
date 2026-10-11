@@ -130,9 +130,10 @@ export function mulberry32(a) {
   };
 }
 
-export function randomRecipe(M, seed, template = 'm') {
+export function randomRecipe(M, seed, template = null) {
   const rand = mulberry32(seed), pick = a => a[Math.floor(rand() * a.length)];
   const race = 'human', R = M.races[race];
+  template = template || (rand() < 0.5 ? 'm' : 'f');
   const face = pick(M.faces.filter(f => f.template === template && !f.races));
   const hairs = M.hairs.filter(h => h.fits.includes(face.template) && !(face.blocked_hair || []).includes(h.id));
   const beards = (M.beards || []).filter(b => !(face.blocked_beard || []).includes(b.id));
