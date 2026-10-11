@@ -106,7 +106,7 @@ FACES = [
     ("m5_sunworn", "../faces_m/m5_sunworn", "Haldor", "m", None),
     ("brug", "ogre_lime_01", "Brug", "m", ["ogre"]),
     ("rowan", "rowan_bluebrow", "Rowan", "f", None),
-    ("mira", "mira_bluebrow", "Mira", "f", None),
+    # retired 2026-10-10 (not made from female_base; ear sits where hair is drawn): mira
     ("f1", "../faces_f/f1", "Brenna", "f", None),
     ("f2", "../faces_f/f2", "Lisette", "f", None),
     ("f3", "../faces_f/f3", "Old Maud", "f", None),

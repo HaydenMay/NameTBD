@@ -1,0 +1,19 @@
+[
+ {
+  "id": "f10",
+  "label": "Tamsin",
+  "src": "art\\incoming\\phase0\\..\\faces_f\\f10.png",
+  "sheet_xy": [
+   18,
+   74
+  ],
+  "src_xy": [
+   348,
+   24
+  ],
+  "size": [
+   300,
+   400
+  ]
+ }
+]

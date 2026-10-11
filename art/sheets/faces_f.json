@@ -1,0 +1,172 @@
+[
+ {
+  "id": "rowan",
+  "label": "Rowan",
+  "src": "art\\incoming\\phase0\\rowan_bluebrow.png",
+  "sheet_xy": [
+   18,
+   74
+  ],
+  "src_xy": [
+   344,
+   24
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "f1",
+  "label": "Brenna",
+  "src": "art\\incoming\\phase0\\..\\faces_f\\f1.png",
+  "sheet_xy": [
+   318,
+   74
+  ],
+  "src_xy": [
+   348,
+   22
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "f2",
+  "label": "Lisette",
+  "src": "art\\incoming\\phase0\\..\\faces_f\\f2.png",
+  "sheet_xy": [
+   618,
+   74
+  ],
+  "src_xy": [
+   345,
+   26
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "f3",
+  "label": "Old Maud",
+  "src": "art\\incoming\\phase0\\..\\faces_f\\f3.png",
+  "sheet_xy": [
+   918,
+   74
+  ],
+  "src_xy": [
+   347,
+   24
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "f4",
+  "label": "Sela",
+  "src": "art\\incoming\\phase0\\..\\faces_f\\f4.png",
+  "sheet_xy": [
+   1218,
+   74
+  ],
+  "src_xy": [
+   345,
+   26
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "f5",
+  "label": "Greta",
+  "src": "art\\incoming\\phase0\\..\\faces_f\\f5.png",
+  "sheet_xy": [
+   18,
+   548
+  ],
+  "src_xy": [
+   347,
+   22
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "f6",
+  "label": "Ione",
+  "src": "art\\incoming\\phase0\\..\\faces_f\\f6.png",
+  "sheet_xy": [
+   318,
+   548
+  ],
+  "src_xy": [
+   350,
+   26
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "f7",
+  "label": "Kestra",
+  "src": "art\\incoming\\phase0\\..\\faces_f\\f7.png",
+  "sheet_xy": [
+   618,
+   548
+  ],
+  "src_xy": [
+   348,
+   30
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "f8",
+  "label": "Hilde",
+  "src": "art\\incoming\\phase0\\..\\faces_f\\f8.png",
+  "sheet_xy": [
+   918,
+   548
+  ],
+  "src_xy": [
+   350,
+   29
+  ],
+  "size": [
+   300,
+   400
+  ]
+ },
+ {
+  "id": "f9",
+  "label": "Yvaine",
+  "src": "art\\incoming\\phase0\\..\\faces_f\\f9.png",
+  "sheet_xy": [
+   1218,
+   548
+  ],
+  "src_xy": [
+   347,
+   25
+  ],
+  "size": [
+   300,
+   400
+  ]
+ }
+]

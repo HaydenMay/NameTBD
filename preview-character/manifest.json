@@ -1,5 +1,5 @@
 {
- "version": 1791696368,
+ "version": 1791697036,
  "canvas": [
   1024,
   1536
@@ -1683,43 +1683,6 @@
      74.57,
      -21.2,
      59.8
-    ]
-   }
-  },
-  {
-   "brows": {
-    "file": "assets/brows_mira.png",
-    "x": 510,
-    "y": 146,
-    "lum": [
-     12.3,
-     117.4
-    ]
-   },
-   "mouth": [
-    548,
-    594,
-    260
-   ],
-   "id": "mira",
-   "label": "Mira",
-   "template": "f",
-   "group": "f",
-   "skull": [
-    53,
-    512
-   ],
-   "races": null,
-   "lime": true,
-   "part": {
-    "file": "assets/head_mira.png",
-    "x": 393,
-    "y": 53,
-    "skin_mask": "assets/head_mira_skin.png",
-    "key_lab": [
-     73.74,
-     -21.23,
-     61.85
     ]
    }
   },

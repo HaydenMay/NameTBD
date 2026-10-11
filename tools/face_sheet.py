@@ -16,13 +16,14 @@ import build_preview as bp  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
 tpl = sys.argv[1] if len(sys.argv) > 1 else "m"
+page = int(sys.argv[2]) if len(sys.argv) > 2 else 1
 faces = [f for f in bp.FACES if f[3] == tpl and f[4] is None]
 COLS, CW, CH = 5, 300, 400            # cell size at native resolution (no scaling)
 W, H = 1536, 1024
 gx, gy = (W - COLS * CW) // 2, (H - 2 * CH) // 3
 sheet = Image.new("RGB", (W, H), (255, 0, 255))
 cells = []
-for i, (fid, fname, label, _, _) in enumerate(faces[:10]):
+for i, (fid, fname, label, _, _) in enumerate(faces[(page - 1) * 10:page * 10]):
     src = bp.SRC / f"{fname}.png"
     a = np.asarray(Image.open(src).convert("RGB"))
     top, cx = bp.skull(bp.keyed(src))[:2]
@@ -33,6 +34,7 @@ for i, (fid, fname, label, _, _) in enumerate(faces[:10]):
     cells.append({"id": fid, "label": label, "src": str(src.relative_to(ROOT)), "sheet_xy": [X, Y], "src_xy": [x0, y0], "size": [CW, CH]})
 out = ROOT / "art" / "sheets"
 out.mkdir(parents=True, exist_ok=True)
-sheet.save(out / f"faces_{tpl}.png")
-(out / f"faces_{tpl}.json").write_text(json.dumps(cells, indent=1))
+suffix = "" if page == 1 else f"_p{page}"
+sheet.save(out / f"faces_{tpl}{suffix}.png")
+(out / f"faces_{tpl}{suffix}.json").write_text(json.dumps(cells, indent=1))
 print(len(cells), "faces ->", out / f"faces_{tpl}.png")
