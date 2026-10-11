@@ -451,9 +451,12 @@ def main():
                 if tusks is not None:
                     extra["tusks"] = save_part(tusks, f"tusks_{fid}")
         hf = PARTS / "ears_human" / f"ears_human_{fid}.png"   # own ear, drawn over hair for humans
-        if hf.exists():
-            extra["ear_human"] = save_part(np.asarray(Image.open(hf).convert("RGBA")).copy(), f"ear_human_{fid}",
-                                           True, hue_lo=40, reach=12, eyes="none", all_skin=True)
+        if hf.exists():   # orange edit = WHERE the ear is; pixels = the face's own painted ear
+            em = np.asarray(Image.open(hf).convert("RGBA"))[..., 3] > 0
+            em = ndimage.binary_dilation(ndimage.binary_fill_holes(em), iterations=2) & (a[..., 3] > 0)
+            ear_px = a.copy()
+            ear_px[~em, 3] = 0
+            extra["ear_human"] = save_part(ear_px, f"ear_human_{fid}", True, hue_lo=40, reach=12, eyes="none")
         for rk in ("elf", "goblin"):   # per-face painted race ears (batch sheet) + old-ear cut
             ef = PARTS / f"ears_{rk}" / f"ears_{rk}_{fid}.png"
             if ef.exists():
@@ -472,6 +475,9 @@ def main():
             extra["blocked_beard"] = BLOCKED_BEARD[fid]
         faces.append({**extra, "id": fid, "label": label, "template": tpl, "group": tpl, "skull": skull(a), "races": races,
                       "lime": True, "part": save_part(head, f"head_{fid}", True, hue_lo=40, reach=12, eyes=True)})
+        fe = faces[-1]
+        if fe.get("ear_human", {}).get("key_lab") and fe["part"].get("key_lab"):
+            fe["ear_human"]["key_lab"] = fe["part"]["key_lab"]   # recolour exactly like the face
 
     bodies = []
     for bid, fname, label, tpl, hem in BODIES:
