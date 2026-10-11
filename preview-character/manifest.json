@@ -1,5 +1,5 @@
 {
- "version": 1791742585,
+ "version": 1791742841,
  "canvas": [
   1024,
   1536
@@ -2142,83 +2142,6 @@
   },
   {
    "brows": {
-    "file": "assets/brows_f5.png",
-    "x": 506,
-    "y": 153,
-    "lum": [
-     11.7,
-     123.2
-    ]
-   },
-   "mouth": [
-    544,
-    604,
-    278
-   ],
-   "ear_human": {
-    "file": "assets/ear_human_f5.png",
-    "x": 409,
-    "y": 186,
-    "skin_mask": "assets/ear_human_f5_skin.png",
-    "key_lab": [
-     74.5,
-     -20.72,
-     64.78
-    ]
-   },
-   "race_ears": {
-    "elf": {
-     "part": {
-      "file": "assets/ears_elf_f5.png",
-      "x": 351,
-      "y": 112,
-      "skin_mask": "assets/ears_elf_f5_skin.png",
-      "key_lab": [
-       72.49,
-       -29.5,
-       59.17
-      ]
-     }
-    },
-    "goblin": {
-     "part": {
-      "file": "assets/ears_goblin_f5.png",
-      "x": 348,
-      "y": 143,
-      "skin_mask": "assets/ears_goblin_f5_skin.png",
-      "key_lab": [
-       74.15,
-       -27.71,
-       56.1
-      ]
-     }
-    }
-   },
-   "id": "f5",
-   "label": "Greta",
-   "template": "f",
-   "group": "f",
-   "skull": [
-    52,
-    517
-   ],
-   "races": null,
-   "lime": true,
-   "part": {
-    "file": "assets/head_f5.png",
-    "x": 397,
-    "y": 52,
-    "skin_mask": "assets/head_f5_skin.png",
-    "key_lab": [
-     74.5,
-     -20.72,
-     64.78
-    ]
-   },
-   "jaw_y": 302
-  },
-  {
-   "brows": {
     "file": "assets/brows_f6.png",
     "x": 502,
     "y": 150,
@@ -2290,83 +2213,6 @@
      76.76,
      -22.14,
      66.02
-    ]
-   },
-   "jaw_y": 302
-  },
-  {
-   "brows": {
-    "file": "assets/brows_f7.png",
-    "x": 503,
-    "y": 159,
-    "lum": [
-     33.9,
-     138.2
-    ]
-   },
-   "mouth": [
-    554,
-    597,
-    280
-   ],
-   "ear_human": {
-    "file": "assets/ear_human_f7.png",
-    "x": 409,
-    "y": 190,
-    "skin_mask": "assets/ear_human_f7_skin.png",
-    "key_lab": [
-     77.34,
-     -22.72,
-     66.51
-    ]
-   },
-   "race_ears": {
-    "elf": {
-     "part": {
-      "file": "assets/ears_elf_f7.png",
-      "x": 348,
-      "y": 123,
-      "skin_mask": "assets/ears_elf_f7_skin.png",
-      "key_lab": [
-       73.5,
-       -30.36,
-       60.78
-      ]
-     }
-    },
-    "goblin": {
-     "part": {
-      "file": "assets/ears_goblin_f7.png",
-      "x": 348,
-      "y": 149,
-      "skin_mask": "assets/ears_goblin_f7_skin.png",
-      "key_lab": [
-       72.74,
-       -28.14,
-       56.79
-      ]
-     }
-    }
-   },
-   "id": "f7",
-   "label": "Kestra",
-   "template": "f",
-   "group": "f",
-   "skull": [
-    60,
-    518
-   ],
-   "races": null,
-   "lime": true,
-   "part": {
-    "file": "assets/head_f7.png",
-    "x": 400,
-    "y": 60,
-    "skin_mask": "assets/head_f7_skin.png",
-    "key_lab": [
-     77.34,
-     -22.72,
-     66.51
     ]
    },
    "jaw_y": 302
