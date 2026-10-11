@@ -37,6 +37,11 @@ for c in cells:
         sizes = ndimage.sum(m, lab, range(1, n + 1))
         m = np.isin(lab, 1 + np.flatnonzero(sizes >= 40))
     m |= ndimage.binary_dilation(m, iterations=2) & (v[Y:Y + H, X:X + W] < 0.35)   # outline
+    # the hair's outline traced along the BASE ear edge would show as a dark line on faces whose
+    # ear sits a few px differently; drop dark pixels hugging that ear (each face's ear has its own outline)
+    ear = np.asarray(Image.open(ROOT / "art/parts" / f"ears_{race}" / f"ears_{race}_aldric.png"))[..., 3] > 0
+    near_ear = ndimage.binary_dilation(ear, iterations=7)[sy:sy + H, sx:sx + W]
+    m &= ~(near_ear & (v[Y:Y + H, X:X + W] < 0.4))
     canvas = np.zeros((1536, 1024, 4), np.uint8)
     piece = e[Y:Y + H, X:X + W].copy()
     piece[~m, 3] = 0

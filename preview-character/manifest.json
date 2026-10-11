@@ -1,5 +1,5 @@
 {
- "version": 1791685172,
+ "version": 1791685315,
  "canvas": [
   1024,
   1536
@@ -2422,8 +2422,8 @@
       523
      ],
      "lum": [
-      14.1,
-      168.7
+      15.6,
+      169.1
      ],
      "part": {
       "file": "assets/hair_m_short_elf.png",
@@ -2459,8 +2459,8 @@
       523
      ],
      "lum": [
-      10.5,
-      163.1
+      11.7,
+      163.5
      ],
      "part": {
       "file": "assets/hair_m_wavy_elf.png",
@@ -2496,8 +2496,8 @@
       523
      ],
      "lum": [
-      13.7,
-      156.4
+      16.0,
+      156.5
      ],
      "part": {
       "file": "assets/hair_m_ponytail2_elf.png",
@@ -2533,8 +2533,8 @@
       523
      ],
      "lum": [
-      12.0,
-      169.4
+      13.5,
+      169.7
      ],
      "part": {
       "file": "assets/hair_m_topknot2_elf.png",
@@ -2570,8 +2570,8 @@
       523
      ],
      "lum": [
-      14.9,
-      164.6
+      16.2,
+      164.8
      ],
      "part": {
       "file": "assets/hair_m_slicked2_elf.png",
@@ -2607,8 +2607,8 @@
       523
      ],
      "lum": [
-      12.0,
-      165.1
+      13.0,
+      165.3
      ],
      "part": {
       "file": "assets/hair_m_shaggy_elf.png",
@@ -2644,8 +2644,8 @@
       523
      ],
      "lum": [
-      8.8,
-      175.6
+      9.5,
+      176.8
      ],
      "part": {
       "file": "assets/hair_m_curly_elf.png",
@@ -2681,8 +2681,8 @@
       523
      ],
      "lum": [
-      9.9,
-      157.9
+      10.8,
+      158.0
      ],
      "part": {
       "file": "assets/hair_m_midpart_elf.png",
@@ -2718,8 +2718,8 @@
       523
      ],
      "lum": [
-      13.4,
-      147.3
+      14.5,
+      147.5
      ],
      "part": {
       "file": "assets/hair_spiky02_elf.png",
