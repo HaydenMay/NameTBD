@@ -103,3 +103,11 @@ test('original source artwork is untouched', () => {
   const modified = out.split('\n').filter(l => /^ ?M|^ ?D/.test(l));
   assert.deepEqual(modified, [], 'source art modified or deleted:\n' + modified.join('\n'));
 });
+
+test('random hair colour respects the skin-tone rules', () => {
+  const rules = M.races.human.hair_by_skin;
+  for (let seed = 1; seed < 400; seed++) {
+    const r = randomRecipe(M, seed);
+    assert.ok(rules[r.skin].map(([c]) => c).includes(r.hairCol), `${r.skin} got ${r.hairCol}`);
+  }
+});

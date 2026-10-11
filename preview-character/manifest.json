@@ -1,5 +1,5 @@
 {
- "version": 1791743486,
+ "version": 1791744531,
  "canvas": [
   1024,
   1536
@@ -26,7 +26,149 @@
     "blond",
     "silver",
     "white"
-   ]
+   ],
+   "hair_by_skin": {
+    "porcelain": [
+     [
+      "black",
+      2
+     ],
+     [
+      "brown",
+      3
+     ],
+     [
+      "auburn",
+      2
+     ],
+     [
+      "ginger",
+      2
+     ],
+     [
+      "blond",
+      3
+     ],
+     [
+      "silver",
+      1
+     ],
+     [
+      "white",
+      1
+     ]
+    ],
+    "fair": [
+     [
+      "black",
+      2
+     ],
+     [
+      "brown",
+      3
+     ],
+     [
+      "auburn",
+      2
+     ],
+     [
+      "ginger",
+      1
+     ],
+     [
+      "blond",
+      2
+     ],
+     [
+      "silver",
+      1
+     ],
+     [
+      "white",
+      1
+     ]
+    ],
+    "tan": [
+     [
+      "black",
+      3
+     ],
+     [
+      "brown",
+      3
+     ],
+     [
+      "auburn",
+      1
+     ],
+     [
+      "blond",
+      1
+     ],
+     [
+      "silver",
+      1
+     ],
+     [
+      "white",
+      1
+     ]
+    ],
+    "olive": [
+     [
+      "black",
+      4
+     ],
+     [
+      "brown",
+      3
+     ],
+     [
+      "silver",
+      1
+     ],
+     [
+      "white",
+      1
+     ]
+    ],
+    "brown": [
+     [
+      "black",
+      5
+     ],
+     [
+      "brown",
+      2
+     ],
+     [
+      "silver",
+      1
+     ],
+     [
+      "white",
+      1
+     ]
+    ],
+    "deep": [
+     [
+      "black",
+      5
+     ],
+     [
+      "brown",
+      1
+     ],
+     [
+      "silver",
+      1
+     ],
+     [
+      "white",
+      1
+     ]
+    ]
+   }
   },
   "elf": {
    "label": "Elf",

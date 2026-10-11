@@ -164,7 +164,15 @@ EARS = ["elf", "goblin", "ogre"]  # authored on lime Aldric
 RACES = {
     "human": {"label": "Human", "scale": 1.00, "ears": None,
               "skins": ["porcelain", "fair", "tan", "olive", "brown", "deep"],
-              "hair": ["black", "brown", "auburn", "ginger", "blond", "silver", "white"]},
+              "hair": ["black", "brown", "auburn", "ginger", "blond", "silver", "white"],
+              # skin tone -> allowed hair colours, as [colour, weight] (weight = how common)
+              "hair_by_skin": {
+                  "porcelain": [["black", 2], ["brown", 3], ["auburn", 2], ["ginger", 2], ["blond", 3], ["silver", 1], ["white", 1]],
+                  "fair":      [["black", 2], ["brown", 3], ["auburn", 2], ["ginger", 1], ["blond", 2], ["silver", 1], ["white", 1]],
+                  "tan":       [["black", 3], ["brown", 3], ["auburn", 1], ["blond", 1], ["silver", 1], ["white", 1]],
+                  "olive":     [["black", 4], ["brown", 3], ["silver", 1], ["white", 1]],
+                  "brown":     [["black", 5], ["brown", 2], ["silver", 1], ["white", 1]],
+                  "deep":      [["black", 5], ["brown", 1], ["silver", 1], ["white", 1]]}},
     "elf": {"label": "Elf", "scale": 0.98, "ears": "elf",
             "skins": ["moonpale", "fair", "golden", "cool_olive"],
             "hair": ["silver", "white", "blond", "black", "auburn"]},

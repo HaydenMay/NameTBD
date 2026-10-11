@@ -168,6 +168,10 @@ function gradientPart(file, lum, colour) {
 // ---- Assembly ---------------------------------------------------------------
 const facesFor = race => M.faces.filter(f => (!f.races || f.races.includes(race)) && !(f.blocked_races || []).includes(race)
   && !(race === 'ogre' && !f.races && !f.tusks));   // generic faces need painted tusks to be ogres
+const hairColoursFor = (race, skin) => (race.hair_by_skin && race.hair_by_skin[skin])
+  ? race.hair_by_skin[skin].map(([c]) => c) : race.hair;
+const pickWeighted = (rand, pairs) => { const t = pairs.reduce((a, [, w]) => a + w, 0); let r = rand() * t;
+  for (const [c, w] of pairs) { if ((r -= w) < 0) return c; } return pairs[0][0]; };
 const hairsFor = face => M.hairs.filter(h => h.fits.includes(face.template) && !(face.blocked_hair || []).includes(h.id));
 const bodiesFor = face => M.bodies.filter(b => b.template === face.template);
 
@@ -311,8 +315,9 @@ function sync() {
   if (!bodies.some(b => b.id === state.outfit)) state.outfit = bodies[0].id;
   $('outfit').innerHTML = bodies.map(b => `<option value="${b.id}">${b.label}</option>`).join('');
   $('outfit').value = state.outfit;
-  if (!race.hair.includes(state.hairCol)) state.hairCol = race.hair[0];
-  $('colours').innerHTML = race.hair.map(k =>
+  const hairOk = hairColoursFor(race, state.skin);
+  if (!hairOk.includes(state.hairCol)) state.hairCol = hairOk[0];
+  $('colours').innerHTML = hairOk.map(k =>
     `<button class="swatch" data-c="${k}" title="${k}" aria-label="${k}" style="background:rgb(${M.hair_colours[k][2].join(',')})"></button>`).join('');
   const hairs = hairsFor(face);
   if (state.hair && !hairs.some(h => h.id === state.hair)) state.hair = hairs[0] ? hairs[0].id : '';
@@ -335,7 +340,8 @@ function generate(rand) {
   const race = pick(Object.keys(M.races)), face = pick(facesFor(race));
   state = { race, face: face.id, skin: pick(M.races[race].skins), outfit: pick(bodiesFor(face)).id,
     hair: rand() < 0.12 ? '' : pick(hairsFor(face)).id,
-    beard: face.template === 'm' && (M.beards || []).length && rand() < 0.5 ? pick(M.beards.filter(b => !(face.blocked_beard || []).includes(b.id))).id : '', hairCol: pick(M.races[race].hair), scar: rand() < 0.25 };
+    beard: face.template === 'm' && (M.beards || []).length && rand() < 0.5 ? pick(M.beards.filter(b => !(face.blocked_beard || []).includes(b.id))).id : '', hairCol: null, scar: rand() < 0.25 };
+  const R_ = M.races[race]; state.hairCol = R_.hair_by_skin && R_.hair_by_skin[state.skin] ? pickWeighted(rand, R_.hair_by_skin[state.skin]) : pick(R_.hair);
   sync();
 }
 
@@ -359,7 +365,7 @@ function fromHash() {
 
   $('race').onchange = e => { state.race = e.target.value; sync(); };
   $('face').onchange = e => { state.face = e.target.value; sync(); };
-  $('skins').onclick = e => { const s = e.target.dataset.s; if (s) { state.skin = s; sync(); } };
+  $('skins').onclick = e => { const s = e.target.dataset.s; if (s) { state.skin = s; sync(); } };   // sync re-filters hair colours
   $('outfit').onchange = e => { state.outfit = e.target.value; render(); };
   $('hair').onchange = e => { state.hair = e.target.value; render(); };
   $('beard').onchange = e => { state.beard = e.target.value; render(); };

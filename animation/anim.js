@@ -138,10 +138,15 @@ export function randomRecipe(M, seed, template = null) {
   const hairs = M.hairs.filter(h => h.fits.includes(face.template) && !(face.blocked_hair || []).includes(h.id));
   const beards = (M.beards || []).filter(b => !(face.blocked_beard || []).includes(b.id));
   const outfits = M.bodies.filter(b => b.template === face.template && b.anim);
+  const skin = pick(R.skins);
+  const byskin = R.hair_by_skin && R.hair_by_skin[skin];
+  let hairCol = pick(R.hair);
+  if (byskin) { const t = byskin.reduce((a, [, w]) => a + w, 0); let r = rand() * t;
+    hairCol = byskin[0][0]; for (const [c, w] of byskin) { if ((r -= w) < 0) { hairCol = c; break; } } }
   return {
-    race, face: face.id, skin: pick(R.skins), outfit: pick(outfits).id,
+    race, face: face.id, skin, outfit: pick(outfits).id,
     hair: rand() < 0.12 ? '' : pick(hairs).id,
     beard: template === 'm' && beards.length && rand() < 0.5 ? pick(beards).id : '',
-    hairCol: pick(R.hair), scar: false,
+    hairCol, scar: false,
   };
 }
