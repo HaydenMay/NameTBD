@@ -1,0 +1,162 @@
+[
+ {
+  "n": 1,
+  "sheet_xy": [
+   18,
+   74
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "src": "art\\template\\female_base.png"
+ },
+ {
+  "n": 2,
+  "sheet_xy": [
+   318,
+   74
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "src": "art\\template\\female_base.png"
+ },
+ {
+  "n": 3,
+  "sheet_xy": [
+   618,
+   74
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "src": "art\\template\\female_base.png"
+ },
+ {
+  "n": 4,
+  "sheet_xy": [
+   918,
+   74
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "src": "art\\template\\female_base.png"
+ },
+ {
+  "n": 5,
+  "sheet_xy": [
+   1218,
+   74
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "src": "art\\template\\female_base.png"
+ },
+ {
+  "n": 6,
+  "sheet_xy": [
+   18,
+   548
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "src": "art\\template\\female_base.png"
+ },
+ {
+  "n": 7,
+  "sheet_xy": [
+   318,
+   548
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "src": "art\\template\\female_base.png"
+ },
+ {
+  "n": 8,
+  "sheet_xy": [
+   618,
+   548
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "src": "art\\template\\female_base.png"
+ },
+ {
+  "n": 9,
+  "sheet_xy": [
+   918,
+   548
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "src": "art\\template\\female_base.png"
+ },
+ {
+  "n": 10,
+  "sheet_xy": [
+   1218,
+   548
+  ],
+  "src_xy": [
+   344,
+   -6
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "src": "art\\template\\female_base.png"
+ }
+]
