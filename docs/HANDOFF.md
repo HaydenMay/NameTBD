@@ -6,7 +6,7 @@ Live: `/preview-character/` (character builder) and `/animation/` (walk debugger
 ## The game and the goal
 Fantasy caravan-management game (Oregon Trail-like). 30–50 persistent, recruitable companions per run; players should remember them by face. Characters are **painted 2D parts** (ChatGPT-generated, $0 budget, ChatGPT Plus image gen) assembled at runtime from a **recipe** string, e.g.
 `race=human&face=hobb&skin=deep&outfit=guard_m&hair=m_curly&beard=none&hair_col=black`.
-Unity is the eventual engine; everything so far is a browser prototype (Canvas 2D) + Python pipeline.
+**Runtime: browser game (Canvas 2D), decided 2026-10-11 — Unity dropped.** Reasons: game needs no engine features, the character renderer already runs in the browser, Claude can run/screenshot/test it, and it plays on mobile. Code is plain JS today; TypeScript conversion is optional, later. Asset pipeline is Python.
 
 ## Current scope decision
 **Humans only.** Elf/goblin/ogre/dwarf parts exist but are parked (hidden; `?races=all` shows them). Don't spend effort on races unless asked.
@@ -41,7 +41,7 @@ Unity is the eventual engine; everything so far is a browser prototype (Canvas 2
 1. ~~Female near foot points at viewer~~ **Done**: boots-only ChatGPT edits pasted onto the originals below y=1210 (rest of image untouched; armless versions unchanged). Walk rig now keeps each toe on its own boot (outline-walled growth below the boot shafts); `cleric_f` has a hand `foot_split` line (boots painted touching) and a pinned `shift` (auto-registration drifted). Known nit: hairline sliver / heel notch on cleric_f far boot; fix = regenerate cleric boots with a magenta gap, then drop `foot_split`.
 2. ~~High-ponytail band~~ **Done**: f3 is now "Tied ponytail" (single full-size edit, `art/incoming/hair_single/f3.png`, extracted with `tools/extract_single_hair.py` — blue hair + orange tie, same rules as the sheets). Shorter, clears the shoulders. Its `_elf`/`_goblin` race versions are stale (races parked). Walk renderer (`animation/charlib.js`) now draws tie layers too (it never did).
 3. Optional: men's earless heads (only matters if races return).
-4. Later: Unity port (recipe + layered renderer using these exact assets/manifest).
+4. **Next: the game itself** in the browser, reusing `animation/charlib.js` + manifest. User is drafting the design (core loop, resources, companions, example events, run structure, v1 out-of-scope list). Must work on mobile (touch, portrait-friendly).
 
 ## Working style the user likes
 Short, concrete replies; send review images (eye-test grids, close-ups) and let the user vote by cell code; be candid when code can't fix an art problem and give the ChatGPT prompt instead; don't claim fixes without rendering them first.

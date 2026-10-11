@@ -12,7 +12,7 @@ Phase 0 results (review images in `art/review/`):
 - Design decision: goblins (and other races) are civilised, human-like peoples rather than feral cave goblins. Race reads from face/ears/skin plus rig scale (goblin ~0.78 height reads clearly next to humans — `race_scale_mock.png`).
 - Within one ChatGPT chat, regenerations converge on the same character; use new chats for variety and same-chat edits for consistency.
 
-Original phase 0 scope: template & style. Budget $0. Tools: ChatGPT Pro (generation), local SDXL via Krita AI Diffusion on RTX 4060 8GB (registered fixes/inpainting, Phase 3+), Krita (cleanup), Python (pipeline), Unity 6 (runtime).
+Original phase 0 scope: template & style. Budget $0. Tools: ChatGPT Pro (generation), local SDXL via Krita AI Diffusion on RTX 4060 8GB (registered fixes/inpainting, Phase 3+), Krita (cleanup), Python (pipeline), Unity 6 (runtime) — *superseded 2026-10-11: runtime is the browser (Canvas 2D), see HANDOFF.md*.
 
 ## Locked decisions
 - Style: Reference A proportions (~3.75 heads), richer faces; storybook painterly, dark outlines.
@@ -61,7 +61,7 @@ Later: caravan activities (sitting on wagon, carrying goods, tending camp, wagon
 | 2 Hair & heads | 2 hairstyles + 3 expressions on the golden head | You generate, I process | Hair swaps cleanly; expressions keep identity |
 | 3 Outfits & accessory | 2 outfits + satchel, cut into rig pieces, joint caps filled | You generate + clean, I cut/align; local SDXL for fills | Cleanup time per outfit ≤ ~4h |
 | 4 Motion (preview) | Idle + walk in browser preview | Me | No joint gaps, no foot sliding, reads in motion |
-| 5 Unity | Importer, rig prefab, Sprite Library swaps, recolor shader, portrait capture, recipes | Me (you run Unity) | Validation checklist below passes |
+| 5 ~~Unity~~ (dropped: browser runtime) | Importer, rig prefab, Sprite Library swaps, recolor shader, portrait capture, recipes | Me (you run Unity) | Validation checklist below passes |
 
 ## Validation checklist (Slice v1)
 - Swap hair and outfits at runtime without touching animation clips.
