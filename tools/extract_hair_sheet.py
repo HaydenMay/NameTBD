@@ -46,5 +46,19 @@ for c in cells:
     piece = e[Y:Y + H, X:X + W].copy()
     piece[~m, 3] = 0
     canvas[sy:sy + H, sx:sx + W] = piece
+    # ChatGPT painted the hair to stop at the BASE ear's edge, leaving an ear-shaped channel.
+    # Fill hair under the upper (blade) part of that ear: ears draw on top, so it only shows
+    # where a face's own ear sits lower and would otherwise leave a gap.
+    ys_e = np.where(ear.any(1))[0]
+    blade = ear.copy()
+    blade[ys_e.min() + int(0.65 * (ys_e.max() - ys_e.min())):] = False
+    blade = ndimage.binary_dilation(blade, iterations=4)
+    hv = canvas[..., 3] > 0
+    hole = blade & ~hv & ndimage.binary_dilation(hv, iterations=45)
+    if hole.any():
+        src = hv & (canvas[..., :3].max(2) > 70)
+        idx = ndimage.distance_transform_edt(~src, return_distances=False, return_indices=True)
+        canvas[hole] = canvas[idx[0][hole], idx[1][hole]]
+        canvas[hole, 3] = 255
     Image.fromarray(defringe(canvas)).save(ROOT / "art/parts/hair" / f"hair_{c['id']}_{race}.png")
     print(c["label"], int(m.sum()))
