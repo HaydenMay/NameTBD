@@ -1,0 +1,182 @@
+[
+ {
+  "id": "m_short",
+  "label": "Short",
+  "sheet_xy": [
+   18,
+   74
+  ],
+  "src_xy": [
+   353,
+   22
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "m_wavy",
+  "label": "Long wavy",
+  "sheet_xy": [
+   318,
+   74
+  ],
+  "src_xy": [
+   353,
+   22
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "m_ponytail2",
+  "label": "Ponytail",
+  "sheet_xy": [
+   618,
+   74
+  ],
+  "src_xy": [
+   353,
+   22
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "m_topknot2",
+  "label": "Top-knot",
+  "sheet_xy": [
+   918,
+   74
+  ],
+  "src_xy": [
+   353,
+   22
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "m_slicked2",
+  "label": "Slicked back",
+  "sheet_xy": [
+   1218,
+   74
+  ],
+  "src_xy": [
+   353,
+   22
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "m_shaggy",
+  "label": "Shaggy",
+  "sheet_xy": [
+   18,
+   548
+  ],
+  "src_xy": [
+   353,
+   22
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "m_curly",
+  "label": "Curly",
+  "sheet_xy": [
+   318,
+   548
+  ],
+  "src_xy": [
+   353,
+   22
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "m_midpart",
+  "label": "Middle part",
+  "sheet_xy": [
+   618,
+   548
+  ],
+  "src_xy": [
+   353,
+   22
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   0,
+   0
+  ]
+ },
+ {
+  "id": "spiky02",
+  "label": "Spiky",
+  "sheet_xy": [
+   918,
+   548
+  ],
+  "src_xy": [
+   353,
+   22
+  ],
+  "size": [
+   300,
+   400
+  ],
+  "hair_offset": [
+   3,
+   -2
+  ]
+ }
+]

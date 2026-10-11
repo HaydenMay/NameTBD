@@ -58,8 +58,11 @@ for i, f in enumerate(faces):
         c.alpha_composite(gradient_map(Image.open(ROOT / "preview-character" / f["brows"]["file"]), M["hair_colours"][col]),
                           (f["brows"]["x"], f["brows"]["y"]))
     c.alpha_composite(load(body["part"], tone), (body["part"]["x"], body["part"]["y"]))
+    rv = (hair.get("race_versions") or {}).get(race["ears"] or "")
+    if rv:
+        hair = {**hair, **rv}
     hp = hair["part"]
-    if race["ears"] and hair.get("earfill"):
+    if race["ears"] and hair.get("earfill") and not rv:
         ef = hair["earfill"]
         c.alpha_composite(gradient_map(Image.open(ROOT / "preview-character" / ef["file"]), M["hair_colours"][col]),
                           (ef["x"] + f["skull"][1] - hair["ref_skull"][1], ef["y"] + f["skull"][0] - hair["ref_skull"][0]))

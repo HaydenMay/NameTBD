@@ -230,9 +230,11 @@ function compose(pose = null) {
   if (face.beard) put(face.beard, img[face.beard.file]);
   const hair = byId(M.hairs, state.hair);
   if (hair) {
-    const hx = face.skull[1] - hair.ref_skull[1], hy = face.skull[0] - hair.ref_skull[0];
-    if (race.ears && hair.earfill) put(hair.earfill, gradientPart(hair.earfill.file, hair.lum, state.hairCol), hx, hy);
-    put(hair.part, haired(hair, state.hairCol), hx, hy);
+    const rv = race.ears && hair.race_versions && hair.race_versions[race.ears];   // refit around race ears
+    const h = rv || hair;
+    const hx = face.skull[1] - h.ref_skull[1], hy = face.skull[0] - h.ref_skull[0];
+    if (!rv && race.ears && hair.earfill) put(hair.earfill, gradientPart(hair.earfill.file, hair.lum, state.hairCol), hx, hy);
+    put(h.part, gradientPart(h.part.file, h.lum, state.hairCol), hx, hy);
   }
   const beard = face.template === 'm' && byId(M.beards || [], state.beard);
   if (beard) fit(beard.part, gradientPart(beard.part.file, beard.lum, state.hairCol), beard.ref_skull);
@@ -340,7 +342,7 @@ function fromHash() {
 (async () => {
   M = await (await fetch('manifest.json', { cache: 'no-cache' })).json();
   const parts = [...M.faces.flatMap(f => [f.part, f.beard, f.brows, f.scar, f.tusks, ...Object.values(f.race_ears || {}).flatMap(r => [r.part, r.cut, r.patch])]), ...M.bodies.flatMap(b => [b.part, b.back, ...Object.values(b.rig || {})]),
-    ...Object.values(M.ears).map(e => e.part), ...M.hairs.flatMap(h => [h.part, h.earfill]), ...(M.beards || []).map(b => b.part)].filter(Boolean);
+    ...Object.values(M.ears).map(e => e.part), ...M.hairs.flatMap(h => [h.part, h.earfill, ...Object.values(h.race_versions || {}).map(r => r.part)]), ...(M.beards || []).map(b => b.part)].filter(Boolean);
   await Promise.all(parts.flatMap(p => [p.file, p.skin_mask]).filter(Boolean).map(load));
 
   $('race').innerHTML = Object.entries(M.races).map(([k, r]) => `<option value="${k}">${r.label}</option>`).join('');

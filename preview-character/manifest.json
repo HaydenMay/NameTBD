@@ -1,5 +1,5 @@
 {
- "version": 1791683574,
+ "version": 1791685172,
  "canvas": [
   1024,
   1536
@@ -2414,6 +2414,23 @@
     "file": "assets/hair_m_short.png",
     "x": 343,
     "y": 33
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      14.1,
+      168.7
+     ],
+     "part": {
+      "file": "assets/hair_m_short_elf.png",
+      "x": 353,
+      "y": 33
+     }
+    }
    }
   },
   {
@@ -2434,6 +2451,23 @@
     "file": "assets/hair_m_wavy.png",
     "x": 297,
     "y": 22
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      10.5,
+      163.1
+     ],
+     "part": {
+      "file": "assets/hair_m_wavy_elf.png",
+      "x": 353,
+      "y": 24
+     }
+    }
    }
   },
   {
@@ -2454,6 +2488,23 @@
     "file": "assets/hair_m_ponytail2.png",
     "x": 289,
     "y": 44
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      13.7,
+      156.4
+     ],
+     "part": {
+      "file": "assets/hair_m_ponytail2_elf.png",
+      "x": 353,
+      "y": 45
+     }
+    }
    }
   },
   {
@@ -2474,6 +2525,23 @@
     "file": "assets/hair_m_topknot2.png",
     "x": 368,
     "y": 26
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      12.0,
+      169.4
+     ],
+     "part": {
+      "file": "assets/hair_m_topknot2_elf.png",
+      "x": 371,
+      "y": 28
+     }
+    }
    }
   },
   {
@@ -2494,6 +2562,23 @@
     "file": "assets/hair_m_slicked2.png",
     "x": 356,
     "y": 46
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      14.9,
+      164.6
+     ],
+     "part": {
+      "file": "assets/hair_m_slicked2_elf.png",
+      "x": 360,
+      "y": 47
+     }
+    }
    }
   },
   {
@@ -2514,6 +2599,23 @@
     "file": "assets/hair_m_shaggy.png",
     "x": 335,
     "y": 22
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      12.0,
+      165.1
+     ],
+     "part": {
+      "file": "assets/hair_m_shaggy_elf.png",
+      "x": 353,
+      "y": 24
+     }
+    }
    }
   },
   {
@@ -2534,6 +2636,23 @@
     "file": "assets/hair_m_curly.png",
     "x": 380,
     "y": 54
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      8.8,
+      175.6
+     ],
+     "part": {
+      "file": "assets/hair_m_curly_elf.png",
+      "x": 384,
+      "y": 54
+     }
+    }
    }
   },
   {
@@ -2554,6 +2673,23 @@
     "file": "assets/hair_m_midpart.png",
     "x": 333,
     "y": 36
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      9.9,
+      157.9
+     ],
+     "part": {
+      "file": "assets/hair_m_midpart_elf.png",
+      "x": 353,
+      "y": 39
+     }
+    }
    }
   },
   {
@@ -2574,6 +2710,23 @@
     "file": "assets/hair_spiky02.png",
     "x": 367,
     "y": 37
+   },
+   "race_versions": {
+    "elf": {
+     "ref_skull": [
+      82,
+      523
+     ],
+     "lum": [
+      13.4,
+      147.3
+     ],
+     "part": {
+      "file": "assets/hair_spiky02_elf.png",
+      "x": 371,
+      "y": 33
+     }
+    }
    }
   },
   {

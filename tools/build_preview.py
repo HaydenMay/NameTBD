@@ -511,9 +511,16 @@ def main():
         ry, rx = ref_skulls[ref]
         entry = {"id": hid, "label": label, "fits": fits, "ref_skull": [ry, rx - (shift[0] if shift else 0)],
                  "lum": lum_range(a), "part": save_part(a, f"hair_{hid}")}
-        fill = hair_ear_fill(a, ry, rx, ref_skulls["male_base"])
-        if fill is not None:
-            entry["earfill"] = save_part(fill, f"hair_{hid}_earfill")
+        for rk in ("elf", "goblin"):   # hair refitted around that race's ears (batch sheet)
+            rf = PARTS / "hair" / f"hair_{hid}_{rk}.png"
+            if rf.exists():
+                ra = np.asarray(Image.open(rf).convert("RGBA")).copy()
+                entry.setdefault("race_versions", {})[rk] = {
+                    "ref_skull": ref_skulls["male_base"], "lum": lum_range(ra), "part": save_part(ra, f"hair_{hid}_{rk}")}
+        if "race_versions" not in entry:
+            fill = hair_ear_fill(a, ry, rx, ref_skulls["male_base"])
+            if fill is not None:
+                entry["earfill"] = save_part(fill, f"hair_{hid}_earfill")
         hairs.append(entry)
 
     beards = []
