@@ -30,7 +30,7 @@ def register(full, armless):
     return best[1], best[2]
 
 
-def split_auto(front, armless, belt, hem, knee_y, neck_xy, shift=None):
+def split_auto(front, armless, belt, hem, knee_y, neck_xy, shift=None, foot_split=None):
     H, W = front.shape[:2]
     yy, xx = np.mgrid[0:H, 0:W]
     vis = front[..., 3] > 0
@@ -76,6 +76,25 @@ def split_auto(front, armless, belt, hem, knee_y, neck_xy, shift=None):
         split_x = int(np.median(gx))
     near = xx < split_x
     knee = _seam(front, vis, knee_y, 45, 45)[None, :]
+    # feet: a straight split cuts a side-on toe that reaches past split_x onto the other leg,
+    # so split the upright boot shafts by x, then grow each leg down through its own foot
+    # where the boots touch, the painted outline between them is the wall the growth stops at
+    foot = legs & (yy >= knee_y + 200)
+    inner = foot & (_hsv(front)[2] > 0.07)
+    grow_n, grow_f = inner & near & (yy < knee_y + 210), inner & ~near & (yy < knee_y + 210)
+    for _ in range(600):
+        nn = ndimage.binary_dilation(grow_n) & inner & ~grow_f
+        ff = ndimage.binary_dilation(grow_f) & inner & ~nn
+        if (nn == grow_n).all() and (ff == grow_f).all():
+            break
+        grow_n, grow_f = nn, ff
+    # outline pixels go to the nearer grown side
+    dn = ndimage.distance_transform_edt(~grow_n)
+    df = ndimage.distance_transform_edt(~grow_f)
+    near = np.where(foot, dn <= df, near)
+    if foot_split:   # hand-placed [x, y] cut line where the boots are painted as one blob
+        py, px = zip(*sorted((y, x) for x, y in foot_split))
+        near = np.where(foot, xx < np.interp(yy, py, px), near)
     robe = hem >= knee_y
     thigh_zone = vis & (yy >= hem_seam - 60) & ~arms
     pieces_m = {

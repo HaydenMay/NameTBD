@@ -218,6 +218,7 @@
       "belt": 690,
       "knee": 1050,
       "shift": [-3, 12],
+      "foot_split": [[553, 1250], [553, 1340], [545, 1400], [560, 1412], [568, 1430], [572, 1460], [575, 1490]],
       "armless": "art/incoming/outfits/cleric_f_armless.png"
     }
   },
