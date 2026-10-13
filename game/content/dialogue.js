@@ -1,6 +1,7 @@
 // Conversations and authored responses. Data only.
 // Lines are [speaker, text]; speakers are cast keys ('merchant', 'comp_a', 'comp_b', 'indep').
 // Conditions (all optional): town, place, status (of `with`), flag, notFlag, seen, notSeen.
+// place 'center' = topics in the talk panel; ambient: true = said out loud in the scene as speech bubbles, no choices.
 // effects use the same format as road events (core/events.js applyEffects).
 
 export const CONVERSATIONS = [
@@ -54,42 +55,60 @@ export const CONVERSATIONS = [
       ['indep', 'The weather, apparently.'],
     ] },
 
-  // ---- traveling companions (Caravan screen) ----
-  { id: 'compa_road', with: 'comp_a', town: 'oakvale', place: 'caravan', status: 'traveling', label: 'Ask about the road',
+  // ---- traveling companions: ambient small talk in town (speech bubbles) ----
+  { id: 'oak_breakfast', with: 'comp_b', town: 'oakvale', place: 'town', ambient: true, once: true, status: 'traveling', label: 'Chat',
+    lines: [
+      ['comp_b', 'Is there anywhere to get breakfast?'],
+      ['comp_a', 'The bakery on the corner, if they haven\'t sold out.'],
+    ] },
+  { id: 'sh_grey', with: 'comp_b', town: 'stonehaven', place: 'town', ambient: true, once: true, status: 'traveling', label: 'Chat',
+    lines: [
+      ['comp_b', 'Everything here is grey.'],
+      ['comp_a', 'You get used to it.'],
+    ] },
+  { id: 'compa_road', with: 'comp_a', town: 'oakvale', place: 'town', ambient: true, once: true, status: 'traveling', label: 'Ask about the road',
     lines: [
       ['comp_a', 'Two days, if the weather holds. There\'s a bridge at the weir that\'s been half rotten since I was a boy. We\'ll see how it\'s doing.'],
     ] },
-  { id: 'compb_socks', with: 'comp_b', town: 'oakvale', place: 'caravan', status: 'traveling', label: 'Chat',
+  { id: 'compb_socks', with: 'comp_b', town: 'oakvale', place: 'town', ambient: true, once: true, status: 'traveling', label: 'Chat',
     lines: [
       ['comp_b', 'I bought new socks. Three pairs.'],
       ['merchant', 'That\'s a lot of socks.'],
       ['comp_b', 'It\'s a long road.'],
     ] },
-  { id: 'compa_home_ok', with: 'comp_a', town: 'stonehaven', place: 'caravan', status: 'traveling', flag: 'drovers_ok', label: 'Chat',
+  { id: 'compa_home_ok', with: 'comp_a', town: 'stonehaven', place: 'town', ambient: true, once: true, status: 'traveling', flag: 'drovers_ok', label: 'Chat',
     lines: [
       ['comp_a', 'The old track held. I wasn\'t completely sure it would.'],
       ['merchant', 'You didn\'t look unsure.'],
       ['comp_a', 'That\'s the trick of it.'],
     ] },
-  { id: 'compa_home_bad', with: 'comp_a', town: 'stonehaven', place: 'caravan', status: 'traveling', flag: 'drovers_bad', label: 'Chat',
+  { id: 'compa_home_bad', with: 'comp_a', town: 'stonehaven', place: 'town', ambient: true, once: true, status: 'traveling', flag: 'drovers_bad', label: 'Chat',
     lines: [
       ['comp_a', 'Sorry again about the track. It used to be better than that.'],
       ['merchant', 'We got here.'],
     ] },
-  { id: 'compa_home', with: 'comp_a', town: 'stonehaven', place: 'caravan', status: 'traveling', notFlag: ['drovers_ok', 'drovers_bad'], label: 'Chat',
+  { id: 'compa_home', with: 'comp_a', town: 'stonehaven', place: 'town', ambient: true, once: true, status: 'traveling', notFlag: ['drovers_ok', 'drovers_bad'], label: 'Chat',
     lines: [
       ['comp_a', 'Good to see the walls again. I grew up two valleys over.'],
     ] },
-  { id: 'compb_chapel', with: 'comp_b', town: 'stonehaven', place: 'caravan', status: 'traveling', label: 'Chat',
+  { id: 'compb_chapel', with: 'comp_b', town: 'stonehaven', place: 'town', ambient: true, once: true, status: 'traveling', label: 'Chat',
     lines: [
       ['comp_b', 'There\'s a proper chapel here. I\'d like an hour there before we do anything else, if that\'s all right.'],
       ['merchant', 'Take two.'],
     ] },
-  { id: 'indep_traveling', with: 'indep', place: 'caravan', status: 'traveling', label: 'Chat',
+  { id: 'indep_traveling', with: 'indep', place: 'town', ambient: true, once: true, status: 'traveling', label: 'Chat',
     lines: [
       ['indep', 'The bedroll\'s better than the ones at the guild house. Don\'t tell them I said that.'],
     ] },
 ];
+
+// Said when you tap a companion who has nothing new to talk about.
+export const IDLE_LINES = {
+  merchant: ['Right. What next?'],
+  comp_a: ['Ready when you are.', 'I\'ll keep an eye on the wagon.'],
+  comp_b: ['I\'m fine, thanks.', 'Nice enough day for it.'],
+  indep: ['Something you need?', 'I\'m listening.'],
+};
 
 // The independent adventurer's answer to a recommendation.
 // reason: accept | too_hard | too_dangerous; honest = you told it straight.

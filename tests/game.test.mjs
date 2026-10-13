@@ -343,3 +343,65 @@ test('deaths are possible only on opted-in danger, leave the party, and are chro
   assert.ok(describe(found, e).includes('did not come back'));
   for (const id of e.died) assert.ok(!availableForContracts(found).some(c => c.id === id));
 });
+
+// ---- world interactions (Milestone 2 presentation) --------------------------------------------
+import { townPresence, talkOptions, ambientLines, nextAmbient, referableContracts } from '../game/core/interactions.js';
+import { CONVERSATIONS } from '../game/content/index.js';
+
+test('the town scene shows the merchant, traveling companions and the independent adventurer', () => {
+  const s = fresh(31);
+  const roles = townPresence(s).map(p => p.role);
+  assert.deepEqual(roles, ['merchant', 'companion', 'companion', 'independent']);
+  byKey(s, 'comp_b').status = 'dead';
+  assert.ok(!townPresence(s).some(p => p.id === s.cast.comp_b));
+  depart(s, 'oakvale-stonehaven');
+  assert.deepEqual(townPresence(s), []);                                 // nobody in a square on the road
+});
+
+test('an adventurer out on a recommended job is away from the square until it is done', () => {
+  const s = fresh(32);
+  recommend(s, 'granary_rats', true);
+  assert.ok(!townPresence(s).some(p => p.role === 'independent'));
+  advanceTime(s, CONTRACTS.granary_rats.hours);
+  assert.ok(townPresence(s).some(p => p.role === 'independent'));
+  assert.ok(pendingReport(s));                                           // they come back with news
+});
+
+test('approaching the independent adventurer offers talk, work, an invitation and goodbye', () => {
+  const s = fresh(33);
+  const id = s.cast.indep;
+  const kinds = () => talkOptions(s, id).map(o => o.kind);
+  assert.deepEqual(kinds(), ['topic', 'refer', 'invite', 'leave']);      // only the introduction before meeting
+  talk(s, 'indep_intro');
+  assert.ok(!talkOptions(s, id).some(o => o.id === 'indep_intro'));     // one-off topics go away
+  assert.ok(talkOptions(s, id).filter(o => o.kind === 'topic').length >= 2);
+  recommend(s, 'granary_rats', true);
+  assert.ok(!kinds().includes('refer'));                                 // one referral at a time
+  assert.deepEqual(referableContracts(s), []);
+});
+
+test('companion small talk is spoken once, has no effects, then falls back to idle lines', () => {
+  for (const cv of CONVERSATIONS.filter(c => c.ambient)) assert.ok(!cv.effects, cv.id + ' has effects');
+  const s = fresh(34);
+  const trust = byKey(s, 'comp_a').trust;
+  const first = nextAmbient(s);
+  assert.ok(first && first.length >= 1);
+  const heard = new Set();
+  let lines;
+  while ((lines = nextAmbient(s))) heard.add(lines[0].text);
+  assert.ok(!heard.has(first[0].text));                                  // never repeated
+  assert.equal(ambientLines(s, s.cast.comp_a, { auto: true }), null);    // nothing new to say unprompted
+  const idle = ambientLines(s, s.cast.comp_a);                           // but answers when tapped
+  assert.equal(idle.length, 1);
+  assert.notEqual(ambientLines(s, s.cast.comp_a)[0].text, idle[0].text); // rotates
+  assert.equal(byKey(s, 'comp_a').trust, trust);
+  assert.equal(s.chronicle.length, 1);                                   // small talk is not chronicled
+});
+
+test('saves from the first slice still load (state format unchanged)', () => {
+  const s = fresh(35);
+  const old = JSON.parse(serialize(s));
+  delete old.seen['idle:comp_a'];
+  assert.ok(deserialize(JSON.stringify(old)));
+  assert.equal(SAVE_VERSION, 1);
+});
