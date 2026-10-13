@@ -11,17 +11,33 @@ export function loadImage(src) {
     const i = new Image(); i.onload = () => res(img[src] = i); i.onerror = rej; i.src = BASE + src;
   });
 }
-export async function loadManifest() {
+export async function loadManifest(opts = {}) {
   const M = await (await fetch(BASE + 'manifest.json', { cache: 'no-cache' })).json();
-  const parts = [...M.faces.flatMap(f => [f.part, f.brows, f.scar]),
+  M._img = f => img[f + '?v=' + M.version];
+  if (opts.preload === false) return M;        // game: load per character with loadCharacter()
+  const parts = [...M.faces.flatMap(f => [f.part, f.brows, f.scar, f.ear_human]),
     ...M.bodies.flatMap(b => [b.part, b.back, ...Object.values((b.anim && b.anim.pieces) || {}),
       ...Object.values(b.rig || {})]),
     ...Object.values(M.ears).map(e => e.part), ...M.hairs.flatMap(h => [h.part, h.ties]), ...(M.beards || []).map(b => b.part)]
     .filter(Boolean);
   await Promise.all(parts.flatMap(p => [p.file, p.skin_mask]).filter(Boolean)
     .map(f => loadImage(f + '?v=' + M.version)));
-  M._img = f => img[f + '?v=' + M.version];
   return M;
+}
+
+/** Parts one recipe needs (for loading only what a character uses). */
+export function partsFor(M, r) {
+  const byId = (l, id) => l.find(x => x.id === id);
+  const face = byId(M.faces, r.face), body = byId(M.bodies, r.outfit), hair = byId(M.hairs, r.hair);
+  const beard = byId(M.beards || [], r.beard), race = M.races[r.race] || M.races.human;
+  return [face && face.part, face && face.brows, face && face.scar, face && face.ear_human,
+    body && body.part, body && body.back, ...Object.values((body && body.anim && body.anim.pieces) || {}),
+    hair && hair.part, hair && hair.ties, beard && beard.part, race.ears && M.ears[race.ears] && M.ears[race.ears].part]
+    .filter(Boolean);
+}
+export function loadCharacter(M, r) {
+  return Promise.all(partsFor(M, r).flatMap(p => [p.file, p.skin_mask]).filter(Boolean)
+    .map(f => loadImage(f + '?v=' + M.version)));
 }
 
 // ---- colour (identical maths to preview-character/index.html) -----------------
@@ -100,16 +116,17 @@ export function buildCharacter(M, r) {
   if (face.brows) add('head', face.brows, gradient(M, face.brows.file, face.brows.lum, r.hairCol));
   const hair = byId(M.hairs, r.hair);
   if (hair) add('hair', hair.part, gradient(M, hair.part.file, hair.lum, r.hairCol), ...fitd(hair.ref_skull));
-  if (hair && hair.ties) add('hair', hair.ties, M._img(hair.ties.file), ...fitd(hair.ref_skull));   // ties keep their own colour
+  if (hair && hair.ties && M._img(hair.ties.file)) add('hair', hair.ties, M._img(hair.ties.file), ...fitd(hair.ref_skull));   // ties keep their own colour
   const beard = face.template === 'm' && byId(M.beards || [], r.beard);
   if (beard) add('beard', beard.part, gradient(M, beard.part.file, beard.lum, r.hairCol), ...fitd(beard.ref_skull));
+  if (!race.ears && face.ear_human && M._img(face.ear_human.file)) add('ears', face.ear_human, skinned(M, face.ear_human, skin));
   if (race.ears && !face.races) { const e = M.ears[race.ears]; add('ears', e.part, skinned(M, e.part, skin), ...fitd(e.ref_skull)); }
   const pieces = body.anim && body.anim.pieces;
   if (pieces) for (const [k, p] of Object.entries(pieces)) add(k, p, skinned(M, p, r.skin));
   else add('torso', body.part, skinned(M, body.part, r.skin));   // no rig: whole outfit bobs
   // legacy straight-cut rig (for the A/B comparison only)
   const legacy = {};
-  for (const [k, p] of Object.entries(body.rig || {})) legacy[k] = [{ src: skinned(M, p, r.skin), x: p.x, y: p.y, w: 0, h: 0 }];
+  for (const [k, p] of Object.entries(body.rig || {})) if (M._img(p.file)) legacy[k] = [{ src: skinned(M, p, r.skin), x: p.x, y: p.y, w: 0, h: 0 }];
   // standing reference: exactly what the character preview draws
   const still = document.createElement('canvas'); still.width = 1024; still.height = 1536;
   const sg = still.getContext('2d');

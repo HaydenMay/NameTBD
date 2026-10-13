@@ -3,6 +3,7 @@
 Research prototype for procedurally generated, painted 2D companions for a fantasy caravan-management game.
 
 **Live preview:** https://haydenmay.github.io/NameTBD/preview-character/
+**First playable journey:** https://haydenmay.github.io/NameTBD/game/ (see `docs/game.md`)
 
 ## How it works
 - Every character is painted on one shared mannequin pose. New faces, races, outfits and hairstyles are made as ChatGPT *edits* of the same reference images, so pose, size and style stay locked.
@@ -19,6 +20,8 @@ Research prototype for procedurally generated, painted 2D companions for a fanta
 | `art/review/` | Comparison sheets from each test |
 | `tools/` | Python pipeline (hair extraction, recolouring, preview build) |
 | `preview-character/` | Static browser preview (GitHub Pages) |
+| `game/` | First playable journey (Oakvale → Stonehaven); rules in `game/core/`, data in `game/content/` |
+| `tests/` | `node --test` |
 
 ## Rebuild the preview
 ```
